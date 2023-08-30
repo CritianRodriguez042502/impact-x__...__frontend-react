@@ -12,6 +12,10 @@ import resendEmial from "../slices/register_users_slices/resendCorreoSlice";
 import activateUser from "../slices/register_users_slices/activationSlice";
 import JWTCreate from "../slices/register_users_slices/JWTCreate";
 import JWTRefresh from "../slices/register_users_slices/JWTRefresh";
+import JWTVerify from "../slices/register_users_slices/JWTVerify";
+import userData from "../slices/register_users_slices/userDataSlice";
+import resetPasword from "../slices/register_users_slices/resetPaswordSlice";
+import resetPasswordConfirmSlice from "../slices/register_users_slices/resetPasswordConfirmSlice";
 
 export const store = configureStore({
   reducer: {
@@ -23,10 +27,14 @@ export const store = configureStore({
     //    searchBlog: searchBlog,
 
     // State -- Register user --
-    createUser: createUser,
-    resendEmial: resendEmial,
-    activate: activateUser,
-    JWTCreate: JWTCreate,
-    JWTRefresh : JWTRefresh
+    //createUser: createUser,
+    //resendEmial: resendEmial,
+    //activate: activateUser,
+    //JWTCreate: JWTCreate,
+    //JWTRefresh : JWTRefresh,
+    //JWTVerify : JWTVerify,
+    //userData : userData,
+    resetPasword : resetPasword,
+    resetPasswordConfirmSlice : resetPasswordConfirmSlice,
   },
 });

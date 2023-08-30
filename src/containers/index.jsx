@@ -19,6 +19,7 @@ export { Signin } from "./register/signin/Signin";
 export { Signup } from "./register/signup/Signup";
 export { Search } from "./blog/search/Search";
 export { Activation } from "./register/activation/Activation";
+export { ResetPassword } from "./register/reset_password/ResetPassword";
 
 // Export folder dashboard ___________________________________
 export { InitialDashboard } from "./dashboard/initial_dashboard/InitialDashboard";

@@ -20,6 +20,7 @@ import {
   Signin,
   Signup,
   Activation,
+  ResetPassword,
 
   // Dashboard pages
   InitialDashboard,
@@ -50,7 +51,8 @@ export function Redirects() {
         <Route path="/access" element={<Access/>}/>
         <Route path="/access/signin" element={<Signin />} />
         <Route path="/access/signup" element={<Signup />} />
-        <Route path="/activate/:uid/:token" element={<Activation />} />
+        <Route path="/admin/user/activate/:uid/:token" element={<Activation />} />
+        <Route path="/admin/reset_password/confirm/:uid/:token" element={<ResetPassword/>}/>
 
         // Dashboard pages
         <Route path="/dashboard" element={<InitialDashboard />} />
