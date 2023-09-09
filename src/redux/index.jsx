@@ -20,3 +20,7 @@ export { axiosJWTVerify } from "./slices/register_users_slices/JWTVerify";
 export { axiosUserData } from "./slices/register_users_slices/userDataSlice";
 export { axiosResetPassword } from "./slices/register_users_slices/resetPaswordSlice";
 export { axiosResetPasswordConfirm } from "./slices/register_users_slices/resetPasswordConfirmSlice";
+
+// Export api --Register user Google --
+export { axiosAuthGoogle } from "./slices/register_user_social_slices/authGoogle";
+export { axiosLoginGoogle } from "./slices/register_user_social_slices/loginGoogle";

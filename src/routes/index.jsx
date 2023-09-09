@@ -41,18 +41,21 @@ export function Redirects() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
 
+
         // blog pages
         <Route path="/blogs" element={<AllBlogs />} />
         <Route path="/blogs/category/:slug" element={<Categorys />} />
         <Route path="/blogs/blog_detail/:slug" element={<BlogDetail />} />
-        <Route path="/blogs/search/:slug" element={<Search/>}/> 
+        <Route path="/blogs/search/:slug" element={<Search />} />
+
 
         // Registration pages
-        <Route path="/access" element={<Access/>}/>
+        <Route path="/access" element={<Access />} />
         <Route path="/access/signin" element={<Signin />} />
         <Route path="/access/signup" element={<Signup />} />
-        <Route path="/admin/user/activate/:uid/:token" element={<Activation />} />
-        <Route path="/admin/reset_password/confirm/:uid/:token" element={<ResetPassword/>}/>
+        <Route path="/admin/user/activate/:uid/:token" element={<Activation />}/>
+        <Route path="/admin/reset_password/confirm/:uid/:token" element={<ResetPassword />}/>
+
 
         // Dashboard pages
         <Route path="/dashboard" element={<InitialDashboard />} />

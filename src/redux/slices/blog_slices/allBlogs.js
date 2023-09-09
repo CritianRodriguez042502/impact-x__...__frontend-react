@@ -4,7 +4,6 @@ import axios from "axios";
 export const axiosAllBlogs = createAsyncThunk("allBlogs", async () => {
   const url = `${"http://127.0.0.1:8000"}/blog/all_blog/`;
   const response = await axios.get(url);
-  console.log(response)
   return response.data;
 });
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
+import { Link } from "react-router-dom";
 
 export function Access() {
   return (
@@ -12,7 +13,9 @@ export function Access() {
       </Helmet>
 
       <Layout>
-        <h1> Access </h1>
+        <h1> Accede a nuestro blog </h1>
+        <div> <Link to={"/access/signup"}> registrarse </Link> </div>
+        <div> <Link to={"/access/signin"}> Ingresar </Link>  </div>
       </Layout>
     </main>
   );

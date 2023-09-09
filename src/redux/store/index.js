@@ -8,7 +8,7 @@ import searchBlog from "../slices/blog_slices/searchBlogSlice";
 
 // State -- Register user --
 import createUser from "../slices/register_users_slices/createUserSlice";
-import resendEmial from "../slices/register_users_slices/resendCorreoSlice";
+import resendEmail from "../slices/register_users_slices/resendCorreoSlice";
 import activateUser from "../slices/register_users_slices/activationSlice";
 import JWTCreate from "../slices/register_users_slices/JWTCreate";
 import JWTRefresh from "../slices/register_users_slices/JWTRefresh";
@@ -17,24 +17,32 @@ import userData from "../slices/register_users_slices/userDataSlice";
 import resetPasword from "../slices/register_users_slices/resetPaswordSlice";
 import resetPasswordConfirmSlice from "../slices/register_users_slices/resetPasswordConfirmSlice";
 
+// State -- Register user --
+import authGoogle from "../slices/register_user_social_slices/authGoogle";
+import loginGoogle from "../slices/register_user_social_slices/loginGoogle";
+
 export const store = configureStore({
   reducer: {
     // State -- Blog --
-    //    category: category,
-    //    allBlogs: allBlogs,
-    //    blogTypeCategory: blogTypeCategory,
-    //    blogDetail: blogDetail,
-    //    searchBlog: searchBlog,
+    category: category,
+    allBlogs: allBlogs,
+    blogTypeCategory: blogTypeCategory,
+    blogDetail: blogDetail,
+    searchBlog: searchBlog,
 
     // State -- Register user --
-    //createUser: createUser,
-    //resendEmial: resendEmial,
-    //activate: activateUser,
-    //JWTCreate: JWTCreate,
-    //JWTRefresh : JWTRefresh,
-    //JWTVerify : JWTVerify,
-    //userData : userData,
-    resetPasword : resetPasword,
-    resetPasswordConfirmSlice : resetPasswordConfirmSlice,
+    createUser: createUser,
+    resendEmail: resendEmail,
+    activate: activateUser,
+    JWTCreate: JWTCreate,
+    JWTRefresh: JWTRefresh,
+    JWTVerify: JWTVerify,
+    userData: userData,
+    resetPasword: resetPasword,
+    resetPasswordConfirmSlice: resetPasswordConfirmSlice,
+
+    // State -- Register with google --
+    authGoogle: authGoogle,
+    loginGoogle: loginGoogle,
   },
 });
