@@ -3,14 +3,14 @@
 // Export store
 export { store } from "./store/index";
 
-// Export Api calls -- Blog --
+// Export Apis calls -- Blog --
 export { axiosCategorys } from "./slices/blog_slices/categorysSlice";
 export { axiosAllBlogs } from "./slices/blog_slices/allBlogs";
 export { axiosBlogTypeCategory } from "./slices/blog_slices/blogTypeCategorySlice";
 export { axiosBlogDetail } from "./slices/blog_slices/blogDetailSlice";
 export { axiosSearchBlogs } from "./slices/blog_slices/searchBlogSlice";
 
-// Export Api -- Register user --
+// Export Apis -- Register user --
 export { axiosCreateUser } from "./slices/register_users_slices/createUserSlice";
 export { axiosResendEmail } from "./slices/register_users_slices/resendCorreoSlice";
 export { axiosActivationUser } from "./slices/register_users_slices/activationSlice";
@@ -21,6 +21,9 @@ export { axiosUserData } from "./slices/register_users_slices/userDataSlice";
 export { axiosResetPassword } from "./slices/register_users_slices/resetPaswordSlice";
 export { axiosResetPasswordConfirm } from "./slices/register_users_slices/resetPasswordConfirmSlice";
 
-// Export api --Register user Google --
+// Export apis --Register user Google --
 export { axiosAuthGoogle } from "./slices/register_user_social_slices/authGoogle";
 export { axiosLoginGoogle } from "./slices/register_user_social_slices/loginGoogle";
+
+// Export apis  -- authenticated user data --
+export { axiosBlogsByUser } from "./slices/dashboard_slices/blogsByUserSlice";

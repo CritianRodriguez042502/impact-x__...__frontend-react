@@ -8,6 +8,7 @@ export const axiosJWTRefresh = createAsyncThunk("JWTRefresh", async (data) => {
 });
 
 const initialState = {
+  info : null,
   status: null,
   error: null,
 };
@@ -23,6 +24,7 @@ const JWTRefresh = createSlice({
 
     builder.addCase(axiosJWTRefresh.fulfilled, function (state, action) {
       state.status = "fulfilled";
+      state.info = action.payload
       localStorage.setItem("access", JSON.stringify(action.payload.access));
     });
 

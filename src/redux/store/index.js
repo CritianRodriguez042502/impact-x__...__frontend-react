@@ -15,11 +15,14 @@ import JWTRefresh from "../slices/register_users_slices/JWTRefresh";
 import JWTVerify from "../slices/register_users_slices/JWTVerify";
 import userData from "../slices/register_users_slices/userDataSlice";
 import resetPasword from "../slices/register_users_slices/resetPaswordSlice";
-import resetPasswordConfirmSlice from "../slices/register_users_slices/resetPasswordConfirmSlice";
+import resetPasswordConfirm from "../slices/register_users_slices/resetPasswordConfirmSlice";
 
 // State -- Register user --
 import authGoogle from "../slices/register_user_social_slices/authGoogle";
 import loginGoogle from "../slices/register_user_social_slices/loginGoogle";
+
+// State -- authenticated user data --
+import blogsByUser from "../slices/dashboard_slices/blogsByUserSlice" 
 
 export const store = configureStore({
   reducer: {
@@ -37,12 +40,15 @@ export const store = configureStore({
     JWTCreate: JWTCreate,
     JWTRefresh: JWTRefresh,
     JWTVerify: JWTVerify,
-    userData: userData,
     resetPasword: resetPasword,
-    resetPasswordConfirmSlice: resetPasswordConfirmSlice,
-
+    resetPasswordConfirm: resetPasswordConfirm,
+    userData: userData,
+    
     // State -- Register with google --
     authGoogle: authGoogle,
     loginGoogle: loginGoogle,
+
+    // State -- authenticated user data --
+    blogsByUser : blogsByUser
   },
 });

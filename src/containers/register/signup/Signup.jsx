@@ -10,7 +10,6 @@ import {
 } from "../../../redux/index";
 import { Layout } from "../../../components/index";
 
-
 // Falta mirar como puedo traer los mensajes de error que envia djoser
 
 export function Signup() {
@@ -24,40 +23,51 @@ export function Signup() {
   const [dataUser, setDataUser] = useState({});
   const [sendEmail, setSendEmail] = useState("none");
 
-  // Auth with google
+  const [dataEmail, setDataEmail] = useState("");
+
+  // Auth with google -------
   useEffect(() => {
     if (infoAuthGoogle.url) {
       location.href = infoAuthGoogle.url;
     }
   }, [infoAuthGoogle.url]);
 
-  // Auth normalize
+  function authGoogle() {
+    dispatch(axiosAuthGoogle());
+  }
+
+  // Auth normalize -------
   useEffect(() => {
     if (infoCreateUser.status === "pending") {
-      setLoader("initial");
-    }
-
-    if (infoResendEmail.status === "pending") {
       setLoader("initial");
     }
 
     if (infoCreateUser.status === "fulfilled") {
       setLoader("none");
       setSendEmail("initial");
-    } if (infoCreateUser.status === "rejected") {
+    }
+    if (infoCreateUser.status === "rejected") {
       setLoader("none");
       alert(" Hubo algun error al intentar crear el usuario");
     }
+  }, [infoCreateUser.status]);
 
-    if (infoResendEmail.status === "fulfilled") {
-      setLoader("none");
-      alert("Correo reenviado");
-    } if (infoResendEmail.status === "rejected") {
-      setLoader("none");
-      alert("Ya su cuenta se encuentra activa");
+  // Send email -------
+  useEffect(() => {
+    if (infoResendEmail.status === "pending") {
+      setLoader("initial")
     }
 
-  }, [infoCreateUser.status, infoResendEmail.status]);
+    if (infoResendEmail.status === "fulfilled") {
+      setLoader("none")
+      alert("Correo reenviado")
+    }
+
+    if (infoResendEmail.status === "rejected") {
+      setLoader("none")
+      alert("Tu cuenta ya se encuentra activa")
+    }
+  }, [infoResendEmail.status]);
 
   function OnchangeData(e) {
     setDataUser({
@@ -69,13 +79,16 @@ export function Signup() {
   function onSubmitDataUser(e) {
     e.preventDefault();
 
-    const firstNme = e.target.first_name.value;
+    const firstName = e.target.first_name.value;
     const lastName = e.target.last_name.value;
     const username = e.target.username.value;
+    const email = e.target.email.value
     const password = e.target.password.value;
     const rePassword = e.target.re_password.value;
 
-    if (firstNme && lastName && username && password && rePassword) {
+    setDataEmail(email)
+
+    if (firstName && lastName && username && email && password && rePassword) {
       if (password === rePassword) {
         if (password.length >= 8) {
           dispatch(axiosCreateUser(dataUser));
@@ -90,9 +103,8 @@ export function Signup() {
     }
   }
 
-
-  function onClickSendEmail (e) {
-    console.log(e)
+  function onClickSendEmail() {
+    dispatch(axiosResendEmail({"email" : dataEmail}))
   }
 
   // Falta la parte de poder reenviar correos
@@ -164,6 +176,8 @@ export function Signup() {
 
           <button type="submit"> Registrarse </button>
         </form>
+
+        <button onClick={authGoogle}> Acceder con google </button>
 
         <div style={{ display: sendEmail }}>
           <p> Volver a enviar correo </p>

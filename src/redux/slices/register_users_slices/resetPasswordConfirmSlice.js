@@ -25,8 +25,8 @@ const resetPasswordConfirmSlices = createSlice({
     });
     builder.addCase(
       axiosResetPasswordConfirm.fulfilled,
-      function (state, action) {
-        state.status = action.payload;
+      function (state) {
+        state.status = "fulfilled"
       }
     );
     builder.addCase(

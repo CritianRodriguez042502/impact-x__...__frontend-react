@@ -24,7 +24,7 @@ const resetPasswordSlice = createSlice({
       state.status = "pending";
     });
     builder.addCase(axiosResetPassword.fulfilled, function (state, action) {
-      state.status = action.payload;
+      state.status = "fulfilled";
     });
     builder.addCase(axiosResetPassword.rejected, function (state, action) {
       state.status = "rejected";

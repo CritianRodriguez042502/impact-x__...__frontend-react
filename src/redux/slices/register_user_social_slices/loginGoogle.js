@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import {stringify} from "qs"
 
 export const axiosLoginGoogle = createAsyncThunk(
   "loginGoogle",
@@ -9,11 +10,12 @@ export const axiosLoginGoogle = createAsyncThunk(
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
+    // decodeuri --- decodeuricomponent
     const params = new URLSearchParams()
     params.append("state", state)
     params.append("code", code)
     const url = `http://127.0.0.1:8000/user_system/auth/o/google-oauth2/`;
-    const response = await axios.post(url, params.toString(), config);
+    const response = await axios.post(url,stringify(params), config);
     return response.data;
   }
 );

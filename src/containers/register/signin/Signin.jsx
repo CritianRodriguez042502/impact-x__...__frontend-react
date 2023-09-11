@@ -13,10 +13,16 @@ import {
 } from "../../../redux/index";
 import { Layout } from "../../../components/index";
 
-
 export function Signin() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const infoJWTCreate = useSelector((state) => state.JWTCreate);
+  const infoJWTRefresh = useSelector((state) => state.JWTRefresh);
+  const infoJWTVerify = useSelector((state) => state.JWTVerify);
+  const infoResetPassword = useSelector((state) => state.resetPasword);
+
+  const [dataForm, setDataForm] = useState({});
 
   // Auth Google
   const infoUrlGoogle = useSelector((state) => state.authGoogle);
@@ -28,23 +34,68 @@ export function Signin() {
     if (infoUrlGoogle.url) {
       location.href = infoUrlGoogle.url;
     }
-    
-    if (state && code) {
-      console.log(state)
-      console.log(code)
-      dispatch(axiosLoginGoogle(state,code));
+
+    if (state && code && infoUrlGoogle.info === null) {
+      dispatch(axiosLoginGoogle(state, code));
     }
   }, [infoUrlGoogle, state, code]);
 
-  
   function clickLogin() {
     dispatch(axiosAuthGoogle());
   }
 
-  //  dispatch(axiosJWTCreate())
-  //  dispatch(axiosJWTRefresh())
-  //  dispatch(axiosJWTVerify())
-  //  dispatch(axiosResetPassword())
+  // Auth normalize
+  useEffect(() => {
+    if (infoJWTCreate.info && !infoJWTRefresh.info) {
+      dispatch(axiosJWTRefresh({ refresh: infoJWTCreate.info }));
+    }
+
+    if (infoJWTRefresh.info && !infoJWTVerify.status) {
+      dispatch(axiosJWTVerify({ token: infoJWTRefresh.info.access }));
+    }
+
+    if (infoJWTVerify.status === "fulfilled") {
+      navigate("/dashboard");
+    }
+
+    if (infoJWTVerify.status === "rejected") {
+      alert("Error");
+    }
+  }, [infoJWTCreate.info, infoJWTRefresh.info, infoJWTVerify.status]);
+
+  function onChangeData(e) {
+    setDataForm({
+      ...dataForm,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function onSubmitDataForm(e) {
+    e.preventDefault();
+
+    if (dataForm.email && dataForm.password) {
+      dispatch(axiosJWTCreate(dataForm));
+    }
+  }
+
+  // Reset Password
+  useEffect(() => {
+    if (infoResetPassword.status === "fulfilled") {
+      alert("Correo enviado")
+    }
+    if (infoResetPassword.status === "rejected") {
+      alert("Esta cuenta no existe")
+    }
+  }, [infoResetPassword.status]);
+
+  function onSubmitResetPassword (e) {
+    e.preventDefault()
+    const emailResetPassword = e.target.email_reset_password.value
+
+    if (emailResetPassword) {
+      dispatch(axiosResetPassword({'email':emailResetPassword}))
+    }
+  }
 
   return (
     <main>
@@ -56,7 +107,39 @@ export function Signin() {
 
       <Layout>
         <h1> Signin </h1>
+        <form onSubmit={onSubmitDataForm}>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Correo"
+            onChange={onChangeData}
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Contraseña"
+            onChange={onChangeData}
+            required
+          />
+          <button type="submit"> Ingresar </button>
+        </form>
         <button onClick={clickLogin}> With google </button>
+
+        <div>
+          <form onSubmit={onSubmitResetPassword}>
+            <input
+              type="email"
+              id="email_reset_password"
+              name="email_reset_password"
+              placeholder="correo"
+              required
+            />
+            <button type="submit"> Enviar </button>
+          </form>
+        </div>
       </Layout>
     </main>
   );

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const axiosUserData = createAsyncThunk("userData", async (protocol,data) => {
+export const axiosUserData = createAsyncThunk("userData", async (data) => {
   const headers = {
     Authorization: `JWT ${data}`,
   };

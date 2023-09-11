@@ -21,7 +21,7 @@ const JWTVerifySlice = createSlice({
       state.status = "pending";
     });
     builder.addCase(axiosJWTVerify.fulfilled, function (state, action) {
-      state.status = action.payload;
+      state.status = "fulfilled";
     });
     builder.addCase(axiosJWTVerify.rejected, function (state, action) {
       state.status = "rejected";
