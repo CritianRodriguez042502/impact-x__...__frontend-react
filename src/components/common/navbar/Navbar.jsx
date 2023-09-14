@@ -11,11 +11,12 @@ export function Navbar() {
   const access = JSON.parse(localStorage.getItem("access"));
   const [appearance, setAppearance] = useState(false);
 
+
   useEffect(() => {
     if (!infoJWTVerify.status) {
       dispatch(axiosJWTVerify({ token: access }));
     }
-    if (infoJWTVerify.status === "fulfilled") {
+    if (infoJWTVerify.status === "fulfilled" && access) {
       setAppearance(true);
     }
 
@@ -33,8 +34,10 @@ export function Navbar() {
       <NavLink to={"/blogs"}> Blog </NavLink>
       {appearance === true ? (
         <NavLink to={"/dashboard"}> Dashboard </NavLink>
+      ) : appearance === false ? (
+        <NavLink to={"/access"}> Unete </NavLink>
       ) : (
-        <NavLink to={"/access"}></NavLink>
+        false
       )}
     </nav>
   );

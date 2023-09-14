@@ -17,9 +17,11 @@ export function AllBlogs() {
 
   
   useEffect(() => {
-    dispatch(axiosCategorys());
-    dispatch(axiosAllBlogs());
-  }, []);
+    if (!infoBlogs.info && !infoBlogs.info) {
+      dispatch(axiosCategorys());
+      dispatch(axiosAllBlogs());
+    }
+  }, [infoBlogs.info,infoBlogs.info]);
 
 
   function onSubmitSearch(e) {

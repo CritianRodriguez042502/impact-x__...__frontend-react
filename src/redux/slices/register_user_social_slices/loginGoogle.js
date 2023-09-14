@@ -4,7 +4,7 @@ import {stringify} from "qs"
 
 export const axiosLoginGoogle = createAsyncThunk(
   "loginGoogle",
-  async (state,code) => {
+  async (data) => {
     const config = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -12,8 +12,8 @@ export const axiosLoginGoogle = createAsyncThunk(
     }
     // decodeuri --- decodeuricomponent
     const params = new URLSearchParams()
-    params.append("state", state)
-    params.append("code", code)
+    params.append("state", data.state)
+    params.append("code", data.code)
     const url = `http://127.0.0.1:8000/user_system/auth/o/google-oauth2/`;
     const response = await axios.post(url,stringify(params), config);
     return response.data;

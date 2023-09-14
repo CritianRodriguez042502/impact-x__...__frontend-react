@@ -3,8 +3,12 @@ import axios from "axios";
 
 export const axiosBlogDetail = createAsyncThunk("blogDetail", async (slug) => {
   const url = `${"http://127.0.0.1:8000"}/blog/blog_detail/?slug=${slug}`;
-  const response = await axios.get(url);
-  return response.data;
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    throw new Error("Este blog no existe");
+  }
 });
 
 const initialState = {

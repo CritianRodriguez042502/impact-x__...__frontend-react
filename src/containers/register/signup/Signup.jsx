@@ -25,6 +25,9 @@ export function Signup() {
 
   const [dataEmail, setDataEmail] = useState("");
 
+  const infoJWTVerify = useSelector(state => state.JWTVerify)
+  const access = JSON.parse(localStorage.getItem("access"))
+
   // Auth with google -------
   useEffect(() => {
     if (infoAuthGoogle.url) {
@@ -38,6 +41,11 @@ export function Signup() {
 
   // Auth normalize -------
   useEffect(() => {
+
+    if (infoJWTVerify.status === "fulfilled" && access) {
+      navigate("/dashboard")
+    }
+
     if (infoCreateUser.status === "pending") {
       setLoader("initial");
     }
@@ -50,7 +58,7 @@ export function Signup() {
       setLoader("none");
       alert(" Hubo algun error al intentar crear el usuario");
     }
-  }, [infoCreateUser.status]);
+  }, [infoCreateUser.status, infoJWTVerify.status]);
 
   // Send email -------
   useEffect(() => {
@@ -107,7 +115,6 @@ export function Signup() {
     dispatch(axiosResendEmail({"email" : dataEmail}))
   }
 
-  // Falta la parte de poder reenviar correos
 
   return (
     <main>

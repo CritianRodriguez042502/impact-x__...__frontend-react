@@ -3,8 +3,12 @@ import axios from "axios";
 
 export const axiosJWTCreate = createAsyncThunk("JWTCreate", async (data) => {
   const url = `${"http://127.0.0.1:8000"}/user_system/auth/jwt/create/`;
-  const response = await axios.post(url, data);
-  return response.data;
+  try {
+    const response = await axios.post(url, data);
+    return response.data;
+  } catch (error) {
+    throw new Error("La combinacion de credenciales no coinciden");
+  }
 });
 
 const initialState = {

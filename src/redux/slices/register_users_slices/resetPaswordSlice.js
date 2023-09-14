@@ -5,8 +5,12 @@ export const axiosResetPassword = createAsyncThunk(
   "restPassword",
   async (data) => {
     const url = `${"http://127.0.0.1:8000"}/user_system/auth/users/reset_password/`;
-    const response = await axios.post(url, data);
-    return response.status;
+    try {
+      const response = await axios.post(url, data);
+      return response.status;
+    } catch (errro) {
+      throw new Error("El apartado de correo no puede ir vacio");
+    }
   }
 );
 

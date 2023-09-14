@@ -27,3 +27,5 @@ export { axiosLoginGoogle } from "./slices/register_user_social_slices/loginGoog
 
 // Export apis  -- authenticated user data --
 export { axiosBlogsByUser } from "./slices/dashboard_slices/blogsByUserSlice";
+export { axiosDetailedUserBlog } from "./slices/dashboard_slices/detailedUserBlogSlice";
+export { axiosUpdateBlogUser } from "./slices/dashboard_slices/updateBlogUserSlice";

@@ -17,12 +17,14 @@ import userData from "../slices/register_users_slices/userDataSlice";
 import resetPasword from "../slices/register_users_slices/resetPaswordSlice";
 import resetPasswordConfirm from "../slices/register_users_slices/resetPasswordConfirmSlice";
 
-// State -- Register user --
+// State -- Register user with google --
 import authGoogle from "../slices/register_user_social_slices/authGoogle";
 import loginGoogle from "../slices/register_user_social_slices/loginGoogle";
 
 // State -- authenticated user data --
 import blogsByUser from "../slices/dashboard_slices/blogsByUserSlice" 
+import detailedUserBlog from "../slices/dashboard_slices/detailedUserBlogSlice";
+import updateBlogUser from "../slices/dashboard_slices/updateBlogUserSlice";
 
 export const store = configureStore({
   reducer: {
@@ -49,6 +51,8 @@ export const store = configureStore({
     loginGoogle: loginGoogle,
 
     // State -- authenticated user data --
-    blogsByUser : blogsByUser
+    blogsByUser : blogsByUser,
+    detailedUserBlog : detailedUserBlog,
+    updateBlogUser : updateBlogUser
   },
 });

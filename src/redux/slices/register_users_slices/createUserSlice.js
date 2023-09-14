@@ -8,7 +8,6 @@ export const axiosCreateUser = createAsyncThunk("create_user", async (data) => {
 });
 
 const initialState = {
-  erorrMessage : null,
   status: null,
   error: null,
 };
@@ -25,9 +24,8 @@ const createUserSlice = createSlice({
       state.status = "fulfilled";
     });
     builder.addCase(axiosCreateUser.rejected, function (state, action) {
-      state.erorrMessage = action.payload
       state.status = "rejected";
-      state.error = action.error.message;
+      state.error = action;
     });
   },
 });

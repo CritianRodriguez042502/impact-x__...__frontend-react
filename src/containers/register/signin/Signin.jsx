@@ -24,6 +24,8 @@ export function Signin() {
 
   const [dataForm, setDataForm] = useState({});
 
+  const access = JSON.parse(localStorage.getItem("access"));
+
   // Auth Google
   const infoUrlGoogle = useSelector((state) => state.authGoogle);
   const searchParams = new URLSearchParams(location.search);
@@ -35,8 +37,12 @@ export function Signin() {
       location.href = infoUrlGoogle.url;
     }
 
-    if (state && code && infoUrlGoogle.info === null) {
-      dispatch(axiosLoginGoogle(state, code));
+    if (state && code && !infoUrlGoogle.info) {
+      const data = {
+        state : state,
+        code : code
+      }
+      dispatch(axiosLoginGoogle(data));
     }
   }, [infoUrlGoogle, state, code]);
 
@@ -50,18 +56,16 @@ export function Signin() {
       dispatch(axiosJWTRefresh({ refresh: infoJWTCreate.info }));
     }
 
-    if (infoJWTRefresh.info && !infoJWTVerify.status) {
+    if (infoJWTRefresh.info && (infoJWTVerify.status === "rejected" || !access)) {
       dispatch(axiosJWTVerify({ token: infoJWTRefresh.info.access }));
     }
 
-    if (infoJWTVerify.status === "fulfilled") {
+    if (infoJWTVerify.status === "fulfilled" && access) {
       navigate("/dashboard");
     }
-
-    if (infoJWTVerify.status === "rejected") {
-      alert("Error");
-    }
   }, [infoJWTCreate.info, infoJWTRefresh.info, infoJWTVerify.status]);
+
+  
 
   function onChangeData(e) {
     setDataForm({
@@ -81,19 +85,19 @@ export function Signin() {
   // Reset Password
   useEffect(() => {
     if (infoResetPassword.status === "fulfilled") {
-      alert("Correo enviado")
+      alert("Correo enviado");
     }
     if (infoResetPassword.status === "rejected") {
-      alert("Esta cuenta no existe")
+      alert("Esta cuenta no existe");
     }
   }, [infoResetPassword.status]);
 
-  function onSubmitResetPassword (e) {
-    e.preventDefault()
-    const emailResetPassword = e.target.email_reset_password.value
+  function onSubmitResetPassword(e) {
+    e.preventDefault();
+    const emailResetPassword = e.target.email_reset_password.value;
 
     if (emailResetPassword) {
-      dispatch(axiosResetPassword({'email':emailResetPassword}))
+      dispatch(axiosResetPassword({ email: emailResetPassword }));
     }
   }
 

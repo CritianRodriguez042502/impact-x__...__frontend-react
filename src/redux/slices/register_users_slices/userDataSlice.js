@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const axiosUserData = createAsyncThunk("userData", async (data) => {
+export const axiosUserData = createAsyncThunk("userData", async (jwt) => {
   const headers = {
-    Authorization: `JWT ${data}`,
+    Authorization: `JWT ${jwt}`,
   };
   const url = `${"http://127.0.0.1:8000"}/user_system/auth/users/me/`;
   const response = await axios.get(url, { headers });

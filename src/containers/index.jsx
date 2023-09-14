@@ -24,3 +24,4 @@ export { ResetPassword } from "./register/reset_password/ResetPassword";
 // Export folder dashboard ___________________________________
 export { InitialDashboard } from "./dashboard/initial_dashboard/InitialDashboard";
 export { BlogsUser } from "./dashboard/blogs_user/BlogsUser";
+export { UpdateBlogByUser } from "./dashboard/update_blog_user/UpdateBlogByUser";

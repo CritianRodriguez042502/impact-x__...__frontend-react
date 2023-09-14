@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const axiosBlogsByUser = createAsyncThunk("blogByUser", async (data) => {
+export const axiosBlogsByUser = createAsyncThunk("blogByUser", async (jwt) => {
   const headers = {
-    Authorization: `JWT ${data}`,
+    Authorization: `JWT ${jwt}`,
   };
   const url = `${"http://127.0.0.1:8000"}/blog/blog_by_user/`;
   const response = await axios.get(url, { headers });
