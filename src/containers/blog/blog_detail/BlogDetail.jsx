@@ -33,8 +33,7 @@ export function BlogDetail() {
                 <h1> {data.title} </h1>
                 <p> {data.description} </p>
                 <hr />
-                <p> {data.creatio} </p>
-                <p> {data.update} </p>
+                <div dangerouslySetInnerHTML={{__html : data.content}} />
               </div>
             );
           })

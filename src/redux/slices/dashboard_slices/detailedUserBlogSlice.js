@@ -7,7 +7,7 @@ export const axiosDetailedUserBlog = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"http://127.0.0.1:8000"}/blog/blog_detail_by_user/?slug=${data.slug}`;
+    const url = `${"http://127.0.0.1:8000"}/dashboard/blog_detail_by_user/?slug=${data.slug}`;
     const response = await axios.get(url, { headers });
     return response.data;
   }

@@ -3,8 +3,18 @@ import axios from "axios";
 
 export const axiosAllBlogs = createAsyncThunk("allBlogs", async () => {
   const url = `${"http://127.0.0.1:8000"}/blog/all_blog/`;
-  const response = await axios.get(url);
-  return response.data;
+  try {
+    const response = await axios.get(url);
+    return {
+      status : response.status,
+      data : response.data
+    };
+  } catch (error) {
+    return {
+      status : error.response.status,
+      data : error.response.data
+    };
+  }
 });
 
 const initialState = {
@@ -22,12 +32,13 @@ const allBlogsSlice = createSlice({
       state.status = "pending";
     });
     builder.addCase(axiosAllBlogs.fulfilled, function (state, action) {
-      state.status = "fulfilled";
-      state.info = action.payload;
-    });
-    builder.addCase(axiosAllBlogs.rejected, function (state, action) {
-      state.status = "rejected";
-      state.error = action.error.message;
+      if (action.payload.status === 404) {
+        state.status = "rejected"
+        state.info = action.payload.data
+      } else {
+        state.status = "fulfilled"
+        state.info = action.payload.data
+      }
     });
   },
 });

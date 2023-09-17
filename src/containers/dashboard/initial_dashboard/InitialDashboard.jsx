@@ -40,7 +40,8 @@ export function InitialDashboard() {
     }
 
     if (infoDatauser.status === "rejected") {
-      naviage("/access/signin");
+      location.href = "http://localhost:5173/access/signin"
+      localStorage.removeItem("access")
     }
   }, [infoDatauser.status]);
 

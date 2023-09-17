@@ -52,7 +52,11 @@ export function Signin() {
 
   // Auth normalize
   useEffect(() => {
-    if (infoJWTCreate.info && !infoJWTRefresh.info) {
+    if (infoJWTCreate.status === "rejected") {
+      alert("La combinacion de credenciales es incorrecta")
+    }
+
+    if (infoJWTCreate.info && infoJWTCreate.status === "fulfilled" && !infoJWTRefresh.info) {
       dispatch(axiosJWTRefresh({ refresh: infoJWTCreate.info }));
     }
 
@@ -63,7 +67,7 @@ export function Signin() {
     if (infoJWTVerify.status === "fulfilled" && access) {
       navigate("/dashboard");
     }
-  }, [infoJWTCreate.info, infoJWTRefresh.info, infoJWTVerify.status]);
+  }, [infoJWTCreate.status,infoJWTCreate.info, infoJWTRefresh.info, infoJWTVerify.status]);
 
   
 

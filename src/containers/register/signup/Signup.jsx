@@ -25,8 +25,8 @@ export function Signup() {
 
   const [dataEmail, setDataEmail] = useState("");
 
-  const infoJWTVerify = useSelector(state => state.JWTVerify)
-  const access = JSON.parse(localStorage.getItem("access"))
+  const infoJWTVerify = useSelector((state) => state.JWTVerify);
+  const access = JSON.parse(localStorage.getItem("access"));
 
   // Auth with google -------
   useEffect(() => {
@@ -41,9 +41,8 @@ export function Signup() {
 
   // Auth normalize -------
   useEffect(() => {
-
     if (infoJWTVerify.status === "fulfilled" && access) {
-      navigate("/dashboard")
+      navigate("/dashboard");
     }
 
     if (infoCreateUser.status === "pending") {
@@ -56,24 +55,27 @@ export function Signup() {
     }
     if (infoCreateUser.status === "rejected") {
       setLoader("none");
-      alert(" Hubo algun error al intentar crear el usuario");
+      const faults = Object.values(infoCreateUser.info);
+      for (let i = 0; i < faults.length; i++) {
+        alert(faults[i][0]);
+      }
     }
   }, [infoCreateUser.status, infoJWTVerify.status]);
 
   // Send email -------
   useEffect(() => {
     if (infoResendEmail.status === "pending") {
-      setLoader("initial")
+      setLoader("initial");
     }
 
     if (infoResendEmail.status === "fulfilled") {
-      setLoader("none")
-      alert("Correo reenviado")
+      setLoader("none");
+      alert("Correo reenviado");
     }
 
     if (infoResendEmail.status === "rejected") {
-      setLoader("none")
-      alert("Tu cuenta ya se encuentra activa")
+      setLoader("none");
+      alert("Tu cuenta ya se encuentra activa");
     }
   }, [infoResendEmail.status]);
 
@@ -90,11 +92,11 @@ export function Signup() {
     const firstName = e.target.first_name.value;
     const lastName = e.target.last_name.value;
     const username = e.target.username.value;
-    const email = e.target.email.value
+    const email = e.target.email.value;
     const password = e.target.password.value;
     const rePassword = e.target.re_password.value;
 
-    setDataEmail(email)
+    setDataEmail(email);
 
     if (firstName && lastName && username && email && password && rePassword) {
       if (password === rePassword) {
@@ -112,9 +114,8 @@ export function Signup() {
   }
 
   function onClickSendEmail() {
-    dispatch(axiosResendEmail({"email" : dataEmail}))
+    dispatch(axiosResendEmail({ email: dataEmail }));
   }
-
 
   return (
     <main>

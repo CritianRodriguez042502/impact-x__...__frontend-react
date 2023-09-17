@@ -7,7 +7,7 @@ export const axiosUpdateBlogUser = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"http://127.0.0.1:8000"}/blog/update_blogs_by_user/?slug=${
+    const url = `${"http://127.0.0.1:8000"}/dashboard/update_blogs_by_user/?slug=${
       data.slug
     }`;
 

@@ -1,22 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {stringify} from "qs"
+import { stringify } from "qs";
 
+// decodeuri --- decodeuricomponent
 export const axiosLoginGoogle = createAsyncThunk(
   "loginGoogle",
   async (data) => {
     const config = {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }
-    // decodeuri --- decodeuricomponent
-    const params = new URLSearchParams()
-    params.append("state", data.state)
-    params.append("code", data.code)
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
     const url = `http://127.0.0.1:8000/user_system/auth/o/google-oauth2/`;
-    const response = await axios.post(url,stringify(params), config);
-    return response.data;
+
+    const params = new URLSearchParams();
+    params.append("state", data.state);
+    params.append("code", data.code);
+
+    try {
+      const response = await axios.post(url, stringify(params), config);
+      return {
+        status: response.status,
+        data: response.data,
+      };
+    } catch (error) {
+      return {
+        status: error.response.status,
+        data: error.response.data,
+      };
+    }
   }
 );
 
@@ -35,17 +47,13 @@ const loginGoogleSlice = createSlice({
       state.status = "pending";
     });
     builder.addCase(axiosLoginGoogle.fulfilled, function (state, action) {
-      state.status = "fulfilled";
-      state.info = action.payload;
-    });
-    builder.addCase(axiosLoginGoogle.rejected, function (state, action) {
-      state.status = "rejected";
-      state.error = {
-        name: `${action.error.name}`,
-        message: `${action.error.message}`,
-        code: `${action.error.code}`,
-        stack : `${action.error.stack}`
-      };
+      if (action.payload.status === 400) {
+        state.status = "rejected"
+        state.info = action.payload.data
+      } else {
+        state.status = "fulfilled"
+        state.info = action.payload.data
+      }
     });
   },
 });

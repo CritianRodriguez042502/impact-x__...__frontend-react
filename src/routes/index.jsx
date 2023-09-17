@@ -25,6 +25,7 @@ import {
   // Dashboard pages
   InitialDashboard,
   BlogsUser,
+  CreateBlogUser,
   UpdateBlogByUser,
 } from "../containers/index";
 
@@ -61,6 +62,7 @@ export function Redirects() {
         // Dashboard pages
         <Route path="/dashboard" element={<InitialDashboard />} />
         <Route path="/dashboard/blogs_user" element={<BlogsUser />} />
+        <Route path="/dashboard/create_blog" element={<CreateBlogUser/>} />
         <Route path="/dashboard/blog_user_detail/:slug" element={<UpdateBlogByUser/>} />
 
         //Not found page

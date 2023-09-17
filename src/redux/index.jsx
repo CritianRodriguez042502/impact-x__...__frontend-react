@@ -29,3 +29,5 @@ export { axiosLoginGoogle } from "./slices/register_user_social_slices/loginGoog
 export { axiosBlogsByUser } from "./slices/dashboard_slices/blogsByUserSlice";
 export { axiosDetailedUserBlog } from "./slices/dashboard_slices/detailedUserBlogSlice";
 export { axiosUpdateBlogUser } from "./slices/dashboard_slices/updateBlogUserSlice";
+export { axiosCreateBlogUser } from "./slices/dashboard_slices/createBlogUserSlice";
+export { axiosDeleteBlogUser } from "./slices/dashboard_slices/deleteBlogUserslice";

@@ -25,6 +25,8 @@ import loginGoogle from "../slices/register_user_social_slices/loginGoogle";
 import blogsByUser from "../slices/dashboard_slices/blogsByUserSlice" 
 import detailedUserBlog from "../slices/dashboard_slices/detailedUserBlogSlice";
 import updateBlogUser from "../slices/dashboard_slices/updateBlogUserSlice";
+import createBlogUser from "../slices/dashboard_slices/createBlogUserSlice";
+import deleteBlogUser from "../slices/dashboard_slices/deleteBlogUserslice";
 
 export const store = configureStore({
   reducer: {
@@ -53,6 +55,8 @@ export const store = configureStore({
     // State -- authenticated user data --
     blogsByUser : blogsByUser,
     detailedUserBlog : detailedUserBlog,
-    updateBlogUser : updateBlogUser
+    createBlogUser : createBlogUser,
+    updateBlogUser : updateBlogUser,
+    deleteBlogUser : deleteBlogUser,
   },
 });
