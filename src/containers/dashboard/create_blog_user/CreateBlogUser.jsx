@@ -16,14 +16,17 @@ export function CreateBlogUser() {
   const navigate = useNavigate();
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);
   const infoCategory = useSelector((state) => state.category);
+
   const access = JSON.parse(localStorage.getItem("access"));
+  const username = JSON.parse(localStorage.getItem("username"))
 
   const [dataCreate, setDataCreate] = useState({});
   const [contentCkeditor, setContentCkeditor] = useState("");
   const [selectCategory, setSelectCategory] = useState("Seleccionar categoria");
 
   useEffect(() => {
-    if (!access) {
+    if (!access || !username ) {
+      localStorage.clear()
       location.href = "http://localhost:5173/access/signin";
     }
     if (!infoJWTVerifi.status) {

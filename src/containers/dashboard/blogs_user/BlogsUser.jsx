@@ -20,9 +20,11 @@ export function BlogsUser() {
   const infoDeleteBlogUser = useSelector((state) => state.deleteBlogUser);
 
   const access = JSON.parse(localStorage.getItem("access"));
+  const username = JSON.parse(localStorage.getItem("username"))
 
   useEffect(() => {
-    if (!access) {
+    if (!access || !username ) {
+      localStorage.clear()
       location.href = "http://localhost:5173/access/signin";
     }
 

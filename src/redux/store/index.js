@@ -28,6 +28,10 @@ import updateBlogUser from "../slices/dashboard_slices/updateBlogUserSlice";
 import createBlogUser from "../slices/dashboard_slices/createBlogUserSlice";
 import deleteBlogUser from "../slices/dashboard_slices/deleteBlogUserslice";
 
+// State -- Reactions Blogs --
+import likeBlog from "../slices/reactions_slice/likeBlogSlice";
+import getLikesBlog from "../slices/reactions_slice/getLikesBlogSlice";
+
 export const store = configureStore({
   reducer: {
     // State -- Blog --
@@ -58,5 +62,9 @@ export const store = configureStore({
     createBlogUser : createBlogUser,
     updateBlogUser : updateBlogUser,
     deleteBlogUser : deleteBlogUser,
+
+    // State -- Reactions Blogs --
+    likeBlog : likeBlog,
+    getLikesBlog : getLikesBlog
   },
 });

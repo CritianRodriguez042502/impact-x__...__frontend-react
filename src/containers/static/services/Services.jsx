@@ -1,4 +1,5 @@
 import React from "react";
+import "./style_services.css"
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 

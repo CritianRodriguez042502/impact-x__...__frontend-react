@@ -5,12 +5,20 @@ export const axiosResetPasswordConfirm = createAsyncThunk(
   "resetPasswordConfirm",
   async (data) => {
     const url = `${"http://127.0.0.1:8000"}/user_system/auth/users/reset_password_confirm/`;
-    const response = await axios.post(url, data);
-    return response.status;
+    try {
+      const response = await axios.post(url, data);
+      return response.status;
+    } catch (error) {
+      return {
+        status : error.response.status,
+        data : error.response.data
+      }
+    }
   }
 );
 
 const initialState = {
+  info : null,
   status: null,
   error: null,
 };
@@ -23,19 +31,15 @@ const resetPasswordConfirmSlices = createSlice({
     builder.addCase(axiosResetPasswordConfirm.pending, function (state) {
       state.status = "pending";
     });
-    builder.addCase(
-      axiosResetPasswordConfirm.fulfilled,
-      function (state) {
+
+    builder.addCase(axiosResetPasswordConfirm.fulfilled, function (state,action) {
+      if (action.payload.status === 204) {
         state.status = "fulfilled"
+      } else {
+        state.status = "rejected"
+        state.info = action.payload.data
       }
-    );
-    builder.addCase(
-      axiosResetPasswordConfirm.rejected,
-      function (state, action) {
-        state.status = "rejected";
-        state.error = action.error.message;
-      }
-    );
+    })
   },
 });
 

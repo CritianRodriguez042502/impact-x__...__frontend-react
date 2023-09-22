@@ -8,11 +8,19 @@ import "./style_navbar.css";
 export function Navbar() {
   const dispatch = useDispatch();
   const infoJWTVerify = useSelector((state) => state.JWTVerify);
+
   const access = JSON.parse(localStorage.getItem("access"));
+
   const [appearance, setAppearance] = useState(false);
 
 
+
   useEffect(() => {
+    if (!access) {
+      setAppearance(false);
+      localStorage.clear()
+    }
+
     if (!infoJWTVerify.status) {
       dispatch(axiosJWTVerify({ token: access }));
     }
@@ -21,6 +29,7 @@ export function Navbar() {
     }
 
     if (infoJWTVerify.status === "rejected") {
+      localStorage.clear()
       setAppearance(false);
     }
   }, [infoJWTVerify.status]);

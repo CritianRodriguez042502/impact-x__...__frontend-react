@@ -19,9 +19,13 @@ export function ResetPassword() {
       navigate("/access/signin");
     }
     if (infoResetPassword.status === "rejected") {
-      alert("Parece que hubo un error");
+      const infoError = infoResetPassword.info.new_password
+      for (let i = 0; i < infoError.length; i++){
+        alert(infoError[i])
+      }
     }
   }, [infoResetPassword.status]);
+
 
   function onChangeResetPassword(e) {
     setPasswords({

@@ -27,6 +27,7 @@ const userDataSlice = createSlice({
     builder.addCase(axiosUserData.fulfilled, function (state, action) {
       state.status = "fulfilled";
       state.info = action.payload;
+      localStorage.setItem("username", JSON.stringify(action.payload.username))
     });
     builder.addCase(axiosUserData.rejected, function (state, action) {
       state.status = "rejected";

@@ -22,6 +22,7 @@ export function UpdateBlogByUser() {
   const infoCategory = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
+  const username = JSON.parse(localStorage.getItem("username"))
 
   const [dataUpdateBlog, setDataUpdateBlog] = useState({});
   const [contentCkeditor, setContentCkeditor] = useState(
@@ -36,7 +37,8 @@ export function UpdateBlogByUser() {
   }, [infoJWTVerifi.status]);
 
   useEffect(() => {
-    if (!access) {
+    if (!access || !username ) {
+      localStorage.clear()
       location.href = "http://localhost:5173/access/signin";
     }
 

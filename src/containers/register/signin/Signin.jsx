@@ -42,6 +42,8 @@ export function Signin() {
         state : state,
         code : code
       }
+      console.log(state)
+      console.log(code)
       dispatch(axiosLoginGoogle(data));
     }
   }, [infoUrlGoogle, state, code]);

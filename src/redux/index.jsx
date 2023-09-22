@@ -31,3 +31,7 @@ export { axiosDetailedUserBlog } from "./slices/dashboard_slices/detailedUserBlo
 export { axiosUpdateBlogUser } from "./slices/dashboard_slices/updateBlogUserSlice";
 export { axiosCreateBlogUser } from "./slices/dashboard_slices/createBlogUserSlice";
 export { axiosDeleteBlogUser } from "./slices/dashboard_slices/deleteBlogUserslice";
+
+// Export apis  -- Reactions blogs --
+export { axiosLikeBlog } from "./slices/reactions_slice/likeBlogSlice";
+export { axiosGetLikesBlog } from "./slices/reactions_slice/getLikesBlogSlice";
