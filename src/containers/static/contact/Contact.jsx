@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
+import "./style_contact.module.css"
 
 export function Contact() {
   return (
@@ -13,6 +14,7 @@ export function Contact() {
 
       <Layout>
         <h1> Contact </h1>
+        <b className="comments"> Hola mundo </b>
       </Layout>
     </main>
   );

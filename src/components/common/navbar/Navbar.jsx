@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { axiosJWTVerify } from "../../../redux/index";
-import "./style_navbar.css";
+import "./style_navbar.module.css";
 
 export function Navbar() {
   const dispatch = useDispatch();
@@ -13,12 +13,10 @@ export function Navbar() {
 
   const [appearance, setAppearance] = useState(false);
 
-
-
   useEffect(() => {
     if (!access) {
       setAppearance(false);
-      localStorage.clear()
+      localStorage.clear();
     }
 
     if (!infoJWTVerify.status) {
@@ -29,7 +27,7 @@ export function Navbar() {
     }
 
     if (infoJWTVerify.status === "rejected") {
-      localStorage.clear()
+      localStorage.clear();
       setAppearance(false);
     }
   }, [infoJWTVerify.status]);

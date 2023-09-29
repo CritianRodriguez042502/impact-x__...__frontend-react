@@ -22,7 +22,7 @@ import authGoogle from "../slices/register_user_social_slices/authGoogle";
 import loginGoogle from "../slices/register_user_social_slices/loginGoogle";
 
 // State -- authenticated user data --
-import blogsByUser from "../slices/dashboard_slices/blogsByUserSlice" 
+import blogsByUser from "../slices/dashboard_slices/blogsByUserSlice";
 import detailedUserBlog from "../slices/dashboard_slices/detailedUserBlogSlice";
 import updateBlogUser from "../slices/dashboard_slices/updateBlogUserSlice";
 import createBlogUser from "../slices/dashboard_slices/createBlogUserSlice";
@@ -30,7 +30,10 @@ import deleteBlogUser from "../slices/dashboard_slices/deleteBlogUserslice";
 
 // State -- Reactions Blogs --
 import likeBlog from "../slices/reactions_slice/likeBlogSlice";
+import commentsBlog from "../slices/reactions_slice/commentsBlogSlice";
 import getLikesBlog from "../slices/reactions_slice/getLikesBlogSlice";
+import getComments from "../slices/reactions_slice/getCommentsSlice";
+
 
 export const store = configureStore({
   reducer: {
@@ -51,20 +54,22 @@ export const store = configureStore({
     resetPasword: resetPasword,
     resetPasswordConfirm: resetPasswordConfirm,
     userData: userData,
-    
+
     // State -- Register with google --
     authGoogle: authGoogle,
     loginGoogle: loginGoogle,
 
     // State -- authenticated user data --
-    blogsByUser : blogsByUser,
-    detailedUserBlog : detailedUserBlog,
-    createBlogUser : createBlogUser,
-    updateBlogUser : updateBlogUser,
-    deleteBlogUser : deleteBlogUser,
+    blogsByUser: blogsByUser,
+    detailedUserBlog: detailedUserBlog,
+    createBlogUser: createBlogUser,
+    updateBlogUser: updateBlogUser,
+    deleteBlogUser: deleteBlogUser,
 
     // State -- Reactions Blogs --
-    likeBlog : likeBlog,
-    getLikesBlog : getLikesBlog
+    getLikesBlog: getLikesBlog,
+    getComments: getComments,
+    likeBlog: likeBlog,
+    commentsBlog : commentsBlog
   },
 });

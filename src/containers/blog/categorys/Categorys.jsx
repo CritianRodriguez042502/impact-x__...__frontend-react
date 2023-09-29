@@ -45,7 +45,7 @@ export function Categorys() {
             return <Link to={`/blogs/category/${data.slug}`} key={data.id}> {data.name} </Link>;
           })
         ) : infoCategorys.status === "pending" ? (
-          <h1> Cargando... </h1>
+          false
         ) : infoCategorys.status === "rejected" ? (
           <h3> No hay categorias</h3>
         ) : (
@@ -71,7 +71,7 @@ export function Categorys() {
             );
           })
         ) : infoblogTypeCategory.status === "pending" ? (
-          <h1> Cargando... </h1>
+          false
         ) : infoblogTypeCategory.status === "rejected" ? (
           <h1> No hay blogs</h1>
         ) : (

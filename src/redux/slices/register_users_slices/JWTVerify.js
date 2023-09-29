@@ -3,8 +3,12 @@ import axios from "axios";
 
 export const axiosJWTVerify = createAsyncThunk("JWTVerify", async (data) => {
   const url = `${"http://127.0.0.1:8000"}/user_system/auth/jwt/verify/`;
-  const response = await axios.post(url, data);
-  return response.status;
+  try {
+    const response = await axios.post(url, data)
+    return response.status
+  } catch (error) {
+    return error.response.status
+  }
 });
 
 const initialState = {
@@ -20,13 +24,14 @@ const JWTVerifySlice = createSlice({
     builder.addCase(axiosJWTVerify.pending, function (state) {
       state.status = "pending";
     });
-    builder.addCase(axiosJWTVerify.fulfilled, function (state) {
-      state.status = "fulfilled";
+    builder.addCase(axiosJWTVerify.fulfilled, function (state,action) {
+      if (action.payload == 200) {
+        state.status = "fulfilled"
+      } else {
+        state.status = "rejected"
+      }
     });
-    builder.addCase(axiosJWTVerify.rejected, function (state, action) {
-      state.status = "rejected";
-      state.error = action.error.message;
-    });
+    
   },
 });
 
