@@ -2,17 +2,22 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { axiosGetCommentsBlog, axiosCommentsBlog, axiosDetailedCommentsBlog } from "../../../redux/index";
+import {
+  axiosGetCommentsBlog,
+  axiosCommentsBlog,
+  axiosDetailedCommentsBlog,
+} from "../../../redux/index";
 import style from "./style_comments.module.css";
 
 export function CommentsBlog({ params }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const paramsUrl = useParams()
+  const paramsUrl = useParams();
 
+  const infoJWTVerify = useSelector((state) => state.JWTVerify);
   const infoGetComments = useSelector((state) => state.getComments);
   const infoComments = useSelector((state) => state.commentsBlog);
-  const infoDetailedComment = useSelector(state => state.detailedCommentBlog)
+  const infoDetailedComment = useSelector((state) => state.detailedCommentBlog);
 
   let [newComment, setNewComment] = useState("");
   const [commentDetail, setCommentDetail] = useState("");
@@ -58,17 +63,23 @@ export function CommentsBlog({ params }) {
 
   function onSubmitNewComment(e) {
     e.preventDefault();
-    
+
     if (newComment) {
-      dispatch(axiosCommentsBlog({
-        method : "post",
-        jwt : access,
-        slug : paramsUrl.slug,
-        content : newComment 
-      }))
-      setNewComment("")
+      if (infoJWTVerify.status === "fulfilled" && access && username) {
+        dispatch(
+          axiosCommentsBlog({
+            method: "post",
+            jwt: access,
+            slug: paramsUrl.slug,
+            content: newComment,
+          })
+        );
+        setNewComment("");
+      } else {
+        alert("Tienes que estar registrado para comentar");
+      }
     } else {
-      alert("No puedes enviar datos vacios")
+      alert("No puedes enviar datos vacios");
     }
   }
 
@@ -79,20 +90,20 @@ export function CommentsBlog({ params }) {
 
   function onSubmitUpdateComment(e) {
     e.preventDefault();
-    
+
     if (commentDetail) {
-      dispatch(axiosCommentsBlog({
-        method : "patch",
-        jwt : access,
-        unique_key : unique_brand,
-        content : commentDetail
-      }))
-      setCommentUpdateVisibility("none");
-      navigate(
-        `/blogs/blog_detail/${paramsUrl.slug}`
+      dispatch(
+        axiosCommentsBlog({
+          method: "patch",
+          jwt: access,
+          unique_key: unique_brand,
+          content: commentDetail,
+        })
       );
+      setCommentUpdateVisibility("none");
+      navigate(`/blogs/blog_detail/${paramsUrl.slug}`);
     } else {
-      alert("No puedes enviar datos vacios")
+      alert("No puedes enviar datos vacios");
     }
   }
 
@@ -126,11 +137,13 @@ export function CommentsBlog({ params }) {
               <li> {data.comments} </li>
               <button
                 onClick={(e) => {
-                  dispatch(axiosCommentsBlog({
-                    method : "delete",
-                    jwt : access,
-                    unique_key : data.unique_brand
-                  }))
+                  dispatch(
+                    axiosCommentsBlog({
+                      method: "delete",
+                      jwt: access,
+                      unique_key: data.unique_brand,
+                    })
+                  );
                 }}
               >
                 Eliminar
@@ -202,34 +215,32 @@ export function CommentsBlog({ params }) {
         </section>
 
         <section>
-          {infoGetComments.status === "fulfilled" ? (
-            filterComments()
-          ) : (
-            false
-          )}
+          {infoGetComments.status === "fulfilled" ? filterComments() : false}
         </section>
 
         <section
           style={{ display: commentUpdateVisibility }}
           className={style.commentsUpdateVisibility}
         >
-          <button onClick={onClickWithoutCommentUpdateVisibilit}> Cerrar </button>
+          <button onClick={onClickWithoutCommentUpdateVisibilit}>
+            {" "}
+            Cerrar{" "}
+          </button>
           <div className={style.inputUpdateComment}>
             <form onSubmit={onSubmitUpdateComment}>
-            <div>
-                  <textarea
-                    onChange={onChangeUpdateComment}
-                    value={commentDetail}
-                    className={style.textTarea}
-                    name="updateComment"
-                    id="updateComment"
-                    cols="30"
-                    rows="10"
-                    required
-                  ></textarea>
-                  <button type="submit"> Actualizar </button>
-                </div>
-
+              <div>
+                <textarea
+                  onChange={onChangeUpdateComment}
+                  value={commentDetail}
+                  className={style.textTarea}
+                  name="updateComment"
+                  id="updateComment"
+                  cols="30"
+                  rows="10"
+                  required
+                ></textarea>
+                <button type="submit"> Actualizar </button>
+              </div>
             </form>
           </div>
         </section>

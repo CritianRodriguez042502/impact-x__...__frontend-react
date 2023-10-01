@@ -12,7 +12,7 @@ export function GetReactionDashboard({ params }) {
     (state) => state.getUserBlogReactions
   );
   const [visibilityComments, setVisibilityComments] = useState("none");
-  const [visibilityLikes, setVisibilityLikes] = useState("none")
+  const [visibilityLikes, setVisibilityLikes] = useState("none");
 
   useEffect(() => {
     dispatch(
@@ -26,7 +26,7 @@ export function GetReactionDashboard({ params }) {
   function likes(e) {
     const selectedLikes = infoGetUserBlogReactions.info.likes?.filter(
       (index) => {
-        return index.selected === false;
+        return index.selected === true;
       }
     );
     return (
@@ -48,16 +48,16 @@ export function GetReactionDashboard({ params }) {
 
   function visibilityReactionsComments(e) {
     setVisibilityComments("initial");
-    setVisibilityLikes("none")
+    setVisibilityLikes("none");
   }
 
   function whitoutvisibilityComments(e) {
     setVisibilityComments("none");
   }
 
-  function visibilityReactionsLikes (e) {
-    setVisibilityLikes("initial")
-    setVisibilityComments("none")
+  function visibilityReactionsLikes(e) {
+    setVisibilityLikes("initial");
+    setVisibilityComments("none");
   }
 
   function whitoutvisibilityLikes(e) {
@@ -68,11 +68,15 @@ export function GetReactionDashboard({ params }) {
     <main>
       <b onClick={visibilityReactionsComments}> Reacciones </b>
 
-      <div className={style.containerFixed} style={{ display: visibilityComments }}>
+      <div
+        className={style.containerFixed}
+        style={{ display: visibilityComments }}
+      >
         <button onClick={whitoutvisibilityComments}> Cerrar </button>
         <b> Comentarios </b>
         <b onClick={visibilityReactionsLikes}> 👉 </b>
-        {infoGetUserBlogReactions.status === "fulfilled" ? (
+        {infoGetUserBlogReactions.status === "fulfilled" &&
+        infoGetUserBlogReactions.info.comments.length !== 0 ? (
           infoGetUserBlogReactions.info.comments?.map((data) => {
             return (
               <div style={{ background: "gray" }} key={data.id}>
@@ -81,18 +85,23 @@ export function GetReactionDashboard({ params }) {
               </div>
             );
           })
+        ) : infoGetUserBlogReactions.status === "fulfilled" &&
+          infoGetUserBlogReactions.info.comments.length === 0 ? (
+          <p> No hay comentarios </p>
         ) : (
-          <p>Adios</p>
+          <p> Hubo algun error </p>
         )}
       </div>
 
-      <div style={{display : visibilityLikes}} className={style.containerFixed}>
+      <div
+        style={{ display: visibilityLikes }}
+        className={style.containerFixed}
+      >
         <button onClick={whitoutvisibilityLikes}> Cerrar </button>
         <b> Likes </b>
         <b onClick={visibilityReactionsComments}> 👈 </b>
         {infoGetUserBlogReactions.status === "fulfilled" ? likes() : false}
       </div>
-
     </main>
   );
 }

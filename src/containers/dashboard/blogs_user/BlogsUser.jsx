@@ -8,6 +8,8 @@ import {
   axiosBlogsByUser,
   axiosDeleteBlogUser,
 } from "../../../redux/index";
+import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
+import style from "./style_blogs_user.module.css"
 
 export function BlogsUser() {
   const dispatch = useDispatch();
@@ -20,11 +22,11 @@ export function BlogsUser() {
   const infoDeleteBlogUser = useSelector((state) => state.deleteBlogUser);
 
   const access = JSON.parse(localStorage.getItem("access"));
-  const username = JSON.parse(localStorage.getItem("username"))
+  const username = JSON.parse(localStorage.getItem("username"));
 
   useEffect(() => {
-    if (!access || !username ) {
-      localStorage.clear()
+    if (!access || !username) {
+      localStorage.clear();
       location.href = "http://localhost:5173/access/signin";
     }
 
@@ -68,44 +70,46 @@ export function BlogsUser() {
         <title> Dashboard </title>
       </Helmet>
 
-      <section>
-        <h1> Blogs del usuario registrado </h1>
-        <Link to={"/dashboard"}> Initial </Link>
-        <Link to={"/dashboard/create_blog"}> Crear </Link>
+      <LayoutDashboard>
+        <section className={style.screenSetting}>
+          <h1> Blogs del usuario registrado </h1>
+          <Link to={"/dashboard"}> Initial </Link>
+          <Link to={"/dashboard/create_blog"}> Crear </Link>
 
-        {infoBlogsByUser.status === "pending" ? (
-          <h1> Cargando... </h1>
-        ) : infoBlogsByUser.status === "fulfilled" ? (
-          infoBlogsByUser.info.results?.map((data) => {
-            return (
-              <div key={data.id}>
-                <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
-                  <h1> {data.title} </h1>
-                  <p> {data.description} </p>
-                  <hr />
-                  <p> {data.creation} </p>
-                </Link>
+          {infoBlogsByUser.status === "pending" ? (
+            <h1> Cargando... </h1>
+          ) : infoBlogsByUser.status === "fulfilled" ? (
+            infoBlogsByUser.info.results?.map((data) => {
+              return (
+                <div key={data.id}>
+                  <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
+                    <h1> {data.title} </h1>
+                    <p> {data.description} </p>
+                    <hr />
+                    <p> {data.creation} </p>
+                  </Link>
 
-                <button
-                  onClick={() => {
-                    const info = {
-                      jwt: access,
-                      slug: `${data.slug}`,
-                    };
-                    dispatch(axiosDeleteBlogUser(info));
-                  }}
-                >
-                  Eliminar
-                </button>
-              </div>
-            );
-          })
-        ) : infoBlogsByUser.status === "rejected" ? (
-          <h1> No hay blogs disponibles </h1>
-        ) : (
-          false
-        )}
-      </section>
+                  <button
+                    onClick={() => {
+                      const info = {
+                        jwt: access,
+                        slug: `${data.slug}`,
+                      };
+                      dispatch(axiosDeleteBlogUser(info));
+                    }}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              );
+            })
+          ) : infoBlogsByUser.status === "rejected" ? (
+            <h1> No hay blogs disponibles </h1>
+          ) : (
+            false
+          )}
+        </section>
+      </LayoutDashboard>
     </main>
   );
 }

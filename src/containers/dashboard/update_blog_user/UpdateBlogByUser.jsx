@@ -11,7 +11,9 @@ import {
   axiosDetailedUserBlog,
   axiosUpdateBlogUser,
 } from "../../../redux/index";
-import { GetReactionDashboard } from "../../../components/common/reaction_dashboard/ReactionsDashboard";
+import { GetReactionDashboard } from "../../../components/index";
+import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
+import style from "./style_update_blog_by_user.module.css";
 
 export function UpdateBlogByUser() {
   const dispatch = useDispatch();
@@ -20,9 +22,7 @@ export function UpdateBlogByUser() {
 
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);
   const infoDetailedUserBlog = useSelector((state) => state.detailedUserBlog);
-  const infoGetUserBlogReactions = useSelector(
-    (state) => state.getUserBlogReactions
-  );
+
   const infoCategory = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
@@ -131,7 +131,7 @@ export function UpdateBlogByUser() {
   }
 
   return (
-    <main>
+    <main className={style.screenSetting}>
       <Helmet>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -139,63 +139,65 @@ export function UpdateBlogByUser() {
         <title> Dashboard </title>
       </Helmet>
 
-      <section>
-        <h1> ACTUALIZA EL BLOG </h1>
-        {infoJWTVerifi.status === "fulfilled" && access ? (
-          <div>
-            <GetReactionDashboard params={slug} />
-            <form onSubmit={onSubmitUpdateBlog}>
-              {Object.keys(dataUpdateBlog).length !== 0 ? (
-                <div>
-                  <input
-                    type="text"
-                    name="title"
-                    value={dataUpdateBlog.title}
-                    onChange={onchangeData}
-                    required
-                  />
-                  <textarea
-                    name="description"
-                    cols="30"
-                    rows="10"
-                    value={dataUpdateBlog.description}
-                    onChange={onchangeData}
-                    required
-                  ></textarea>
-                  <input
-                    type="checkbox"
-                    name="public"
-                    checked={dataUpdateBlog.public}
-                    onChange={onchangeData}
-                  />
-                  <select
-                    onClick={(e) => {
-                      setSelectCategory(e.target.value);
-                    }}
-                  >
-                    <option> {selectCategory} </option>
-                    {infoCategory.info ? leftoverCategoriesToSelect() : true}
-                  </select>
+      <LayoutDashboard>
+        <section>
+          <h1> ACTUALIZA EL BLOG </h1>
+          {infoJWTVerifi.status === "fulfilled" && access ? (
+            <div>
+              <GetReactionDashboard params={slug} />
+              <form onSubmit={onSubmitUpdateBlog}>
+                {Object.keys(dataUpdateBlog).length !== 0 ? (
+                  <div>
+                    <input
+                      type="text"
+                      name="title"
+                      value={dataUpdateBlog.title}
+                      onChange={onchangeData}
+                      required
+                    />
+                    <textarea
+                      name="description"
+                      cols="30"
+                      rows="10"
+                      value={dataUpdateBlog.description}
+                      onChange={onchangeData}
+                      required
+                    ></textarea>
+                    <input
+                      type="checkbox"
+                      name="public"
+                      checked={dataUpdateBlog.public}
+                      onChange={onchangeData}
+                    />
+                    <select
+                      onClick={(e) => {
+                        setSelectCategory(e.target.value);
+                      }}
+                    >
+                      <option> {selectCategory} </option>
+                      {infoCategory.info ? leftoverCategoriesToSelect() : true}
+                    </select>
 
-                  <CKEditor
-                    editor={ClassicEditor}
-                    data={contentCkeditor}
-                    onChange={(event, editor) => {
-                      const data = editor.getData();
-                      setContentCkeditor(data);
-                    }}
-                  />
-                  <button type="submit"> enviar </button>
-                </div>
-              ) : (
-                <h1> cargando... </h1>
-              )}
-            </form>
-          </div>
-        ) : (
-          <h1> cargando... </h1>
-        )}
-      </section>
+                    <CKEditor
+                      editor={ClassicEditor}
+                      data={contentCkeditor}
+                      onChange={(event, editor) => {
+                        const data = editor.getData();
+                        setContentCkeditor(data);
+                      }}
+                    />
+                    <button type="submit"> enviar </button>
+                  </div>
+                ) : (
+                  <h1> cargando... </h1>
+                )}
+              </form>
+            </div>
+          ) : (
+            <h1> cargando... </h1>
+          )}
+        </section>
+      </LayoutDashboard>
     </main>
   );
 }

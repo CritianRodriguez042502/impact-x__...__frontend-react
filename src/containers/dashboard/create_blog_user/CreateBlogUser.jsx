@@ -10,6 +10,8 @@ import {
   axiosCreateBlogUser,
   axiosCategorys,
 } from "../../../redux/index";
+import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
+import style from "./style_create_blog_user.module.css";
 
 export function CreateBlogUser() {
   const dispatch = useDispatch();
@@ -18,15 +20,15 @@ export function CreateBlogUser() {
   const infoCategory = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
-  const username = JSON.parse(localStorage.getItem("username"))
+  const username = JSON.parse(localStorage.getItem("username"));
 
   const [dataCreate, setDataCreate] = useState({});
   const [contentCkeditor, setContentCkeditor] = useState("");
   const [selectCategory, setSelectCategory] = useState("Seleccionar categoria");
 
   useEffect(() => {
-    if (!access || !username ) {
-      localStorage.clear()
+    if (!access || !username) {
+      localStorage.clear();
       location.href = "http://localhost:5173/access/signin";
     }
     if (!infoJWTVerifi.status) {
@@ -52,7 +54,7 @@ export function CreateBlogUser() {
       setDataCreate({
         ...dataCreate,
         [e.target.name]: e.target.value,
-        public : false
+        public: false,
       });
     }
   }
@@ -76,7 +78,7 @@ export function CreateBlogUser() {
         return datos;
       });
     }
-    
+
     const data = {
       jwt: access,
       info: aggregationData()[0],
@@ -99,7 +101,7 @@ export function CreateBlogUser() {
   }
 
   return (
-    <main>
+    <main className={style.screenSetting}>
       <Helmet>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -107,55 +109,55 @@ export function CreateBlogUser() {
         <title> Crear blog </title>
       </Helmet>
 
-      <section>
-        
-        <h1> Crea tu blog </h1>
+      <LayoutDashboard>
+        <section>
+          <h1> Crea tu blog </h1>
 
-        {infoJWTVerifi.status === "fulfilled" && access ? (
-          <form onSubmit={onSubmitCreateBlog}>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              onChange={onChangeCreateBlog}
-            />
-            <textarea
-              name="description"
-              id="description"
-              cols="30"
-              rows="10"
-              onChange={onChangeCreateBlog}
-            ></textarea>
-            <input
-              type="checkbox"
-              name="public"
-              id="public"
-              onChange={onChangeCreateBlog}
-            />
+          {infoJWTVerifi.status === "fulfilled" && access ? (
+            <form onSubmit={onSubmitCreateBlog}>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                onChange={onChangeCreateBlog}
+              />
+              <textarea
+                name="description"
+                id="description"
+                cols="30"
+                rows="10"
+                onChange={onChangeCreateBlog}
+              ></textarea>
+              <input
+                type="checkbox"
+                name="public"
+                id="public"
+                onChange={onChangeCreateBlog}
+              />
 
-            <select onClick={onClickSelectCategory}>
-              <option>Seleccionar categoria</option>
-              {infoCategory.status === "fulfilled" && infoCategory.info
-                ? infoCategory.info?.map(function (data) {
-                    return <option key={data.id}> {data.name} </option>;
-                  })
-                : false}
-            </select>
+              <select onClick={onClickSelectCategory}>
+                <option>Seleccionar categoria</option>
+                {infoCategory.status === "fulfilled" && infoCategory.info
+                  ? infoCategory.info?.map(function (data) {
+                      return <option key={data.id}> {data.name} </option>;
+                    })
+                  : false}
+              </select>
 
-            <CKEditor
-              editor={ClassicEditor}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                setContentCkeditor(data);
-              }}
-            />
-            <button type="submit"> Enviar </button>
-          </form>
-        ) : (
-          <h1> Cargando... </h1>
-        )}
-      </section>
-
+              <CKEditor
+                editor={ClassicEditor}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setContentCkeditor(data);
+                }}
+              />
+              <button type="submit"> Enviar </button>
+            </form>
+          ) : (
+            <h1> Cargando... </h1>
+          )}
+        </section>
+      </LayoutDashboard>
     </main>
   );
 }
