@@ -24,6 +24,7 @@ import loginGoogle from "../slices/register_user_social_slices/loginGoogle";
 // State -- authenticated user data --
 import blogsByUser from "../slices/dashboard_slices/blogsByUserSlice";
 import detailedUserBlog from "../slices/dashboard_slices/detailedUserBlogSlice";
+import getUserBlogReactions from "../slices/dashboard_slices/getUserBlogReactionsSlice";
 import updateBlogUser from "../slices/dashboard_slices/updateBlogUserSlice";
 import createBlogUser from "../slices/dashboard_slices/createBlogUserSlice";
 import deleteBlogUser from "../slices/dashboard_slices/deleteBlogUserslice";
@@ -63,6 +64,7 @@ export const store = configureStore({
     // State -- authenticated user data --
     blogsByUser: blogsByUser,
     detailedUserBlog: detailedUserBlog,
+    getUserBlogReactions : getUserBlogReactions,
     createBlogUser: createBlogUser,
     updateBlogUser: updateBlogUser,
     deleteBlogUser: deleteBlogUser,
@@ -72,6 +74,6 @@ export const store = configureStore({
     getComments: getComments,
     likeBlog: likeBlog,
     commentsBlog : commentsBlog,
-    detailedCommentBlog : detailedCommentBlog
+    detailedCommentBlog : detailedCommentBlog,
   },
 });

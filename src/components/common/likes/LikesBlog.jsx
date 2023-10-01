@@ -73,8 +73,6 @@ export function LikesBlog({ params }) {
           alert("Tienes que estar registrado para acceder");
         }
       }
-    } else {
-      false;
     }
   }
 

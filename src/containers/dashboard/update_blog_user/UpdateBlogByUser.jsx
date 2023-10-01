@@ -11,6 +11,7 @@ import {
   axiosDetailedUserBlog,
   axiosUpdateBlogUser,
 } from "../../../redux/index";
+import { GetReactionDashboard } from "../../../components/common/reaction_dashboard/ReactionsDashboard";
 
 export function UpdateBlogByUser() {
   const dispatch = useDispatch();
@@ -19,10 +20,13 @@ export function UpdateBlogByUser() {
 
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);
   const infoDetailedUserBlog = useSelector((state) => state.detailedUserBlog);
+  const infoGetUserBlogReactions = useSelector(
+    (state) => state.getUserBlogReactions
+  );
   const infoCategory = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
-  const username = JSON.parse(localStorage.getItem("username"))
+  const username = JSON.parse(localStorage.getItem("username"));
 
   const [dataUpdateBlog, setDataUpdateBlog] = useState({});
   const [contentCkeditor, setContentCkeditor] = useState(
@@ -37,8 +41,8 @@ export function UpdateBlogByUser() {
   }, [infoJWTVerifi.status]);
 
   useEffect(() => {
-    if (!access || !username ) {
-      localStorage.clear()
+    if (!access || !username) {
+      localStorage.clear();
       location.href = "http://localhost:5173/access/signin";
     }
 
@@ -138,53 +142,56 @@ export function UpdateBlogByUser() {
       <section>
         <h1> ACTUALIZA EL BLOG </h1>
         {infoJWTVerifi.status === "fulfilled" && access ? (
-          <form onSubmit={onSubmitUpdateBlog}>
-            {Object.keys(dataUpdateBlog).length !== 0 ? (
-              <div>
-                <input
-                  type="text"
-                  name="title"
-                  value={dataUpdateBlog.title}
-                  onChange={onchangeData}
-                  required
-                />
-                <textarea
-                  name="description"
-                  cols="30"
-                  rows="10"
-                  value={dataUpdateBlog.description}
-                  onChange={onchangeData}
-                  required
-                ></textarea>
-                <input
-                  type="checkbox"
-                  name="public"
-                  checked={dataUpdateBlog.public}
-                  onChange={onchangeData}
-                />
-                <select
-                  onClick={(e) => {
-                    setSelectCategory(e.target.value);
-                  }}
-                >
-                  <option> {selectCategory} </option>
-                  {infoCategory.info ? leftoverCategoriesToSelect() : true}
-                </select>
+          <div>
+            <GetReactionDashboard params={slug} />
+            <form onSubmit={onSubmitUpdateBlog}>
+              {Object.keys(dataUpdateBlog).length !== 0 ? (
+                <div>
+                  <input
+                    type="text"
+                    name="title"
+                    value={dataUpdateBlog.title}
+                    onChange={onchangeData}
+                    required
+                  />
+                  <textarea
+                    name="description"
+                    cols="30"
+                    rows="10"
+                    value={dataUpdateBlog.description}
+                    onChange={onchangeData}
+                    required
+                  ></textarea>
+                  <input
+                    type="checkbox"
+                    name="public"
+                    checked={dataUpdateBlog.public}
+                    onChange={onchangeData}
+                  />
+                  <select
+                    onClick={(e) => {
+                      setSelectCategory(e.target.value);
+                    }}
+                  >
+                    <option> {selectCategory} </option>
+                    {infoCategory.info ? leftoverCategoriesToSelect() : true}
+                  </select>
 
-                <CKEditor
-                  editor={ClassicEditor}
-                  data={contentCkeditor}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    setContentCkeditor(data);
-                  }}
-                />
-                <button type="submit"> enviar </button>
-              </div>
-            ) : (
-              <h1> cargando... </h1>
-            )}
-          </form>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={contentCkeditor}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setContentCkeditor(data);
+                    }}
+                  />
+                  <button type="submit"> enviar </button>
+                </div>
+              ) : (
+                <h1> cargando... </h1>
+              )}
+            </form>
+          </div>
         ) : (
           <h1> cargando... </h1>
         )}
