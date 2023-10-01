@@ -1,17 +1,22 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { axiosGetCommentsBlog, axiosCommentsBlog } from "../../../redux/index";
+import { axiosGetCommentsBlog, axiosCommentsBlog, axiosDetailedCommentsBlog } from "../../../redux/index";
 import style from "./style_comments.module.css";
 
 export function CommentsBlog({ params }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const paramsUrl = useParams()
 
   const infoGetComments = useSelector((state) => state.getComments);
+  const infoComments = useSelector((state) => state.commentsBlog);
+  const infoDetailedComment = useSelector(state => state.detailedCommentBlog)
 
-  const [newComment, setNewComment] = useState("");
+  let [newComment, setNewComment] = useState("");
+  const [commentDetail, setCommentDetail] = useState("");
+
   const [visibility, setVisibility] = useState("none");
   const [commentUpdateVisibility, setCommentUpdateVisibility] =
     useState("none");
@@ -19,19 +24,79 @@ export function CommentsBlog({ params }) {
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
 
+  const unique_brand = new URLSearchParams(location.search).get("unique_brand");
+
+  // useEffect get all comments
   useEffect(() => {
     dispatch(axiosGetCommentsBlog(params));
-  }, [params]);
+  }, [params, infoComments.info]);
 
+  // useEffect to get the detailed comment of the user state
+  useEffect(() => {
+    if (unique_brand) {
+      dispatch(
+        axiosDetailedCommentsBlog({
+          method: "get",
+          jwt: access,
+          unique_brand: unique_brand,
+        })
+      );
+    }
+  }, [unique_brand]);
+
+  // useEffect to store the detailed comment in a local state
+  useEffect(() => {
+    if (infoDetailedComment.info) {
+      setCommentDetail(infoDetailedComment.info.comment);
+    }
+  }, [infoDetailedComment.info]);
+
+  // functions of new comment
   function onChangeNewComment(e) {
     setNewComment(e.target.value);
   }
 
   function onSubmitNewComment(e) {
     e.preventDefault();
-    console.log(newComment);
+    
+    if (newComment) {
+      dispatch(axiosCommentsBlog({
+        method : "post",
+        jwt : access,
+        slug : paramsUrl.slug,
+        content : newComment 
+      }))
+      setNewComment("")
+    } else {
+      alert("No puedes enviar datos vacios")
+    }
   }
 
+  // functions of update comment
+  function onChangeUpdateComment(e) {
+    setCommentDetail(e.target.value);
+  }
+
+  function onSubmitUpdateComment(e) {
+    e.preventDefault();
+    
+    if (commentDetail) {
+      dispatch(axiosCommentsBlog({
+        method : "patch",
+        jwt : access,
+        unique_key : unique_brand,
+        content : commentDetail
+      }))
+      setCommentUpdateVisibility("none");
+      navigate(
+        `/blogs/blog_detail/${paramsUrl.slug}`
+      );
+    } else {
+      alert("No puedes enviar datos vacios")
+    }
+  }
+
+  // functions of effects
   function onClickVisibility(e) {
     setVisibility("initial");
   }
@@ -42,7 +107,6 @@ export function CommentsBlog({ params }) {
 
   function onClickWithoutCommentUpdateVisibilit(e) {
     setCommentUpdateVisibility("none");
-    navigate(`/blogs/blog_detail/doctoraslugnaruto`);
   }
 
   // Filter comments blogs by user
@@ -62,24 +126,25 @@ export function CommentsBlog({ params }) {
               <li> {data.comments} </li>
               <button
                 onClick={(e) => {
-                  console.log("hola");
+                  dispatch(axiosCommentsBlog({
+                    method : "delete",
+                    jwt : access,
+                    unique_key : data.unique_brand
+                  }))
                 }}
               >
                 Eliminar
               </button>
+
               <button
                 onClick={(e) => {
                   setCommentUpdateVisibility("initial");
-                  dispatch(axiosCommentsBlog({
-                    jwt : access,
-                    unique_key : "doctoraquien-es-ustedpkattfcfsaozgjzmbviwyjitakabkzbsmvd50"
-                  }));
                   navigate(
-                    `/blogs/blog_detail/doctoraslugnaruto?slug=${data.unique_brand}`
+                    `/blogs/blog_detail/doctoraslugnaruto?unique_brand=${data.unique_brand}`
                   );
                 }}
               >
-                Actualizar
+                Modificar
               </button>
             </div>
           );
@@ -140,7 +205,7 @@ export function CommentsBlog({ params }) {
           {infoGetComments.status === "fulfilled" ? (
             filterComments()
           ) : (
-            <p> Error </p>
+            false
           )}
         </section>
 
@@ -148,15 +213,24 @@ export function CommentsBlog({ params }) {
           style={{ display: commentUpdateVisibility }}
           className={style.commentsUpdateVisibility}
         >
-          <button onClick={onClickWithoutCommentUpdateVisibilit}>Cerrar</button>
+          <button onClick={onClickWithoutCommentUpdateVisibilit}> Cerrar </button>
           <div className={style.inputUpdateComment}>
-            <textarea
-              className={style.textTarea}
-              name="updateComment"
-              id="updateComment"
-              cols="30"
-              rows="10"
-            ></textarea>
+            <form onSubmit={onSubmitUpdateComment}>
+            <div>
+                  <textarea
+                    onChange={onChangeUpdateComment}
+                    value={commentDetail}
+                    className={style.textTarea}
+                    name="updateComment"
+                    id="updateComment"
+                    cols="30"
+                    rows="10"
+                    required
+                  ></textarea>
+                  <button type="submit"> Actualizar </button>
+                </div>
+
+            </form>
           </div>
         </section>
       </article>

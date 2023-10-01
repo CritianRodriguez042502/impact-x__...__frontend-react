@@ -37,3 +37,4 @@ export { axiosLikeBlog } from "./slices/reactions_slice/likeBlogSlice";
 export { axiosGetLikesBlog } from "./slices/reactions_slice/getLikesBlogSlice";
 export { axiosGetCommentsBlog } from "./slices/reactions_slice/getCommentsSlice";
 export { axiosCommentsBlog } from "./slices/reactions_slice/commentsBlogSlice";
+export { axiosDetailedCommentsBlog } from "./slices/reactions_slice/detailedCommentBlogSlice";

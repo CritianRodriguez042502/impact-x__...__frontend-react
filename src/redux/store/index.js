@@ -31,6 +31,7 @@ import deleteBlogUser from "../slices/dashboard_slices/deleteBlogUserslice";
 // State -- Reactions Blogs --
 import likeBlog from "../slices/reactions_slice/likeBlogSlice";
 import commentsBlog from "../slices/reactions_slice/commentsBlogSlice";
+import detailedCommentBlog from "../slices/reactions_slice/detailedCommentBlogSlice";
 import getLikesBlog from "../slices/reactions_slice/getLikesBlogSlice";
 import getComments from "../slices/reactions_slice/getCommentsSlice";
 
@@ -70,6 +71,7 @@ export const store = configureStore({
     getLikesBlog: getLikesBlog,
     getComments: getComments,
     likeBlog: likeBlog,
-    commentsBlog : commentsBlog
+    commentsBlog : commentsBlog,
+    detailedCommentBlog : detailedCommentBlog
   },
 });
