@@ -140,7 +140,7 @@ export function CommentsBlog({ params }) {
                 onClick={(e) => {
                   setCommentUpdateVisibility("initial");
                   navigate(
-                    `/blogs/blog_detail/doctoraslugnaruto?unique_brand=${data.unique_brand}`
+                    `/blogs/blog_detail/${paramsUrl.slug}?unique_brand=${data.unique_brand}`
                   );
                 }}
               >
