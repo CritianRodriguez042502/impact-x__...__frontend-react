@@ -41,42 +41,45 @@ export function LikesBlog({ params }) {
   }, [infoGetLikeBlog.info]);
 
   function onChangeLike(e) {
-    if (
-      e.target.type === "checkbox" &&
-      infoJWTVerify.status === "fulfilled" &&
-      access &&
-      username
-    ) {
-      const updatedLike = {
-        like: !selectLikeUser,
-        slug: params,
-        jwt: access,
-      };
-      dispatch(axiosLikeBlog(updatedLike));
-      setSelectLikeUser(!selectLikeUser);
-    } else if (infoJWTVerify.status === "fulfilled" && access && username) {
-      const updatedLike = {
-        like: false,
-        slug: params,
-        jwt: access,
-      };
-      dispatch(axiosLikeBlog(updatedLike));
-      setSelectLikeUser(false);
-    } else {
-      if (infoJWTVerify.status === "fulfilled" && access) {
-        e.target.checked = false;
-        alert("Parece que algo salio mal");
-        navigate("/dashboard");
+    if (Infolike.status !== "pending") {
+      if (
+        e.target.type === "checkbox" &&
+        infoJWTVerify.status === "fulfilled" &&
+        access &&
+        username
+      ) {
+        const updatedLike = {
+          like: !selectLikeUser,
+          slug: params,
+          jwt: access,
+        };
+        dispatch(axiosLikeBlog(updatedLike));
+        setSelectLikeUser(!selectLikeUser);
+      } else if (infoJWTVerify.status === "fulfilled" && access && username) {
+        const updatedLike = {
+          like: false,
+          slug: params,
+          jwt: access,
+        };
+        dispatch(axiosLikeBlog(updatedLike));
+        setSelectLikeUser(false);
       } else {
-        e.target.checked = false;
-        alert("Tienes que estar registrado para acceder");
+        if (infoJWTVerify.status === "fulfilled" && access) {
+          e.target.checked = false;
+          alert("Parece que algo salio mal");
+          navigate("/dashboard");
+        } else {
+          e.target.checked = false;
+          alert("Tienes que estar registrado para acceder");
+        }
       }
+    } else {
+      false;
     }
   }
 
   return (
     <main>
-
       <div>
         <input
           type="checkbox"
@@ -91,7 +94,6 @@ export function LikesBlog({ params }) {
           false
         )}
       </div>
-      
     </main>
   );
 }
