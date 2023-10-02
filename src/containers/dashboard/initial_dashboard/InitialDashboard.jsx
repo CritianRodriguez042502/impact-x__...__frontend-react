@@ -1,55 +1,19 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import { Helmet } from "react-helmet";
-import { axiosUserData, axiosJWTVerify } from "../../../redux/index";
 import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
 import style from "./style_initial_dashboard.module.css";
 
 export function InitialDashboard() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const infoJWTVerifi = useSelector((state) => state.JWTVerify);
+  
   const infoDatauser = useSelector((state) => state.userData);
 
   const [dataUser, setDataUser] = useState(null);
 
-  const access = JSON.parse(localStorage.getItem("access"));
-
-  useEffect(() => {
-    if (!access) {
-      location.href = "http://localhost:5173/access/signin";
-    }
-
-    if (!infoJWTVerifi.status) {
-      dispatch(axiosJWTVerify({ token: access }));
-    }
-
-    if (infoJWTVerifi.status === "rejected") {
-      location.href = "http://localhost:5173/access/signin";
-    }
-  }, [infoJWTVerifi.status]);
-
-  useEffect(() => {
-    if (infoJWTVerifi.status === "fulfilled" && !infoDatauser.info && access) {
-      dispatch(axiosUserData({method: "get", jwt: access,})
-      );
-    }
-  }, [infoJWTVerifi.status]);
-
   useEffect(() => {
     if (infoDatauser.status === "fulfilled") {
       setDataUser([infoDatauser.info]);
-    }
-
-    if (
-      infoDatauser.status === "rejected" &&
-      (infoJWTVerifi.status === "rejected" || !access)
-    ) {
-      location.href = "http://localhost:5173/access/signin";
-      localStorage.clear();
     }
   }, [infoDatauser.status]);
 

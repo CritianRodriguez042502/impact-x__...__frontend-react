@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -13,12 +13,18 @@ export function BlogDetail() {
 
   const infoBlogDetail = useSelector((state) => state.blogDetail);
 
+  const [allVisibility, setAllVisibility] = useState("0");
+
   useEffect(
     function () {
       dispatch(axiosBlogDetail(params.slug));
     },
     [params.slug]
   );
+
+  setTimeout(() => {
+    setAllVisibility("1");
+  }, 350);
 
   return (
     <main>
@@ -29,26 +35,31 @@ export function BlogDetail() {
       </Helmet>
 
       <Layout>
-        <h1> BlogDetail </h1>
-        <LikesBlog params={params.slug} />
-        <CommentsBlog params={params.slug} />
-        {infoBlogDetail.status === "fulfilled" ? (
-          infoBlogDetail.info?.map((data) => {
-            return (
-              <div key={data.id}>
-                <h1> {data.title} </h1>
-                <hr />
-                <div dangerouslySetInnerHTML={{ __html: data.content }} />
-              </div>
-            );
-          })
-        ) : infoBlogDetail.status === "pending" ? (
-          <h1> Cargando...</h1>
-        ) : infoBlogDetail.status === "rejected" ? (
-          <h1> Este blog no existe</h1>
-        ) : (
-          false
-        )}
+        <section style={{ opacity: allVisibility }}>
+          <h1> BlogDetail </h1>
+          <LikesBlog params={params.slug} />
+          <CommentsBlog params={params.slug} />
+
+          <div>
+            {infoBlogDetail.status === "fulfilled" ? (
+              infoBlogDetail.info?.map((data) => {
+                return (
+                  <div key={data.id}>
+                    <h1> {data.title} </h1>
+                    <hr />
+                    <div dangerouslySetInnerHTML={{ __html: data.content }} />
+                  </div>
+                );
+              })
+            ) : infoBlogDetail.status === "pending" ? (
+              <h1> Cargando...</h1>
+            ) : infoBlogDetail.status === "rejected" ? (
+              <h1> Este blog no existe</h1>
+            ) : (
+              false
+            )}
+          </div>
+        </section>
       </Layout>
     </main>
   );

@@ -20,30 +20,17 @@ export function CreateBlogUser() {
   const infoCategory = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
-  const username = JSON.parse(localStorage.getItem("username"));
 
   const [dataCreate, setDataCreate] = useState({});
   const [contentCkeditor, setContentCkeditor] = useState("");
   const [selectCategory, setSelectCategory] = useState("Seleccionar categoria");
 
   useEffect(() => {
-    if (!access || !username) {
-      localStorage.clear();
-      location.href = "http://localhost:5173/access/signin";
-    }
-    if (!infoJWTVerifi.status) {
-      dispatch(axiosJWTVerify({ token: access }));
-    }
-
     if (infoJWTVerifi.status === "fulfilled" && !infoCategory.info) {
-      dispatch(axiosCategorys());
+      dispatch(axiosCategorys())
     }
-
-    if (infoJWTVerifi.status === "rejected") {
-      location.href = "http://localhost:5173/access/signin";
-    }
-  }, [infoJWTVerifi.status]);
-
+  },[infoJWTVerifi.status])
+  
   function onChangeCreateBlog(e) {
     if (e.target.type === "checkbox") {
       setDataCreate({

@@ -3,43 +3,89 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import style from "./style_sidebar_dashboard.module.css";
-import { axiosUserData, axiosAllUsernames } from "../../../redux/index";
+import {
+  axiosJWTVerify,
+  axiosUserData,
+  axiosAllUsernames,
+  axiosBlogsByUser,
+} from "../../../redux/index";
 
 export function SidebarDashboard() {
   const dispatch = useDispatch();
 
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);
-  const infoUserData = useSelector((state) => state.userData);
+  const infoDatauser = useSelector((state) => state.userData);
   const infoAllUsernames = useSelector((state) => state.allUsernames);
+  const infoBlogsByUser = useSelector((state) => state.blogsByUser);
 
   const [updateDataUser, setUpdateDataUser] = useState({});
   const [allUsernames, setAllUsernames] = useState([]);
   const [visibility, setVisibility] = useState("none");
 
   const access = JSON.parse(localStorage.getItem("access"));
+  const username = JSON.parse(localStorage.getItem("username"));
 
   useEffect(() => {
-    if (infoUserData.status === "fulfilled") {
-      setUpdateDataUser({
-        first_name: infoUserData.info.first_name,
-        last_name: infoUserData.info.last_name,
-        username: infoUserData.info.username,
-      });
+    if (!access) {
+      localStorage.clear();
+      location.href = "http://localhost:5173/access/signin";
     }
-  }, [infoUserData.info]);
+
+    if (!infoJWTVerifi.status) {
+      dispatch(axiosJWTVerify({ token: access }));
+    }
+
+    if (infoJWTVerifi.status === "rejected") {
+      location.href = "http://localhost:5173/access/signin";
+    }
+  }, [infoJWTVerifi.status, username]);
 
   useEffect(() => {
-    if (infoJWTVerifi.status === "fulfilled" && !infoAllUsernames.info) {
+    if (
+      infoDatauser.status === "rejected" &&
+      (infoJWTVerifi.status === "rejected" || !access)
+    ) {
+      location.href = "http://localhost:5173/access/signin";
+      localStorage.clear();
+    }
+  }, [infoDatauser.status, username]);
+
+  useEffect(() => {
+    if (
+      infoJWTVerifi.status === "fulfilled" &&
+      access &&
+      !infoAllUsernames.info
+    ) {
       dispatch(axiosAllUsernames({ jwt: access }));
     }
-    if (infoJWTVerifi.status === "fulfilled" && !infoUserData.info) {
+    if (
+      (infoJWTVerifi.status === "fulfilled" && !infoDatauser.info && access) ||
+      !username
+    ) {
       dispatch(axiosUserData({ method: "get", jwt: access }));
     }
 
+    if (
+      infoJWTVerifi.status === "fulfilled" &&
+      !infoBlogsByUser.info &&
+      access
+    ) {
+      dispatch(axiosBlogsByUser(access));
+    }
+  }, [infoJWTVerifi.status, username]);
+
+  useEffect(() => {
+    if (infoDatauser.status === "fulfilled") {
+      setUpdateDataUser({
+        first_name: infoDatauser.info.first_name,
+        last_name: infoDatauser.info.last_name,
+        username: infoDatauser.info.username,
+      });
+    }
     if (infoAllUsernames.status === "fulfilled") {
       setAllUsernames(infoAllUsernames.info.data);
     }
-  }, [infoJWTVerifi.status, infoAllUsernames.status]);
+  }, [infoDatauser.info, infoAllUsernames.info]);
 
   function onChangeUpdateDataUser(e) {
     setUpdateDataUser({
@@ -57,7 +103,7 @@ export function SidebarDashboard() {
       updateDataUser.username
     ) {
       const nonRepeatedUsername = allUsernames.filter((index) => {
-        return index !== infoUserData.info.username;
+        return index !== infoDatauser.info.username;
       });
       const verifyName = [];
       for (let i = 0; i < nonRepeatedUsername.length; i++) {

@@ -31,6 +31,8 @@ export function CommentsBlog({ params }) {
 
   const unique_brand = new URLSearchParams(location.search).get("unique_brand");
 
+  const [comentUpdateOpacity, setCommentUpdateOpacity] = useState("0")
+
   // useEffect get all comments
   useEffect(() => {
     dispatch(axiosGetCommentsBlog(params));
@@ -84,6 +86,11 @@ export function CommentsBlog({ params }) {
   }
 
   // functions of update comment
+
+  setTimeout(() => {
+    setCommentUpdateOpacity("1")
+  },350)
+
   function onChangeUpdateComment(e) {
     setCommentDetail(e.target.value);
   }
@@ -155,6 +162,7 @@ export function CommentsBlog({ params }) {
                   navigate(
                     `/blogs/blog_detail/${paramsUrl.slug}?unique_brand=${data.unique_brand}`
                   );
+                  setCommentUpdateOpacity("0")
                 }}
               >
                 Modificar
@@ -222,11 +230,8 @@ export function CommentsBlog({ params }) {
           style={{ display: commentUpdateVisibility }}
           className={style.commentsUpdateVisibility}
         >
-          <button onClick={onClickWithoutCommentUpdateVisibilit}>
-            {" "}
-            Cerrar{" "}
-          </button>
-          <div className={style.inputUpdateComment}>
+          <button onClick={onClickWithoutCommentUpdateVisibilit}>Cerrar</button>
+          <div style={{opacity : comentUpdateOpacity}} className={style.inputUpdateComment}>
             <form onSubmit={onSubmitUpdateComment}>
               <div>
                 <textarea

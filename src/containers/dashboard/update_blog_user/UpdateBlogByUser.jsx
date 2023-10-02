@@ -6,7 +6,6 @@ import { Helmet } from "react-helmet";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {
-  axiosJWTVerify,
   axiosCategorys,
   axiosDetailedUserBlog,
   axiosUpdateBlogUser,
@@ -26,8 +25,8 @@ export function UpdateBlogByUser() {
   const infoCategory = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
-  const username = JSON.parse(localStorage.getItem("username"));
 
+  const [allVisibility, setAllVisibility] = useState("0");
   const [dataUpdateBlog, setDataUpdateBlog] = useState({});
   const [contentCkeditor, setContentCkeditor] = useState(
     dataUpdateBlog.content
@@ -41,19 +40,6 @@ export function UpdateBlogByUser() {
   }, [infoJWTVerifi.status]);
 
   useEffect(() => {
-    if (!access || !username) {
-      localStorage.clear();
-      location.href = "http://localhost:5173/access/signin";
-    }
-
-    if (!infoJWTVerifi.status) {
-      dispatch(axiosJWTVerify({ token: access }));
-    }
-
-    if (infoJWTVerifi.status === "rejected") {
-      location.href = "http://localhost:5173/access/signin";
-    }
-
     if (infoDetailedUserBlog.status === "fulfilled") {
       setDataUpdateBlog({
         img: infoDetailedUserBlog.info[0].img,
@@ -78,6 +64,10 @@ export function UpdateBlogByUser() {
   }, [infoJWTVerifi.status, infoCategory.info]);
 
   // ========================================
+
+  setTimeout(function () {
+    setAllVisibility("1");
+  }, 350);
 
   function onchangeData(e) {
     if (e.target.type === "checkbox") {
@@ -143,7 +133,7 @@ export function UpdateBlogByUser() {
         <section>
           <h1> ACTUALIZA EL BLOG </h1>
           {infoJWTVerifi.status === "fulfilled" && access ? (
-            <div>
+            <div style={{ opacity: allVisibility }}>
               <GetReactionDashboard params={slug} />
               <form onSubmit={onSubmitUpdateBlog}>
                 {Object.keys(dataUpdateBlog).length !== 0 ? (
