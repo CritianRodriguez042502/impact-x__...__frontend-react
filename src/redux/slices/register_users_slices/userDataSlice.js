@@ -1,13 +1,41 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const axiosUserData = createAsyncThunk("userData", async (jwt) => {
+export const axiosUserData = createAsyncThunk("userData", async (data) => {
   const headers = {
-    Authorization: `JWT ${jwt}`,
+    Authorization: `JWT ${data.jwt}`,
   };
-  const url = `${"http://127.0.0.1:8000"}/user_system/auth/users/me/`;
-  const response = await axios.get(url, { headers });
-  return response.data;
+  if (data.method === "get") {
+    try {
+      const url = `${"http://127.0.0.1:8000"}/user_system/auth/users/me/`;
+      const response = await axios.get(url, { headers });
+      return {
+        status: response.status,
+        data: response.data,
+      };
+    } catch (error) {
+      return {
+        status: error.response.status,
+        data: error.response.data,
+      };
+    }
+  } else if (data.method === "put") {
+    try {
+      const url = `${"http://127.0.0.1:8000"}/user_system/auth/users/me/`;
+      const response = await axios.put(url, data.info, { headers });
+      return {
+        status: response.status,
+        data: response.data,
+      };
+    } catch (error) {
+      return {
+        status: error.response.status,
+        data: error.response.data,
+      };
+    }
+  } else {
+    throw new Error("Error");
+  }
 });
 
 const initialState = {
@@ -25,13 +53,17 @@ const userDataSlice = createSlice({
       state.status = "pending";
     });
     builder.addCase(axiosUserData.fulfilled, function (state, action) {
-      state.status = "fulfilled";
-      state.info = action.payload;
-      localStorage.setItem("username", JSON.stringify(action.payload.username))
-    });
-    builder.addCase(axiosUserData.rejected, function (state, action) {
-      state.status = "rejected";
-      state.error = action.error.message;
+      if (action.payload.status === 200) {
+        state.status = "fulfilled";
+        state.info = action.payload.data;
+        localStorage.setItem(
+          "username",
+          JSON.stringify(action.payload.data.username)
+        );
+      } else {
+        state.status = "rejected";
+        state.info = action.payload.data;
+      }
     });
   },
 });

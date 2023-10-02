@@ -22,6 +22,7 @@ import authGoogle from "../slices/register_user_social_slices/authGoogle";
 import loginGoogle from "../slices/register_user_social_slices/loginGoogle";
 
 // State -- authenticated user data --
+import allUsernames from "../slices/dashboard_slices/allUsernames";
 import blogsByUser from "../slices/dashboard_slices/blogsByUserSlice";
 import detailedUserBlog from "../slices/dashboard_slices/detailedUserBlogSlice";
 import getUserBlogReactions from "../slices/dashboard_slices/getUserBlogReactionsSlice";
@@ -62,6 +63,7 @@ export const store = configureStore({
     loginGoogle: loginGoogle,
 
     // State -- authenticated user data --
+    allUsernames : allUsernames,
     blogsByUser: blogsByUser,
     detailedUserBlog: detailedUserBlog,
     getUserBlogReactions : getUserBlogReactions,

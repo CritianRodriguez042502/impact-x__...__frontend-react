@@ -3,16 +3,21 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import style from "./style_sidebar_dashboard.module.css";
+import { axiosUserData, axiosAllUsernames } from "../../../redux/index";
 
 export function SidebarDashboard() {
   const dispatch = useDispatch();
 
+  const infoJWTVerifi = useSelector((state) => state.JWTVerify);
   const infoUserData = useSelector((state) => state.userData);
+  const infoAllUsernames = useSelector((state) => state.allUsernames);
 
   const [updateDataUser, setUpdateDataUser] = useState({});
+  const [allUsernames, setAllUsernames] = useState([]);
   const [visibility, setVisibility] = useState("none");
 
-  // QUEDAMOS AQUI EN EL SISTEMA DE ACTUALIZACION DE DATOS DE USUARIO
+  const access = JSON.parse(localStorage.getItem("access"));
+
   useEffect(() => {
     if (infoUserData.status === "fulfilled") {
       setUpdateDataUser({
@@ -22,6 +27,19 @@ export function SidebarDashboard() {
       });
     }
   }, [infoUserData.info]);
+
+  useEffect(() => {
+    if (infoJWTVerifi.status === "fulfilled" && !infoAllUsernames.info) {
+      dispatch(axiosAllUsernames({ jwt: access }));
+    }
+    if (infoJWTVerifi.status === "fulfilled" && !infoUserData.info) {
+      dispatch(axiosUserData({ method: "get", jwt: access }));
+    }
+
+    if (infoAllUsernames.status === "fulfilled") {
+      setAllUsernames(infoAllUsernames.info.data);
+    }
+  }, [infoJWTVerifi.status, infoAllUsernames.status]);
 
   function onChangeUpdateDataUser(e) {
     setUpdateDataUser({
@@ -33,10 +51,34 @@ export function SidebarDashboard() {
   function onSubmitUpdateDataUser(e) {
     e.preventDefault();
 
-    if (updateDataUser.first_name && updateDataUser.last_name && updateDataUser.username) {
-      
+    if (
+      updateDataUser.first_name &&
+      updateDataUser.last_name &&
+      updateDataUser.username
+    ) {
+      const nonRepeatedUsername = allUsernames.filter((index) => {
+        return index !== infoUserData.info.username;
+      });
+      const verifyName = [];
+      for (let i = 0; i < nonRepeatedUsername.length; i++) {
+        if (nonRepeatedUsername[i] === updateDataUser.username) {
+          verifyName.unshift(nonRepeatedUsername[i]);
+        }
+      }
+      if (verifyName.length === 0) {
+        dispatch(
+          axiosUserData({
+            method: "put",
+            jwt: access,
+            info: updateDataUser,
+          })
+        );
+        setVisibility("none");
+      } else {
+        alert("Este nombre de usuario ya existe");
+      }
     } else {
-      alert("Estas tratando de enviar datos vacios")
+      alert("Estas tratando de enviar datos vacios");
     }
   }
 
@@ -48,6 +90,11 @@ export function SidebarDashboard() {
     setVisibility("none");
   }
 
+  function onClickLogout(e) {
+    localStorage.clear();
+    location.href = "http://localhost:5173/access/signin";
+  }
+
   return (
     <main className={style.containerLayout}>
       <nav className={style.containerLiks}>
@@ -55,6 +102,7 @@ export function SidebarDashboard() {
         <Link to={"/dashboard"}> Inicio </Link>
         <Link to={"/dashboard/blogs_user"}> Blogs </Link>
         <p onClick={visibilityOptions}> Ajustes </p>
+        <p onClick={onClickLogout}> Logout </p>
       </nav>
 
       <div className={style.containerFixed} style={{ display: visibility }}>
