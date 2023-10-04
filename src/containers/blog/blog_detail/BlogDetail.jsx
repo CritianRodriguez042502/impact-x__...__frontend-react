@@ -46,6 +46,7 @@ export function BlogDetail() {
                 return (
                   <div key={data.id}>
                     <h1> {data.title} </h1>
+                    <img src={`http://localhost:8000${data.img}`} alt="img" width={300}/>
                     <hr />
                     <div dangerouslySetInnerHTML={{ __html: data.content }} />
                   </div>

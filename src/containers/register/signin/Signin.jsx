@@ -42,8 +42,6 @@ export function Signin() {
         state : state,
         code : code
       }
-      console.log(state)
-      console.log(code)
       dispatch(axiosLoginGoogle(data));
     }
   }, [infoUrlGoogle, state, code]);
@@ -72,7 +70,6 @@ export function Signin() {
   }, [infoJWTCreate.status,infoJWTCreate.info, infoJWTRefresh.info, infoJWTVerify.status]);
 
   
-
   function onChangeData(e) {
     setDataForm({
       ...dataForm,

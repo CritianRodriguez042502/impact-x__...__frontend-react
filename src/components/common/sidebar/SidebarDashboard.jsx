@@ -19,6 +19,8 @@ export function SidebarDashboard() {
   const infoBlogsByUser = useSelector((state) => state.blogsByUser);
 
   const [updateDataUser, setUpdateDataUser] = useState({});
+  const [img, setImg] = useState(undefined);
+  const [containerImg, setContainerImg] = useState(undefined);
   const [allUsernames, setAllUsernames] = useState([]);
   const [visibility, setVisibility] = useState("none");
 
@@ -68,7 +70,8 @@ export function SidebarDashboard() {
     if (
       infoJWTVerifi.status === "fulfilled" &&
       !infoBlogsByUser.info &&
-      access
+      access &&
+      username
     ) {
       dispatch(axiosBlogsByUser(access));
     }
@@ -81,17 +84,51 @@ export function SidebarDashboard() {
         last_name: infoDatauser.info.last_name,
         username: infoDatauser.info.username,
       });
+      setContainerImg(infoDatauser.info.img);
     }
     if (infoAllUsernames.status === "fulfilled") {
       setAllUsernames(infoAllUsernames.info.data);
     }
   }, [infoDatauser.info, infoAllUsernames.info]);
 
+  function onClickLogout(e) {
+    localStorage.clear();
+    location.href = "http://localhost:5173/access/signin";
+  }
+
   function onChangeUpdateDataUser(e) {
     setUpdateDataUser({
       ...updateDataUser,
       [e.target.name]: e.target.value,
     });
+  }
+
+  function onChangeUploadImg(e) {
+    setImg(e.target.files[0]);
+  }
+
+  async function uploadImg(image) {
+    const headers = {
+      Authorization: `JWT ${access}`,
+    };
+    const url = "http://127.0.0.1:8000/user_system/upload_img_user/";
+    const formData = new FormData();
+    formData.append("file", image);
+    fetch(url, {
+      method: "POST",
+      headers,
+      body: formData,
+    })
+      .then((res) => {
+        if (res.ok) {
+          dispatch(axiosUserData({ method: "get", jwt: access }));
+        } else {
+          throw new Error("Hubo algun error al tratar de hacer la solicitud");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function onSubmitUpdateDataUser(e) {
@@ -112,14 +149,26 @@ export function SidebarDashboard() {
         }
       }
       if (verifyName.length === 0) {
-        dispatch(
-          axiosUserData({
-            method: "put",
-            jwt: access,
-            info: updateDataUser,
-          })
-        );
-        setVisibility("none");
+        if (img !== undefined) {
+          uploadImg(img);
+          dispatch(
+            axiosUserData({
+              method: "put",
+              jwt: access,
+              info: updateDataUser,
+            })
+          );
+          setVisibility("none");
+        } else {
+          dispatch(
+            axiosUserData({
+              method: "put",
+              jwt: access,
+              info: updateDataUser,
+            })
+          );
+          setVisibility("none");
+        }
       } else {
         alert("Este nombre de usuario ya existe");
       }
@@ -136,11 +185,6 @@ export function SidebarDashboard() {
     setVisibility("none");
   }
 
-  function onClickLogout(e) {
-    localStorage.clear();
-    location.href = "http://localhost:5173/access/signin";
-  }
-
   return (
     <main className={style.containerLayout}>
       <nav className={style.containerLiks}>
@@ -149,6 +193,11 @@ export function SidebarDashboard() {
         <Link to={"/dashboard/blogs_user"}> Blogs </Link>
         <p onClick={visibilityOptions}> Ajustes </p>
         <p onClick={onClickLogout}> Logout </p>
+        {containerImg !== undefined ? (
+          <img src={containerImg} alt="img" width={60} />
+        ) : (
+          false
+        )}
       </nav>
 
       <div className={style.containerFixed} style={{ display: visibility }}>
@@ -157,6 +206,13 @@ export function SidebarDashboard() {
         <form onSubmit={onSubmitUpdateDataUser}>
           {Object.keys(updateDataUser).length !== 0 ? (
             <div>
+              <label htmlFor="image"> Imagen de perfil </label>
+              <input
+                type="file"
+                name="file"
+                id="file"
+                onChange={onChangeUploadImg}
+              />
               <label htmlFor="first_name"> Primer nombre </label>
               <input
                 type="text"

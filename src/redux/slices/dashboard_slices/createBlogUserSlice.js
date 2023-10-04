@@ -8,7 +8,15 @@ export const axiosCreateBlogUser = createAsyncThunk(
       Authorization: `JWT ${data.jwt}`,
     };
     const url = `${"http://127.0.0.1:8000"}/dashboard/create_blog_by_user/`;
-    const response = await axios.post(url, data.info, { headers });
+    console.log(data)
+    const body = new FormData()
+    body.append("title", data.info.title)
+    body.append("description", data.info.description)
+    body.append("content", data.info.content)
+    body.append("public", data.info.public)
+    body.append("category",data.info.category)
+    body.append("file", data.info.img)
+    const response = await axios.post(url, body, { headers });
     return response.data;
   }
 );

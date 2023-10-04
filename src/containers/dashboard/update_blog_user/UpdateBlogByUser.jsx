@@ -159,6 +159,7 @@ export function UpdateBlogByUser() {
                       checked={dataUpdateBlog.public}
                       onChange={onchangeData}
                     />
+
                     <select
                       onClick={(e) => {
                         setSelectCategory(e.target.value);
@@ -185,6 +186,15 @@ export function UpdateBlogByUser() {
             </div>
           ) : (
             <h1> cargando... </h1>
+          )}
+          {Object.keys(dataUpdateBlog).length !== 0 ? (
+            <img
+              src={`http://localhost:8000${dataUpdateBlog.img}`}
+              alt="img"
+              width={140}
+            />
+          ) : (
+            false
           )}
         </section>
       </LayoutDashboard>

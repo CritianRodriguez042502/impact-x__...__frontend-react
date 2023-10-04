@@ -5,13 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {
-  axiosJWTVerify,
-  axiosCreateBlogUser,
-  axiosCategorys,
-} from "../../../redux/index";
+import { axiosCreateBlogUser, axiosCategorys } from "../../../redux/index";
 import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
 import style from "./style_create_blog_user.module.css";
+import axios from "axios";
 
 export function CreateBlogUser() {
   const dispatch = useDispatch();
@@ -22,15 +19,16 @@ export function CreateBlogUser() {
   const access = JSON.parse(localStorage.getItem("access"));
 
   const [dataCreate, setDataCreate] = useState({});
+  const [img, setImg] = useState("");
   const [contentCkeditor, setContentCkeditor] = useState("");
   const [selectCategory, setSelectCategory] = useState("Seleccionar categoria");
 
   useEffect(() => {
     if (infoJWTVerifi.status === "fulfilled" && !infoCategory.info) {
-      dispatch(axiosCategorys())
+      dispatch(axiosCategorys());
     }
-  },[infoJWTVerifi.status])
-  
+  }, [infoJWTVerifi.status]);
+
   function onChangeCreateBlog(e) {
     if (e.target.type === "checkbox") {
       setDataCreate({
@@ -50,6 +48,10 @@ export function CreateBlogUser() {
     setSelectCategory(e.target.value);
   }
 
+  function onChangeUploadImg(e) {
+    setImg(e.target.files[0]);
+  }
+
   function onSubmitCreateBlog(e) {
     e.preventDefault();
 
@@ -60,6 +62,7 @@ export function CreateBlogUser() {
           description: index.description,
           public: index.public,
           content: contentCkeditor,
+          img: img,
           category: selectCategory,
         };
         return datos;
@@ -101,13 +104,26 @@ export function CreateBlogUser() {
           <h1> Crea tu blog </h1>
 
           {infoJWTVerifi.status === "fulfilled" && access ? (
-            <form onSubmit={onSubmitCreateBlog}>
+            <form
+              encType="multipart/form-data"
+              style={{ display: "flex", flexDirection: "column" }}
+              onSubmit={onSubmitCreateBlog}
+            >
               <input
                 type="text"
                 name="title"
                 id="title"
                 onChange={onChangeCreateBlog}
               />
+
+              <input
+                type="file"
+                name="image"
+                id="image"
+                onChange={onChangeUploadImg}
+                required
+              />
+
               <textarea
                 name="description"
                 id="description"
@@ -115,6 +131,7 @@ export function CreateBlogUser() {
                 rows="10"
                 onChange={onChangeCreateBlog}
               ></textarea>
+
               <input
                 type="checkbox"
                 name="public"
