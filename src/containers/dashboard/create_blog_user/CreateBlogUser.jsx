@@ -8,7 +8,6 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { axiosCreateBlogUser, axiosCategorys } from "../../../redux/index";
 import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
 import style from "./style_create_blog_user.module.css";
-import axios from "axios";
 
 export function CreateBlogUser() {
   const dispatch = useDispatch();
@@ -121,6 +120,7 @@ export function CreateBlogUser() {
                 name="image"
                 id="image"
                 onChange={onChangeUploadImg}
+                accept="image/*"
                 required
               />
 

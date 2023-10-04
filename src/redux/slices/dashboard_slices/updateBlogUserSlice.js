@@ -10,8 +10,14 @@ export const axiosUpdateBlogUser = createAsyncThunk(
     const url = `${"http://127.0.0.1:8000"}/dashboard/update_blogs_by_user/?slug=${
       data.slug
     }`;
-
-    const response = await axios.put(url, data.info, { headers });
+    const body = new FormData()
+    body.append("title", data.info.title)
+    body.append("description", data.info.description)
+    body.append("public",data.info.public)
+    body.append("content",data.info.content)
+    body.append("category",data.info.category)
+    body.append("file", data.info.img)
+    const response = await axios.put(url, body, { headers });
     return response.data;
   }
 );

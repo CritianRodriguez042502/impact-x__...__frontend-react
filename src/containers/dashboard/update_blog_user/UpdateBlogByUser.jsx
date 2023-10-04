@@ -28,6 +28,7 @@ export function UpdateBlogByUser() {
 
   const [allVisibility, setAllVisibility] = useState("0");
   const [dataUpdateBlog, setDataUpdateBlog] = useState({});
+  const [img, setImg] = useState(undefined);
   const [contentCkeditor, setContentCkeditor] = useState(
     dataUpdateBlog.content
   );
@@ -83,6 +84,10 @@ export function UpdateBlogByUser() {
     }
   }
 
+  function onChangeUploadImg(e) {
+    setImg(e.target.files[0]);
+  }
+
   function leftoverCategoriesToSelect() {
     const filter = infoCategory.info?.filter(
       (index) => index.name !== selectCategory
@@ -103,6 +108,7 @@ export function UpdateBlogByUser() {
           public: index.public,
           content: contentCkeditor,
           category: selectCategory,
+          img: img,
         };
         return data;
       });
@@ -169,32 +175,45 @@ export function UpdateBlogByUser() {
                       {infoCategory.info ? leftoverCategoriesToSelect() : true}
                     </select>
 
-                    <CKEditor
-                      editor={ClassicEditor}
-                      data={contentCkeditor}
-                      onChange={(event, editor) => {
-                        const data = editor.getData();
-                        setContentCkeditor(data);
-                      }}
+                    <input
+                      type="file"
+                      name="img"
+                      id="img"
+                      accept="image/*"
+                      onChange={onChangeUploadImg}
                     />
+
+                    <div>
+                      <CKEditor
+                        editor={ClassicEditor}
+                        data={contentCkeditor}
+                        onChange={(event, editor) => {
+                          const data = editor.getData();
+                          setContentCkeditor(data);
+                        }}
+                      />
+                    </div>
+
                     <button type="submit"> enviar </button>
                   </div>
                 ) : (
                   <h1> cargando... </h1>
                 )}
               </form>
+              <div>
+                {Object.keys(dataUpdateBlog).length !== 0 ? (
+                  <img
+                    src={`http://localhost:8000${dataUpdateBlog.img}`}
+                    alt="img"
+                    width={140}
+                  />
+                ) : (
+                  false
+                )}
+              </div>
             </div>
           ) : (
             <h1> cargando... </h1>
-          )}
-          {Object.keys(dataUpdateBlog).length !== 0 ? (
-            <img
-              src={`http://localhost:8000${dataUpdateBlog.img}`}
-              alt="img"
-              width={140}
-            />
-          ) : (
-            false
           )}
         </section>
       </LayoutDashboard>

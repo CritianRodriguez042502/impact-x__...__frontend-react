@@ -121,7 +121,7 @@ export function SidebarDashboard() {
     })
       .then((res) => {
         if (res.ok) {
-          dispatch(axiosUserData({ method: "get", jwt: access }));
+          setTimeout(() => {dispatch(axiosUserData({ method: "get", jwt: access }));},300)
         } else {
           throw new Error("Hubo algun error al tratar de hacer la solicitud");
         }
@@ -150,7 +150,6 @@ export function SidebarDashboard() {
       }
       if (verifyName.length === 0) {
         if (img !== undefined) {
-          uploadImg(img);
           dispatch(
             axiosUserData({
               method: "put",
@@ -158,6 +157,9 @@ export function SidebarDashboard() {
               info: updateDataUser,
             })
           );
+          setTimeout(() => {
+            uploadImg(img);
+          },100)
           setVisibility("none");
         } else {
           dispatch(
@@ -211,6 +213,7 @@ export function SidebarDashboard() {
                 type="file"
                 name="file"
                 id="file"
+                accept="image/*"
                 onChange={onChangeUploadImg}
               />
               <label htmlFor="first_name"> Primer nombre </label>

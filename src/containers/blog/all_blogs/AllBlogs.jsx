@@ -16,11 +16,14 @@ export function AllBlogs() {
 
 
   useEffect(() => {
-    if (!infoBlogs.info && !infoBlogs.info) {
+    if (!infoBlogs.info) {
       dispatch(axiosCategorys());
-      dispatch(axiosAllBlogs());
     }
-  }, [infoBlogs.info, infoBlogs.info]);
+  }, [infoBlogs.info]);
+  
+  useEffect(() => {
+    dispatch(axiosAllBlogs());
+  },[])
 
   setTimeout(() => {
     setAllVisibility("1")
