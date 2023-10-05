@@ -14,6 +14,10 @@ export function Categorys() {
   const infoCategorys = useSelector((state) => state.category);
 
   const [allVisibility, setAllVisibility] = useState("0");
+  const [allVisibilityPage, setAllVisibilityPage] = useState("0");
+  const [nextBlogPages, setNextBlogPages] = useState({});
+
+  const page = new URLSearchParams(location.search).get("page");
 
   useEffect(
     function () {
@@ -29,6 +33,27 @@ export function Categorys() {
     setAllVisibility("0");
   }, [params.slug]);
 
+  useEffect(() => {
+    if (page) {
+      const url = `http://127.0.0.1:8000/blog/blog_by_category/?page=${page}&slug=${params.slug}`;
+      fetch(url, {
+        method: "GET",
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Hubo algun error");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setNextBlogPages(data);
+          setTimeout(() => {
+            setAllVisibilityPage("1");
+          }, 350);
+        });
+    }
+  }, [page]);
+
   setTimeout(function () {
     setAllVisibility("1");
   }, 350);
@@ -43,6 +68,49 @@ export function Categorys() {
       alert("Estas tratando de enviar datos vacios");
     }
   }
+
+  function buttonsPagination() {
+    const countBlogsPaginate = infoblogTypeCategory.info.count / 5;
+    const paginateCheck = countBlogsPaginate.toString().split(".");
+    if (paginateCheck.length === 1) {
+      const list = [];
+      for (let i = 1; i <= Number(paginateCheck[0]); i++) {
+        list.push(i);
+      }
+      return list.map((index) => {
+        return (
+          <button
+            key={index}
+            onClick={(e) => {
+              navigate(`/blogs/category/${params.slug}?page=${index}`);
+              setAllVisibilityPage("0")
+            }}
+          >
+            {index}
+          </button>
+        );
+      });
+    } else {
+      const list = [];
+      for (let i = 1; i <= Number(paginateCheck[0]) + 1; i++) {
+        list.push(i);
+      }
+      return list.map((index) => {
+        return (
+          <button
+            key={index}
+            onClick={(e) => {
+              navigate(`/blogs/category/${params.slug}?page=${index}`);
+              setAllVisibilityPage("0")
+            }}
+          >
+            {index}
+          </button>
+        );
+      });
+    }
+  }
+
   return (
     <main>
       <Helmet>
@@ -85,24 +153,43 @@ export function Categorys() {
         <hr />
 
         <div style={{ opacity: allVisibility }}>
-          {infoblogTypeCategory.status === "fulfilled" ? (
-            infoblogTypeCategory.info.results?.map((data) => {
-              return (
-                <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
-                  <h1> {data.title} </h1>
-                  <p> {data.description} </p>
-                  <hr />
-                  <p> {data.public} </p>
-                </Link>
-              );
-            })
-          ) : infoblogTypeCategory.status === "pending" ? (
-            false
-          ) : infoblogTypeCategory.status === "rejected" ? (
-            <h1> No hay blogs </h1>
-          ) : (
-            false
-          )}
+          <div>
+            {infoblogTypeCategory.status === "fulfilled" && !location.search ? (
+              infoblogTypeCategory.info.results?.map((data) => {
+                return (
+                  <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
+                    <h1> {data.title} </h1>
+                    <p> {data.description} </p>
+                    <hr />
+                    <p> {data.public} </p>
+                  </Link>
+                );
+              })
+            ) : Object.keys(nextBlogPages).length !== 0 ? (
+              <div style={{ opacity: allVisibilityPage }}>
+                {nextBlogPages.results?.map((data) => {
+                  return (
+                    <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
+                      <h1> {data.title} </h1>
+                      <p> {data.description} </p>
+                      <hr />
+                      <p> {data.public} </p>
+                    </Link>
+                  );
+                })}
+              </div>
+            ) : infoblogTypeCategory.status === "rejected" ? (
+              <h1> No hay blogs </h1>
+            ) : (
+              false
+            )}
+          </div>
+
+          <div>
+            {infoblogTypeCategory.status === "fulfilled"
+              ? buttonsPagination()
+              : false}
+          </div>
         </div>
       </Layout>
     </main>

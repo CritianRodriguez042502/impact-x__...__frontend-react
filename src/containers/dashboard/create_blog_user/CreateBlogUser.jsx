@@ -28,6 +28,7 @@ export function CreateBlogUser() {
     }
   }, [infoJWTVerifi.status]);
 
+
   function onChangeCreateBlog(e) {
     if (e.target.type === "checkbox") {
       setDataCreate({
@@ -89,6 +90,7 @@ export function CreateBlogUser() {
     }
   }
 
+  
   return (
     <main className={style.screenSetting}>
       <Helmet>

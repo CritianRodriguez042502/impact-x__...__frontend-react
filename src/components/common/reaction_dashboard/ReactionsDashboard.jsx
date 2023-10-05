@@ -34,8 +34,17 @@ export function GetReactionDashboard({ params }) {
         {selectedLikes.length !== 0 ? (
           selectedLikes?.map(function (data) {
             return (
-              <div key={data.id}>
-                <p> Like {data.user.username}</p>
+              <div style={{ display: "flex" }} key={data.id}>
+                <div>
+                  <img
+                    src={`http://localhost:8000${data.user.img}`}
+                    alt="img"
+                    width={70}
+                  />
+                </div>
+                <div>
+                  <p> Like {data.user.username}</p>
+                </div>
               </div>
             );
           })

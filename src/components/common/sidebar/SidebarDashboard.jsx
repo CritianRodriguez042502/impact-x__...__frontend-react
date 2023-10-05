@@ -107,7 +107,7 @@ export function SidebarDashboard() {
     setImg(e.target.files[0]);
   }
 
-  async function uploadImg(image) {
+  function uploadImg(image) {
     const headers = {
       Authorization: `JWT ${access}`,
     };
@@ -121,7 +121,9 @@ export function SidebarDashboard() {
     })
       .then((res) => {
         if (res.ok) {
-          setTimeout(() => {dispatch(axiosUserData({ method: "get", jwt: access }));},300)
+          setTimeout(() => {
+            dispatch(axiosUserData({ method: "get", jwt: access }));
+          }, 200);
         } else {
           throw new Error("Hubo algun error al tratar de hacer la solicitud");
         }
@@ -159,7 +161,7 @@ export function SidebarDashboard() {
           );
           setTimeout(() => {
             uploadImg(img);
-          },100)
+          }, 100);
           setVisibility("none");
         } else {
           dispatch(
@@ -195,10 +197,10 @@ export function SidebarDashboard() {
         <Link to={"/dashboard/blogs_user"}> Blogs </Link>
         <p onClick={visibilityOptions}> Ajustes </p>
         <p onClick={onClickLogout}> Logout </p>
-        {containerImg !== undefined ? (
-          <img src={containerImg} alt="img" width={60} />
-        ) : (
+        {containerImg === undefined || containerImg === null ? (
           false
+        ) : (
+          <img src={containerImg} alt="img" width={60} />
         )}
       </nav>
 

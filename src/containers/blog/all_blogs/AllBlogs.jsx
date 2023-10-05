@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, json } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
@@ -12,24 +12,48 @@ export function AllBlogs() {
   const infoCategorys = useSelector((state) => state.category);
   const infoBlogs = useSelector((state) => state.allBlogs);
 
-  const [allVisibility, setAllVisibility] = useState("0")
+  const [allVisibility, setAllVisibility] = useState("0");
+  const [allVisibilityPage, setAllVisibilityPage] = useState("0")
+  const [nextBlogPages, setNextBlogPages] = useState({});
 
+  const page = new URLSearchParams(location.search).get("page");
 
   useEffect(() => {
     if (!infoBlogs.info) {
       dispatch(axiosCategorys());
     }
   }, [infoBlogs.info]);
-  
+
   useEffect(() => {
     dispatch(axiosAllBlogs());
-  },[])
+  }, []);
+
+  useEffect(() => {
+    if (page) {
+      const url = `http://127.0.0.1:8000/blog/all_blog/?page=${page}`;
+      fetch(url, {
+        method: "GET",
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Hubo algun error");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setNextBlogPages(data)
+          setTimeout(() => {
+            setAllVisibilityPage("1")
+          },350)
+        });
+    }
+  }, [page]);
 
   setTimeout(() => {
-    setAllVisibility("1")
-  },350)
-  
+    setAllVisibility("1");
+  }, 350);
 
+  
   function onSubmitSearch(e) {
     e.preventDefault();
 
@@ -38,6 +62,48 @@ export function AllBlogs() {
       navigate(`/blogs/search/${searchBlogs}`);
     } else {
       alert("Estas tratando de enviar datos vacios");
+    }
+  }
+
+  function buttonsPagination() {
+    const countBlogsPaginate = infoBlogs.info.count / 5;
+    const paginateCheck = countBlogsPaginate.toString().split(".");
+    if (paginateCheck.length === 1) {
+      const list = [];
+      for (let i = 1; i <= Number(paginateCheck[0]); i++) {
+        list.push(i);
+      }
+      return list.map((index) => {
+        return (
+          <button
+            key={index}
+            onClick={(e) => {
+              navigate(`/blogs?page=${index}`);
+              setAllVisibilityPage("0")
+            }}
+          >
+            {index}
+          </button>
+        );
+      });
+    } else {
+      const list = [];
+      for (let i = 1; i <= Number(paginateCheck[0]) + 1; i++) {
+        list.push(i);
+      }
+      return list.map((index) => {
+        return (
+          <button
+            key={index}
+            onClick={(e) => {
+              navigate(`/blogs?page=${index}`);
+              setAllVisibilityPage("0")
+            }}
+          >
+            {index}
+          </button>
+        );
+      });
     }
   }
 
@@ -63,7 +129,7 @@ export function AllBlogs() {
         ) : infoCategorys.status === "pending" ? (
           <span> Cargando... </span>
         ) : infoCategorys.status === "rejected" ? (
-          <h3> No hay categorias</h3>
+          alert("error")
         ) : (
           false
         )}
@@ -81,8 +147,8 @@ export function AllBlogs() {
 
         <hr />
 
-        <div style={{opacity : allVisibility}}>
-          {infoBlogs.status === "fulfilled" ? (
+        <div style={{ opacity: allVisibility }}>
+          {infoBlogs.status === "fulfilled" && !location.search ? (
             infoBlogs.info.results?.map((data) => {
               return (
                 <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
@@ -93,13 +159,28 @@ export function AllBlogs() {
                 </Link>
               );
             })
-          ) : infoBlogs.status === "pending" ? (
-            false
+          ) : Object.keys(nextBlogPages).length !== 0 ? (
+            <div style={{opacity : allVisibilityPage}}>
+              {nextBlogPages.results?.map((data) => {
+                return (
+                  <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
+                    <h1> {data.title} </h1>
+                    <p> {data.description} </p>
+                    <hr />
+                    <p> {data.public} </p>
+                  </Link>
+                );
+              })}
+            </div>
           ) : infoBlogs.status === "rejected" ? (
-            <h1> No hay blogs </h1>
+            <p> Error</p>
           ) : (
             false
           )}
+        </div>
+
+        <div>
+          {infoBlogs.status === "fulfilled" ? buttonsPagination() : false}
         </div>
       </Layout>
     </main>
