@@ -14,6 +14,7 @@ export function Search() {
 
   const [inputValue, setInputValue] = useState(params.slug);
   const [nextBlogPages, setNextBlogPages] = useState({});
+  const [allVisibility, setAllVisibility] = useState("0")
   const [allVisibilityPage, setAllVisibilityPage] = useState("0");
 
   const page = new URLSearchParams(location.search).get("page");
@@ -56,6 +57,10 @@ export function Search() {
       alert("No puedes enviar datos vacios");
     }
   }
+
+  setTimeout(() => {
+    setAllVisibility("1")
+  },350)
 
   function buttonsPagination() {
     const countBlogsPaginate = infoSearchBlogs.info.count / 8;
@@ -125,16 +130,21 @@ export function Search() {
         </form>
 
         {infoSearchBlogs.status === "fulfilled" && !location.search ? (
-          infoSearchBlogs.info.results?.map((data) => {
-            return (
-              <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
-                <h1> {data.title} </h1>
-                <p> {data.description} </p>
-                <hr />
-                <p> {data.public} </p>
-              </Link>
-            );
-          })
+          <div style={{opacity : allVisibility }}>
+            {infoSearchBlogs.info.results?.map((data) => {
+              return (
+                <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
+                  <h1> {data.title} </h1>
+                  <p> {data.description} </p>
+                  <hr />
+                  <p> {data.public} </p>
+                </Link>
+              );
+            })}
+            {infoSearchBlogs.status === "fulfilled"
+              ? buttonsPagination()
+              : false}
+          </div>
         ) : Object.keys(nextBlogPages).length !== 0 ? (
           <div style={{ opacity: allVisibilityPage }}>
             {nextBlogPages.results?.map((data) => {
@@ -147,14 +157,15 @@ export function Search() {
                 </Link>
               );
             })}
+            {infoSearchBlogs.status === "fulfilled"
+              ? buttonsPagination()
+              : false}
           </div>
         ) : infoSearchBlogs.status === "rejected" ? (
           <h1> No hay blogs </h1>
         ) : (
           false
         )}
-
-        {infoSearchBlogs.status === "fulfilled" ? buttonsPagination() : false}
       </Layout>
     </main>
   );

@@ -13,7 +13,7 @@ export function AllBlogs() {
   const infoBlogs = useSelector((state) => state.allBlogs);
 
   const [allVisibility, setAllVisibility] = useState("0");
-  const [allVisibilityPage, setAllVisibilityPage] = useState("0")
+  const [allVisibilityPage, setAllVisibilityPage] = useState("0");
   const [nextBlogPages, setNextBlogPages] = useState({});
 
   const page = new URLSearchParams(location.search).get("page");
@@ -41,10 +41,10 @@ export function AllBlogs() {
           return res.json();
         })
         .then((data) => {
-          setNextBlogPages(data)
+          setNextBlogPages(data);
           setTimeout(() => {
-            setAllVisibilityPage("1")
-          },350)
+            setAllVisibilityPage("1");
+          }, 350);
         });
     }
   }, [page]);
@@ -53,7 +53,6 @@ export function AllBlogs() {
     setAllVisibility("1");
   }, 350);
 
-  
   function onSubmitSearch(e) {
     e.preventDefault();
 
@@ -79,7 +78,7 @@ export function AllBlogs() {
             key={index}
             onClick={(e) => {
               navigate(`/blogs?page=${index}`);
-              setAllVisibilityPage("0")
+              setAllVisibilityPage("0");
             }}
           >
             {index}
@@ -97,7 +96,7 @@ export function AllBlogs() {
             key={index}
             onClick={(e) => {
               navigate(`/blogs?page=${index}`);
-              setAllVisibilityPage("0")
+              setAllVisibilityPage("0");
             }}
           >
             {index}
@@ -149,19 +148,8 @@ export function AllBlogs() {
 
         <div style={{ opacity: allVisibility }}>
           {infoBlogs.status === "fulfilled" && !location.search ? (
-            infoBlogs.info.results?.map((data) => {
-              return (
-                <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
-                  <h1> {data.title} </h1>
-                  <p> {data.description} </p>
-                  <hr />
-                  <p> {data.public} </p>
-                </Link>
-              );
-            })
-          ) : Object.keys(nextBlogPages).length !== 0 ? (
-            <div style={{opacity : allVisibilityPage}}>
-              {nextBlogPages.results?.map((data) => {
+            <div>
+              {infoBlogs.info.results?.map((data) => {
                 return (
                   <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
                     <h1> {data.title} </h1>
@@ -171,16 +159,29 @@ export function AllBlogs() {
                   </Link>
                 );
               })}
+              {infoBlogs.status === "fulfilled" ? buttonsPagination() : false}
+            </div>
+          ) : Object.keys(nextBlogPages).length !== 0 ? (
+            <div style={{ opacity: allVisibilityPage }}>
+              <div>
+                {nextBlogPages.results?.map((data) => {
+                  return (
+                    <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
+                      <h1> {data.title} </h1>
+                      <p> {data.description} </p>
+                      <hr />
+                      <p> {data.public} </p>
+                    </Link>
+                  );
+                })}
+                {infoBlogs.status === "fulfilled" ? buttonsPagination() : false}
+              </div>
             </div>
           ) : infoBlogs.status === "rejected" ? (
             <p> Error</p>
           ) : (
             false
           )}
-        </div>
-
-        <div>
-          {infoBlogs.status === "fulfilled" ? buttonsPagination() : false}
         </div>
       </Layout>
     </main>

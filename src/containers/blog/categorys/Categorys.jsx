@@ -83,7 +83,7 @@ export function Categorys() {
             key={index}
             onClick={(e) => {
               navigate(`/blogs/category/${params.slug}?page=${index}`);
-              setAllVisibilityPage("0")
+              setAllVisibilityPage("0");
             }}
           >
             {index}
@@ -101,7 +101,7 @@ export function Categorys() {
             key={index}
             onClick={(e) => {
               navigate(`/blogs/category/${params.slug}?page=${index}`);
-              setAllVisibilityPage("0")
+              setAllVisibilityPage("0");
             }}
           >
             {index}
@@ -155,16 +155,21 @@ export function Categorys() {
         <div style={{ opacity: allVisibility }}>
           <div>
             {infoblogTypeCategory.status === "fulfilled" && !location.search ? (
-              infoblogTypeCategory.info.results?.map((data) => {
-                return (
-                  <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
-                    <h1> {data.title} </h1>
-                    <p> {data.description} </p>
-                    <hr />
-                    <p> {data.public} </p>
-                  </Link>
-                );
-              })
+              <div>
+                {infoblogTypeCategory.info.results?.map((data) => {
+                  return (
+                    <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>
+                      <h1> {data.title} </h1>
+                      <p> {data.description} </p>
+                      <hr />
+                      <p> {data.public} </p>
+                    </Link>
+                  );
+                })}
+                {infoblogTypeCategory.status === "fulfilled"
+                  ? buttonsPagination()
+                  : false}
+              </div>
             ) : Object.keys(nextBlogPages).length !== 0 ? (
               <div style={{ opacity: allVisibilityPage }}>
                 {nextBlogPages.results?.map((data) => {
@@ -177,18 +182,15 @@ export function Categorys() {
                     </Link>
                   );
                 })}
+                {infoblogTypeCategory.status === "fulfilled"
+                  ? buttonsPagination()
+                  : false}
               </div>
             ) : infoblogTypeCategory.status === "rejected" ? (
               <h1> No hay blogs </h1>
             ) : (
               false
             )}
-          </div>
-
-          <div>
-            {infoblogTypeCategory.status === "fulfilled"
-              ? buttonsPagination()
-              : false}
           </div>
         </div>
       </Layout>
