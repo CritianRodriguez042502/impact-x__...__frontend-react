@@ -98,37 +98,41 @@ export function BlogsUser() {
       for (let i = 1; i <= Number(paginateCheck[0]); i++) {
         list.push(i);
       }
-      return list.map((index) => {
-        return (
-          <button
-            key={index}
-            onClick={(e) => {
-              setAllVisibilityPage("0");
-              navigate(`/dashboard/blogs_user?page=${index}`);
-            }}
-          >
-            {index}
-          </button>
-        );
-      });
+      if (list.length > 1) {
+        return list.map((index) => {
+          return (
+            <button
+              key={index}
+              onClick={(e) => {
+                setAllVisibilityPage("0");
+                navigate(`/dashboard/blogs_user?page=${index}`);
+              }}
+            >
+              {index}
+            </button>
+          );
+        });
+      }
     } else {
       const list = [];
       for (let i = 1; i <= Number(paginateCheck[0]) + 1; i++) {
         list.push(i);
       }
-      return list.map((index) => {
-        return (
-          <button
-            key={index}
-            onClick={(e) => {
-              setAllVisibilityPage("0");
-              navigate(`/dashboard/blogs_user?page=${index}`);
-            }}
-          >
-            {index}
-          </button>
-        );
-      });
+      if (list.length > 1) {
+        return list.map((index) => {
+          return (
+            <button
+              key={index}
+              onClick={(e) => {
+                setAllVisibilityPage("0");
+                navigate(`/dashboard/blogs_user?page=${index}`);
+              }}
+            >
+              {index}
+            </button>
+          );
+        });
+      }
     }
   }
 

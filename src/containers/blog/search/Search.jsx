@@ -14,7 +14,7 @@ export function Search() {
 
   const [inputValue, setInputValue] = useState(params.slug);
   const [nextBlogPages, setNextBlogPages] = useState({});
-  const [allVisibility, setAllVisibility] = useState("0")
+  const [allVisibility, setAllVisibility] = useState("0");
   const [allVisibilityPage, setAllVisibilityPage] = useState("0");
 
   const page = new URLSearchParams(location.search).get("page");
@@ -59,8 +59,8 @@ export function Search() {
   }
 
   setTimeout(() => {
-    setAllVisibility("1")
-  },350)
+    setAllVisibility("1");
+  }, 350);
 
   function buttonsPagination() {
     const countBlogsPaginate = infoSearchBlogs.info.count / 8;
@@ -70,37 +70,41 @@ export function Search() {
       for (let i = 1; i <= Number(paginateCheck[0]); i++) {
         list.push(i);
       }
-      return list.map((index) => {
-        return (
-          <button
-            key={index}
-            onClick={(e) => {
-              setAllVisibilityPage("0");
-              navigate(`/blogs/search/${params.slug}?page=${index}`);
-            }}
-          >
-            {index}
-          </button>
-        );
-      });
+      if (list.length > 1) {
+        return list.map((index) => {
+          return (
+            <button
+              key={index}
+              onClick={(e) => {
+                setAllVisibilityPage("0");
+                navigate(`/blogs/search/${params.slug}?page=${index}`);
+              }}
+            >
+              {index}
+            </button>
+          );
+        });
+      }
     } else {
       const list = [];
       for (let i = 1; i <= Number(paginateCheck[0]) + 1; i++) {
         list.push(i);
       }
-      return list.map((index) => {
-        return (
-          <button
-            key={index}
-            onClick={(e) => {
-              setAllVisibilityPage("0");
-              navigate(`/blogs/search/${params.slug}?page=${index}`);
-            }}
-          >
-            {index}
-          </button>
-        );
-      });
+      if (list.length > 1) {
+        return list.map((index) => {
+          return (
+            <button
+              key={index}
+              onClick={(e) => {
+                setAllVisibilityPage("0");
+                navigate(`/blogs/search/${params.slug}?page=${index}`);
+              }}
+            >
+              {index}
+            </button>
+          );
+        });
+      }
     }
   }
 
@@ -130,7 +134,7 @@ export function Search() {
         </form>
 
         {infoSearchBlogs.status === "fulfilled" && !location.search ? (
-          <div style={{opacity : allVisibility }}>
+          <div style={{ opacity: allVisibility }}>
             {infoSearchBlogs.info.results?.map((data) => {
               return (
                 <Link to={`/blogs/blog_detail/${data.slug}`} key={data.id}>

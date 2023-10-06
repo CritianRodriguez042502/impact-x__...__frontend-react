@@ -94,7 +94,6 @@ export function CommentsBlog({ params }) {
   }
 
   // functions of update comment
-
   setTimeout(() => {
     setCommentUpdateOpacity("1")
   },350)
@@ -107,6 +106,7 @@ export function CommentsBlog({ params }) {
     e.preventDefault();
 
     if (commentDetail) {
+      setBlogModificationVisibility("0")
       dispatch(
         axiosCommentsBlog({
           method: "patch",
@@ -152,6 +152,7 @@ export function CommentsBlog({ params }) {
               <li> {data.comments} </li>
               <button
                 onClick={(e) => {
+                  setBlogModificationVisibility("0")
                   dispatch(
                     axiosCommentsBlog({
                       method: "delete",

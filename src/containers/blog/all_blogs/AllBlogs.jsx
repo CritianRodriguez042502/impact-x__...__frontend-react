@@ -72,37 +72,41 @@ export function AllBlogs() {
       for (let i = 1; i <= Number(paginateCheck[0]); i++) {
         list.push(i);
       }
-      return list.map((index) => {
-        return (
-          <button
-            key={index}
-            onClick={(e) => {
-              navigate(`/blogs?page=${index}`);
-              setAllVisibilityPage("0");
-            }}
-          >
-            {index}
-          </button>
-        );
-      });
+      if (list.length > 1) {
+        return list.map((index) => {
+          return (
+            <button
+              key={index}
+              onClick={(e) => {
+                navigate(`/blogs?page=${index}`);
+                setAllVisibilityPage("0");
+              }}
+            >
+              {index}
+            </button>
+          );
+        });
+      }
     } else {
       const list = [];
       for (let i = 1; i <= Number(paginateCheck[0]) + 1; i++) {
         list.push(i);
       }
-      return list.map((index) => {
-        return (
-          <button
-            key={index}
-            onClick={(e) => {
-              navigate(`/blogs?page=${index}`);
-              setAllVisibilityPage("0");
-            }}
-          >
-            {index}
-          </button>
-        );
-      });
+      if (list.length > 1) {
+        return list.map((index) => {
+          return (
+            <button
+              key={index}
+              onClick={(e) => {
+                navigate(`/blogs?page=${index}`);
+                setAllVisibilityPage("0");
+              }}
+            >
+              {index}
+            </button>
+          );
+        });
+      }
     }
   }
 
