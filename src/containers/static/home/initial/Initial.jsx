@@ -13,6 +13,7 @@ export function Initial() {
       </Helmet>
       <Layout>
         <h1> Home page initial</h1>
+        <hr/>
       </Layout>
     </main>
   );
