@@ -13,7 +13,6 @@ export function About() {
 
       <Layout>
         <h1> About </h1>
-        <h2> Un cambio que necesitaba no lo se</h2>
       </Layout>
     </main>
   );
