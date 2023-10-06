@@ -15,6 +15,7 @@ export function Contact() {
       <Layout>
         <h1> Contact </h1>
         <b className="comments"> Hola mundo </b>
+        <h1> Otro de los cambios que te menciono</h1>
       </Layout>
     </main>
   );
