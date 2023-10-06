@@ -19,6 +19,7 @@ export function BlogsUser() {
   const access = JSON.parse(localStorage.getItem("access"));
 
   const [allVisibility, setAllVisibility] = useState("0");
+  const [allVisibilityPage, setAllVisibilityPage] = useState("0");
   const [nextBlogPages, setNextBlogPages] = useState({});
 
   const page = new URLSearchParams(location.search).get("page");
@@ -55,7 +56,12 @@ export function BlogsUser() {
           }
           return res.json();
         })
-        .then((data) => setNextBlogPages(data))
+        .then((data) => {
+          setNextBlogPages(data);
+          setTimeout(() => {
+            setAllVisibilityPage("1");
+          }, 350);
+        })
         .catch((err) => console.log(err));
     }
   }, [page]);
@@ -76,9 +82,9 @@ export function BlogsUser() {
       })
         .then((res) => {
           if (!res.ok) {
-            navigate(`/dashboard/blogs_user?page=${page - 1}`)
+            navigate(`/dashboard/blogs_user?page=${page - 1}`);
           }
-          return res.json()
+          return res.json();
         })
         .then((data) => setNextBlogPages(data));
     }, 200);
@@ -97,6 +103,7 @@ export function BlogsUser() {
           <button
             key={index}
             onClick={(e) => {
+              setAllVisibilityPage("0");
               navigate(`/dashboard/blogs_user?page=${index}`);
             }}
           >
@@ -114,6 +121,7 @@ export function BlogsUser() {
           <button
             key={index}
             onClick={(e) => {
+              setAllVisibilityPage("0");
               navigate(`/dashboard/blogs_user?page=${index}`);
             }}
           >
@@ -123,7 +131,6 @@ export function BlogsUser() {
       });
     }
   }
-
 
   return (
     <main>
@@ -144,68 +151,77 @@ export function BlogsUser() {
               {infoBlogsByUser.status === "pending" ? (
                 <h1> Cargando... </h1>
               ) : infoBlogsByUser.status === "fulfilled" && !location.search ? (
-                infoBlogsByUser.info.results?.map((data) => {
-                  return (
-                    <div key={data.id}>
-                      <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
-                        <h1> {data.title} </h1>
-                        <p> {data.description} </p>
-                        <hr />
-                        <p> {data.creation} </p>
-                      </Link>
+                <div>
+                  {infoBlogsByUser.info.results?.map((data) => {
+                    return (
+                      <div key={data.id}>
+                        <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
+                          <h1> {data.title} </h1>
+                          <p> {data.description} </p>
+                          <hr />
+                          <p> {data.creation} </p>
+                        </Link>
 
-                      <button
-                        onClick={() => {
-                          const info = {
-                            jwt: access,
-                            slug: `${data.slug}`,
-                          };
-                          dispatch(axiosDeleteBlogUser(info));
-                          setAllVisibility("0");
-                        }}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  );
-                })
+                        <button
+                          onClick={() => {
+                            const info = {
+                              jwt: access,
+                              slug: `${data.slug}`,
+                            };
+                            dispatch(axiosDeleteBlogUser(info));
+                            setAllVisibility("0");
+                          }}
+                        >
+                          Eliminar
+                        </button>
+                      </div>
+                    );
+                  })}
+                  <div>
+                    {infoBlogsByUser.status === "fulfilled"
+                      ? buttonsPagination()
+                      : false}
+                  </div>
+                </div>
               ) : Object.keys(nextBlogPages).length !== 0 ? (
-                nextBlogPages.results?.map((data) => {
-                  return (
-                    <div key={data.id}>
-                      <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
-                        <h1> {data.title} </h1>
-                        <p> {data.description} </p>
-                        <hr />
-                        <p> {data.creation} </p>
-                      </Link>
+                <div style={{ opacity: allVisibilityPage }}>
+                  {nextBlogPages.results?.map((data) => {
+                    return (
+                      <div key={data.id}>
+                        <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
+                          <h1> {data.title} </h1>
+                          <p> {data.description} </p>
+                          <hr />
+                          <p> {data.creation} </p>
+                        </Link>
 
-                      <button
-                        onClick={() => {
-                          const info = {
-                            jwt: access,
-                            slug: `${data.slug}`,
-                          };
-                          dispatch(axiosDeleteBlogUser(info));
-                          setAllVisibility("0");
-                          refreshBloByUserPagination();
-                        }}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  );
-                })
+                        <button
+                          onClick={() => {
+                            const info = {
+                              jwt: access,
+                              slug: `${data.slug}`,
+                            };
+                            dispatch(axiosDeleteBlogUser(info));
+                            setAllVisibility("0");
+                            refreshBloByUserPagination();
+                          }}
+                        >
+                          Eliminar
+                        </button>
+                      </div>
+                    );
+                  })}
+                  <div>
+                    {infoBlogsByUser.status === "fulfilled"
+                      ? buttonsPagination()
+                      : false}
+                  </div>
+                </div>
               ) : infoBlogsByUser.status === "rejected" ? (
                 <p> No hay blogs</p>
               ) : (
                 false
               )}
-            </div>
-            <div>
-              {infoBlogsByUser.status === "fulfilled"
-                ? buttonsPagination()
-                : false}
             </div>
           </div>
         </section>

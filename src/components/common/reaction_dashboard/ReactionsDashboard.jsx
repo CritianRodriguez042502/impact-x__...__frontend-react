@@ -36,11 +36,19 @@ export function GetReactionDashboard({ params }) {
             return (
               <div style={{ display: "flex" }} key={data.id}>
                 <div>
-                  <img
-                    src={`http://localhost:8000${data.user.img}`}
-                    alt="img"
-                    width={70}
-                  />
+                  {data.user.img === null ? (
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                      alt="img"
+                      width={70}
+                    />
+                  ) : (
+                    <img
+                      src={`http://localhost:8000${data.user.img}`}
+                      alt="img"
+                      width={70}
+                    />
+                  )}
                 </div>
                 <div>
                   <p> Like {data.user.username}</p>

@@ -25,6 +25,7 @@ export function CommentsBlog({ params }) {
   const [visibility, setVisibility] = useState("none");
   const [commentUpdateVisibility, setCommentUpdateVisibility] =
     useState("none");
+  const [blogModificationVisibility, setBlogModificationVisibility] = useState("1")
 
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
@@ -68,6 +69,7 @@ export function CommentsBlog({ params }) {
 
     if (newComment) {
       if (infoJWTVerify.status === "fulfilled" && access && username) {
+        setBlogModificationVisibility("0")
         dispatch(
           axiosCommentsBlog({
             method: "post",
@@ -83,6 +85,12 @@ export function CommentsBlog({ params }) {
     } else {
       alert("No puedes enviar datos vacios");
     }
+  }
+
+  function blogAppearanceAfterChange () {
+    setTimeout(() => {
+      setBlogModificationVisibility("1")
+    }, 350)
   }
 
   // functions of update comment
@@ -129,13 +137,13 @@ export function CommentsBlog({ params }) {
 
   // Filter comments blogs by user
   function filterComments() {
+    blogAppearanceAfterChange()
     const userComments = infoGetComments.info.results.data?.filter((index) => {
       return index.user.username === username;
     });
     const otherComments = infoGetComments.info.results.data?.filter((index) => {
       return index.user.username !== username;
     });
-
     return (
       <div>
         {userComments?.map(function (data) {
@@ -222,7 +230,7 @@ export function CommentsBlog({ params }) {
           </form>
         </section>
 
-        <section>
+        <section style={{opacity : blogModificationVisibility}}>
           {infoGetComments.status === "fulfilled" ? filterComments() : false}
         </section>
 

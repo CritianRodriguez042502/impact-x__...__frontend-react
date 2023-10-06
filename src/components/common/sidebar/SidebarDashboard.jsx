@@ -198,7 +198,11 @@ export function SidebarDashboard() {
         <p onClick={visibilityOptions}> Ajustes </p>
         <p onClick={onClickLogout}> Logout </p>
         {containerImg === undefined || containerImg === null ? (
-          false
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+            alt="img"
+            width={60}
+          />
         ) : (
           <img src={containerImg} alt="img" width={60} />
         )}
@@ -206,7 +210,11 @@ export function SidebarDashboard() {
 
       <div className={style.containerFixed} style={{ display: visibility }}>
         <p onClick={withoutVisibilityOptions}> Xd </p>
-        <p> Modificar datos de usuario </p>
+        {containerImg === undefined || containerImg === null ? (
+          <p> Modificar datos y agregar imagen de perfil </p>
+        ) : (
+          <p> Modificar dataos de usuario o cambiar imagen de perfil </p>
+        )}
         <form onSubmit={onSubmitUpdateDataUser}>
           {Object.keys(updateDataUser).length !== 0 ? (
             <div>
