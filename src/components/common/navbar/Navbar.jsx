@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { axiosJWTVerify } from "../../../redux/index";
-import "./style_navbar.module.css";
+import style from "./style_navbar.module.css";
 
 export function Navbar() {
   const dispatch = useDispatch();
@@ -33,19 +33,30 @@ export function Navbar() {
   }, [infoJWTVerify.status]);
 
   return (
-    <nav>
-      <NavLink to={"/home"}> Inicio </NavLink>
-      <NavLink to={"/services"}> Servicios </NavLink>
-      <NavLink to={"/about"}> Sobre nosotros </NavLink>
-      <NavLink to={"/contact"}> Contactos </NavLink>
-      <NavLink to={"/blogs"}> Blog </NavLink>
-      {appearance === true ? (
-        <NavLink to={"/dashboard"}> Dashboard </NavLink>
-      ) : appearance === false ? (
-        <NavLink to={"/access"}> Unete </NavLink>
-      ) : (
-        false
-      )}
-    </nav>
+    <main>
+      <section>
+        <div>
+          <h1> IMPACT X </h1>
+        </div>
+        <nav>
+          <NavLink className={style.navbarLink} to={"/home"}>
+            Inicio
+          </NavLink>
+          <NavLink className={style.navbarLink} to={"/services"}> Servicios </NavLink>
+          <NavLink className={style.navbarLink} to={"/about"}> Sobre nosotros </NavLink>
+          <NavLink className={style.navbarLink} to={"/contact"}> Contactos </NavLink>
+          <NavLink className={style.navbarLink} to={"/blogs"}> Blog </NavLink>
+          {appearance === true ? (
+            <NavLink className={style.buttonDashboard} to={"/dashboard"}> Dashboard </NavLink>
+          ) : appearance === false ? (
+            <div>
+              <NavLink className={style.buttonLogin} to={"/access"}> Unete... </NavLink>
+            </div>
+          ) : (
+            false
+          )}
+        </nav>
+      </section>
+    </main>
   );
 }
