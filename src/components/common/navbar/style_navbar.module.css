@@ -1,0 +1,61 @@
+section {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 5%;
+}
+
+section h1 {
+    margin: 0px;
+}
+
+section nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbarLink {
+    color: black;
+    font-size: 18px;
+    font-weight:500;
+    text-decoration: none;
+    padding: 0px 23px;
+}
+
+.navbarLink:hover {
+    color: green;
+}
+
+.buttonLogin {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight:300;
+    background: green;
+    margin-left: 2%;
+    padding: 5px 24px;
+    border-radius: 18px;
+    text-decoration: none;
+}
+
+.buttonLogin:hover {
+    background-color: rgb(5, 89, 5);
+    font-weight:500;
+}
+
+.buttonDashboard {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight:300;
+    background: rgb(177, 50, 50);
+    margin-left: 2%;
+    padding: 0px 24px;
+    border-radius: 18px;
+    text-decoration: none;
+}
+
+.buttonDashboard:hover {
+    background-color: rgb(142, 27, 27);
+    font-weight: 500;
+}
