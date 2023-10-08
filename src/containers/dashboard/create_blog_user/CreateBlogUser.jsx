@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { axiosCreateBlogUser, axiosCategorys } from "../../../redux/index";
-import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
+
 import style from "./style_create_blog_user.module.css";
 
 export function CreateBlogUser() {
@@ -100,7 +100,7 @@ export function CreateBlogUser() {
         <title> Crear blog </title>
       </Helmet>
 
-      <LayoutDashboard>
+     
         <section>
           <h1> Crea tu blog </h1>
 
@@ -163,7 +163,7 @@ export function CreateBlogUser() {
             <h1> Cargando... </h1>
           )}
         </section>
-      </LayoutDashboard>
+      
     </main>
   );
 }

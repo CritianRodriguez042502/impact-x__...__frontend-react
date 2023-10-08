@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { axiosBlogsByUser, axiosDeleteBlogUser } from "../../../redux/index";
-import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
+import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
 import style from "./style_blogs_user.module.css";
 
 export function BlogsUser() {
@@ -23,6 +23,11 @@ export function BlogsUser() {
   const [nextBlogPages, setNextBlogPages] = useState({});
 
   const page = new URLSearchParams(location.search).get("page");
+
+  // dom with css
+  const [navegationScrollAppearance, setNavegationScrollAppearance] =
+    useState(false);
+  const [valueScrollApearence, setValueScrollApearence] = useState("///");
 
   // States of create, update and delete blog
   useEffect(() => {
@@ -144,92 +149,105 @@ export function BlogsUser() {
         <title> Dashboard </title>
       </Helmet>
 
-      <LayoutDashboard>
-        <section className={style.screenSetting}>
-          <h1> Blogs del usuario registrado </h1>
-          <Link to={"/dashboard"}> Initial </Link>
-          <Link to={"/dashboard/create_blog"}> Crear </Link>
+      <SidebarDashboard appearance={navegationScrollAppearance}/>
 
-          <div style={{ opacity: allVisibility }}>
-            <div>
-              {infoBlogsByUser.status === "pending" ? (
-                <h1> Cargando... </h1>
-              ) : infoBlogsByUser.status === "fulfilled" && !location.search ? (
+      <section className={style.containerBlogsUser}>
+        <h1> Blogs del usuario registrado </h1>
+        <div className={style.bottomNavegationScrollAppearance}>
+          <h1
+            onClick={(e) => {
+              if (valueScrollApearence === "///") {
+                setNavegationScrollAppearance(true);
+                setValueScrollApearence("XXX");
+              } else {
+                setNavegationScrollAppearance(false);
+                setValueScrollApearence("///");
+              }
+            }}
+          >
+            {valueScrollApearence}
+          </h1>
+        </div>
+
+        <div style={{ opacity: allVisibility }}>
+          <div>
+            {infoBlogsByUser.status === "pending" ? (
+              <h1> Cargando... </h1>
+            ) : infoBlogsByUser.status === "fulfilled" && !location.search ? (
+              <div>
+                {infoBlogsByUser.info.results?.map((data) => {
+                  return (
+                    <div key={data.id}>
+                      <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
+                        <h1> {data.title} </h1>
+                        <p> {data.description} </p>
+                        <hr />
+                        <p> {data.creation} </p>
+                      </Link>
+
+                      <button
+                        onClick={() => {
+                          const info = {
+                            jwt: access,
+                            slug: `${data.slug}`,
+                          };
+                          dispatch(axiosDeleteBlogUser(info));
+                          setAllVisibility("0");
+                        }}
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  );
+                })}
                 <div>
-                  {infoBlogsByUser.info.results?.map((data) => {
-                    return (
-                      <div key={data.id}>
-                        <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
-                          <h1> {data.title} </h1>
-                          <p> {data.description} </p>
-                          <hr />
-                          <p> {data.creation} </p>
-                        </Link>
-
-                        <button
-                          onClick={() => {
-                            const info = {
-                              jwt: access,
-                              slug: `${data.slug}`,
-                            };
-                            dispatch(axiosDeleteBlogUser(info));
-                            setAllVisibility("0");
-                          }}
-                        >
-                          Eliminar
-                        </button>
-                      </div>
-                    );
-                  })}
-                  <div>
-                    {infoBlogsByUser.status === "fulfilled"
-                      ? buttonsPagination()
-                      : false}
-                  </div>
+                  {infoBlogsByUser.status === "fulfilled"
+                    ? buttonsPagination()
+                    : false}
                 </div>
-              ) : Object.keys(nextBlogPages).length !== 0 ? (
-                <div style={{ opacity: allVisibilityPage }}>
-                  {nextBlogPages.results?.map((data) => {
-                    return (
-                      <div key={data.id}>
-                        <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
-                          <h1> {data.title} </h1>
-                          <p> {data.description} </p>
-                          <hr />
-                          <p> {data.creation} </p>
-                        </Link>
+              </div>
+            ) : Object.keys(nextBlogPages).length !== 0 ? (
+              <div style={{ opacity: allVisibilityPage }}>
+                {nextBlogPages.results?.map((data) => {
+                  return (
+                    <div key={data.id}>
+                      <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
+                        <h1> {data.title} </h1>
+                        <p> {data.description} </p>
+                        <hr />
+                        <p> {data.creation} </p>
+                      </Link>
 
-                        <button
-                          onClick={() => {
-                            const info = {
-                              jwt: access,
-                              slug: `${data.slug}`,
-                            };
-                            dispatch(axiosDeleteBlogUser(info));
-                            setAllVisibility("0");
-                            refreshBloByUserPagination();
-                          }}
-                        >
-                          Eliminar
-                        </button>
-                      </div>
-                    );
-                  })}
-                  <div>
-                    {infoBlogsByUser.status === "fulfilled"
-                      ? buttonsPagination()
-                      : false}
-                  </div>
+                      <button
+                        onClick={() => {
+                          const info = {
+                            jwt: access,
+                            slug: `${data.slug}`,
+                          };
+                          dispatch(axiosDeleteBlogUser(info));
+                          setAllVisibility("0");
+                          refreshBloByUserPagination();
+                        }}
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  );
+                })}
+                <div>
+                  {infoBlogsByUser.status === "fulfilled"
+                    ? buttonsPagination()
+                    : false}
                 </div>
-              ) : infoBlogsByUser.status === "rejected" ? (
-                <p> No hay blogs</p>
-              ) : (
-                false
-              )}
-            </div>
+              </div>
+            ) : infoBlogsByUser.status === "rejected" ? (
+              <p> No hay blogs</p>
+            ) : (
+              false
+            )}
           </div>
-        </section>
-      </LayoutDashboard>
+        </div>
+      </section>
     </main>
   );
 }

@@ -38,7 +38,7 @@ export function Navbar() {
 
   return (
     <main>
-      <section>
+      <section className={style.parentContainer}>
         <div>
           <h1> IMPACT X </h1>
         </div>

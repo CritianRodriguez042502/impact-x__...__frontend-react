@@ -1,3 +1,28 @@
-.screenSetting {
-    padding-left: 150px;
+.bottomNavegationScrollAppearance {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.bottomNavegationScrollAppearance h1 {
+    cursor: pointer;
+    padding: 20px;
+    margin: 0px;
+}
+
+.containerBlogsUser {
+    padding: 0px 10px;
+    margin-top: 50px;
+}
+
+
+@media screen and (min-width: 750px) {
+    .bottomNavegationScrollAppearance {
+        display: none;
+    }
+
+    .containerBlogsUser {
+        margin-top: 20px;
+        padding-left: 250px;
+    }
 }

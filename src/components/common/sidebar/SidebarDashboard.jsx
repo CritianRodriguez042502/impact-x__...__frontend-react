@@ -10,7 +10,7 @@ import {
   axiosBlogsByUser,
 } from "../../../redux/index";
 
-export function SidebarDashboard() {
+export function SidebarDashboard({appearance}) {
   const dispatch = useDispatch();
 
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);
@@ -24,6 +24,9 @@ export function SidebarDashboard() {
   const [allUsernames, setAllUsernames] = useState([]);
   const [visibility, setVisibility] = useState("none");
 
+  // dom with css
+  
+  
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
 
@@ -189,26 +192,56 @@ export function SidebarDashboard() {
     setVisibility("none");
   }
 
-  return (
-    <main className={style.containerLayout}>
-      <nav className={style.containerLiks}>
-        <Link to={"/home"}> Impact x </Link>
-        <Link to={"/dashboard"}> Inicio </Link>
-        <Link to={"/dashboard/blogs_user"}> Blogs </Link>
-        <p onClick={visibilityOptions}> Ajustes </p>
-        <p onClick={onClickLogout}> Logout </p>
-        {containerImg === undefined || containerImg === null ? (
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
-            alt="img"
-            width={60}
-          />
-        ) : (
-          <img src={containerImg} alt="img" width={60} />
-        )}
-      </nav>
+  console.log()
 
-      <div className={style.containerFixed} style={{ display: visibility }}>
+  return (
+    <main
+    style={ window.innerWidth < 950 ? { left: appearance ? 0 : -300} : {left : 0}}
+      className={style.parentContainer}
+    >
+      <div>
+        
+      </div>
+      <section className={style.sidebarNavegation}>
+        <nav className={style.containerLiks}>
+          <Link className={style.navbarLink} to={"/home"}>
+            IMPACT X
+          </Link>
+          <Link className={style.navbarLink} to={"/dashboard"}>
+            INICIO
+          </Link>
+          <Link className={style.navbarLink} to={"/dashboard/blogs_user"}>
+            BLOGS
+          </Link>
+          <p className={style.navbarLink} onClick={visibilityOptions}>
+            AJUSTES
+          </p>
+          <p className={style.navbarLink} onClick={onClickLogout}>
+            CERRAR SESION
+          </p>
+        </nav>
+
+        <article>
+          {containerImg === undefined || containerImg === null ? (
+            <div>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                alt="img"
+                width={60}
+              />
+            </div>
+          ) : (
+            <div>
+              <img src={containerImg} alt="img" width={60} />
+            </div>
+          )}
+        </article>
+      </section>
+
+      <div
+        className={style.fixedSettingsContainer}
+        style={{ display: visibility }}
+      >
         <p onClick={withoutVisibilityOptions}> Xd </p>
         {containerImg === undefined || containerImg === null ? (
           <p> Modificar datos y agregar imagen de perfil </p>
