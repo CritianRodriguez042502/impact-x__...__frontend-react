@@ -1,61 +1,164 @@
+/*   Media screen movile   */
+
 section {
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-    justify-content: space-between;
-    align-items: center;
-    padding: 22px 5%;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 6%;
 }
 
 section h1 {
-    margin: 0px;
+  margin: 0px;
+  white-space: nowrap;
 }
 
-section nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.navegation {
+  position: fixed;
+  top: 0px;
+  background: rgb(210, 205, 205);
+  transition: all 0.7s;
+  -webkit-transition: all 0.7s;
+  -moz-transition: all 0.7s;
+  -ms-transition: all 0.7s;
+  -o-transition: all 0.7s;
+}
+
+/* spawn icnon */
+.navegationApparButton {
+  font-size: 40px;
+}
+
+/* disappearance icon */
+.navegation p {
+  margin: 0px;
+  font-size: 30px;
+  padding-top: 25px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  text-align: start;
+}
+
+.navegation nav {
+  padding: 0px 10px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .navbarLink {
-    color: black;
-    font-size: 18px;
-    font-weight:500;
-    text-decoration: none;
-    padding: 0px 23px;
+  color: black;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 15px 5px;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
+  -webkit-transition: border-bottom 0.3s ease;
+  -moz-transition: border-bottom 0.3s ease;
+  -ms-transition: border-bottom 0.3s ease;
+  -o-transition: border-bottom 0.3s ease;
 }
 
 .navbarLink:hover {
-    color: green;
+  color: green;
 }
 
 .buttonLogin {
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    font-weight:300;
-    background: green;
-    margin-left: 2%;
-    padding: 5px 24px;
-    border-radius: 18px;
-    text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 550;
+  background: rgb(60, 164, 115);
+  margin-left: 2%;
+  padding: 6px 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
 }
 
 .buttonLogin:hover {
-    background-color: rgb(5, 89, 5);
-    font-weight:500;
+  background-color: rgb(47, 124, 47);
 }
 
 .buttonDashboard {
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    font-weight:300;
-    background: rgb(177, 50, 50);
-    margin-left: 2%;
-    padding: 0px 24px;
-    border-radius: 18px;
-    text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 550;
+  background: rgb(177, 50, 50);
+  margin-left: 2%;
+  padding: 6px 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
 }
 
 .buttonDashboard:hover {
-    background-color: rgb(142, 27, 27);
-    font-weight: 500;
+  background-color: rgb(142, 27, 27);
+  font-weight: 550;
+}
+
+
+/*   Media screen movile   */
+@media screen and (min-width: 550px) and (max-width: 950px) {
+  .navbarLink {
+    font-size: 18px;
+    padding: 15px 25px;
+  }
+}
+
+
+/* media screen desktop */
+@media screen and (min-width: 950px) {
+  section {
+    padding: 30px 4%;
+  }
+
+  .navegation {
+    position: initial;
+  }
+
+  .navegation nav {
+    flex-direction: row;
+    height: 0px;
+  }
+
+  /* spawn icnon */
+  .navegationApparButton {
+    display: none;
+  }
+
+  /* disappearance icon */
+  .navegation p {
+    display: none;
+  }
+
+  .navbarLink {
+    font-size: 15px;
+    padding: 0px;
+    margin: 0px 9px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
+  }
+
+  .navbarLink:hover {
+    border-bottom: 2px solid rgb(47, 156, 47);
+  }
+
+  .buttonLogin {
+    font-size: 16px;
+    font-weight: 550;
+  }
+
+  .buttonDashboard {
+    font-size: 16px;
+    font-weight: 550;
+  }
 }

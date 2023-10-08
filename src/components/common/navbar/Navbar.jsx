@@ -13,6 +13,10 @@ export function Navbar() {
 
   const [appearance, setAppearance] = useState(false);
 
+  // dom with css
+  const [navegationScrollAppearance, setNavegationScrollAppearance] =
+    useState(false);
+
   useEffect(() => {
     if (!access) {
       setAppearance(false);
@@ -38,24 +42,54 @@ export function Navbar() {
         <div>
           <h1> IMPACT X </h1>
         </div>
-        <nav>
-          <NavLink className={style.navbarLink} to={"/home"}>
-            Inicio
-          </NavLink>
-          <NavLink className={style.navbarLink} to={"/services"}> Servicios </NavLink>
-          <NavLink className={style.navbarLink} to={"/about"}> Sobre nosotros </NavLink>
-          <NavLink className={style.navbarLink} to={"/contact"}> Contactos </NavLink>
-          <NavLink className={style.navbarLink} to={"/blogs"}> Blog </NavLink>
-          {appearance === true ? (
-            <NavLink className={style.buttonDashboard} to={"/dashboard"}> Dashboard </NavLink>
-          ) : appearance === false ? (
-            <div>
-              <NavLink className={style.buttonLogin} to={"/access"}> Unete... </NavLink>
-            </div>
-          ) : (
-            false
-          )}
-        </nav>
+
+        <div>
+          <h1
+            onClick={(e) => {setNavegationScrollAppearance(true);}}
+            className={style.navegationApparButton}
+          >
+            ///
+          </h1>
+        </div>
+
+        <div
+          style={{ right: navegationScrollAppearance ? 0 : -300 }}
+          className={style.navegation}
+        >
+          <div>
+            <p onClick={(e) => {setNavegationScrollAppearance(false);}}> /// </p>
+          </div>
+          <nav>
+            <NavLink className={style.navbarLink} to={"/home"}>
+              INICIO
+            </NavLink>
+            <NavLink className={style.navbarLink} to={"/services"}>
+              SERVICIOS
+            </NavLink>
+            <NavLink className={style.navbarLink} to={"/about"}>
+              SOBRE NOSOTROS
+            </NavLink>
+            <NavLink className={style.navbarLink} to={"/contact"}>
+              CONTACTOS
+            </NavLink>
+            <NavLink className={style.navbarLink} to={"/blogs"}>
+              BLOG
+            </NavLink>
+            {appearance === true ? (
+              <NavLink className={style.buttonDashboard} to={"/dashboard"}>
+                DASHBOARD
+              </NavLink>
+            ) : appearance === false ? (
+              <div>
+                <NavLink className={style.buttonLogin} to={"/access"}>
+                  UNETE...
+                </NavLink>
+              </div>
+            ) : (
+              false
+            )}
+          </nav>
+        </div>
       </section>
     </main>
   );
