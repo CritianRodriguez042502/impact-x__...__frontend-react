@@ -83,7 +83,10 @@ export function GetReactionDashboard({ params }) {
 
   return (
     <main>
-      <b onClick={visibilityReactionsComments}> Reacciones </b>
+
+      <div className={style.containerButtonReactions}>
+        <p className={style.buttonReactions} onClick={visibilityReactionsComments}> Likes y comentarios </p>
+      </div>
 
       <div
         className={style.containerFixed}

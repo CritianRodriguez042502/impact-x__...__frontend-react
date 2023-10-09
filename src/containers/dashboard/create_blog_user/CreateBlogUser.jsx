@@ -7,7 +7,6 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { axiosCreateBlogUser, axiosCategorys } from "../../../redux/index";
 import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
-
 import style from "./style_create_blog_user.module.css";
 
 export function CreateBlogUser() {
@@ -34,9 +33,9 @@ export function CreateBlogUser() {
 
   function onChangeCreateBlog(e) {
     if (e.target.checked === true) {
-      setPublicSelect("PUBLICO")
+      setPublicSelect("PUBLICO");
     } else {
-      setPublicSelect("PRIVADO")
+      setPublicSelect("PRIVADO");
     }
     if (e.target.type === "checkbox") {
       setDataCreate({
@@ -109,19 +108,23 @@ export function CreateBlogUser() {
 
       <SidebarDashboard />
       <section className={style.containerCreateBlog}>
-        <h1> CREAR UN BLOG </h1>
-        <Link to={"/dashboard"}> Volver </Link>
+        <h1 className={style.titleCreateBlog}> CREAR UN BLOG </h1>
+
+        <div className={style.containerLinkAtras}>
+          <Link className={style.linkAtras} to={"/dashboard/blogs_user"}>
+            Volver atras
+          </Link>
+        </div>
 
         <article>
           {infoJWTVerifi.status === "fulfilled" && access ? (
             <form
               className={style.inputsInCreatingBlog}
               encType="multipart/form-data"
-              style={{ display: "flex", flexDirection: "column" }}
               onSubmit={onSubmitCreateBlog}
             >
               <div className={style.title}>
-                <label htmlFor="title"> Titulo </label>
+                <label htmlFor="title">Titulo</label>
                 <input
                   type="text"
                   name="title"
@@ -143,7 +146,12 @@ export function CreateBlogUser() {
               </div>
 
               <div className={style.description}>
-                <label htmlFor="description"> Descripcion </label>
+                <label
+                  className={style.labelDescriptionPersonalize}
+                  htmlFor="description"
+                >
+                  Descripcion
+                </label>
                 <textarea
                   name="description"
                   id="description"
@@ -194,7 +202,9 @@ export function CreateBlogUser() {
                 />
               </div>
               <div className={style.containerButtom}>
-                <button className={style.button} type="submit"> Crear blog </button>
+                <button className={style.button} type="submit">
+                  Crear blog
+                </button>
               </div>
             </form>
           ) : (

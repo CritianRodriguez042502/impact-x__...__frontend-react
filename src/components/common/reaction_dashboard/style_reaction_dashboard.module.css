@@ -14,3 +14,31 @@
   -o-transform: translate(-50%, -50%);
   z-index: 10;
 }
+
+.containerButtonReactions {
+  flex-direction: column;
+  text-align: center;
+  display: flex;
+  margin-bottom: 14px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.containerButtonReactions p {
+  margin: 0px;
+}
+
+.buttonReactions {
+  padding: 7px 0px;
+  background-color: rgb(77, 197, 81);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.buttonReactions:hover {
+  background-color: green;
+}

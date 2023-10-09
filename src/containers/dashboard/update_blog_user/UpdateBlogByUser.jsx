@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -11,7 +11,7 @@ import {
   axiosUpdateBlogUser,
 } from "../../../redux/index";
 import { GetReactionDashboard } from "../../../components/index";
-import { LayoutDashboard } from "../../../components/layout_dashboard/LayoutDashboard";
+import {SidebarDashboard} from "../../../components/common/sidebar/SidebarDashboard"
 import style from "./style_update_blog_by_user.module.css";
 
 export function UpdateBlogByUser() {
@@ -33,6 +33,9 @@ export function UpdateBlogByUser() {
     dataUpdateBlog.content
   );
   const [selectCategory, setSelectCategory] = useState("");
+
+  // dom with css
+  const [publicSelect, setPublicSelect] = useState("PRIVADO");
 
   useEffect(() => {
     if (infoJWTVerifi.status === "fulfilled") {
@@ -64,6 +67,16 @@ export function UpdateBlogByUser() {
     }
   }, [infoJWTVerifi.status, infoCategory.info]);
 
+  useEffect(() => {
+    if (Object.keys(dataUpdateBlog).length !== 0) {
+      if (dataUpdateBlog.public === true) {
+        setPublicSelect("PUBLICO");
+      } else {
+        setPublicSelect("PRIVADO");
+      }
+    }
+  }, [dataUpdateBlog]);
+
   // ========================================
 
   setTimeout(function () {
@@ -71,6 +84,12 @@ export function UpdateBlogByUser() {
   }, 350);
 
   function onchangeData(e) {
+    if (e.target.checked === true) {
+      setPublicSelect("PUBLICO");
+    } else {
+      setPublicSelect("PRIVADO");
+    }
+
     if (e.target.type === "checkbox") {
       setDataUpdateBlog({
         ...dataUpdateBlog,
@@ -126,6 +145,8 @@ export function UpdateBlogByUser() {
     }
   }
 
+  // ___________________________________
+
   return (
     <main className={style.screenSetting}>
       <Helmet>
@@ -135,55 +156,98 @@ export function UpdateBlogByUser() {
         <title> Dashboard </title>
       </Helmet>
 
-      <LayoutDashboard>
-        <section>
-          <h1> ACTUALIZA EL BLOG </h1>
-          {infoJWTVerifi.status === "fulfilled" && access ? (
-            <div style={{ opacity: allVisibility }}>
-              <GetReactionDashboard params={slug} />
-              <form onSubmit={onSubmitUpdateBlog}>
+      <SidebarDashboard/>
+      <section style={{ opacity: allVisibility }} className={style.containerCreateBlog}>
+        <h1 className={style.titleCreateBlog}> ACTUALIZAR BLOG </h1>
+
+        <div className={style.containerLinkAtras}>
+          <Link className={style.linkAtras} to={"/dashboard/blogs_user"}>
+            Volver atras
+          </Link>
+        </div>
+
+        <GetReactionDashboard params={slug} />
+
+        {infoJWTVerifi.status === "fulfilled" && access ? (
+          <div>
+            <article>
+              <form
+                className={style.inputsInCreatingBlog}
+                encType="multipart/form-data"
+                onSubmit={onSubmitUpdateBlog}
+              >
                 {Object.keys(dataUpdateBlog).length !== 0 ? (
                   <div>
-                    <input
-                      type="text"
-                      name="title"
-                      value={dataUpdateBlog.title}
-                      onChange={onchangeData}
-                      required
-                    />
-                    <textarea
-                      name="description"
-                      cols="30"
-                      rows="10"
-                      value={dataUpdateBlog.description}
-                      onChange={onchangeData}
-                      required
-                    ></textarea>
-                    <input
-                      type="checkbox"
-                      name="public"
-                      checked={dataUpdateBlog.public}
-                      onChange={onchangeData}
-                    />
+                    <div className={style.title}>
+                      <label htmlFor="title"> Titulo </label>
+                      <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        value={dataUpdateBlog.title}
+                        onChange={onchangeData}
+                        required
+                      />
+                    </div>
 
-                    <select
-                      onClick={(e) => {
-                        setSelectCategory(e.target.value);
-                      }}
-                    >
-                      <option> {selectCategory} </option>
-                      {infoCategory.info ? leftoverCategoriesToSelect() : true}
-                    </select>
+                    <div className={style.file}>
+                      <label htmlFor="file"> Cambiar imagen </label>
+                      <input
+                        type="file"
+                        name="img"
+                        id="file"
+                        accept="image/*"
+                        onChange={onChangeUploadImg}
+                      />
+                    </div>
 
-                    <input
-                      type="file"
-                      name="img"
-                      id="img"
-                      accept="image/*"
-                      onChange={onChangeUploadImg}
-                    />
+                    <div className={style.description}>
+                      <label htmlFor="description"> Descripcion </label>
+                      <textarea
+                        name="description"
+                        id="description"
+                        cols="30"
+                        rows="10"
+                        value={dataUpdateBlog.description}
+                        onChange={onchangeData}
+                        required
+                      ></textarea>
+                    </div>
 
-                    <div>
+                    <div className={style.public}>
+                      <label
+                        style={
+                          publicSelect === "PRIVADO"
+                            ? { color: "rgb(187, 69, 69)" }
+                            : { color: "rgb(69, 142, 69)" }
+                        }
+                        htmlFor="public"
+                      >
+                        {publicSelect}
+                      </label>
+                      <input
+                        type="checkbox"
+                        name="public"
+                        id="public"
+                        checked={dataUpdateBlog.public}
+                        onChange={onchangeData}
+                      />
+                    </div>
+
+                    <div className={style.category}>
+                      <select
+                        onClick={(e) => {
+                          setSelectCategory(e.target.value);
+                        }}
+                      >
+                        <option> {selectCategory} </option>
+                        {infoCategory.info
+                          ? leftoverCategoriesToSelect()
+                          : true}
+                      </select>
+                    </div>
+
+                    <div className={style.content}>
                       <CKEditor
                         editor={ClassicEditor}
                         data={contentCkeditor}
@@ -194,29 +258,34 @@ export function UpdateBlogByUser() {
                       />
                     </div>
 
-                    <button type="submit"> enviar </button>
+                    <div className={style.containerButtom}>
+                      <button className={style.button} type="submit">
+                        Actualizar blog
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <h1> cargando... </h1>
                 )}
               </form>
-              <div>
-                {Object.keys(dataUpdateBlog).length !== 0 ? (
-                  <img
-                    src={`http://localhost:8000${dataUpdateBlog.img}`}
-                    alt="img"
-                    width={140}
-                  />
-                ) : (
-                  false
-                )}
-              </div>
+            </article>
+            <div>
+              {Object.keys(dataUpdateBlog).length !== 0 ? (
+                <img
+                  style={{ display: "none" }}
+                  src={`http://localhost:8000${dataUpdateBlog.img}`}
+                  alt="img"
+                  width={140}
+                />
+              ) : (
+                false
+              )}
             </div>
-          ) : (
-            <h1> cargando... </h1>
-          )}
-        </section>
-      </LayoutDashboard>
+          </div>
+        ) : (
+          <h1> cargando... </h1>
+        )}
+      </section>
     </main>
   );
 }
