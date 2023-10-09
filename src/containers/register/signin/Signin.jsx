@@ -127,6 +127,7 @@ export function Signin() {
             type="password"
             id="password"
             name="password"
+            autoComplete="current-password"
             placeholder="Contraseña"
             onChange={onChangeData}
             required

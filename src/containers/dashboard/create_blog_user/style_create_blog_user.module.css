@@ -1,0 +1,86 @@
+.inputsInCreatingBlog {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin: 0px 7px;
+  }
+  
+  /* styles to inputs and textarea */
+  .title input[type="text"],
+  .file input[type="file"],
+  .description textarea,
+  .category select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    margin: 0px 5px;
+  }
+  
+  /* style button */
+  .containerButtom {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    background-color: rgb(77, 197, 81);
+    font-weight: bold;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: green;
+  }
+  
+  /* style public */
+  .public {
+    margin: 0px 7px;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  /* style title */
+  .title {
+    margin-bottom: 10px;
+    margin-right: 20px;
+  }
+  
+  /* style file */
+  .file {
+    margin-right: 20px;
+  }
+  
+  /* style description */
+  .description {
+    margin-bottom: 10px;
+    margin-right: 20px;
+  }
+  
+  /* styles category */
+  .category {
+    margin-bottom: 10px;
+    margin: 0px 7px;
+  }
+  
+  /* styles content */
+  .content {
+    margin-bottom: 10px;
+    margin: 0px 7px;
+  }
+
+@media screen and (min-width: 750px) {
+  .containerCreateBlog {
+    padding-left: 250px;
+  }
+}

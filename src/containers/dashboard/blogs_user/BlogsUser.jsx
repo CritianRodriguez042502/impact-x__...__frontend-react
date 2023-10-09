@@ -151,6 +151,7 @@ export function BlogsUser() {
 
       <SidebarDashboard appearance={navegationScrollAppearance}/>
 
+      
       <section className={style.containerBlogsUser}>
         <h1> Blogs del usuario registrado </h1>
         <div className={style.bottomNavegationScrollAppearance}>
@@ -175,6 +176,7 @@ export function BlogsUser() {
               <h1> Cargando... </h1>
             ) : infoBlogsByUser.status === "fulfilled" && !location.search ? (
               <div>
+                <Link to={"/dashboard/create_blog"}> crear </Link>
                 {infoBlogsByUser.info.results?.map((data) => {
                   return (
                     <div key={data.id}>
