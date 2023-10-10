@@ -100,12 +100,21 @@ export function GetReactionDashboard({ params }) {
             infoGetUserBlogReactions.info.comments?.map((data) => {
               return (
                 <div className={style.containerComment} key={data.id}>
+                  
                   <div className={style.userImage}>
-                    <img
-                      src={`http://localhost:8000${data.user.img}`}
-                      alt="img"
-                      width={70}
-                    />
+                    {data.user.img === null ? (
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                        alt="img"
+                        width={70}
+                      />
+                    ) : (
+                      <img
+                        src={`http://localhost:8000${data.user.img}`}
+                        alt="img"
+                        width={70}
+                      />
+                    )}
                   </div>
 
                   <div className={style.commentContent}>

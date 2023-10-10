@@ -18,35 +18,180 @@
 }
 
 .topSection {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.createComment {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
+.topSection p {
+  font-size: 17px;
+  font-weight: bold;
 }
 
+.topSection h1 {
+  margin: 0px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Style input of create comment */
+.containerInputCreateComment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.containerInputCreateComment input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.buttonCreateNewComment {
+  background-color: #4ab02b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.buttonCreateNewComment:hover {
+  background-color: #2b7813;
+}
+
+/* Styles of Comments */
+.containerComment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #eeebeb;
+  border-radius: 10px;
+}
+
+.userImage {
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.userImage img {
+  flex: 0 0 100px;
+  border-radius: 50%;
+}
+
+.commentContent {
+  width: 100%;
+}
+
+.commentUsername {
+  white-space: nowrap;
+  text-decoration: underline;
+  margin: 0px;
+  font-size: 18px;
+}
+
+.commentText {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 5px;
+  word-break: break-word;
+}
+
+.commentDate {
+  display: block;
+  white-space: nowrap;
+  text-align: end;
+  margin: 0px 10px;
+}
+
+/* for user-owned blogs */
+.updateAndDeleteButtonContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.updateAndDeleteButtonContainer b {
+  margin-bottom: 10px;
+}
+
+.updateAndDeleteButtonContainer .buttonUpdate {
+  margin: 5px;
+  background-color: #3a5acb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.updateAndDeleteButtonContainer .buttonUpdate:hover {
+  background: rgb(28, 28, 223);
+}
+
+.updateAndDeleteButtonContainer .buttonDelete {
+  background-color: #d02a0d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.updateAndDeleteButtonContainer .buttonDelete:hover {
+  background-color: #a21e12;
+}
+
+/* ------------------------------  */
+/* View of update comment to user */
 .commentsUpdateVisibility {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 75%;
-  height: 40vh;
+  width: 85%;
+  height: 87vh;
+  padding: 100px;
   transform: translate(-50%, -50%);
   background: white;
   box-shadow: 2px 3px 10px black;
+  z-index: 10;
+  overflow-y: auto;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
 }
 
+/*   Media screen tablet and Desktop   */
+@media screen and (min-width: 550px) {
+  .containerComment {
+    flex-direction: initial;
+  }
 
-.textTarea {
-  width: 99%;
-  border: none;
+  .userImage {
+    display: initial;
+    justify-content: initial;
+  }
+
+  .updateAndDeleteButtonContainer {
+    flex-direction: initial;
+    justify-content: space-between;
+  }
+
+  .updateAndDeleteButtonContainer b {
+    margin: 0px;
+    margin-right: 10px;
+  }
 }

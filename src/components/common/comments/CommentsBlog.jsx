@@ -7,6 +7,7 @@ import {
   axiosCommentsBlog,
   axiosDetailedCommentsBlog,
 } from "../../../redux/index";
+import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_comments.module.css";
 
 export function CommentsBlog({ params }) {
@@ -25,14 +26,15 @@ export function CommentsBlog({ params }) {
   const [visibility, setVisibility] = useState("none");
   const [commentUpdateVisibility, setCommentUpdateVisibility] =
     useState("none");
-  const [blogModificationVisibility, setBlogModificationVisibility] = useState("1")
+  const [blogModificationVisibility, setBlogModificationVisibility] =
+    useState("1");
 
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
 
   const unique_brand = new URLSearchParams(location.search).get("unique_brand");
 
-  const [comentUpdateOpacity, setCommentUpdateOpacity] = useState("0")
+  const [comentUpdateOpacity, setCommentUpdateOpacity] = useState("0");
 
   // useEffect get all comments
   useEffect(() => {
@@ -69,7 +71,7 @@ export function CommentsBlog({ params }) {
 
     if (newComment) {
       if (infoJWTVerify.status === "fulfilled" && access && username) {
-        setBlogModificationVisibility("0")
+        setBlogModificationVisibility("0");
         dispatch(
           axiosCommentsBlog({
             method: "post",
@@ -87,16 +89,16 @@ export function CommentsBlog({ params }) {
     }
   }
 
-  function blogAppearanceAfterChange () {
+  function blogAppearanceAfterChange() {
     setTimeout(() => {
-      setBlogModificationVisibility("1")
-    }, 350)
+      setBlogModificationVisibility("1");
+    }, 350);
   }
 
   // functions of update comment
   setTimeout(() => {
-    setCommentUpdateOpacity("1")
-  },350)
+    setCommentUpdateOpacity("1");
+  }, 350);
 
   function onChangeUpdateComment(e) {
     setCommentDetail(e.target.value);
@@ -106,7 +108,7 @@ export function CommentsBlog({ params }) {
     e.preventDefault();
 
     if (commentDetail) {
-      setBlogModificationVisibility("0")
+      setBlogModificationVisibility("0");
       dispatch(
         axiosCommentsBlog({
           method: "patch",
@@ -137,88 +139,143 @@ export function CommentsBlog({ params }) {
 
   // Filter comments blogs by user
   function filterComments() {
-    blogAppearanceAfterChange()
+    blogAppearanceAfterChange();
     const userComments = infoGetComments.info.results.data?.filter((index) => {
       return index.user.username === username;
     });
     const otherComments = infoGetComments.info.results.data?.filter((index) => {
-      console.log(userComments)
       return index.user.username !== username;
     });
     return (
       <div>
         {userComments?.map(function (data) {
           return (
-            <div key={data.id}>
-              <li> {data.comments} </li>
-              <button
-                onClick={(e) => {
-                  setBlogModificationVisibility("0")
-                  dispatch(
-                    axiosCommentsBlog({
-                      method: "delete",
-                      jwt: access,
-                      unique_key: data.unique_brand,
-                    })
-                  );
-                }}
-              >
-                Eliminar
-              </button>
+            <div className={style.containerComment} key={data.id}>
+              <div className={style.userImage}>
+                {data.user.img === null ? (
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                    alt="img"
+                    width={70}
+                  />
+                ) : (
+                  <img
+                    src={`http://localhost:8000${data.user.img}`}
+                    alt="img"
+                    width={70}
+                  />
+                )}
+              </div>
 
-              <button
-                onClick={(e) => {
-                  setCommentUpdateVisibility("initial");
-                  navigate(
-                    `/blogs/blog_detail/${paramsUrl.slug}?unique_brand=${data.unique_brand}`
-                  );
-                  setCommentUpdateOpacity("0")
-                }}
-              >
-                Modificar
-              </button>
+              <div className={style.commentContent}>
+                <h2 className={style.commentUsername}>{data.user.username}</h2>
+                <p className={style.commentText}> {data.comments} </p>
+                <hr style={{ border: "2px solid gray" }} />
+                <div className={style.updateAndDeleteButtonContainer}>
+                  <aside>
+                    <button
+                      className={style.buttonUpdate}
+                      onClick={(e) => {
+                        setCommentUpdateVisibility("initial");
+                        navigate(
+                          `/blogs/blog_detail/${paramsUrl.slug}?unique_brand=${data.unique_brand}`
+                        );
+                        setCommentUpdateOpacity("0");
+                      }}
+                    >
+                      Modificar
+                    </button>
+                    <button
+                      className={style.buttonDelete}
+                      onClick={(e) => {
+                        setBlogModificationVisibility("0");
+                        dispatch(
+                          axiosCommentsBlog({
+                            method: "delete",
+                            jwt: access,
+                            unique_key: data.unique_brand,
+                          })
+                        );
+                      }}
+                    >
+                      Eliminar
+                    </button>
+                  </aside>
+
+                  <aside>
+                    <b className={style.commentDate}> {data.creation} </b>
+                  </aside>
+                </div>
+              </div>
             </div>
           );
         })}
 
         {otherComments?.map(function (data) {
-          return <li key={data.id}> {data.comments} </li>;
+          return (
+            <div className={style.containerComment} key={data.id}>
+              <div className={style.userImage}>
+                {data.user.img === null ? (
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                    alt="img"
+                    width={70}
+                  />
+                ) : (
+                  <img
+                    src={`http://localhost:8000${data.user.img}`}
+                    alt="img"
+                    width={70}
+                  />
+                )}
+              </div>
+              <div className={style.commentContent}>
+                <h2 className={style.commentUsername}>{data.user.username}</h2>
+                <p className={style.commentText}> {data.comments} </p>
+                <hr style={{ border: "2px solid gray" }} />
+                <b className={style.commentDate}> {data.creation} </b>
+              </div>
+            </div>
+          );
         })}
       </div>
     );
   }
 
+  // ---------------------------------------------------
   return (
     <main>
       <div>
         <b onClick={onClickVisibility}> Comentarios </b>
       </div>
 
-      <article
-        style={{ display: visibility }}
-        className={style.containerFixed}
-      >
-        <section className={style.topSection}>
-          {infoGetComments.status === "fulfilled" ? (
-            <div>
-              {infoGetComments.info.results.all === 1 ? (
-                <p> 1 comentario </p>
-              ) : infoGetComments.info.results.all === 0 ? (
-                <p> No hay comentarios </p>
-              ) : (
-                <p> {infoGetComments.info.results.all} comentarios </p>
-              )}
-            </div>
-          ) : (
-            false
-          )}
-          <div>
-            <p onClick={onClickWithoutVisibility}> Xd </p>
+      <article style={{ display: visibility }} className={style.containerFixed}>
+        <section>
+          <div className={style.topSection}>
+            {infoGetComments.status === "fulfilled" ? (
+              <div>
+                {infoGetComments.info.results.all === 1 ? (
+                  <p> 1 comentario </p>
+                ) : infoGetComments.info.results.all === 0 ? (
+                  <p> No hay comentarios </p>
+                ) : (
+                  <p> {infoGetComments.info.results.all} comentarios </p>
+                )}
+              </div>
+            ) : (
+              false
+            )}
+            <h1 onClick={onClickWithoutVisibility}>
+              <AiOutlineClose />
+            </h1>
           </div>
         </section>
 
-        <section className={style.createComment}>
-          <form onSubmit={onSubmitNewComment}>
+        <section>
+          <form
+            className={style.containerInputCreateComment}
+            onSubmit={onSubmitNewComment}
+          >
             <input
               type="text"
               name="new_comment"
@@ -228,11 +285,14 @@ export function CommentsBlog({ params }) {
               placeholder="nuevo comentario"
               required
             />
-            <button type="sumbit"> Enviar </button>
+            <button className={style.buttonCreateNewComment} type="sumbit">
+              {" "}
+              Crear{" "}
+            </button>
           </form>
         </section>
 
-        <section style={{opacity : blogModificationVisibility}}>
+        <section style={{ opacity: blogModificationVisibility }}>
           {infoGetComments.status === "fulfilled" ? filterComments() : false}
         </section>
 
@@ -240,23 +300,31 @@ export function CommentsBlog({ params }) {
           style={{ display: commentUpdateVisibility }}
           className={style.commentsUpdateVisibility}
         >
-          <button onClick={onClickWithoutCommentUpdateVisibilit}>Cerrar</button>
-          <div style={{opacity : comentUpdateOpacity}} className={style.inputUpdateComment}>
-            <form onSubmit={onSubmitUpdateComment}>
-              <div>
-                <textarea
-                  onChange={onChangeUpdateComment}
-                  value={commentDetail}
-                  className={style.textTarea}
-                  name="updateComment"
-                  id="updateComment"
-                  cols="30"
-                  rows="10"
-                  required
-                ></textarea>
-                <button type="submit"> Actualizar </button>
-              </div>
-            </form>
+          <div
+            style={{ opacity: comentUpdateOpacity }}
+            className={style.inputUpdateComment}
+          >
+            <aside>
+              <h1 onClick={onClickWithoutCommentUpdateVisibilit}>
+                <AiOutlineClose />
+              </h1>
+
+              <form onSubmit={onSubmitUpdateComment}>
+                <div>
+                  <textarea
+                    onChange={onChangeUpdateComment}
+                    value={commentDetail}
+                    className={style.textTarea}
+                    name="updateComment"
+                    id="updateComment"
+                    cols="30"
+                    rows="10"
+                    required
+                  ></textarea>
+                  <button type="submit"> Actualizar </button>
+                </div>
+              </form>
+            </aside>
           </div>
         </section>
       </article>

@@ -78,7 +78,7 @@
 }
 
 .userImage {
-  flex: 0 0 70px; /* Fijar el ancho de la imagen */
+  flex: 0 0 70px; 
   margin-right: 10px;
 }
 
@@ -104,8 +104,8 @@
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 5px;
-  overflow: hidden; /* Controlar el desbordamiento */
-  text-overflow: ellipsis; /* Mostrar puntos suspensivos si el texto es largo */
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .commentDate {
