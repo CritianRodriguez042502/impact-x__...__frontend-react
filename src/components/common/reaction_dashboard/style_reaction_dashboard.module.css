@@ -1,3 +1,5 @@
+/* Media screen mobile */
+
 .containerFixed {
   position: fixed;
   top: 50%;
@@ -8,11 +10,13 @@
   transform: translate(-50%, -50%);
   background: white;
   box-shadow: 2px 3px 10px black;
+  z-index: 10;
+  overflow-y: auto;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
-  z-index: 10;
+  
 }
 
 .containerButtonReactions {
@@ -42,3 +46,77 @@
 .buttonReactions:hover {
   background-color: green;
 }
+
+
+/* styles top section comments */
+.bottonWithoutVisibilityComments {
+  margin-top: -15px;
+  font-size: 30px;
+}
+
+.moveToLikes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.buttonToMoveToLikes {
+  margin: 0px;
+}
+
+
+/* Estilos para el contenedor de comentarios */
+.containerComment {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+
+/* Estilos para la imagen de usuario */
+.userImage {
+  flex: 0 0 70px; /* Fijar el ancho de la imagen */
+  margin-right: 10px;
+}
+
+.userImage img {
+  width: 100%;
+  border-radius: 50%; /* Para hacer la imagen redonda, si lo deseas */
+}
+
+/* Estilos para el contenido del comentario */
+.commentContent {
+  flex: 1; /* Expandir para llenar el espacio restante */
+}
+
+/* Estilos para el nombre de usuario */
+.commentContent h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+/* Estilos para el texto del comentario */
+.commentText {
+  overflow: hidden; /* Controlar el desbordamiento */
+  text-overflow: ellipsis; /* Mostrar puntos suspensivos si el texto es largo */
+  white-space: nowrap; /* Evitar el salto de línea en el texto largo */
+}
+
+
+
+/* style top section likes */
+.moveToComents {
+  margin-bottom: 10px;
+}
+
+.buttonToMoveToComment {
+  margin: 0px;
+}
+
+/*   Media screen tablet   */
+@media screen and (min-width: 550px) and (max-width: 950px) {}
+
+
+/* media screen desktop */
+@media screen and (min-width: 950px) {}

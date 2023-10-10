@@ -179,7 +179,7 @@ export function UpdateBlogByUser() {
                 {Object.keys(dataUpdateBlog).length !== 0 ? (
                   <div>
                     <div className={style.title}>
-                      <label htmlFor="title"> Titulo </label>
+                      <label className={style.labelTitlePersonalize} htmlFor="title"> Titulo </label>
                       <input
                         type="text"
                         name="title"
@@ -191,7 +191,7 @@ export function UpdateBlogByUser() {
                     </div>
 
                     <div className={style.file}>
-                      <label htmlFor="file"> Cambiar imagen </label>
+                      <label className={style.labelFilePersonalize} htmlFor="file"> Cambiar imagen </label>
                       <input
                         type="file"
                         name="img"
@@ -202,7 +202,7 @@ export function UpdateBlogByUser() {
                     </div>
 
                     <div className={style.description}>
-                      <label htmlFor="description"> Descripcion </label>
+                      <label className={style.labelDescriptionPersonalize} htmlFor="description"> Descripcion </label>
                       <textarea
                         name="description"
                         id="description"

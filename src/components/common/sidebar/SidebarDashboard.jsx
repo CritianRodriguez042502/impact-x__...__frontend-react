@@ -2,15 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import style from "./style_sidebar_dashboard.module.css";
 import {
   axiosJWTVerify,
   axiosUserData,
   axiosAllUsernames,
   axiosBlogsByUser,
 } from "../../../redux/index";
+import style from "./style_sidebar_dashboard.module.css";
 
-export function SidebarDashboard({appearance}) {
+export function SidebarDashboard({ appearance }) {
   const dispatch = useDispatch();
 
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);
@@ -25,8 +25,7 @@ export function SidebarDashboard({appearance}) {
   const [visibility, setVisibility] = useState("none");
 
   // dom with css
-  
-  
+
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
 
@@ -192,16 +191,8 @@ export function SidebarDashboard({appearance}) {
     setVisibility("none");
   }
 
-  console.log()
-
   return (
-    <main
-    style={ window.innerWidth < 950 ? { left: appearance ? 0 : -300} : {left : 0}}
-      className={style.parentContainer}
-    >
-      <div>
-        
-      </div>
+    <main className={style.parentContainer}>
       <section className={style.sidebarNavegation}>
         <nav className={style.containerLiks}>
           <Link className={style.navbarLink} to={"/home"}>
@@ -238,61 +229,63 @@ export function SidebarDashboard({appearance}) {
         </article>
       </section>
 
-      <div
-        className={style.fixedSettingsContainer}
-        style={{ display: visibility }}
-      >
-        <p onClick={withoutVisibilityOptions}> Xd </p>
-        {containerImg === undefined || containerImg === null ? (
-          <p> Modificar datos y agregar imagen de perfil </p>
-        ) : (
-          <p> Modificar dataos de usuario o cambiar imagen de perfil </p>
-        )}
-        <form onSubmit={onSubmitUpdateDataUser}>
-          {Object.keys(updateDataUser).length !== 0 ? (
-            <div>
-              <label htmlFor="image"> Imagen de perfil </label>
-              <input
-                type="file"
-                name="file"
-                id="file"
-                accept="image/*"
-                onChange={onChangeUploadImg}
-              />
-              <label htmlFor="first_name"> Primer nombre </label>
-              <input
-                type="text"
-                name="first_name"
-                id="first_name"
-                value={updateDataUser.first_name}
-                onChange={onChangeUpdateDataUser}
-                required
-              />
-              <label htmlFor="last_name"> Segundo nombre</label>
-              <input
-                type="text"
-                name="last_name"
-                id="last_name"
-                value={updateDataUser.last_name}
-                onChange={onChangeUpdateDataUser}
-                required
-              />
-              <label htmlFor="username"> nombre de usuario </label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                value={updateDataUser.username}
-                onChange={onChangeUpdateDataUser}
-                required
-              />
-              <button type="submit"> Actualizar </button>
-            </div>
+      <section>
+        <div
+          className={style.fixedSettingsContainer}
+          style={{ display: visibility }}
+        >
+          <p onClick={withoutVisibilityOptions}> Xd </p>
+          {containerImg === undefined || containerImg === null ? (
+            <p> Modificar datos y agregar imagen de perfil </p>
           ) : (
-            <p> Error </p>
+            <p> Modificar dataos de usuario o cambiar imagen de perfil </p>
           )}
-        </form>
-      </div>
+          <form onSubmit={onSubmitUpdateDataUser}>
+            {Object.keys(updateDataUser).length !== 0 ? (
+              <div>
+                <label htmlFor="image"> Imagen de perfil </label>
+                <input
+                  type="file"
+                  name="file"
+                  id="file"
+                  accept="image/*"
+                  onChange={onChangeUploadImg}
+                />
+                <label htmlFor="first_name"> Primer nombre </label>
+                <input
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  value={updateDataUser.first_name}
+                  onChange={onChangeUpdateDataUser}
+                  required
+                />
+                <label htmlFor="last_name"> Segundo nombre</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  id="last_name"
+                  value={updateDataUser.last_name}
+                  onChange={onChangeUpdateDataUser}
+                  required
+                />
+                <label htmlFor="username"> nombre de usuario </label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  value={updateDataUser.username}
+                  onChange={onChangeUpdateDataUser}
+                  required
+                />
+                <button type="submit"> Actualizar </button>
+              </div>
+            ) : (
+              <p> Error </p>
+            )}
+          </form>
+        </div>
+      </section>
     </main>
   );
 }

@@ -2,6 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { axiosGetUserBlogReactions } from "../../../redux/index";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import { AiOutlineDoubleLeft } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_reaction_dashboard.module.css";
 
 export function GetReactionDashboard({ params }) {
@@ -83,45 +86,100 @@ export function GetReactionDashboard({ params }) {
 
   return (
     <main>
-
       <div className={style.containerButtonReactions}>
-        <p className={style.buttonReactions} onClick={visibilityReactionsComments}> Likes y comentarios </p>
+        <p
+          className={style.buttonReactions}
+          onClick={visibilityReactionsComments}
+        >
+          Likes y comentarios
+        </p>
       </div>
 
-      <div
+      <section
         className={style.containerFixed}
         style={{ display: visibilityComments }}
       >
-        <button onClick={whitoutvisibilityComments}> Cerrar </button>
-        <b> Comentarios </b>
-        <b onClick={visibilityReactionsLikes}> 👉 </b>
-        {infoGetUserBlogReactions.status === "fulfilled" &&
-        infoGetUserBlogReactions.info.comments.length !== 0 ? (
-          infoGetUserBlogReactions.info.comments?.map((data) => {
-            return (
-              <div style={{ background: "gray" }} key={data.id}>
-                <li> {data.user.username} </li>
-                <li> {data.comments} </li>
-              </div>
-            );
-          })
-        ) : infoGetUserBlogReactions.status === "fulfilled" &&
-          infoGetUserBlogReactions.info.comments.length === 0 ? (
-          <p> No hay comentarios </p>
-        ) : (
-          <p> Hubo algun error </p>
-        )}
-      </div>
+        <div className={style.bottonWithoutVisibilityComments}>
+          <b onClick={whitoutvisibilityComments}>
+            <AiOutlineClose />
+          </b>
+        </div>
 
-      <div
-        style={{ display: visibilityLikes }}
-        className={style.containerFixed}
-      >
-        <button onClick={whitoutvisibilityLikes}> Cerrar </button>
-        <b> Likes </b>
-        <b onClick={visibilityReactionsComments}> 👈 </b>
-        {infoGetUserBlogReactions.status === "fulfilled" ? likes() : false}
-      </div>
+        <div className={style.moveToLikes}>
+          {infoGetUserBlogReactions.status === "fulfilled" &&
+          infoGetUserBlogReactions.info.comments.length === 1 ? (
+            <b> 1 Comentario </b>
+          ) : infoGetUserBlogReactions.status === "fulfilled" &&
+            infoGetUserBlogReactions.info.comments.length >= 1 ? (
+            <b> {infoGetUserBlogReactions.info.comments.length} Comentarios </b>
+          ) : (
+            <b> Sin comentarios </b>
+          )}
+
+          <h1
+            className={style.buttonToMoveToLikes}
+            onClick={visibilityReactionsLikes}
+          >
+            <AiOutlineDoubleRight />
+          </h1>
+        </div>
+
+        <div>
+          {infoGetUserBlogReactions.status === "fulfilled" &&
+          infoGetUserBlogReactions.info.comments.length !== 0 ? (
+            infoGetUserBlogReactions.info.comments?.map((data) => {
+              return (
+                <div className={style.containerComment} key={data.id}>
+                  <div className={style.userImage}>
+                    <img
+                      src={`http://localhost:8000${data.user.img}`}
+                      alt="img"
+                      width={70}
+                    />
+                  </div>
+                  <div className={style.commentContent}>
+                    <div>
+                      <h2> {data.user.username} </h2>
+                      <div>
+                        <p className={style.commentText}> {data.comments} </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          ) : infoGetUserBlogReactions.status === "fulfilled" &&
+            infoGetUserBlogReactions.info.comments.length === 0 ? (
+            <p> No hay comentarios </p>
+          ) : (
+            <p> Hubo algún error </p>
+          )}
+        </div>
+      </section>
+
+      <section>
+        <div
+          style={{ display: visibilityLikes }}
+          className={style.containerFixed}
+        >
+          <div className={style.moveToComents}>
+            <div className={style.bottonWithoutVisibilityComments}>
+              <b onClick={whitoutvisibilityLikes}>
+                <AiOutlineClose />
+              </b>
+            </div>
+
+            <h1
+              className={style.buttonToMoveToComment}
+              onClick={visibilityReactionsComments}
+            >
+              <AiOutlineDoubleLeft />
+            </h1>
+          </div>
+
+          {infoGetUserBlogReactions.status === "fulfilled" ? likes() : false}
+        </div>
+      </section>
     </main>
   );
 }

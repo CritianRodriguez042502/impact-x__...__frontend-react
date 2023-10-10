@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { axiosJWTVerify } from "../../../redux/index";
+import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_navbar.module.css";
 
 export function Navbar() {
@@ -12,6 +14,7 @@ export function Navbar() {
   const access = JSON.parse(localStorage.getItem("access"));
 
   const [appearance, setAppearance] = useState(false);
+  
 
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
@@ -45,10 +48,12 @@ export function Navbar() {
 
         <div>
           <h1
-            onClick={(e) => {setNavegationScrollAppearance(true);}}
+            onClick={(e) => {
+              setNavegationScrollAppearance(true);
+            }}
             className={style.navegationApparButton}
           >
-            ///
+            <AiOutlineMenu />
           </h1>
         </div>
 
@@ -57,7 +62,13 @@ export function Navbar() {
           className={style.navegation}
         >
           <div>
-            <p onClick={(e) => {setNavegationScrollAppearance(false);}}> /// </p>
+            <p
+              onClick={(e) => {
+                setNavegationScrollAppearance(false);
+              }}
+            >
+              <AiOutlineClose />
+            </p>
           </div>
           <nav>
             <NavLink className={style.navbarLink} to={"/home"}>
