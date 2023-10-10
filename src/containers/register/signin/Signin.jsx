@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
+import Swal from 'sweetalert2'
 import {
   axiosJWTCreate,
   axiosJWTRefresh,
@@ -12,6 +13,7 @@ import {
   axiosLoginGoogle,
 } from "../../../redux/index";
 import { Layout } from "../../../components/index";
+import style from "./style_signin.module.css"
 
 export function Signin() {
   const dispatch = useDispatch();
@@ -53,7 +55,12 @@ export function Signin() {
   // Auth normalize
   useEffect(() => {
     if (infoJWTCreate.status === "rejected") {
-      alert("La combinacion de credenciales es incorrecta")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Combinacion de credenciales incorrecta!',
+        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`
+      })
     }
 
     if (infoJWTCreate.info && infoJWTCreate.status === "fulfilled" && !infoJWTRefresh.info) {
@@ -65,7 +72,16 @@ export function Signin() {
     }
 
     if (infoJWTVerify.status === "fulfilled" && access) {
-      navigate("/dashboard");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Acceso permitido',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      setTimeout(() => {
+        navigate("/dashboard");
+      },1000)
     }
   }, [infoJWTCreate.status,infoJWTCreate.info, infoJWTRefresh.info, infoJWTVerify.status]);
 
@@ -88,10 +104,20 @@ export function Signin() {
   // Reset Password
   useEffect(() => {
     if (infoResetPassword.status === "fulfilled") {
-      alert("Correo enviado");
+      Swal.fire({
+        icon: 'success',
+        title: 'Proceso completado',
+        text: 'Se le envio un email a su correo para cambiar su contraseña!',
+        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`
+      })
     }
     if (infoResetPassword.status === "rejected") {
-      alert("Esta cuenta no existe");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Esta cuenta existe!',
+        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`
+      })
     }
   }, [infoResetPassword.status]);
 

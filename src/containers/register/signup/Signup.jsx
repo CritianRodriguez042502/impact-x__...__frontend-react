@@ -8,9 +8,9 @@ import {
   axiosResendEmail,
   axiosAuthGoogle,
 } from "../../../redux/index";
+import Swal from 'sweetalert2'
 import { Layout } from "../../../components/index";
 
-// Falta mirar como puedo traer los mensajes de error que envia djoser
 
 export function Signup() {
   const navigate = useNavigate();
@@ -19,7 +19,6 @@ export function Signup() {
   const infoCreateUser = useSelector((data) => data.createUser);
   const infoResendEmail = useSelector((data) => data.resendEmail);
 
-  const [loader, setLoader] = useState("none");
   const [dataUser, setDataUser] = useState({});
   const [sendEmail, setSendEmail] = useState("none");
 
@@ -45,37 +44,50 @@ export function Signup() {
       navigate("/dashboard");
     }
 
-    if (infoCreateUser.status === "pending") {
-      setLoader("initial");
+    if (infoCreateUser.status === "fulfilled") {
+      setSendEmail("initial")
+      Swal.fire({
+        icon: 'success',
+        title: 'Registro completado!',
+        text: 'Se le a enviado un email a su correo para la activacion de su cuenta',
+      })
     }
 
-    if (infoCreateUser.status === "fulfilled") {
-      setLoader("none");
-      setSendEmail("initial");
-    }
     if (infoCreateUser.status === "rejected") {
-      setLoader("none");
+      const listMessages = []
       const faults = Object.values(infoCreateUser.info);
       for (let i = 0; i < faults.length; i++) {
-        alert(faults[i][0]);
+        listMessages.push(faults[i])
       }
+      Swal.fire(
+        'Opss?',
+        `${listMessages[0]}`,
+        'warning'
+      )
     }
   }, [infoCreateUser.status, infoJWTVerify.status]);
 
   // Send email -------
   useEffect(() => {
-    if (infoResendEmail.status === "pending") {
-      setLoader("initial");
-    }
-
+    
     if (infoResendEmail.status === "fulfilled") {
-      setLoader("none");
-      alert("Correo reenviado");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Correo reenviado',
+        showConfirmButton: false,
+        timer: 2000
+      })
     }
 
     if (infoResendEmail.status === "rejected") {
-      setLoader("none");
-      alert("Tu cuenta ya se encuentra activa");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'info',
+        title: 'Su cuenta ya se encuentra activa',
+        showConfirmButton: false,
+        timer: 2000
+      })
     }
   }, [infoResendEmail.status]);
 
@@ -103,13 +115,25 @@ export function Signup() {
         if (password.length >= 8) {
           dispatch(axiosCreateUser(dataUser));
         } else {
-          alert("Contraseña demasiado corta");
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Contraseña demasiado corta',
+          })
         }
       } else {
-        alert("Contraseñas no coinciden");
+        Swal.fire({
+          icon: 'info',
+          title: 'Oops...',
+          text: 'Las contraseñas no coinciden',
+        })
       }
     } else {
-      alert("Esta tratando de enviar un dato vacio");
+      Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: 'Estas tratando de enviar datos vacios',
+      })
     }
   }
 
@@ -192,9 +216,6 @@ export function Signup() {
           <button onClick={onClickSendEmail}> Reenviar correo </button>
         </div>
 
-        <div style={{ display: loader }}>
-          <h1> Cargando... </h1>
-        </div>
       </Layout>
     </main>
   );

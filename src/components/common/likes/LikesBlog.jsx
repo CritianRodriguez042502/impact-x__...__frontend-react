@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Swal from 'sweetalert2'
 import { axiosLikeBlog, axiosGetLikesBlog } from "../../../redux/index";
-
+import style from "./style_likes.module.css"
 export function LikesBlog({ params }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,11 +67,15 @@ export function LikesBlog({ params }) {
       } else {
         if (infoJWTVerify.status === "fulfilled" && access) {
           e.target.checked = false;
-          alert("Parece que algo salio mal");
           navigate("/dashboard");
         } else {
           e.target.checked = false;
-          alert("Tienes que estar registrado para acceder");
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Tienes que estar registrado!',
+            footer: `<a class=${style.messageError} href="http://localhost:5173/access/signin"> Ingresa a tu cuenta </a>`
+          })
         }
       }
     }

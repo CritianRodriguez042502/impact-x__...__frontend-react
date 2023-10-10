@@ -8,6 +8,7 @@ import {
   axiosAllUsernames,
   axiosBlogsByUser,
 } from "../../../redux/index";
+import Swal from 'sweetalert2'
 import style from "./style_sidebar_dashboard.module.css";
 
 export function SidebarDashboard({ appearance }) {
@@ -176,10 +177,18 @@ export function SidebarDashboard({ appearance }) {
           setVisibility("none");
         }
       } else {
-        alert("Este nombre de usuario ya existe");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Este nombre de usuario ya existe',
+        })
       }
     } else {
-      alert("Estas tratando de enviar datos vacios");
+      Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: 'Estas tratando de enviar datos vacios',
+      })
     }
   }
 

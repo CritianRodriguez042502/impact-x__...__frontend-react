@@ -7,6 +7,7 @@ import {
   axiosCommentsBlog,
   axiosDetailedCommentsBlog,
 } from "../../../redux/index";
+import Swal from 'sweetalert2'
 import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_comments.module.css";
 
@@ -82,10 +83,19 @@ export function CommentsBlog({ params }) {
         );
         setNewComment("");
       } else {
-        alert("Tienes que estar registrado para comentar");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Tienes que estar registrado!',
+          footer: `<a class=${style.messageError} href="http://localhost:5173/access/signin"> Ingresa a tu cuenta </a>`
+        })
       }
     } else {
-      alert("No puedes enviar datos vacios");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No puedes enviar datos vacios!',
+      })
     }
   }
 
@@ -120,7 +130,11 @@ export function CommentsBlog({ params }) {
       setCommentUpdateVisibility("none");
       navigate(`/blogs/blog_detail/${paramsUrl.slug}`);
     } else {
-      alert("No puedes enviar datos vacios");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No puedes enviar datos vacios!',
+      })
     }
   }
 
@@ -242,6 +256,7 @@ export function CommentsBlog({ params }) {
     );
   }
 
+
   // ---------------------------------------------------
   return (
     <main>
@@ -286,8 +301,7 @@ export function CommentsBlog({ params }) {
               required
             />
             <button className={style.buttonCreateNewComment} type="sumbit">
-              {" "}
-              Crear{" "}
+              Crear
             </button>
           </form>
         </section>
@@ -305,24 +319,31 @@ export function CommentsBlog({ params }) {
             className={style.inputUpdateComment}
           >
             <aside>
-              <h1 onClick={onClickWithoutCommentUpdateVisibilit}>
+              <h1
+                style={{ textAlign: "center", fontSize: "20px" }}
+                onClick={onClickWithoutCommentUpdateVisibilit}
+              >
                 <AiOutlineClose />
               </h1>
 
-              <form onSubmit={onSubmitUpdateComment}>
-                <div>
-                  <textarea
-                    onChange={onChangeUpdateComment}
-                    value={commentDetail}
-                    className={style.textTarea}
-                    name="updateComment"
-                    id="updateComment"
-                    cols="30"
-                    rows="10"
-                    required
-                  ></textarea>
-                  <button type="submit"> Actualizar </button>
-                </div>
+              <form
+                className={style.containerUpdateComment}
+                onSubmit={onSubmitUpdateComment}
+              >
+                <textarea
+                  onChange={onChangeUpdateComment}
+                  value={commentDetail}
+                  className={style.textTarea}
+                  name="updateComment"
+                  id="updateComment"
+                  cols="30"
+                  rows="10"
+                  required
+                ></textarea>
+                <button className={style.buttonFormUpdate} type="submit">
+                  {" "}
+                  Actualizar{" "}
+                </button>
               </form>
             </aside>
           </div>

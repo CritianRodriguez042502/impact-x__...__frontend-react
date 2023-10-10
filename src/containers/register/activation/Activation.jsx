@@ -1,42 +1,62 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {useParams, Link, useNavigate} from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 import { axiosActivationUser } from "../../../redux/index";
 
 export function Activation() {
-    const dispatch = useDispatch()
-    const params = useParams()
-    const navigate = useNavigate()
-    const infoActivation = useSelector(state => state.activate)
-    
+  const dispatch = useDispatch();
+  const params = useParams();
+  const navigate = useNavigate();
+  const infoActivation = useSelector((state) => state.activate);
 
-  const [loader,setLoader] = useState("none")
-  const [message, setMessage] = useState("none")
-
+  const [loader, setLoader] = useState("none");
 
   useEffect(() => {
-    dispatch(axiosActivationUser({
-      "uid" : params.uid,
-      "token" : params.token
-    }))
-  },[])
+    dispatch(
+      axiosActivationUser({
+        uid: params.uid,
+        token: params.token,
+      })
+    );
+  }, []);
 
   useEffect(() => {
     if (infoActivation.status === "pending") {
-      setLoader("initial")
+      setLoader("initial");
     }
     if (infoActivation.status === "fulfilled") {
-      setLoader("none")
-      setMessage("initial")
+      setLoader("none");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Proceso completa",
+        text: "Su cuenta a sido activada correctamente",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      setTimeout(() => {
+        navigate("/access/signin");
+      }, 4000);
     }
     if (infoActivation.status === "rejected") {
-      alert("Parece que algo salio mal")
-      navigate("/access/signup")
-    }
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Opss...",
+        text: "Parece que algo salio mal",
+        showConfirmButton: false,
+        timer: 3000,
+      });
 
-  },[infoActivation.status])
+      setTimeout(() => {
+        navigate("/access/signup");
+      }, 4000);
+    }
+  }, [infoActivation.status]);
+
   return (
     <main>
       <Helmet>
@@ -46,18 +66,11 @@ export function Activation() {
       </Helmet>
 
       <div>
-
         <h1> Activation </h1>
 
-        <div style={{display : loader}}>
+        <div style={{ display: loader }}>
           <h1> Cargando... </h1>
         </div>
-
-        <div style={{display : message}}>
-          <h1> Tu cuenta se ha activado</h1>
-          <Link to={"/access/signin"}> Ingresar </Link>
-        </div>
-
       </div>
     </main>
   );

@@ -100,7 +100,6 @@ export function GetReactionDashboard({ params }) {
             infoGetUserBlogReactions.info.comments?.map((data) => {
               return (
                 <div className={style.containerComment} key={data.id}>
-                  
                   <div className={style.userImage}>
                     {data.user.img === null ? (
                       <img

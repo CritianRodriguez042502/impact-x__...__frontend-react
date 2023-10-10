@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
+import Swal from 'sweetalert2'
 import { axiosResetPasswordConfirm } from "../../../redux/index";
 
 export function ResetPassword() {
@@ -15,13 +16,26 @@ export function ResetPassword() {
 
   useEffect(() => {
     if (infoResetPassword.status === "fulfilled") {
-      alert("Contraseña cambiada correctamente");
-      navigate("/access/signin");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Proceso completado',
+        text : "Contraseña cambiada exitosamente",
+        showConfirmButton: false,
+        timer: 3500
+      })
+      setTimeout(() => {
+        navigate("/access/signin");
+      },4000)
     }
     if (infoResetPassword.status === "rejected") {
       const infoError = infoResetPassword.info.new_password
       for (let i = 0; i < infoError.length; i++){
-        alert(infoError[i])
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: `${infoError[i]}`,
+        })
       }
     }
   }, [infoResetPassword.status]);
@@ -43,10 +57,18 @@ export function ResetPassword() {
       if (passwords.new_password === passwords.re_new_password) {
         dispatch(axiosResetPasswordConfirm(passwords));
       } else {
-        alert("Las contraseñas no coinciden");
+        Swal.fire({
+          icon: 'info',
+          title: 'Oops...',
+          text: 'Las contraseñas no coinciden',
+        })
       }
     } else {
-      alert("Estas tratando de enviar datos vacios");
+      Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: 'Estas tratando de enviar datos vacios',
+      })
     }
   }
 
