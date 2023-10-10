@@ -5,6 +5,8 @@ import { axiosGetUserBlogReactions } from "../../../redux/index";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { AiOutlineDoubleLeft } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
+import { BsFillChatSquareTextFill } from "react-icons/bs";
+
 import style from "./style_reaction_dashboard.module.css";
 
 export function GetReactionDashboard({ params }) {
@@ -25,46 +27,6 @@ export function GetReactionDashboard({ params }) {
       })
     );
   }, []);
-
-  function likes(e) {
-    const selectedLikes = infoGetUserBlogReactions.info.likes?.filter(
-      (index) => {
-        return index.selected === true;
-      }
-    );
-    return (
-      <div>
-        {selectedLikes.length !== 0 ? (
-          selectedLikes?.map(function (data) {
-            return (
-              <div style={{ display: "flex" }} key={data.id}>
-                <div>
-                  {data.user.img === null ? (
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
-                      alt="img"
-                      width={70}
-                    />
-                  ) : (
-                    <img
-                      src={`http://localhost:8000${data.user.img}`}
-                      alt="img"
-                      width={70}
-                    />
-                  )}
-                </div>
-                <div>
-                  <p> Like {data.user.username}</p>
-                </div>
-              </div>
-            );
-          })
-        ) : (
-          <p> No hay likes</p>
-        )}
-      </div>
-    );
-  }
 
   function visibilityReactionsComments(e) {
     setVisibilityComments("initial");
@@ -91,7 +53,13 @@ export function GetReactionDashboard({ params }) {
           className={style.buttonReactions}
           onClick={visibilityReactionsComments}
         >
+          <span style={{ margin: "5px" }}>
+            <BsFillChatSquareTextFill />
+          </span>
           Likes y comentarios
+          <span style={{ margin: "5px" }}>
+            <BsFillChatSquareTextFill />
+          </span>
         </p>
       </div>
 
@@ -106,15 +74,17 @@ export function GetReactionDashboard({ params }) {
         </div>
 
         <div className={style.moveToLikes}>
-          {infoGetUserBlogReactions.status === "fulfilled" &&
-          infoGetUserBlogReactions.info.comments.length === 1 ? (
-            <b> 1 Comentario </b>
-          ) : infoGetUserBlogReactions.status === "fulfilled" &&
-            infoGetUserBlogReactions.info.comments.length >= 1 ? (
-            <b> {infoGetUserBlogReactions.info.comments.length} Comentarios </b>
-          ) : (
-            <b> Sin comentarios </b>
-          )}
+          <div>
+            {infoGetUserBlogReactions.status === "fulfilled" &&
+            infoGetUserBlogReactions.info.comments.length === 1 ? (
+              <b> 1 Comentario </b>
+            ) : infoGetUserBlogReactions.status === "fulfilled" &&
+              infoGetUserBlogReactions.info.comments.length >= 1 ? (
+              <b>{infoGetUserBlogReactions.info.comments.length} Comentarios</b>
+            ) : (
+              <b> Sin comentarios </b>
+            )}
+          </div>
 
           <h1
             className={style.buttonToMoveToLikes}
@@ -137,13 +107,14 @@ export function GetReactionDashboard({ params }) {
                       width={70}
                     />
                   </div>
+
                   <div className={style.commentContent}>
-                    <div>
-                      <h2> {data.user.username} </h2>
-                      <div>
-                        <p className={style.commentText}> {data.comments} </p>
-                      </div>
-                    </div>
+                    <h2 className={style.commentUsername}>
+                      {data.user.username}
+                    </h2>
+                    <p className={style.commentText}> {data.comments} </p>
+                    <hr style={{ border: "2px solid gray" }} />
+                    <b className={style.commentDate}> {data.creation} </b>
                   </div>
                 </div>
               );
@@ -157,27 +128,67 @@ export function GetReactionDashboard({ params }) {
         </div>
       </section>
 
-      <section>
-        <div
-          style={{ display: visibilityLikes }}
-          className={style.containerFixed}
-        >
-          <div className={style.moveToComents}>
-            <div className={style.bottonWithoutVisibilityComments}>
-              <b onClick={whitoutvisibilityLikes}>
-                <AiOutlineClose />
-              </b>
-            </div>
+      <section
+        style={{ display: visibilityLikes }}
+        className={style.containerFixed}
+      >
+        <div className={style.bottonWithoutVisibilityComments}>
+          <b onClick={whitoutvisibilityLikes}>
+            <AiOutlineClose />
+          </b>
+        </div>
 
-            <h1
-              className={style.buttonToMoveToComment}
-              onClick={visibilityReactionsComments}
-            >
-              <AiOutlineDoubleLeft />
-            </h1>
+        <div className={style.moveToComents}>
+          <div>
+            {infoGetUserBlogReactions.status === "fulfilled" &&
+            infoGetUserBlogReactions.info.likes.length === 1 ? (
+              <b> 1 like </b>
+            ) : infoGetUserBlogReactions.status === "fulfilled" &&
+              infoGetUserBlogReactions.info.likes.length >= 1 ? (
+              <b> {infoGetUserBlogReactions.info.likes.length} likes </b>
+            ) : (
+              <b> Sin Likes </b>
+            )}
           </div>
 
-          {infoGetUserBlogReactions.status === "fulfilled" ? likes() : false}
+          <h1
+            className={style.buttonToMoveToComment}
+            onClick={visibilityReactionsComments}
+          >
+            <AiOutlineDoubleLeft />
+          </h1>
+        </div>
+
+        <div className={style.likesContainer}>
+          {infoGetUserBlogReactions.status === "fulfilled" &&
+          infoGetUserBlogReactions.info.likes.length > 0 ? (
+            <div>
+              <ul className={style.likesList}>
+                {infoGetUserBlogReactions.info.likes.map((like) => (
+                  <li key={like.id} className={style.likeItem}>
+                    <div className={style.likeUser}>
+                      {like.user.img === null ? (
+                        <img
+                          src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                          alt="img"
+                          width={70}
+                        />
+                      ) : (
+                        <img
+                          src={`http://localhost:8000${like.user.img}`}
+                          alt="img"
+                          width={70}
+                        />
+                      )}
+                      <h2>{like.user.username}</h2>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <p>No hay likes.</p>
+          )}
         </div>
       </section>
     </main>

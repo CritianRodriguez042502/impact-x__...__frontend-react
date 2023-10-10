@@ -142,6 +142,7 @@ export function CommentsBlog({ params }) {
       return index.user.username === username;
     });
     const otherComments = infoGetComments.info.results.data?.filter((index) => {
+      console.log(userComments)
       return index.user.username !== username;
     });
     return (
@@ -195,7 +196,7 @@ export function CommentsBlog({ params }) {
 
       <article
         style={{ display: visibility }}
-        className={style.containerComments}
+        className={style.containerFixed}
       >
         <section className={style.topSection}>
           {infoGetComments.status === "fulfilled" ? (

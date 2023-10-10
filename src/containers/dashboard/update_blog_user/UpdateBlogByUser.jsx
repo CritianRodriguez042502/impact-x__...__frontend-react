@@ -171,6 +171,7 @@ export function UpdateBlogByUser() {
         {infoJWTVerifi.status === "fulfilled" && access ? (
           <div>
             <article>
+              
               <form
                 className={style.inputsInCreatingBlog}
                 encType="multipart/form-data"
