@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import {
   axiosJWTCreate,
   axiosJWTRefresh,
@@ -13,7 +13,7 @@ import {
   axiosLoginGoogle,
 } from "../../../redux/index";
 import { Layout } from "../../../components/index";
-import style from "./style_signin.module.css"
+import style from "./style_signin.module.css";
 
 export function Signin() {
   const dispatch = useDispatch();
@@ -41,9 +41,9 @@ export function Signin() {
 
     if (state && code && !infoUrlGoogle.info) {
       const data = {
-        state : state,
-        code : code
-      }
+        state: state,
+        code: code,
+      };
       dispatch(axiosLoginGoogle(data));
     }
   }, [infoUrlGoogle, state, code]);
@@ -56,36 +56,47 @@ export function Signin() {
   useEffect(() => {
     if (infoJWTCreate.status === "rejected") {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Combinacion de credenciales incorrecta!',
-        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "Combinacion de credenciales incorrecta!",
+        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
+      });
     }
 
-    if (infoJWTCreate.info && infoJWTCreate.status === "fulfilled" && !infoJWTRefresh.info) {
+    if (
+      infoJWTCreate.info &&
+      infoJWTCreate.status === "fulfilled" &&
+      !infoJWTRefresh.info
+    ) {
       dispatch(axiosJWTRefresh({ refresh: infoJWTCreate.info }));
     }
 
-    if (infoJWTRefresh.info && (infoJWTVerify.status === "rejected" || !access)) {
+    if (
+      infoJWTRefresh.info &&
+      (infoJWTVerify.status === "rejected" || !access)
+    ) {
       dispatch(axiosJWTVerify({ token: infoJWTRefresh.info.access }));
     }
 
     if (infoJWTVerify.status === "fulfilled" && access) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Acceso permitido',
+        position: "top-end",
+        icon: "success",
+        title: "Acceso permitido",
         showConfirmButton: false,
-        timer: 2000
-      })
+        timer: 2000,
+      });
       setTimeout(() => {
         navigate("/dashboard");
-      },1000)
+      }, 1000);
     }
-  }, [infoJWTCreate.status,infoJWTCreate.info, infoJWTRefresh.info, infoJWTVerify.status]);
+  }, [
+    infoJWTCreate.status,
+    infoJWTCreate.info,
+    infoJWTRefresh.info,
+    infoJWTVerify.status,
+  ]);
 
-  
   function onChangeData(e) {
     setDataForm({
       ...dataForm,
@@ -105,19 +116,19 @@ export function Signin() {
   useEffect(() => {
     if (infoResetPassword.status === "fulfilled") {
       Swal.fire({
-        icon: 'success',
-        title: 'Proceso completado',
-        text: 'Se le envio un email a su correo para cambiar su contraseña!',
-        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`
-      })
+        icon: "success",
+        title: "Proceso completado",
+        text: "Se le envio un email a su correo para cambiar su contraseña!",
+        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
+      });
     }
     if (infoResetPassword.status === "rejected") {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Esta cuenta existe!',
-        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "Esta cuenta existe!",
+        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
+      });
     }
   }, [infoResetPassword.status]);
 
@@ -139,27 +150,31 @@ export function Signin() {
       </Helmet>
 
       <Layout>
-        <h1> Signin </h1>
-        <form onSubmit={onSubmitDataForm}>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Correo"
-            onChange={onChangeData}
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            autoComplete="current-password"
-            placeholder="Contraseña"
-            onChange={onChangeData}
-            required
-          />
-          <button type="submit"> Ingresar </button>
-        </form>
+        <section className={style.containerLogin}>
+          <h1> Iniciar sesion </h1>
+          <form className={style.containerInputs} onSubmit={onSubmitDataForm}>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Correo"
+              onChange={onChangeData}
+              required
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autoComplete="current-password"
+              placeholder="Contraseña"
+              onChange={onChangeData}
+              required
+            />
+            <button type="submit"> Acceder </button>
+            
+          </form>
+        </section>
+
         <button onClick={clickLogin}> With google </button>
 
         <div>

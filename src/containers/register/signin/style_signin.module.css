@@ -1,3 +1,53 @@
+/* Styles for mobile, tablet and desktop */
+.containerLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerLogin h1 {
+  font-size: 24px;
+  color: #151515;
+  margin-bottom: 20px;
+}
+
+.containerInputs {
+  background: rgba(255, 255, 255, 0.8);
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.containerInputs input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.containerInputs button[type="sumbit"] {
+  font-weight: bold;
+}
+
+.containerInputs button {
+  background-color: #3eaa52;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.containerInputs button:hover {
+  background-color: #0c8122;
+}
+
 .messageError {
   color: rgb(112, 109, 109);
   white-space: nowrap;

@@ -1,0 +1,57 @@
+.containerActivation {
+  background: red;
+}
+/* Estilos para el contenedor principal (main) */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("https://us.123rf.com/450wm/jes2ufoto/jes2ufoto1608/jes2ufoto160800102/62481345-pared-del-estudio-abstracto-azul-de-la-pendiente-para-el-dise%C3%B1o-de-tel%C3%B3n-de-fondo-para-el-producto-o.jpg?ver=6");
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos para el contenedor de activación */
+.containerActivation {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el título */
+.containerActivation h1 {
+  color: #333;
+}
+
+/* Estilos para el contenedor del loader */
+.containerActivation div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgb(17, 197, 17);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

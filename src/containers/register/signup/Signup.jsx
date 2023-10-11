@@ -8,9 +8,9 @@ import {
   axiosResendEmail,
   axiosAuthGoogle,
 } from "../../../redux/index";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { Layout } from "../../../components/index";
-
+import style from "./style_signup.module.css"
 
 export function Signup() {
   const navigate = useNavigate();
@@ -45,49 +45,44 @@ export function Signup() {
     }
 
     if (infoCreateUser.status === "fulfilled") {
-      setSendEmail("initial")
+      setSendEmail("initial");
       Swal.fire({
-        icon: 'success',
-        title: 'Registro completado!',
-        text: 'Se le a enviado un email a su correo para la activacion de su cuenta',
-      })
+        icon: "success",
+        title: "Registro completado!",
+        text: "Se le a enviado un email a su correo para la activacion de su cuenta",
+      });
     }
 
     if (infoCreateUser.status === "rejected") {
-      const listMessages = []
+      const listMessages = [];
       const faults = Object.values(infoCreateUser.info);
       for (let i = 0; i < faults.length; i++) {
-        listMessages.push(faults[i])
+        listMessages.push(faults[i]);
       }
-      Swal.fire(
-        'Opss?',
-        `${listMessages[0]}`,
-        'warning'
-      )
+      Swal.fire("Opss?", `${listMessages[0]}`, "warning");
     }
   }, [infoCreateUser.status, infoJWTVerify.status]);
 
   // Send email -------
   useEffect(() => {
-    
     if (infoResendEmail.status === "fulfilled") {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Correo reenviado',
+        position: "top-end",
+        icon: "success",
+        title: "Correo reenviado",
         showConfirmButton: false,
-        timer: 2000
-      })
+        timer: 2000,
+      });
     }
 
     if (infoResendEmail.status === "rejected") {
       Swal.fire({
-        position: 'top-end',
-        icon: 'info',
-        title: 'Su cuenta ya se encuentra activa',
+        position: "top-end",
+        icon: "info",
+        title: "Su cuenta ya se encuentra activa",
         showConfirmButton: false,
-        timer: 2000
-      })
+        timer: 2000,
+      });
     }
   }, [infoResendEmail.status]);
 
@@ -116,24 +111,24 @@ export function Signup() {
           dispatch(axiosCreateUser(dataUser));
         } else {
           Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: 'Contraseña demasiado corta',
-          })
+            icon: "warning",
+            title: "Oops...",
+            text: "Contraseña demasiado corta",
+          });
         }
       } else {
         Swal.fire({
-          icon: 'info',
-          title: 'Oops...',
-          text: 'Las contraseñas no coinciden',
-        })
+          icon: "info",
+          title: "Oops...",
+          text: "Las contraseñas no coinciden",
+        });
       }
     } else {
       Swal.fire({
-        icon: 'info',
-        title: 'Oops...',
-        text: 'Estas tratando de enviar datos vacios',
-      })
+        icon: "info",
+        title: "Oops...",
+        text: "Estas tratando de enviar datos vacios",
+      });
     }
   }
 
@@ -150,64 +145,66 @@ export function Signup() {
       </Helmet>
 
       <Layout>
-        <h1> Signup </h1>
-        <form onSubmit={onSubmitDataUser}>
-          <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            onChange={OnchangeData}
-            placeholder="Nombre"
-            required
-          />
+        <section className={style.container}>
+          <h1> Registro </h1>
+          <form className={style.containerInputs} onSubmit={onSubmitDataUser}>
+            <input
+              type="text"
+              id="first_name"
+              name="first_name"
+              onChange={OnchangeData}
+              placeholder="Nombre"
+              required
+            />
 
-          <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            onChange={OnchangeData}
-            placeholder="Apellido"
-            required
-          />
+            <input
+              type="text"
+              id="last_name"
+              name="last_name"
+              onChange={OnchangeData}
+              placeholder="Apellido"
+              required
+            />
 
-          <input
-            type="text"
-            id="username"
-            name="username"
-            onChange={OnchangeData}
-            placeholder="Nombre de usuario"
-            required
-          />
+            <input
+              type="text"
+              id="username"
+              name="username"
+              onChange={OnchangeData}
+              placeholder="Nombre de usuario"
+              required
+            />
 
-          <input
-            type="email"
-            id="email"
-            name="email"
-            onChange={OnchangeData}
-            placeholder="Correo"
-            required
-          />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              onChange={OnchangeData}
+              placeholder="Correo"
+              required
+            />
 
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={OnchangeData}
-            placeholder="Contraseña"
-            required
-          />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={OnchangeData}
+              placeholder="Contraseña"
+              required
+            />
 
-          <input
-            type="password"
-            id="re_password"
-            name="re_password"
-            onChange={OnchangeData}
-            placeholder="Repetir contraseña"
-            required
-          />
+            <input
+              type="password"
+              id="re_password"
+              name="re_password"
+              onChange={OnchangeData}
+              placeholder="Repetir contraseña"
+              required
+            />
 
-          <button type="submit"> Registrarse </button>
-        </form>
+            <button type="submit"> Registrarse </button>
+          </form>
+        </section>
 
         <button onClick={authGoogle}> Acceder con google </button>
 
@@ -215,7 +212,6 @@ export function Signup() {
           <p> Volver a enviar correo </p>
           <button onClick={onClickSendEmail}> Reenviar correo </button>
         </div>
-
       </Layout>
     </main>
   );

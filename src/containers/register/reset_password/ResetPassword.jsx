@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { axiosResetPasswordConfirm } from "../../../redux/index";
+import style from "./style_reset_password.module.css";
 
 export function ResetPassword() {
   const dispatch = useDispatch();
@@ -17,29 +18,26 @@ export function ResetPassword() {
   useEffect(() => {
     if (infoResetPassword.status === "fulfilled") {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Proceso completado',
-        text : "Contraseña cambiada exitosamente",
+        position: "top-end",
+        icon: "success",
+        title: "Proceso completado",
+        text: "Contraseña cambiada exitosamente",
         showConfirmButton: false,
-        timer: 3500
-      })
+        timer: 3500,
+      });
       setTimeout(() => {
         navigate("/access/signin");
-      },4000)
+      }, 4000);
     }
     if (infoResetPassword.status === "rejected") {
-      const infoError = infoResetPassword.info.new_password
-      for (let i = 0; i < infoError.length; i++){
-        Swal.fire({
-          icon: 'warning',
-          title: 'Oops...',
-          text: `${infoError[i]}`,
-        })
-      }
+      const infoError = infoResetPassword.info.new_password;
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: `${infoError[0]}`,
+      });
     }
   }, [infoResetPassword.status]);
-
 
   function onChangeResetPassword(e) {
     setPasswords({
@@ -55,34 +53,35 @@ export function ResetPassword() {
 
     if (passwords.new_password && passwords.re_new_password) {
       if (passwords.new_password === passwords.re_new_password) {
+        console.log(passwords);
         dispatch(axiosResetPasswordConfirm(passwords));
       } else {
         Swal.fire({
-          icon: 'info',
-          title: 'Oops...',
-          text: 'Las contraseñas no coinciden',
-        })
+          icon: "info",
+          title: "Oops...",
+          text: "Las contraseñas no coinciden",
+        });
       }
     } else {
       Swal.fire({
-        icon: 'info',
-        title: 'Oops...',
-        text: 'Estas tratando de enviar datos vacios',
-      })
+        icon: "info",
+        title: "Oops...",
+        text: "Estas tratando de enviar datos vacios",
+      });
     }
   }
 
   return (
-    <main>
+    <main className={style.container}>
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title> Cambiar contraseña </title>
       </Helmet>
 
-      <div>
+      <section className={style.containerResetPassword}>
         <h1> Cambiar contraseña</h1>
-        <form onSubmit={onSubmitResetPassword}>
+        <form className={style.containerInput} onSubmit={onSubmitResetPassword}>
           <input
             type="password"
             id="new_password"
@@ -99,9 +98,9 @@ export function ResetPassword() {
             onChange={onChangeResetPassword}
             required
           />
-          <button type="submit"> Enviar </button>
+          <button type="submit"> Cambiar </button>
         </form>
-      </div>
+      </section>
     </main>
   );
 }

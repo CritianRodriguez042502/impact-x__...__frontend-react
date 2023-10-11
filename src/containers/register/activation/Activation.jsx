@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import { axiosActivationUser } from "../../../redux/index";
+import style from "./style_activation.module.css";
 
 export function Activation() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export function Activation() {
   const navigate = useNavigate();
   const infoActivation = useSelector((state) => state.activate);
 
-  const [loader, setLoader] = useState("none");
+  const [showLoadingAnimation, setShowLoadingAnimation] = useState("none");
 
   useEffect(() => {
     dispatch(
@@ -24,11 +25,12 @@ export function Activation() {
   }, []);
 
   useEffect(() => {
+    
     if (infoActivation.status === "pending") {
-      setLoader("initial");
+      setShowLoadingAnimation("initial");
     }
     if (infoActivation.status === "fulfilled") {
-      setLoader("none");
+      setShowLoadingAnimation("none");
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -42,6 +44,7 @@ export function Activation() {
       }, 4000);
     }
     if (infoActivation.status === "rejected") {
+      setShowLoadingAnimation("none");
       Swal.fire({
         position: "top-end",
         icon: "error",
@@ -58,20 +61,20 @@ export function Activation() {
   }, [infoActivation.status]);
 
   return (
-    <main>
+    <main className={style.container}>
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title> Activacion </title>
       </Helmet>
 
-      <div>
-        <h1> Activation </h1>
+      <section className={style.containerActivation}>
+        <h1> Activacion de cuenta </h1>
 
-        <div style={{ display: loader }}>
-          <h1> Cargando... </h1>
+        <div style={{ display: showLoadingAnimation }}>
+          <span className={style.loader}> </span>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
