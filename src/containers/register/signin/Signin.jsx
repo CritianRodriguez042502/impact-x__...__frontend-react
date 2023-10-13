@@ -79,16 +79,25 @@ export function Signin() {
     }
 
     if (infoJWTVerify.status === "fulfilled" && access) {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Acceso permitido",
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
         showConfirmButton: false,
-        timer: 2000,
-      });
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Acceso permitido'
+      })
       setTimeout(() => {
         navigate("/dashboard");
-      }, 1000);
+      }, 2000);
     }
   }, [
     infoJWTCreate.status,
@@ -115,12 +124,22 @@ export function Signin() {
   // Reset Password
   useEffect(() => {
     if (infoResetPassword.status === "fulfilled") {
-      Swal.fire({
-        icon: "success",
-        title: "Proceso completado",
-        text: "Se le envio un email a su correo para cambiar su contraseña!",
-        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
-      });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Email enviado'
+      })
     }
     if (infoResetPassword.status === "rejected") {
       Swal.fire({
@@ -132,14 +151,24 @@ export function Signin() {
     }
   }, [infoResetPassword.status]);
 
-  function onSubmitResetPassword(e) {
-    e.preventDefault();
-    const emailResetPassword = e.target.email_reset_password.value;
-
-    if (emailResetPassword) {
-      dispatch(axiosResetPassword({ email: emailResetPassword }));
+  
+  async function dataRandom () {
+    const { value: email } = await Swal.fire({
+      title: 'Recuperar contraseña',
+      input: 'email',
+      inputLabel: 'Escribe tu correo electronico',
+      inputPlaceholder: 'Email'
+    })
+    
+    if (email) {
+      console.log(email)
+      Swal.fire(`Verifica tu email: ${email}`)
+      dispatch(axiosResetPassword({ email: email}));
     }
   }
+
+  //acceso de google aun no permitido
+  //<button onClick={clickLogin}> With google </button>
 
   return (
     <main>
@@ -171,24 +200,10 @@ export function Signin() {
               required
             />
             <button type="submit"> Acceder </button>
-            
+            <p onClick={dataRandom}> Olvidaste tu contraseña ? </p>
           </form>
         </section>
 
-        <button onClick={clickLogin}> With google </button>
-
-        <div>
-          <form onSubmit={onSubmitResetPassword}>
-            <input
-              type="email"
-              id="email_reset_password"
-              name="email_reset_password"
-              placeholder="correo"
-              required
-            />
-            <button type="submit"> Enviar </button>
-          </form>
-        </div>
       </Layout>
     </main>
   );

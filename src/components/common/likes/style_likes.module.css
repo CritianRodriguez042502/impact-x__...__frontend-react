@@ -1,3 +1,4 @@
+/* Style for mobile, tablet and desktop*/
 .messageError {
   color: rgb(112, 109, 109);
   white-space: nowrap;
@@ -7,3 +8,6 @@
 .messageError:hover {
   color: rgb(0, 0, 0);
 }
+
+
+

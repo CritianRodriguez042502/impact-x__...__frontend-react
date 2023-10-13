@@ -8,7 +8,8 @@ import {
   axiosAllUsernames,
   axiosBlogsByUser,
 } from "../../../redux/index";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_sidebar_dashboard.module.css";
 
 export function SidebarDashboard({ appearance }) {
@@ -25,10 +26,10 @@ export function SidebarDashboard({ appearance }) {
   const [allUsernames, setAllUsernames] = useState([]);
   const [visibility, setVisibility] = useState("none");
 
-  // dom with css
-
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
+
+  // dom with css
 
   useEffect(() => {
     if (!access) {
@@ -124,6 +125,22 @@ export function SidebarDashboard({ appearance }) {
     })
       .then((res) => {
         if (res.ok) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({
+            icon: "success",
+            title: "imagen cargada correctamente",
+          });
           setTimeout(() => {
             dispatch(axiosUserData({ method: "get", jwt: access }));
           }, 200);
@@ -178,17 +195,17 @@ export function SidebarDashboard({ appearance }) {
         }
       } else {
         Swal.fire({
-          icon: 'warning',
-          title: 'Oops...',
-          text: 'Este nombre de usuario ya existe',
-        })
+          icon: "warning",
+          title: "Oops...",
+          text: "Este nombre de usuario ya existe",
+        });
       }
     } else {
       Swal.fire({
-        icon: 'info',
-        title: 'Oops...',
-        text: 'Estas tratando de enviar datos vacios',
-      })
+        icon: "info",
+        title: "Oops...",
+        text: "Estas tratando de enviar datos vacios",
+      });
     }
   }
 
@@ -201,9 +218,12 @@ export function SidebarDashboard({ appearance }) {
   }
 
   return (
-    <main className={style.parentContainer}>
+    <main
+      className={style.parentContainer}
+      style={appearance === true ? { left: "0px" } : { left: "-300px" }}
+    >
       <section className={style.sidebarNavegation}>
-        <nav className={style.containerLiks}>
+        <nav>
           <Link className={style.navbarLink} to={"/home"}>
             IMPACT X
           </Link>
@@ -227,12 +247,12 @@ export function SidebarDashboard({ appearance }) {
               <img
                 src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
                 alt="img"
-                width={60}
+                width={130}
               />
             </div>
           ) : (
             <div>
-              <img src={containerImg} alt="img" width={60} />
+              <img src={containerImg} alt="img" width={130} />
             </div>
           )}
         </article>
@@ -243,23 +263,20 @@ export function SidebarDashboard({ appearance }) {
           className={style.fixedSettingsContainer}
           style={{ display: visibility }}
         >
-          <p onClick={withoutVisibilityOptions}> Xd </p>
+          <h1 onClick={withoutVisibilityOptions}>
+            <AiOutlineClose />
+          </h1>
           {containerImg === undefined || containerImg === null ? (
-            <p> Modificar datos y agregar imagen de perfil </p>
+            <h3> Modificar datos y agregar imagen de perfil </h3>
           ) : (
-            <p> Modificar dataos de usuario o cambiar imagen de perfil </p>
+            <h3> Modificar dataos de usuario o cambiar imagen de perfil </h3>
           )}
-          <form onSubmit={onSubmitUpdateDataUser}>
+          <form
+            className={style.formUpdateDataUser}
+            onSubmit={onSubmitUpdateDataUser}
+          >
             {Object.keys(updateDataUser).length !== 0 ? (
               <div>
-                <label htmlFor="image"> Imagen de perfil </label>
-                <input
-                  type="file"
-                  name="file"
-                  id="file"
-                  accept="image/*"
-                  onChange={onChangeUploadImg}
-                />
                 <label htmlFor="first_name"> Primer nombre </label>
                 <input
                   type="text"
@@ -286,6 +303,14 @@ export function SidebarDashboard({ appearance }) {
                   value={updateDataUser.username}
                   onChange={onChangeUpdateDataUser}
                   required
+                />
+                <label htmlFor="image"> Imagen de perfil </label>
+                <input
+                  type="file"
+                  name="file"
+                  id="file"
+                  accept="image/*"
+                  onChange={onChangeUploadImg}
                 />
                 <button type="submit"> Actualizar </button>
               </div>

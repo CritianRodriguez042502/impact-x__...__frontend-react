@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {
@@ -11,7 +12,7 @@ import {
   axiosUpdateBlogUser,
 } from "../../../redux/index";
 import { GetReactionDashboard } from "../../../components/index";
-import {SidebarDashboard} from "../../../components/common/sidebar/SidebarDashboard"
+import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
 import style from "./style_update_blog_by_user.module.css";
 
 export function UpdateBlogByUser() {
@@ -141,6 +142,22 @@ export function UpdateBlogByUser() {
 
     if (dataUpdateBlog.title && dataUpdateBlog.description) {
       dispatch(axiosUpdateBlogUser(data));
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: "success",
+        title: "Blog actualizado",
+      });
       navigate("/dashboard/blogs_user");
     }
   }
@@ -156,8 +173,11 @@ export function UpdateBlogByUser() {
         <title> Dashboard </title>
       </Helmet>
 
-      <SidebarDashboard/>
-      <section style={{ opacity: allVisibility }} className={style.containerCreateBlog}>
+      <SidebarDashboard />
+      <section
+        style={{ opacity: allVisibility }}
+        className={style.containerCreateBlog}
+      >
         <h1 className={style.titleCreateBlog}> ACTUALIZAR BLOG </h1>
 
         <div className={style.containerLinkAtras}>
@@ -171,7 +191,6 @@ export function UpdateBlogByUser() {
         {infoJWTVerifi.status === "fulfilled" && access ? (
           <div>
             <article>
-              
               <form
                 className={style.inputsInCreatingBlog}
                 encType="multipart/form-data"
@@ -180,7 +199,12 @@ export function UpdateBlogByUser() {
                 {Object.keys(dataUpdateBlog).length !== 0 ? (
                   <div>
                     <div className={style.title}>
-                      <label className={style.labelTitlePersonalize} htmlFor="title"> Titulo </label>
+                      <label
+                        className={style.labelTitlePersonalize}
+                        htmlFor="title"
+                      >
+                        Titulo
+                      </label>
                       <input
                         type="text"
                         name="title"
@@ -192,7 +216,12 @@ export function UpdateBlogByUser() {
                     </div>
 
                     <div className={style.file}>
-                      <label className={style.labelFilePersonalize} htmlFor="file"> Cambiar imagen </label>
+                      <label
+                        className={style.labelFilePersonalize}
+                        htmlFor="file"
+                      >
+                        Cambiar imagen
+                      </label>
                       <input
                         type="file"
                         name="img"
@@ -203,7 +232,12 @@ export function UpdateBlogByUser() {
                     </div>
 
                     <div className={style.description}>
-                      <label className={style.labelDescriptionPersonalize} htmlFor="description"> Descripcion </label>
+                      <label
+                        className={style.labelDescriptionPersonalize}
+                        htmlFor="description"
+                      >
+                        Descripcion
+                      </label>
                       <textarea
                         name="description"
                         id="description"
@@ -216,23 +250,25 @@ export function UpdateBlogByUser() {
                     </div>
 
                     <div className={style.public}>
-                      <label
+                      <b
                         style={
                           publicSelect === "PRIVADO"
                             ? { color: "rgb(187, 69, 69)" }
                             : { color: "rgb(69, 142, 69)" }
                         }
-                        htmlFor="public"
                       >
                         {publicSelect}
-                      </label>
-                      <input
-                        type="checkbox"
-                        name="public"
-                        id="public"
-                        checked={dataUpdateBlog.public}
-                        onChange={onchangeData}
-                      />
+                      </b>
+                      <div class={style.check}>
+                        <input
+                          type="checkbox"
+                          id="pill3"
+                          name="public"
+                          checked={dataUpdateBlog.public}
+                          onChange={onchangeData}
+                        />
+                        <label for="pill3"></label>
+                      </div>
                     </div>
 
                     <div className={style.category}>

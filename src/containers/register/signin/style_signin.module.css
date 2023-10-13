@@ -30,10 +30,6 @@
   outline: none;
 }
 
-.containerInputs button[type="sumbit"] {
-  font-weight: bold;
-}
-
 .containerInputs button {
   background-color: #3eaa52;
   color: #fff;
@@ -46,6 +42,23 @@
 
 .containerInputs button:hover {
   background-color: #0c8122;
+}
+
+.containerInputs p {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  color: rgb(59, 59, 144);
+  text-decoration: underline;
+  transition: transform 0.3s;
+  -webkit-transition: transform 0.3s;
+  -moz-transition: transform 0.3s;
+  -ms-transition: transform 0.3s;
+  -o-transition: transform 0.3s;
+}
+
+.containerInputs p:active {
+  color: rgb(0, 0, 147);
 }
 
 .messageError {

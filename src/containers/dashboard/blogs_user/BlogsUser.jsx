@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 import { axiosBlogsByUser, axiosDeleteBlogUser } from "../../../redux/index";
 import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
+import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_blogs_user.module.css";
 
 export function BlogsUser() {
@@ -27,7 +30,7 @@ export function BlogsUser() {
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
     useState(false);
-  const [valueScrollApearence, setValueScrollApearence] = useState("///");
+  const [valueScrollApearence, setValueScrollApearence] = useState(<AiOutlineMenu/>);
 
   // States of create, update and delete blog
   useEffect(() => {
@@ -141,6 +144,39 @@ export function BlogsUser() {
     }
   }
 
+  function deleteBlogByUser(data) {
+    Swal.fire({
+      title: "Eliminar",
+      text: "Estas seguro que deseas eliminar este blog?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(axiosDeleteBlogUser(data));
+        setAllVisibility("0");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "error",
+          title: "Blog eliminado",
+        });
+      }
+    });
+  }
+
   return (
     <main>
       <Helmet>
@@ -149,20 +185,19 @@ export function BlogsUser() {
         <title> Dashboard </title>
       </Helmet>
 
-      <SidebarDashboard appearance={navegationScrollAppearance}/>
+      <SidebarDashboard appearance={navegationScrollAppearance} />
 
-      
       <section className={style.containerBlogsUser}>
         <h1> Blogs del usuario registrado </h1>
         <div className={style.bottomNavegationScrollAppearance}>
           <h1
             onClick={(e) => {
-              if (valueScrollApearence === "///") {
+              if (navegationScrollAppearance === false) {
                 setNavegationScrollAppearance(true);
-                setValueScrollApearence("XXX");
+                setValueScrollApearence(<AiOutlineClose/>);
               } else {
                 setNavegationScrollAppearance(false);
-                setValueScrollApearence("///");
+                setValueScrollApearence(<AiOutlineMenu/>);
               }
             }}
           >
@@ -170,13 +205,13 @@ export function BlogsUser() {
           </h1>
         </div>
 
+        <Link to={"/dashboard/create_blog"}> crear </Link>
         <div style={{ opacity: allVisibility }}>
           <div>
             {infoBlogsByUser.status === "pending" ? (
               <h1> Cargando... </h1>
             ) : infoBlogsByUser.status === "fulfilled" && !location.search ? (
               <div>
-                <Link to={"/dashboard/create_blog"}> crear </Link>
                 {infoBlogsByUser.info.results?.map((data) => {
                   return (
                     <div key={data.id}>
@@ -193,8 +228,7 @@ export function BlogsUser() {
                             jwt: access,
                             slug: `${data.slug}`,
                           };
-                          dispatch(axiosDeleteBlogUser(info));
-                          setAllVisibility("0");
+                          deleteBlogByUser(info);
                         }}
                       >
                         Eliminar

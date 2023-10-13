@@ -6,6 +6,8 @@ import { Helmet } from "react-helmet";
 import { axiosBlogDetail } from "../../../redux/index";
 import { Layout } from "../../../components/index";
 import { LikesBlog, CommentsBlog } from "../../../components/index";
+import style from "./style_blog_detail.module.css"
+
 
 export function BlogDetail() {
   const dispatch = useDispatch();

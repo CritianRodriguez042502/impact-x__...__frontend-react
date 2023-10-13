@@ -15,7 +15,7 @@ export function InitialDashboard() {
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
     useState(false);
-  const [valueScrollApearence, setValueScrollApearence] = useState("///");
+  const [valueScrollApearence, setValueScrollApearence] = useState(<AiOutlineMenu/>);
 
   useEffect(() => {
     if (infoDatauser.status === "fulfilled") {
@@ -37,12 +37,12 @@ export function InitialDashboard() {
         <div className={style.bottomNavegationScrollAppearance}>
           <h1
             onClick={(e) => {
-              if (valueScrollApearence === "///") {
+              if (navegationScrollAppearance === false) {
                 setNavegationScrollAppearance(true);
-                setValueScrollApearence("XXX");
+                setValueScrollApearence(<AiOutlineClose/>);
               } else {
                 setNavegationScrollAppearance(false);
-                setValueScrollApearence("///");
+                setValueScrollApearence(<AiOutlineMenu/>);
               }
             }}
           >

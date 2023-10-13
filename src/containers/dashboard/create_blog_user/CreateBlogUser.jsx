@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { axiosCreateBlogUser, axiosCategorys } from "../../../redux/index";
@@ -85,12 +86,36 @@ export function CreateBlogUser() {
       if (data.info.category !== "Seleccionar categoria") {
         if (data.info.content) {
           dispatch(axiosCreateBlogUser(data));
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+  
+          Toast.fire({
+            icon: "success",
+            title: "Blog creado",
+          });
           navigate("/dashboard/blogs_user");
         } else {
-          alert("Es necesario el apartado de blog");
+          Swal.fire({
+            icon: "info",
+            title: "Oops...",
+            text: "El contenido del blog no debe estar vacio",
+          });
         }
       } else {
-        alert("Debes seleccionar una categoria");
+        Swal.fire({
+          icon: "info",
+          title: "Oops...",
+          text: "Debes seleccionar una categoria",
+        });
       }
     } else {
       alert("Esta tratando de enviar datos vacios");
@@ -135,7 +160,7 @@ export function CreateBlogUser() {
 
               <div className={style.file}>
                 <label htmlFor="image"> Imagen </label>
-                <input
+                <input 
                   type="file"
                   name="image"
                   id="image"
@@ -162,24 +187,27 @@ export function CreateBlogUser() {
               </div>
 
               <div className={style.public}>
-                <label
+                <b
                   style={
                     publicSelect === "PRIVADO"
                       ? { color: "rgb(187, 69, 69)" }
                       : { color: "rgb(69, 142, 69)" }
                   }
-                  htmlFor="public"
                 >
                   {publicSelect}
-                </label>
-                <input
-                  type="checkbox"
-                  name="public"
-                  id="public"
-                  onChange={onChangeCreateBlog}
-                />
+                </b>
+                <div class={style.check}>
+                  <input
+                    type="checkbox"
+                    id="pill3"
+                    name="public"
+                    onChange={onChangeCreateBlog}
+                  />
+                  <label for="pill3"></label>
+                </div>
               </div>
 
+             
               <div className={style.category}>
                 <select onClick={onClickSelectCategory}>
                   <option>Seleccionar categoria</option>
