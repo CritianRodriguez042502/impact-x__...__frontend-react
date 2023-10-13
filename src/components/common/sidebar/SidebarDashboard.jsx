@@ -96,8 +96,20 @@ export function SidebarDashboard({ appearance }) {
   }, [infoDatauser.info, infoAllUsernames.info]);
 
   function onClickLogout(e) {
-    localStorage.clear();
-    location.href = "http://localhost:5173/access/signin";
+    Swal.fire({
+      text: "Estas seguro que deseas cerrar sesion?",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Cerrar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
+        location.href = "http://localhost:5173/access/signin";
+      }
+    });
+    
   }
 
   function onChangeUpdateDataUser(e) {
