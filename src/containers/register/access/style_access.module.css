@@ -1,0 +1,86 @@
+/* Media screen mobile */
+
+.containerContent {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 20px 10px rgba(0, 0, 0, 0.3);
+}
+
+.containerContent h1 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: black;
+}
+
+.containerContent p {
+  font-size: 16px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: black;
+  line-height: 1.4;
+}
+
+.containerButtons {
+  margin-top: 20px;
+}
+
+.containerButtons button {
+  background: #2cae2a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.containerButtons button:hover {
+  background: #056603;
+}
+
+.containerImg {
+    display: none;
+}
+
+
+/* Style for tablet */
+@media screen and (min-width: 550px) and (max-width: 800px) {
+    .containerContent p {
+        padding: 0px;
+    }
+}
+
+/* Style for desktop*/
+@media screen and (min-width: 800px) {
+
+    .containerAccess {
+        
+        margin: 25px 0px;
+        display: flex;
+    }
+
+    .containerContent  { 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 400px;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .containerContent p {
+        padding-top: 0px;
+    }
+    .containerImg {
+        display: initial;
+        margin-right: 4.5%;
+    }
+    .containerImg img {
+        width: 350px;
+    }
+}

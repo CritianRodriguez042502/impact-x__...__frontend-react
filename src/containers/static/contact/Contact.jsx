@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 import style from "./style_contact.module.css";
 
-
 export function Contact() {
   return (
     <main>
@@ -17,7 +16,7 @@ export function Contact() {
         <section className={style.containerContact}>
           <aside className={style.containerContent}>
             <h1>
-              ¿Quieres hacer un <br />
+              <span style={{color : "green", fontSize : "30px"}}> Q</span>uieres hacer un <br />
               proyecto?
             </h1>
             <p>
@@ -26,11 +25,11 @@ export function Contact() {
             </p>
 
             <form className={style.containerInputs}>
-              <label htmlFor="first_name"> Nombre y apllido </label>
+              <label htmlFor="first_name"> Nombre y apellido </label>
               <input type="text" id="first_name" name="first_name" required />
               <label htmlFor="last_name"> Correo </label>
               <input type="email" id="email" name="email" required />
-              <label htmlFor="content"> Mensaje</label>
+              <label htmlFor="content"> Mensaje </label>
               <textarea
                 name="content"
                 id="content"
@@ -42,7 +41,6 @@ export function Contact() {
               <div className={style.containerButton}>
                 <button type="submit"> Enviar </button>
               </div>
-
             </form>
           </aside>
 
@@ -50,7 +48,6 @@ export function Contact() {
             <img
               src="https://us.123rf.com/450wm/theerakit/theerakit1711/theerakit171100005/90426044-icono-de-correo-electr%C3%B3nico-sobre-fondo-blanco-signo-de-correo-electr%C3%B3nico-estilo-plano-s%C3%ADmbolo-de.jpg"
               alt="img"
-              
             />
           </aside>
         </section>

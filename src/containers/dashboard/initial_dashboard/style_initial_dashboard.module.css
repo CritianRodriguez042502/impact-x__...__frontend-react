@@ -22,7 +22,6 @@
   padding: 30px;
 }
 
-
 .staticContainer h1 {
   color: white;
   white-space: nowrap;
@@ -99,6 +98,20 @@
     position: absolute;
     top: -100px;
     right: -100px;
+    background: white;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+
+  .circule2 {
+    position: absolute;
+    bottom: -20px;
+    right: -150px;
     background: white;
     border-radius: 50%;
     width: 200px;
