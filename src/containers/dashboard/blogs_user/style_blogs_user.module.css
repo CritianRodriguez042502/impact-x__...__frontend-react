@@ -2,7 +2,7 @@
 .viewInitalBlogByUser {
   width: 100%;
   height: 100%;
-  background-image: url("https://downloadwap.com/thumbs2/wallpapers/p2ls/new/34/view_iEflDYe1Zu.jpg");
+  /*background-image: url("https://downloadwap.com/thumbs2/wallpapers/p2ls/new/34/view_iEflDYe1Zu.jpg");*/
   background-size: cover;
   background-position: center;
 }
@@ -48,7 +48,7 @@
 
 .titleMajor {
   white-space: nowrap;
-  color: white;
+  color: rgb(56, 56, 56);
   text-align: center;
 }
 
