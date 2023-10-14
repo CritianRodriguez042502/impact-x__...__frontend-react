@@ -47,7 +47,7 @@
   font-size: 15px;
   font-weight: bold;
   text-decoration: none;
-  padding: 15px 50px;
+  padding: 15px 25px;
   border-bottom: 2px solid transparent;
   transition: border-bottom 0.3s ease;
   -webkit-transition: border-bottom 0.3s ease;
@@ -143,5 +143,9 @@
 @media screen and (min-width: 750px) {
   .parentContainer {
     left: 0px;
+  }
+
+  .navbarLink {
+    padding: 15px 50px;
   }
 }

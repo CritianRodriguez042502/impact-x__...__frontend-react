@@ -2,7 +2,6 @@
 .viewInitalBlogByUser {
   width: 100%;
   height: 100%;
-  /*background-image: url("https://downloadwap.com/thumbs2/wallpapers/p2ls/new/34/view_iEflDYe1Zu.jpg");*/
   background-size: cover;
   background-position: center;
 }
@@ -28,6 +27,7 @@
 .containerBlogsUser nav {
   width: 100%;
   background: #e8e8e8;
+  box-shadow: 2px 2px 10px black;
   padding: 15px 0px;
   text-align: center;
 }
@@ -49,6 +49,7 @@
 .titleMajor {
   white-space: nowrap;
   color: rgb(56, 56, 56);
+  font-size: 27px;
   text-align: center;
 }
 
@@ -81,6 +82,28 @@
   font-size: 20px;
   margin: 0px;
 }
+
+/* Contenedor del titulo y la etiqueta de publico o privado */
+.containerTitleAndPublic {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.containerTitleAndPublic .publicCase {
+  text-decoration: underline;
+  white-space: nowrap;
+  font-size: 17px;
+  color: green;
+}
+
+.containerTitleAndPublic .privateCase {
+  text-decoration: underline;
+  white-space: nowrap;
+  font-size: 17px;
+  color: rgb(162, 7, 7);
+}
+/* ------------------------------- */
 
 .containerContent p {
   margin: 0px;
@@ -133,10 +156,9 @@
   .containerBlogsUser nav .linkNavbar {
     margin: 0px 20px;
   }
+
 }
 
-/* Style for desktop*/
-/* Resto de estilos... */
 
 /* Style for desktop*/
 @media screen and (min-width: 750px) {
@@ -146,7 +168,10 @@
 
   .titleMajor {
     text-align: start;
-    margin: 10px 10px;
+    margin-right: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 8px;
   }
 
   .containerBlogsUser {
@@ -166,8 +191,8 @@
   .separateBlogContainer {
     flex-direction: row;
     border-radius: 10px;
-    margin-right: 20px;
-    margin-left: 10px;
+    margin-right: 7%;
+    margin-left: 20px;
   }
 
   .containerImg {
@@ -178,6 +203,21 @@
     padding: 10px;
     text-align: start;
   }
+
+  /* Contenedor del titulo y la etiqueta de publico o privado */
+  .containerTitleAndPublic {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .containerTitleAndPublic .publicCase {
+    margin-right: 8px;
+  }
+
+  .containerTitleAndPublic .privateCase {
+    margin-right: 8px;
+  }
+  /* ---------------------------------- */
 
   .containerContent p {
     padding: 0px;
@@ -190,7 +230,12 @@
     align-items: center;
   }
 
+  .containerButtons {
+    white-space: nowrap;
+  }
+
   .containerButtonsAndDate b {
     margin-right: 10px;
+    white-space: nowrap;
   }
 }

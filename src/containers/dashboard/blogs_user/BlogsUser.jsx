@@ -262,10 +262,20 @@ export function BlogsUser() {
                         />
                       </div>
                       <div className={style.containerContent}>
-                        <h1> {data.title} </h1>
-                        <p> {data.description} </p>
+                        <div className={style.containerTitleAndPublic}>
+                          <h1> {data.title} </h1>
+                          {data.public === true ? (
+                            <b className={style.publicCase}> Publico </b>
+                          ) : (
+                            <b className={style.privateCase}> Privado </b>
+                          )}
+                        </div>
+                        <div>
+                          <p> {data.description} </p>
+                        </div>
+
                         <hr style={{ border: "2px solid gray" }} />
-                        <div></div>
+
                         <div className={style.containerButtonsAndDate}>
                           <div className={style.containerButtons}>
                             <button
@@ -318,10 +328,20 @@ export function BlogsUser() {
                         />
                       </div>
                       <div className={style.containerContent}>
-                        <h1> {data.title} </h1>
-                        <p> {data.description} </p>
+                        <div className={style.containerTitleAndPublic}>
+                          <h1> {data.title} </h1>
+                          {data.public === true ? (
+                            <b className={style.publicCase}> Publico </b>
+                          ) : (
+                            <b className={style.privateCase}> Privado </b>
+                          )}
+                        </div>
+                        <div>
+                          <p> {data.description} </p>
+                        </div>
+
                         <hr style={{ border: "2px solid gray" }} />
-                        <div></div>
+
                         <div className={style.containerButtonsAndDate}>
                           <div className={style.containerButtons}>
                             <button

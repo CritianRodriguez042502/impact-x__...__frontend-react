@@ -62,7 +62,7 @@ body {
 .navbarLink {
   color: black;
   white-space: nowrap;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: bold;
   text-decoration: none;
   padding: 15px 5px;
@@ -121,8 +121,8 @@ body {
 /*   Media screen tablet   */
 @media screen and (min-width: 550px) and (max-width: 950px) {
   .navbarLink {
-    font-size: 18px;
-    padding: 15px 25px;
+    font-size: 15px;
+    padding: 15px 10px;
   }
 }
 
@@ -153,9 +153,9 @@ body {
   }
 
   .navbarLink {
-    font-size: 15px;
+    font-size: 14px;
     padding: 0px;
-    margin: 0px 9px;
+    margin: 0px 7px;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
   }
@@ -165,12 +165,12 @@ body {
   }
 
   .buttonLogin {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 550;
   }
 
   .buttonDashboard {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 550;
   }
 }
