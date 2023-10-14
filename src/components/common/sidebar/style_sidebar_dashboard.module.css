@@ -25,8 +25,13 @@
 }
 
 .sidebarNavegation nav {
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
+}
+
+.sidebarNavegation article {
+  margin-bottom: 30px;
 }
 
 .sidebarNavegation article img {
@@ -61,16 +66,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: rgb(241, 240, 240);
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px black;
   padding: 20px;
   width: 85%;
   height: 75vh;
   z-index: 10;
   overflow: auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .fixedSettingsContainer h1 {
+  margin: 0px;
   display: inline-block;
   cursor: pointer;
 }

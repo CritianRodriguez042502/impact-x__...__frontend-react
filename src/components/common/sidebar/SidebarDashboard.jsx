@@ -29,6 +29,8 @@ export function SidebarDashboard({ appearance }) {
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
 
+  let widthDisplay = window.innerWidth
+
   // dom with css
 
   useEffect(() => {
@@ -229,10 +231,12 @@ export function SidebarDashboard({ appearance }) {
     setVisibility("none");
   }
 
+  
+
   return (
     <main
       className={style.parentContainer}
-      style={appearance === true ? { left: "0px" } : { left: "-300px" }}
+      style={appearance === true || widthDisplay >= 750 ? { left: "0px" } : { left: "-300px" }}
     >
       <section className={style.sidebarNavegation}>
         <nav>
@@ -259,12 +263,12 @@ export function SidebarDashboard({ appearance }) {
               <img
                 src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
                 alt="img"
-                width={130}
+                width={140}
               />
             </div>
           ) : (
             <div>
-              <img src={containerImg} alt="img" width={130} />
+              <img src={containerImg} alt="img" width={140} />
             </div>
           )}
         </article>
@@ -281,7 +285,7 @@ export function SidebarDashboard({ appearance }) {
           {containerImg === undefined || containerImg === null ? (
             <h3> Modificar datos y agregar imagen de perfil </h3>
           ) : (
-            <h3> Modificar dataos de usuario o cambiar imagen de perfil </h3>
+            <h3> Modificar datos de usuario o cambiar imagen de perfil </h3>
           )}
           <form
             className={style.formUpdateDataUser}

@@ -15,7 +15,9 @@ export function InitialDashboard() {
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
     useState(false);
-  const [valueScrollApearence, setValueScrollApearence] = useState(<AiOutlineMenu/>);
+  const [valueScrollApearence, setValueScrollApearence] = useState(
+    <AiOutlineMenu />
+  );
 
   useEffect(() => {
     if (infoDatauser.status === "fulfilled") {
@@ -24,7 +26,7 @@ export function InitialDashboard() {
   }, [infoDatauser.status]);
 
   return (
-    <main>
+    <main className={style.containerInitialDashboard}>
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,40 +35,61 @@ export function InitialDashboard() {
 
       <SidebarDashboard appearance={navegationScrollAppearance} />
 
-      <section className={style.containerInitialDashboard}>
+      <section>
         <div className={style.bottomNavegationScrollAppearance}>
           <h1
-            onClick={(e) => {
+            onClick={() => {
               if (navegationScrollAppearance === false) {
                 setNavegationScrollAppearance(true);
-                setValueScrollApearence(<AiOutlineClose/>);
+                setValueScrollApearence(<AiOutlineClose />);
               } else {
                 setNavegationScrollAppearance(false);
-                setValueScrollApearence(<AiOutlineMenu/>);
+                setValueScrollApearence(<AiOutlineMenu />);
               }
             }}
           >
             {valueScrollApearence}
           </h1>
         </div>
-        <h1> Dashboard </h1>
-        <h1> User </h1>
-        {infoDatauser.status === "pending" ? (
-          <h1> Cargando... </h1>
-        ) : infoDatauser.status === "fulfilled" ? (
-          dataUser?.map((data) => {
-            return (
-              <div key={data.id}>
-                <h1> {data.email} </h1>
-                <h1> {data.username} </h1>
-              </div>
-            );
-          })
-        ) : infoDatauser.status === "rejected" ? (
-          <h1> Error</h1>
+      </section>
+
+      <div className={style.circule1}></div>
+
+
+      <section className={style.staticContainer}>
+        {infoDatauser.status === "fulfilled" ? (
+          <h1>
+            // BIENVENIDO // <br /> {infoDatauser.info.username}
+          </h1>
         ) : (
           false
         )}
+        <p>
+          En IMPACT X, creemos en el poder de las palabras y las ideas. Te damos
+          la bienvenida a un lugar donde la creatividad fluye libremente y las
+          voces se unen para formar una comunidad vibrante y diversa. ¡Este es
+          tu espacio para inspirar, aprender y conectarte!
+        </p>
+        <aside className={style.containerImg}>
+          <div>
+            <img
+              className={style.img1}
+              src="https://geeksui.codescandy.com/geeks/assets/images/background/acedamy-img/frame-1.svg"
+              alt="img"
+              width={200}
+              height={200}
+            />
+          </div>
+          <div>
+            <img
+              className={style.img2}
+              src="https://geeksui.codescandy.com/geeks/assets/images/background/acedamy-img/frame-1.svg"
+              alt="img"
+              width={200}
+              height={200}
+            />
+          </div>
+        </aside>
       </section>
     </main>
   );

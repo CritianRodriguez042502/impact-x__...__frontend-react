@@ -30,7 +30,9 @@ export function BlogsUser() {
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
     useState(false);
-  const [valueScrollApearence, setValueScrollApearence] = useState(<AiOutlineMenu/>);
+  const [valueScrollApearence, setValueScrollApearence] = useState(
+    <AiOutlineMenu />
+  );
 
   // States of create, update and delete blog
   useEffect(() => {
@@ -60,7 +62,11 @@ export function BlogsUser() {
       })
         .then((res) => {
           if (!res.ok) {
-            throw new Error("Hubo algun error");
+            if (page > 1) {
+              navigate(`/dashboard/blogs_user?page=${page - 1}`);
+            } else {
+              navigate(`/dashboard/blogs_user`);
+            }
           }
           return res.json();
         })
@@ -90,7 +96,11 @@ export function BlogsUser() {
       })
         .then((res) => {
           if (!res.ok) {
-            navigate(`/dashboard/blogs_user?page=${page - 1}`);
+            if (page > 1) {
+              navigate(`/dashboard/blogs_user?page=${page - 1}`);
+            } else {
+              navigate(`/dashboard/blogs_user`);
+            }
           }
           return res.json();
         })
@@ -150,29 +160,51 @@ export function BlogsUser() {
       text: "Estas seguro que deseas eliminar este blog?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
       confirmButtonText: "Si, eliminar!",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(axiosDeleteBlogUser(data));
-        setAllVisibility("0");
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 2000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
+        if (page) {
+          dispatch(axiosDeleteBlogUser(data));
+          setAllVisibility("0");
+          refreshBloByUserPagination();
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
 
-        Toast.fire({
-          icon: "error",
-          title: "Blog eliminado",
-        });
+          Toast.fire({
+            icon: "error",
+            title: "Blog eliminado",
+          });
+        } else {
+          dispatch(axiosDeleteBlogUser(data));
+          setAllVisibility("0");
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({
+            icon: "error",
+            title: "Blog eliminado",
+          });
+        }
       }
     });
   }
@@ -194,10 +226,10 @@ export function BlogsUser() {
             onClick={(e) => {
               if (navegationScrollAppearance === false) {
                 setNavegationScrollAppearance(true);
-                setValueScrollApearence(<AiOutlineClose/>);
+                setValueScrollApearence(<AiOutlineClose />);
               } else {
                 setNavegationScrollAppearance(false);
-                setValueScrollApearence(<AiOutlineMenu/>);
+                setValueScrollApearence(<AiOutlineMenu />);
               }
             }}
           >
@@ -260,9 +292,7 @@ export function BlogsUser() {
                             jwt: access,
                             slug: `${data.slug}`,
                           };
-                          dispatch(axiosDeleteBlogUser(info));
-                          setAllVisibility("0");
-                          refreshBloByUserPagination();
+                          deleteBlogByUser(info);
                         }}
                       >
                         Eliminar

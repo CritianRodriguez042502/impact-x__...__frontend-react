@@ -1,9 +1,6 @@
 /* Media screen mobile */
 
-.containerInitialDashboard {
-    padding: 10px;
-}
-
+/* Style button navigate*/
 .bottomNavegationScrollAppearance {
   position: absolute;
   top: 0px;
@@ -11,21 +8,103 @@
 }
 
 .bottomNavegationScrollAppearance h1 {
+  color: white;
   cursor: pointer;
   padding: 20px;
   margin: 0px;
 }
 
+/* Style initialDashboard*/
+.containerInitialDashboard {
+  background-image: url("https://downloadwap.com/thumbs2/wallpapers/p2ls/new/34/view_iEflDYe1Zu.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 30px;
+}
 
+.staticContainer h1 {
+  color: white;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
 
-/* media screen desktop */
+.staticContainer p {
+  margin: 0px;
+  padding-top: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 130px;
+  font-size: 19px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.containerImg {
+  display: flex;
+  justify-content: center;
+  margin-top: -70px;
+}
+
+.containerImg .img2 {
+  display: none;
+}
+
+/* media screen tablet */
+@media screen and (min-width: 550px) and (max-width: 850px) {
+  .containerImg {
+    justify-content: space-around;
+  }
+  .containerImg .img2 {
+    display: initial;
+  }
+}
+
+/* media screen Desktop */
 @media screen and (min-width: 750px) {
-    .bottomNavegationScrollAppearance {
-        display: none;
-    }
+  .bottomNavegationScrollAppearance {
+    display: none;
+  }
 
-    .containerInitialDashboard {
-        padding-left: 250px;
-    }
+  .containerInitialDashboard {
+    padding-left: 250px;
+  }
 
+  .staticContainer {
+    margin: 0px 50px;
+  }
+
+  .staticContainer p {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .containerImg {
+    justify-content: space-around;
+  }
+
+  .containerImg .img1 {
+    width: 100%;
+  }
+
+  .containerImg .img2 {
+    display: initial;
+    width: 100%;
+  }
+
+  /* Style circule */
+  .circule1 {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    background: white;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
 }
