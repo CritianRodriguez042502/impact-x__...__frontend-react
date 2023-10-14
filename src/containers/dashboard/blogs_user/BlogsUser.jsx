@@ -210,7 +210,7 @@ export function BlogsUser() {
   }
 
   return (
-    <main>
+    <main className={style.viewInitalBlogByUser}>
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -219,8 +219,14 @@ export function BlogsUser() {
 
       <SidebarDashboard appearance={navegationScrollAppearance} />
 
-      <section className={style.containerBlogsUser}>
-        <h1> Blogs del usuario registrado </h1>
+      <article className={style.containerBlogsUser}>
+        <nav>
+          <Link className={style.linkNavbar} to={"/dashboard/create_blog"}>
+            Crear blog
+          </Link>
+        </nav>
+
+        <h1 className={style.titleMajor}> Blogs registrados </h1>
         <div className={style.bottomNavegationScrollAppearance}>
           <h1
             onClick={(e) => {
@@ -237,7 +243,6 @@ export function BlogsUser() {
           </h1>
         </div>
 
-        <Link to={"/dashboard/create_blog"}> crear </Link>
         <div style={{ opacity: allVisibility }}>
           <div>
             {infoBlogsByUser.status === "pending" ? (
@@ -246,26 +251,50 @@ export function BlogsUser() {
               <div>
                 {infoBlogsByUser.info.results?.map((data) => {
                   return (
-                    <div key={data.id}>
-                      <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
+                    <aside
+                      className={style.separateBlogContainer}
+                      key={data.id}
+                    >
+                      <div className={style.containerImg}>
+                        <img
+                          src={`http://localhost:8000${data.img}`}
+                          alt="img"
+                        />
+                      </div>
+                      <div className={style.containerContent}>
                         <h1> {data.title} </h1>
                         <p> {data.description} </p>
-                        <hr />
-                        <p> {data.creation} </p>
-                      </Link>
-
-                      <button
-                        onClick={() => {
-                          const info = {
-                            jwt: access,
-                            slug: `${data.slug}`,
-                          };
-                          deleteBlogByUser(info);
-                        }}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
+                        <hr style={{ border: "2px solid gray" }} />
+                        <div></div>
+                        <div className={style.containerButtonsAndDate}>
+                          <div className={style.containerButtons}>
+                            <button
+                              className={style.buttonDelete}
+                              onClick={() => {
+                                const info = {
+                                  jwt: access,
+                                  slug: `${data.slug}`,
+                                };
+                                deleteBlogByUser(info);
+                              }}
+                            >
+                              Eliminar
+                            </button>
+                            <button
+                              className={style.buttonUpdate}
+                              onClick={(e) => {
+                                navigate(
+                                  `/dashboard/blog_user_detail/${data.slug}`
+                                );
+                              }}
+                            >
+                              Modificar
+                            </button>
+                          </div>
+                          <b> {data.creation} </b>
+                        </div>
+                      </div>
+                    </aside>
                   );
                 })}
                 <div>
@@ -278,26 +307,50 @@ export function BlogsUser() {
               <div style={{ opacity: allVisibilityPage }}>
                 {nextBlogPages.results?.map((data) => {
                   return (
-                    <div key={data.id}>
-                      <Link to={`/dashboard/blog_user_detail/${data.slug}`}>
+                    <aside
+                      className={style.separateBlogContainer}
+                      key={data.id}
+                    >
+                      <div className={style.containerImg}>
+                        <img
+                          src={`http://localhost:8000${data.img}`}
+                          alt="img"
+                        />
+                      </div>
+                      <div className={style.containerContent}>
                         <h1> {data.title} </h1>
                         <p> {data.description} </p>
-                        <hr />
-                        <p> {data.creation} </p>
-                      </Link>
-
-                      <button
-                        onClick={() => {
-                          const info = {
-                            jwt: access,
-                            slug: `${data.slug}`,
-                          };
-                          deleteBlogByUser(info);
-                        }}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
+                        <hr style={{ border: "2px solid gray" }} />
+                        <div></div>
+                        <div className={style.containerButtonsAndDate}>
+                          <div className={style.containerButtons}>
+                            <button
+                              className={style.buttonDelete}
+                              onClick={() => {
+                                const info = {
+                                  jwt: access,
+                                  slug: `${data.slug}`,
+                                };
+                                deleteBlogByUser(info);
+                              }}
+                            >
+                              Eliminar
+                            </button>
+                            <button
+                              className={style.buttonUpdate}
+                              onClick={(e) => {
+                                navigate(
+                                  `/dashboard/blog_user_detail/${data.slug}`
+                                );
+                              }}
+                            >
+                              Modificar
+                            </button>
+                          </div>
+                          <b> {data.creation} </b>
+                        </div>
+                      </div>
+                    </aside>
                   );
                 })}
                 <div>
@@ -313,7 +366,7 @@ export function BlogsUser() {
             )}
           </div>
         </div>
-      </section>
+      </article>
     </main>
   );
 }

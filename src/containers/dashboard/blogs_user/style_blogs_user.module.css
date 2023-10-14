@@ -1,28 +1,196 @@
+/* Style for mobile */
+.viewInitalBlogByUser {
+  width: 100%;
+  height: 100%;
+  background-image: url("https://downloadwap.com/thumbs2/wallpapers/p2ls/new/34/view_iEflDYe1Zu.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .bottomNavegationScrollAppearance {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
 .bottomNavegationScrollAppearance h1 {
-    cursor: pointer;
-    padding: 20px;
-    margin: 0px;
+  color: white;
+  cursor: pointer;
+  padding: 20px;
+  margin: 0px;
 }
 
 .containerBlogsUser {
-    padding: 0px 10px;
-    margin-top: 50px;
+  padding: 0px 0px;
+  margin-top: 50px;
 }
 
+.containerBlogsUser nav {
+  width: 100%;
+  background: #e8e8e8;
+  padding: 15px 0px;
+  text-align: center;
+}
 
+.containerBlogsUser nav .linkNavbar {
+  font-size: 23px;
+  color: white;
+  text-decoration: none;
+  padding: 5px 40px;
+  border-radius: 15px;
+  background: #03ab87;
+  transition: background 0.6s;
+}
+
+.containerBlogsUser nav .linkNavbar:hover {
+  background: #027159;
+}
+
+.titleMajor {
+  white-space: nowrap;
+  color: white;
+  text-align: center;
+}
+
+/* ----------------- */
+/* Styles blog list */
+.separateBlogContainer {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.containerImg {
+  margin-top: 10px;
+}
+
+.containerImg img {
+  width: 150px;
+}
+
+.containerContent {
+  text-align: center;
+
+  width: 100%;
+  word-break: break-word;
+}
+
+.containerContent h1 {
+  font-size: 20px;
+  margin: 0px;
+}
+
+.containerContent p {
+  margin: 0px;
+  padding: 5px 10px;
+}
+
+.containerButtons {
+  margin-bottom: 10px;
+}
+
+.buttonDelete {
+  background-color: #d02a0d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.buttonDelete:hover {
+  background-color: #a21e12;
+}
+
+.buttonUpdate {
+  margin: 5px;
+  background-color: #3a5acb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.buttonUpdate:hover {
+  background: rgb(28, 28, 223);
+}
+
+/* Style for tablet */
+
+@media screen and (min-width: 550px) and (max-width: 800px) {
+  .containerBlogsUser nav {
+    text-align: end;
+    padding: 20px 0px;
+  }
+
+  .containerBlogsUser nav .linkNavbar {
+    margin: 0px 20px;
+  }
+}
+
+/* Style for desktop*/
+/* Resto de estilos... */
+
+/* Style for desktop*/
 @media screen and (min-width: 750px) {
-    .bottomNavegationScrollAppearance {
-        display: none;
-    }
+  .bottomNavegationScrollAppearance {
+    display: none;
+  }
 
-    .containerBlogsUser {
-        margin-top: 20px;
-        padding-left: 250px;
-    }
+  .titleMajor {
+    text-align: start;
+    margin: 10px 10px;
+  }
+
+  .containerBlogsUser {
+    margin-top: 0px;
+    padding-left: 226px;
+  }
+
+  .containerBlogsUser nav {
+    text-align: end;
+    padding: 20px 0px;
+  }
+
+  .containerBlogsUser nav .linkNavbar {
+    margin: 0px 20px;
+  }
+
+  .separateBlogContainer {
+    flex-direction: row;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+
+  .containerImg {
+    margin: 10px;
+  }
+
+  .containerContent {
+    padding: 10px;
+    text-align: start;
+  }
+
+  .containerContent p {
+    padding: 0px;
+  }
+
+  .containerButtonsAndDate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .containerButtonsAndDate b {
+    margin-right: 10px;
+  }
 }
