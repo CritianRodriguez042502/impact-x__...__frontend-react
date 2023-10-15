@@ -23,7 +23,8 @@
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.15.0",
-    "sweetalert2": "^11.7.32"
+    "sweetalert2": "^11.6.13",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
