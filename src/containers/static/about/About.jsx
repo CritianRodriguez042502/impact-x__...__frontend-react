@@ -19,8 +19,7 @@ export function About() {
         <section className={style.containerAbout1}>
           <h1 className={style.title}>SOBRE NOSOTROS</h1>
           <p className={style.text}>
-            Los productos digitales se trabajan con metodologías ágiles, por lo
-            tanto, podemos garantizar un desarrollo fluido y eficiente.
+          Los productos digitales se han convertido en una parte fundamental de nuestro mundo actual, y su desarrollo ha evolucionado significativamente en los últimos años. Para afrontar los desafíos de este entorno dinámico y competitivo, es esencial adoptar metodologías ágiles.
           </p>
           <div className={style.iconContainer}>
             <h1 className={style.icon}>

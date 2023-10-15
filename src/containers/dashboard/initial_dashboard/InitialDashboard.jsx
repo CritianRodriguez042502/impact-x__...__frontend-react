@@ -54,7 +54,6 @@ export function InitialDashboard() {
       </section>
 
       <div className={style.circule1}></div>
-      <div className={style.circule2}></div>
 
 
       <section className={style.staticContainer}>

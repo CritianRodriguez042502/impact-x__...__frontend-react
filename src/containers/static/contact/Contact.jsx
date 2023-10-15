@@ -15,10 +15,7 @@ export function Contact() {
       <Layout>
         <section className={style.containerContact}>
           <aside className={style.containerContent}>
-            <h1>
-              <span style={{color : "green", fontSize : "30px"}}> Q</span>uieres hacer un <br />
-              proyecto?
-            </h1>
+            <h1>Quieres hacer un proyecto?</h1>
             <p>
               Solo cuéntanos que tienes en mente, cuáles son tus objetivos y
               comencemos
@@ -34,7 +31,7 @@ export function Contact() {
                 name="content"
                 id="content"
                 cols="30"
-                rows="10"
+                rows="3"
                 required
               ></textarea>
 

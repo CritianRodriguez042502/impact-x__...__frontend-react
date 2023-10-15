@@ -22,9 +22,10 @@
 }
 
 .tecnologyAndDesignContainer {
-  background: white;
   display: flex;
   justify-content: space-around;
+  background: #fff;
+  border: 1px solid gray;
   padding: 5px 0px;
   border-radius: 6px;
   margin-top: 70px;
@@ -39,7 +40,8 @@
 }
 
 .containerContent1 b:hover {
-  color: black;
+  text-decoration: underline;
+  color: green;
 }
 
 .containerImg1 {
@@ -222,20 +224,22 @@
   }
 
   .containerContent1 {
-    width: 90%;
+    width: 80%;
   }
 
   .containerContent1 h1 {
     font-size: 35px;
+    width: 70%;
   }
 
   .tecnologyAndDesignContainer {
-    width: 80%;
+    border: none;
+    max-width: 500px;
   }
 
-  .containerImg1 {
+  /*.containerImg1 {
     display: initial;
-  }
+  }*/
   /* ------------------------- */
 
   /* Styles container inital 2 */
