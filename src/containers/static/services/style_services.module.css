@@ -1,0 +1,208 @@
+/* Media screen mobile  */
+
+/* Container Services 1 */
+.containerServices1 {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.servicesContent1 {
+  padding: 20px;
+}
+
+.servicesContent1 h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.servicesContent1 h1::first-letter {
+  font-size: 30px;
+  color: green;
+}
+
+.servicesContent1 p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.servicesContent1 div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.servicesContent1 h3 {
+  font-size: 24px;
+}
+
+.servicesContent1 span {
+  font-size: 27px;
+  font-weight: bold;
+  color: #329c33;
+}
+
+.containerImg {
+  display: none;
+}
+/* -------------------------- */
+
+/* Container Services 2 */
+.containerServices2 {
+  background-color: #f6f6f6;
+  padding: 20px;
+  border: 2px solid #ddd;
+  text-align: center;
+}
+
+.containerServices2 h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.servicesContent2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.servicesContent2 div {
+  background-color: #fff;
+  padding: 20px;
+  border: 2px dotted #ddd;
+  border-radius: 5px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.servicesContent2 .icon {
+  font-size: 36px;
+  color: #329c33;
+  margin: 10px 0px;
+}
+
+.servicesContent2 h1 {
+  font-size: 20px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.servicesContent2 p {
+  font-size: 16px;
+  color: #555;
+}
+
+.servicesContent2 div:hover {
+  transform: translateY(-5px);
+}
+/* -------------------------- */
+
+/* Container Services 3 */
+
+.containerServices3 {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.containerServices3 aside h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.containerServices3 aside p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.containerServices3 aside div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.containerServices3 aside div p {
+  font-size: 36px;
+  color: #329c33;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.containerServices3 aside div p:hover {
+  transform: scale(1.1);
+}
+/* -------------------------- */
+
+/* Style for tablet */
+@media screen and (min-width: 550px) and (max-width: 750px) {
+  /* Container Services 2 */
+  .servicesContent2 div {
+    margin: 0px 50px;
+  }
+  /* ---------------- */
+}
+
+/* Style for desktop*/
+@media screen and (min-width: 750px) {
+  /* Container Services 1 */
+  .containerServices1 {
+    background: initial;
+  }
+
+  .servicesContent1 {
+    padding-top: 80px;
+    padding-bottom: 120px;
+    width: 50%;
+  }
+
+  .servicesContent1 h1 {
+    white-space: nowrap;
+  }
+
+  .servicesContent1 p {
+    padding: 0px 30px;
+    text-align: start;
+    margin: 0px;
+  }
+
+  .servicesContent1 div {
+    justify-content: space-evenly;
+  }
+  /* ---------------- */
+
+  /* Container Services 2 */
+  .servicesContent2 {
+    display: flex;
+    flex-direction: initial;
+    gap: 15px;
+  }
+  /* ---------------- */
+
+  /* Container Services 3 */
+  .containerServices3 {
+    background: initial;
+  }
+
+  .containerServices3 aside {
+    padding: 130px 0px;
+    width: 50%;
+  }
+
+  .circule {
+    position: absolute;
+    display: none;
+    background: red;
+    width: 500px;
+    height: 500px;
+  }
+  /* ---------------- */
+}

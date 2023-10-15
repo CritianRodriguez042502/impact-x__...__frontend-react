@@ -2,8 +2,7 @@
 
 .containerContent {
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 9px 4px 15px 15px rgba(0, 0, 0, 0.2);
+  background: #fff;
   text-align: center;
   max-width: 400px;
   margin: auto;
@@ -68,6 +67,10 @@
 
 /* Style for tablet */
 @media screen and (min-width: 550px) and (max-width: 800px) {
+  .containerContent {
+    border-radius: 10px;
+    box-shadow: 9px 4px 15px 15px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* Style for desktop*/
@@ -83,6 +86,9 @@
     margin-left: 8%;
     margin-right: 10%;
     max-width: 350px;
+    background: initial;
+    border-radius: 10px;
+    box-shadow: 9px 4px 15px 15px rgba(0, 0, 0, 0.2);
   }
 
   .containerContent h1 {

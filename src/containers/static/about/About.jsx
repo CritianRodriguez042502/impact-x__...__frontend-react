@@ -91,7 +91,6 @@ export function About() {
             <img
               src="https://2.bp.blogspot.com/-KwRFJBvUo38/XIJu0Vn82tI/AAAAAAAA9AA/MW5Ej9UIt2YS8zfqXlISB1bpC0FqeDzRgCLcBGAs/s1600/workteam.jpg"
               alt="Imagen de un equipo de trabajo"
-              
             />
           </div>
         </section>
