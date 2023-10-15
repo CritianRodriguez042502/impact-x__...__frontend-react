@@ -91,21 +91,24 @@
   -o-border-radius: 50%;
 }
 
+.commentContent {
+  width: 100%;
+}
+
 .commentUsername {
-  white-space: nowrap;
   text-decoration: underline;
   margin: 0px;
   font-size: 18px;
+  width: 100%;
 }
 
 .commentText {
-  white-space: wrap;
+  word-break: break-word;
+  width: 100%;
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-  margin-right: 5px;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  margin-right: 5px; 
 }
 
 .commentDate {
