@@ -14,9 +14,8 @@
 }
 
 .containerContent1 h1 {
-    width: 100%;
-    height: 100px;
-    
+  width: 100%;
+  height: 100px;
   font-size: 28px;
   color: #333;
   margin: 0px;
@@ -26,6 +25,7 @@
   background: white;
   display: flex;
   justify-content: space-around;
+  padding: 5px 0px;
   border-radius: 6px;
   margin-top: 70px;
 }
@@ -80,11 +80,6 @@
   font-size: 31px;
 }
 
-.containerOfAdvantages {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .containerOfAdvantagesItem {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -120,7 +115,6 @@
 
 /* Styles container inital 3 */
 .containerInitial3 {
-  display: flex;
   background-color: #f7f7f7;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -217,21 +211,110 @@
 }
 /* ------------------------- */
 
-/* Style for tablet */
-@media screen and (min-width: 550px) and (max-width: 800px) {
-}
-
-/* Style for desktop*/
+/* ----------------------------------------------------- */
+/* ----------------------------------------------------- */
+/* Style for Tablet and desktop*/
 @media screen and (min-width: 800px) {
   /* Styles container inital 1 */
+  .containerInitial1 {
+    background: initial;
+    display: flex;
+  }
+
+  .containerContent1 {
+    width: 90%;
+  }
+
+  .containerContent1 h1 {
+    font-size: 35px;
+  }
+
+  .tecnologyAndDesignContainer {
+    width: 80%;
+  }
+
+  .containerImg1 {
+    display: initial;
+  }
   /* ------------------------- */
 
   /* Styles container inital 2 */
+  .containerInitial2 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .containerInitial2 h1 {
+    text-align: start;
+    white-space: nowrap;
+  }
+
+  .containerContent2 {
+    max-width: 400px;
+    margin-right: 5%;
+  }
+
+  .containerContent2 h2 {
+    text-align: center;
+  }
+
+  .containerOfAdvantagesItem {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .containerOfAdvantagesItem h1 {
+    margin: 0px 7px;
+  }
+
+  .AdvantagesItemTitle {
+    margin: 2px 0px;
+  }
+
+  .containerOfAdvantagesItem p {
+    width: 75%;
+  }
   /* ------------------------- */
 
   /* Styles container inital 3 */
+  .containerInitial3 {
+    display: flex;
+  }
+
+  .containerContent3 {
+    width: 50%;
+  }
+
+  .containerContent3 p {
+    width: 90%;
+  }
+
+  .containerImg2 {
+    display: initial;
+  }
   /* ------------------------- */
 
   /* Styles container inital 4 */
+  .containerInitial4 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    background-image: url("https://downloadwap.com/thumbs2/wallpapers/p2ls/new/34/view_iEflDYe1Zu.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .containerContent4 {
+    width: 50%;
+    height: 80vh;
+    border-radius: 50%;
+    background: #ffff;
+  }
+
+  .containerContent4 p {
+    padding: 0px 15px;
+  }
   /* ------------------------- */
 }

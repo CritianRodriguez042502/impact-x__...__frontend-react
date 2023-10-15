@@ -25,7 +25,7 @@ export function Initial() {
                 options={{
                   strings: [
                     "Software y soluciones digitales adaptadas a tu negocio.",
-                    "Sistemas personalizado para tu Éxito empresarial.",
+                    "Sistemas personalizado para tu exito empresarial.",
                     "Diseño a la altura de tus expectativas.",
                     "Convierte tus ideas en software de calidad.",
                     "Software que se ajusta a tus Requisitos",
@@ -51,15 +51,15 @@ export function Initial() {
         </section>
 
         <section className={style.containerInitial2}>
-          <h1> ¿Porque elegir nuestra agencia? </h1>
+          <h1> ¿Porque elegir nuestra <br />agencia? </h1>
 
           <div className={style.containerContent2}>
-            <h2> Las ventajas de la plataforma</h2>
+            <h2> Ventajas de la plataforma</h2>
             <div className={style.containerOfAdvantages}>
               <article className={style.containerOfAdvantagesItem}>
                 <h1> 01 </h1>
                 <div>
-                  <h3> Agil desarrollo </h3>
+                  <h3 className={style.AdvantagesItemTitle}> Agil desarrollo </h3>
                   <p>
                     Los productos digitales se trabajan con metodologiias agiles
                     por lo tanto podemos garantizar un desarrollo fluido y
@@ -71,7 +71,7 @@ export function Initial() {
               <article className={style.containerOfAdvantagesItem}>
                 <h1> 02 </h1>
                 <div>
-                  <h3> Diseños atractivos </h3>
+                  <h3 className={style.AdvantagesItemTitle}> Diseños atractivos </h3>
                   <p>
                     En nuestra agencia de desarrollo de productos de IMPACT X
                     desarrollamos interfaces de usuario funcionales y
@@ -83,7 +83,7 @@ export function Initial() {
               <article className={style.containerOfAdvantagesItem}>
                 <h1> 03 </h1>
                 <div>
-                  <h3> Optimizacion </h3>
+                  <h3 className={style.AdvantagesItemTitle}> Optimizacion </h3>
                   <p>
                     Optimizamos continuamente nuestros procesos para ofrecer
                     productos de gran calidad mientras reducimos los costos y
