@@ -28,24 +28,24 @@ export function About() {
             </p>
           </aside>
           <div className={style.iconContainer}>
-            <h1 className={style.icon}>
+            <h4 className={style.icon}>
               <FcBiohazard />
-            </h1>
-            <h1 className={style.icon}>
+            </h4>
+            <h4 className={style.icon}>
               <FcDebt />
-            </h1>
-            <h1 className={style.icon}>
+            </h4>
+            <h4 className={style.icon}>
               <FcBiohazard />
-            </h1>
+            </h4>
           </div>
         </section>
 
         <section className={style.containerAbout2}>
           <aside className={style.manager}>
             <h1> GERENTE </h1>
-            <h1 className={style.iconManager}>
+            <h4 className={style.iconManager}>
               <BiCrown />
-            </h1>
+            </h4>
           </aside>
           <aside className={style.photoManager}>
             <img
@@ -57,10 +57,13 @@ export function About() {
 
         <section className={style.containerAbout3}>
           <p className={style.description}>
-            Contamos con un equipo altamente capacitado en diseño y desarrollo
-            en JavaScript. Creamos soluciones digitales a medida para empresas y
-            startups innovadoras. Nuestra sede central se encuentra en Colombia,
-            en el distrito de Bogotá.
+            Nuestro equipo altamente capacitado en diseño y desarrollo en
+            JavaScript está comprometido en ofrecer soluciones digitales
+            excepcionales para empresas y startups innovadoras en todo el mundo.
+            Más allá de nuestra sede central en Colombia, en el distrito de
+            Bogotá, tenemos una presencia global que nos permite brindar
+            servicios personalizados y de calidad a clientes en diversos
+            continentes
           </p>
           <div className={style.containerImagesLaptops}>
             <img
@@ -78,15 +81,15 @@ export function About() {
           <div className={style.containerContentAbout4}>
             <h1 className={style.title}>NUESTROS ENFOQUES</h1>
             <p className={style.paragraph}>
-              Creemos firmemente que emprender el desarrollo de un producto sin
-              una investigación exhaustiva del negocio y la audiencia objetivo
-              es como disparar al azar en la oscuridad mientras cruzamos los
-              dedos. Nuestro competente equipo utiliza un enfoque metódico para
-              crear experiencias digitales que conducen paso a paso a los
-              negocios hacia resultados exitosos.
+              - Creemos firmemente que emprender el desarrollo de un producto
+              sin una investigación exhaustiva del negocio y la audiencia
+              objetivo es como disparar al azar en la oscuridad mientras
+              cruzamos los dedos. Nuestro competente equipo utiliza un enfoque
+              metódico para crear experiencias digitales que conducen paso a
+              paso a los negocios hacia resultados exitosos.
             </p>
             <p className={style.paragraph}>
-              Creemos que la usabilidad del producto es como el amor. Debes
+              - Pensamos que la usabilidad del producto es como el amor. Debes
               preocuparte, escuchar y tienes que estar dispuesto a cambiar y
               arreglar tus infelicidades. Por lo tanto, prestamos especial
               atención a las pruebas de los usuarios y nuestro objetivo es

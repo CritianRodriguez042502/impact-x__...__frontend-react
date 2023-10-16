@@ -1,7 +1,10 @@
 /* Media screen mobile */
 
 .containerContent {
-  padding: 20px;
+  padding-top: 25px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
   background: #fff;
   text-align: center;
   max-width: 400px;
@@ -9,17 +12,17 @@
 }
 
 .containerContent h1 {
-  font-size: 24px;
+  font-size: 28px;
   margin: 10px 0;
 }
 
 .containerContent h1::first-letter {
   color: green;
-  font-size: 26px;
+  font-size: 30px;
 }
 
 .containerContent p {
-  font-size: 16px;
+  font-size: 19px;
 }
 
 .containerInputs {
@@ -29,6 +32,7 @@
 
 .containerInputs label {
   display: block;
+  font-size: 20px;
   margin-bottom: 2px;
   font-weight: bold;
 }
@@ -36,7 +40,7 @@
 .containerInputs input,
 .containerInputs textarea {
   width: 90%;
-  padding: 6px 10px;
+  padding: 10px 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -48,7 +52,7 @@
 
 .containerInputs textarea {
   resize: vertical;
-  height: 85px;
+  height: 95px;
 }
 
 .containerButton {
@@ -60,8 +64,9 @@
   background: #48bb3e;
   color: #fff;
   border: none;
+  font-size: 18px;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 12px 40px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -89,12 +94,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
   }
 
   .containerContent {
     background: initial;
-    padding: 10px 20px;
-    margin-top: 6px;
+    padding: 20px 20px;
+    margin-top: 20px;
     margin-left: 8%;
     margin-right: 10%;
     margin-bottom: 10px;
@@ -112,16 +118,20 @@
   }
 
   .containerImg {
-    display: initial;
-    margin-left: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding-left: 10px;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 199px 0px 0px 67px;
+    width: 40%;
+    height: 65vh;
   }
 
   .containerImg img {
-    width: 400px;
-    border-radius: 40%;
-    -webkit-border-radius: 40%;
-    -moz-border-radius: 40%;
-    -ms-border-radius: 40%;
-    -o-border-radius: 40%;
+    margin-top: 29px;
+    width: 430px;
   }
 }

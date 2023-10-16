@@ -3,8 +3,8 @@
 /* Styles container inital 1 */
 .containerInitial1 {
   background-color: #f7f7f7;
-  padding-top: 70px;
-  padding-bottom: 120px;
+  padding-top: 80px;
+  padding-bottom: 140px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -15,8 +15,8 @@
 
 .containerContent1 h1 {
   width: 100%;
-  height: 100px;
-  font-size: 28px;
+  height: 200px;
+  font-size: 36px;
   color: #333;
   margin: 0px;
 }
@@ -34,7 +34,7 @@
 .containerContent1 b {
   cursor: pointer;
   white-space: nowrap;
-  font-size: 18px;
+  font-size: 20px;
   color: #555;
   margin: 5px 0;
 }
@@ -109,7 +109,7 @@
 }
 
 .containerOfAdvantagesItem p {
-  font-size: 18px;
+  font-size: 19px;
   color: #555;
   padding-bottom: 10px;
 }
@@ -130,18 +130,18 @@
 }
 
 .containerContent3 h1 {
-  font-size: 28px;
+  font-size: 30px;
   color: #333;
   margin-bottom: 20px;
 }
 
 .containerContent3::first-letter {
-  font-size: 30px;
+  font-size: 32px;
   color: green;
 }
 
 .containerContent3 p {
-  font-size: 18px;
+  font-size: 20px;
   color: #555;
   line-height: 1.5;
 }
@@ -220,7 +220,12 @@
   /* Styles container inital 1 */
   .containerInitial1 {
     background: initial;
+    padding-top: 130px;
+    padding-bottom: 110px;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
+    position: relative;
   }
 
   .containerContent1 {
@@ -228,8 +233,9 @@
   }
 
   .containerContent1 h1 {
-    font-size: 35px;
+    font-size: 40px;
     width: 70%;
+    height: 150px;
   }
 
   .tecnologyAndDesignContainer {
@@ -237,15 +243,33 @@
     max-width: 500px;
   }
 
-  /*.containerImg1 {
-    display: initial;
-  }*/
+  .containerContent1 b {
+    font-size: 22px;
+  }
+
+  .containerImg1 {
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    position: absolute;
+    padding-left: 10px;
+    bottom: 0px;
+    right: -90px;
+    border-radius: 199px 0px 0px 67px;
+    width: 40%;
+    height: 65vh;
+  }
+
+  .containerImg1 img {
+    width: 430px;
+  }
   /* ------------------------- */
 
   /* Styles container inital 2 */
   .containerInitial2 {
     display: flex;
     justify-content: space-between;
+    
   }
 
   .containerInitial2 h1 {
@@ -260,6 +284,8 @@
 
   .containerContent2 h2 {
     text-align: center;
+    font-size: 35px;
+    margin-bottom: 30px;
   }
 
   .containerOfAdvantagesItem {
@@ -284,23 +310,31 @@
   /* Styles container inital 3 */
   .containerInitial3 {
     display: flex;
+    justify-content: space-between;
+    padding-top: 120px;
+    padding-bottom: 170px;
   }
 
   .containerContent3 {
+    padding-left: 40px;
     width: 50%;
   }
 
   .containerContent3 p {
     width: 90%;
+    font-size: 21px;
   }
 
   .containerImg2 {
-    display: initial;
-    margin-left: 50px;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+
+   
   }
 
-  .containerImg2 {
-    width: 300px;
+  .containerImg2 img {
+    width: 350px;
   }
   /* ------------------------- */
 
@@ -316,7 +350,7 @@
   }
 
   .containerContent4 {
-    width: 50%;
+    width: 48%;
     height: 80vh;
     border-radius: 50%;
     background: #ffff;

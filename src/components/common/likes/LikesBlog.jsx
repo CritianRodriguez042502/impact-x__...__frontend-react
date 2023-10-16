@@ -92,7 +92,7 @@ export function LikesBlog({ params }) {
         />
 
         {infoGetLikeBlog.status === "fulfilled" ? (
-          <b> {infoGetLikeBlog.info.data.all_likes} </b>
+          <b className={style.counter}> {infoGetLikeBlog.info.data.all_likes} </b>
         ) : (
           false
         )}

@@ -49,7 +49,7 @@
 .titleMajor {
   white-space: nowrap;
   color: rgb(56, 56, 56);
-  font-size: 27px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .containerContent h1 {
-  font-size: 20px;
+  font-size: 25px;
   margin: 0px;
 }
 
@@ -92,14 +92,14 @@
 .containerTitleAndPublic .publicCase {
   text-decoration: underline;
   white-space: nowrap;
-  font-size: 17px;
+  font-size: 19px;
   color: green;
 }
 
 .containerTitleAndPublic .privateCase {
   text-decoration: underline;
   white-space: nowrap;
-  font-size: 17px;
+  font-size: 19px;
   color: rgb(162, 7, 7);
 }
 /* ------------------------------- */
@@ -107,6 +107,7 @@
 .containerContent p {
   margin: 0px;
   padding: 5px 10px;
+  font-size: 19px;
 }
 
 .containerButtons {
@@ -118,9 +119,9 @@
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 5px 12px;
   cursor: pointer;
-  font-size: 15px;
+  padding: 5px 15px;
+  font-size: 19px;
   transition: background-color 0.3s ease;
 }
 
@@ -134,14 +135,18 @@
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 5px 12px;
+  padding: 5px 15px;
+  font-size: 19px;
   cursor: pointer;
-  font-size: 15px;
   transition: background-color 0.3s ease;
 }
 
 .buttonUpdate:hover {
   background: rgb(28, 28, 223);
+}
+
+.containerButtonsAndDate b {
+  font-size: 19px;
 }
 
 /* Style for tablet */

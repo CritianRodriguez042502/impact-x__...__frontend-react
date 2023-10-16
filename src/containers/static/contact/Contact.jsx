@@ -43,7 +43,7 @@ export function Contact() {
 
           <aside className={style.containerImg}>
             <img
-              src="https://us.123rf.com/450wm/theerakit/theerakit1711/theerakit171100005/90426044-icono-de-correo-electr%C3%B3nico-sobre-fondo-blanco-signo-de-correo-electr%C3%B3nico-estilo-plano-s%C3%ADmbolo-de.jpg"
+              src="https://cdn.icon-icons.com/icons2/1603/PNG/512/message-mail-envelope-email-personal-user_108507.png"
               alt="img"
             />
           </aside>

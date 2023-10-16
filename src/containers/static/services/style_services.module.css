@@ -9,22 +9,25 @@
 }
 
 .servicesContent1 {
-  padding: 20px;
+  padding-top: 120px;
+  padding-bottom: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .servicesContent1 h1 {
-  font-size: 28px;
+  font-size: 30px;
   color: #333;
   margin-bottom: 20px;
 }
 
 .servicesContent1 h1::first-letter {
-  font-size: 30px;
+  font-size: 32px;
   color: green;
 }
 
 .servicesContent1 p {
-  font-size: 16px;
+  font-size: 19px;
   color: #555;
   line-height: 1.5;
   margin-bottom: 20px;
@@ -36,7 +39,7 @@
 }
 
 .servicesContent1 h3 {
-  font-size: 24px;
+  font-size: 25px;
 }
 
 .servicesContent1 span {
@@ -67,37 +70,41 @@
 .servicesContent2 {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 .servicesContent2 div {
   background-color: #fff;
   padding: 20px;
-  border: 2px dotted #ddd;
+  border: 4px dotted #ddd;
   border-radius: 5px;
   text-align: center;
   transition: transform 0.2s;
 }
 
 .servicesContent2 .icon {
-  font-size: 36px;
+  font-size: 45px;
   color: #329c33;
   margin: 10px 0px;
 }
 
 .servicesContent2 h1 {
-  font-size: 20px;
+  font-size: 23px;
   color: #333;
   margin: 10px 0;
 }
 
 .servicesContent2 p {
-  font-size: 16px;
+  font-size: 18px;
   color: #555;
 }
 
 .servicesContent2 div:hover {
-  transform: translateY(-5px);
+  transform: translateY(-7px);
+  -webkit-transform: translateY(-7px);
+  -moz-transform: translateY(-7px);
+  -ms-transform: translateY(-7px);
+  -o-transform: translateY(-7px);
 }
 /* -------------------------- */
 
@@ -105,7 +112,7 @@
 
 .containerServices3 {
   background-color: #f8f8f8;
-  padding: 20px;
+  padding: 90px 20px;
   border-radius: 10px;
   text-align: center;
 }
@@ -117,7 +124,7 @@
 }
 
 .containerServices3 aside p {
-  font-size: 16px;
+  font-size: 18px;
   color: #555;
   margin-bottom: 20px;
 }
@@ -138,7 +145,11 @@
 }
 
 .containerServices3 aside div p:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
 }
 /* -------------------------- */
 
@@ -159,22 +170,40 @@
   }
 
   .servicesContent1 {
-    padding-top: 80px;
+    padding-top: 120px;
     padding-bottom: 120px;
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
   }
 
   .servicesContent1 h1 {
+    font-size: 32px;
     white-space: nowrap;
+  }
+
+  .servicesContent1 h3 {
+    font-size: 33px;
+  }
+
+  .servicesContent1 span {
+    font-size: 33px;
   }
 
   .servicesContent1 p {
     padding: 0px 30px;
     text-align: start;
     margin: 0px;
+    font-size: 20px;
+    text-align: center;
+    width: 65%;
   }
 
   .servicesContent1 div {
+    margin-top: 40px;
+    width: 100%;
     justify-content: space-evenly;
   }
   /* ---------------- */

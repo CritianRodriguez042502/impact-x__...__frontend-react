@@ -8,7 +8,7 @@
 
 .title {
   text-align: center;
-  font-size: 32px;
+  font-size: 42px;
   font-weight: bold;
   margin-bottom: 20px;
   color: #333;
@@ -32,12 +32,17 @@
   white-space: nowrap;
   font-weight: bold;
   margin-right: 5px;
+  font-size: 20px;
   text-decoration: underline;
   color: #555;
 }
 
+.infoDato {
+  font-size: 20px;
+}
+
 .content {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.5;
   color: #333;
 }

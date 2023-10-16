@@ -57,15 +57,15 @@ export function BlogDetail() {
                     </div>
                     <div className={style.info}>
                       <p className={style.infoLabel}>Categoría:</p>
-                      <p>{data.category.name}</p>
+                      <p className={style.infoDato}>{data.category.name}</p>
                     </div>
                     <div className={style.info}>
                       <p className={style.infoLabel}>Fecha:</p>
-                      <p>{data.creation}</p>
+                      <p className={style.infoDato}> {data.creation}</p>
                     </div>
                     <div className={style.info}>
                       <p className={style.infoLabel}>Autor:</p>
-                      <p>{data.user.username}</p>
+                      <p className={style.infoDato}> {data.user.username} </p>
                     </div>
                   </div>
 

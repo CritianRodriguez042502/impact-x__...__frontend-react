@@ -19,11 +19,15 @@
   background-image: url("https://downloadwap.com/thumbs2/wallpapers/p2ls/new/34/view_iEflDYe1Zu.jpg");
   background-size: cover;
   background-position: center;
-  padding: 30px;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .staticContainer h1 {
   color: white;
+  font-size: 30px;
   white-space: nowrap;
   text-align: center;
   margin-top: 25px;
@@ -36,7 +40,7 @@
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 130px;
-  font-size: 19px;
+  font-size: 20px;
   border-radius: 13px;
   background: rgba(255, 255, 255, 0.8);
 }
@@ -72,7 +76,7 @@
   }
 
   .staticContainer {
-    margin: 0px 50px;
+    margin: 0px 7%;
   }
 
   .staticContainer p {

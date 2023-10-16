@@ -20,11 +20,11 @@ export function Initial() {
               <Typewriter
                 options={{
                   strings: [
-                    "Sistemas personalizado para tu exito empresarial.",
-                    "Software y soluciones digitales adaptadas a tu necesidades.",
-                    "Diseño a la altura de tus expectativas.",
-                    "Convierte tus ideas en software de calidad.",
-                    "Software que se ajusta a tus Requisitos",
+                    "Sistemas personalizado para tu exito empresarial ...",
+                    "Software y soluciones digitales adaptadas a tu necesidades ...",
+                    "Diseño a la altura de tus expectativas ...",
+                    "Convierte tus ideas en software de calidad ...",
+                    "Software que se ajusta a tus Requisitos ...",
                   ],
                   autoStart: true,
                   loop: true,
@@ -40,7 +40,7 @@ export function Initial() {
 
           <aside className={style.containerImg1}>
             <img
-              src="https://us.123rf.com/450wm/theerakit/theerakit1711/theerakit171100005/90426044-icono-de-correo-electr%C3%B3nico-sobre-fondo-blanco-signo-de-correo-electr%C3%B3nico-estilo-plano-s%C3%ADmbolo-de.jpg"
+              src="https://i.pinimg.com/originals/3f/4c/b0/3f4cb0a7ad7ddc1ffebe3c244595ca67.png"
               alt="img"
             />
           </aside>
@@ -48,9 +48,8 @@ export function Initial() {
 
         <section className={style.containerInitial2}>
           <h1>
-            {" "}
             ¿Porque elegir nuestra <br />
-            agencia?{" "}
+            agencia?
           </h1>
 
           <div className={style.containerContent2}>
@@ -59,10 +58,7 @@ export function Initial() {
               <article className={style.containerOfAdvantagesItem}>
                 <h1> 01 </h1>
                 <div>
-                  <h3 className={style.AdvantagesItemTitle}>
-                    {" "}
-                    Agil desarrollo{" "}
-                  </h3>
+                  <h3 className={style.AdvantagesItemTitle}>Agil desarrollo</h3>
                   <p>
                     Los productos digitales se trabajan con metodologiias agiles
                     por lo tanto podemos garantizar un desarrollo fluido y
@@ -75,8 +71,7 @@ export function Initial() {
                 <h1> 02 </h1>
                 <div>
                   <h3 className={style.AdvantagesItemTitle}>
-                    {" "}
-                    Diseños atractivos{" "}
+                    Diseños atractivos
                   </h3>
                   <p>
                     En nuestra agencia de desarrollo de productos de IMPACT X
@@ -99,6 +94,10 @@ export function Initial() {
               </article>
             </div>
           </div>
+
+          
+
+          
         </section>
 
         <section className={style.containerInitial3}>
