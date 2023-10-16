@@ -17,10 +17,16 @@ export function About() {
 
       <Layout>
         <section className={style.containerAbout1}>
-          <h1 className={style.title}>SOBRE NOSOTROS</h1>
-          <p className={style.text}>
-          Los productos digitales se han convertido en una parte fundamental de nuestro mundo actual, y su desarrollo ha evolucionado significativamente en los últimos años. Para afrontar los desafíos de este entorno dinámico y competitivo, es esencial adoptar metodologías ágiles.
-          </p>
+          <aside className={style.containerTitleAndText}>
+            <h1 className={style.title}>SOBRE NOSOTROS</h1>
+            <p className={style.text}>
+              Los productos digitales se han convertido en una parte fundamental
+              de nuestro mundo actual, y su desarrollo ha evolucionado
+              significativamente en los últimos años. Para afrontar los desafíos
+              de este entorno dinámico y competitivo, es esencial adoptar
+              metodologías ágiles.
+            </p>
+          </aside>
           <div className={style.iconContainer}>
             <h1 className={style.icon}>
               <FcBiohazard />
@@ -37,7 +43,10 @@ export function About() {
         <section className={style.containerAbout2}>
           <aside className={style.manager}>
             <h1> GERENTE </h1>
-            <h1 className={style.iconManager}> <BiCrown/> </h1>
+            <h1 className={style.iconManager}>
+              {" "}
+              <BiCrown />{" "}
+            </h1>
           </aside>
           <aside className={style.photoManager}>
             <img
@@ -93,7 +102,6 @@ export function About() {
             />
           </div>
         </section>
-
       </Layout>
     </main>
   );
