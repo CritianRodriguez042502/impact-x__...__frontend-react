@@ -111,6 +111,30 @@
 }
 /* ---------------------*/
 
+/* Styles button pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.pageButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pageButton:hover {
+  background-color: #0056b3;
+}
+/* ---------------- */
+
 /* Media screen tablet */
 @media screen and (min-width: 550px) and (max-width: 800px) {
 }
@@ -147,8 +171,6 @@
     width: 100%;
     padding: 0px 10px;
   }
-
-  
 
   .title {
     text-align: start;

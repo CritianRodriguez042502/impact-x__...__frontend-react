@@ -261,7 +261,7 @@ export function CommentsBlog({ params }) {
   return (
     <main>
       <div>
-        <b onClick={onClickVisibility}> Comentarios </b>
+        <b className={style.mainButton} onClick={onClickVisibility}> Comentarios </b>
       </div>
 
       <article style={{ display: visibility }} className={style.containerFixed}>

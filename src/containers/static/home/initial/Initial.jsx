@@ -114,7 +114,7 @@ export function Initial() {
           </aside>
           <aside className={style.containerImg2}>
             <img
-              src="https://us.123rf.com/450wm/theerakit/theerakit1711/theerakit171100005/90426044-icono-de-correo-electr%C3%B3nico-sobre-fondo-blanco-signo-de-correo-electr%C3%B3nico-estilo-plano-s%C3%ADmbolo-de.jpg"
+              src="https://cdn-icons-png.flaticon.com/512/1995/1995515.png"
               alt="img"
             />
           </aside>

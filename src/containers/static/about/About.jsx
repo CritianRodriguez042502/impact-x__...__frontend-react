@@ -44,8 +44,7 @@ export function About() {
           <aside className={style.manager}>
             <h1> GERENTE </h1>
             <h1 className={style.iconManager}>
-              {" "}
-              <BiCrown />{" "}
+              <BiCrown />
             </h1>
           </aside>
           <aside className={style.photoManager}>

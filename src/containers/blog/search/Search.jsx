@@ -72,19 +72,22 @@ export function Search() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                setAllVisibilityPage("0");
-                navigate(`/blogs/search/${params.slug}?page=${index}`);
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  setAllVisibilityPage("0");
+                  navigate(`/blogs/search/${params.slug}?page=${index}`);
+                }}
+                className={style.pageButton}
+              >
+                {index}
+              </button>
+            ))}
+          </div>
+        );
       }
     } else {
       const list = [];
@@ -92,22 +95,26 @@ export function Search() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                setAllVisibilityPage("0");
-                navigate(`/blogs/search/${params.slug}?page=${index}`);
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  setAllVisibilityPage("0");
+                  navigate(`/blogs/search/${params.slug}?page=${index}`);
+                }}
+                className={style.pageButton}
+              >
+                {index}
+              </button>
+            ))}
+          </div>
+        );
       }
     }
   }
+  
 
   return (
     <main>

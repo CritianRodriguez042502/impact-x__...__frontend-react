@@ -6,8 +6,7 @@ import { Helmet } from "react-helmet";
 import { axiosBlogDetail } from "../../../redux/index";
 import { Layout } from "../../../components/index";
 import { LikesBlog, CommentsBlog } from "../../../components/index";
-import style from "./style_blog_detail.module.css"
-
+import style from "./style_blog_detail.module.css";
 
 export function BlogDetail() {
   const dispatch = useDispatch();
@@ -37,31 +36,53 @@ export function BlogDetail() {
       </Helmet>
 
       <Layout>
-        <section style={{ opacity: allVisibility }}>
-          <h1> BlogDetail </h1>
-          <LikesBlog params={params.slug} />
-          <CommentsBlog params={params.slug} />
+        <section
+          className={style.containerBlogDetail}
+          style={{ opacity: allVisibility }}
+        >
+          {infoBlogDetail.status === "fulfilled" ? (
+            infoBlogDetail.info?.map((data) => {
+              return (
+                <aside key={data.id} className={style.blogDetailContainer}>
+                  <h1 className={style.title}> {data.title} </h1>
 
-          <div>
-            {infoBlogDetail.status === "fulfilled" ? (
-              infoBlogDetail.info?.map((data) => {
-                return (
-                  <div key={data.id}>
-                    <h1> {data.title} </h1>
-                    <img src={`http://localhost:8000${data.img}`} alt="img" width={300}/>
-                    <hr />
-                    <div dangerouslySetInnerHTML={{ __html: data.content }} />
+                  <div className={style.infoBar}>
+                    <div className={style.info}>
+                      <p className={style.infoLabel}>Likes:</p>
+                      <LikesBlog params={params.slug} />
+                    </div>
+                    <div className={style.info}>
+                      <p className={style.infoLabel}>Comentarios:</p>
+                      <CommentsBlog params={params.slug} />
+                    </div>
+                    <div className={style.info}>
+                      <p className={style.infoLabel}>Categoría:</p>
+                      <p>{data.category.name}</p>
+                    </div>
+                    <div className={style.info}>
+                      <p className={style.infoLabel}>Fecha:</p>
+                      <p>{data.creation}</p>
+                    </div>
+                    <div className={style.info}>
+                      <p className={style.infoLabel}>Autor:</p>
+                      <p>{data.user.username}</p>
+                    </div>
                   </div>
-                );
-              })
-            ) : infoBlogDetail.status === "pending" ? (
-              <h1> Cargando...</h1>
-            ) : infoBlogDetail.status === "rejected" ? (
-              <h1> Este blog no existe</h1>
-            ) : (
-              false
-            )}
-          </div>
+
+                  <article
+                    className={style.content}
+                    dangerouslySetInnerHTML={{ __html: data.content }}
+                  />
+                </aside>
+              );
+            })
+          ) : infoBlogDetail.status === "pending" ? (
+            false
+          ) : infoBlogDetail.status === "rejected" ? (
+            <h1> Este blog no existe</h1>
+          ) : (
+            false
+          )}
         </section>
       </Layout>
     </main>

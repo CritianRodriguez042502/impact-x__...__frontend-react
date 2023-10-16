@@ -84,7 +84,7 @@ export function LikesBlog({ params }) {
   return (
     <main>
       <div>
-        <input
+        <input className={style.mainButton}
           type="checkbox"
           name="like"
           checked={selectLikeUser}

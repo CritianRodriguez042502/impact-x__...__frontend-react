@@ -74,19 +74,22 @@ export function AllBlogs() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                navigate(`/blogs?page=${index}`);
-                setAllVisibilityPage("0");
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  navigate(`/blogs?page=${index}`);
+                  setAllVisibilityPage("0");
+                }}
+                className={style.pageButton}
+              >
+                {index}
+              </button>
+            ))}
+          </div>
+        );
       }
     } else {
       const list = [];
@@ -94,22 +97,26 @@ export function AllBlogs() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                navigate(`/blogs?page=${index}`);
-                setAllVisibilityPage("0");
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  navigate(`/blogs?page=${index}`);
+                  setAllVisibilityPage("0");
+                }}
+                className={style.pageButton}
+              >
+                {index}
+              </button>
+            ))}
+          </div>
+        );
       }
     }
   }
+  
 
   return (
     <main>
@@ -122,9 +129,20 @@ export function AllBlogs() {
       <Layout>
         <section className={style.containerAllBlogs1}>
           <nav className={style.categories}>
-            <Link className={style.link} to={"/blogs"}>
-              Todos
-            </Link>
+            {location.pathname == "/blogs" ? (
+              <Link
+                style={{ color: "green", textDecoration: "underline" }}
+                className={style.link}
+                to={"/blogs"}
+              >
+                Todos
+              </Link>
+            ) : (
+              <Link className={style.link} to={"/blogs"}>
+                Todos
+              </Link>
+            )}
+
             {infoCategorys.status === "fulfilled"
               ? infoCategorys.info?.map((data) => {
                   return (
@@ -139,7 +157,7 @@ export function AllBlogs() {
                 })
               : infoCategorys.status === "pending"
               ? false
-              : alert("Error")}
+              : false}
           </nav>
 
           <form onSubmit={onSubmitSearch} className={style.searchForm}>
@@ -178,10 +196,7 @@ export function AllBlogs() {
 
                       <div className={style.blogInfo}>
                         <h1 className={style.title}> {data.title} </h1>
-                        <p className={style.description}>
-                         
-                          {data.description}
-                        </p>
+                        <p className={style.description}>{data.description}</p>
                         <p className={style.creation}> {data.creation} </p>
                       </div>
                     </aside>
@@ -200,29 +215,28 @@ export function AllBlogs() {
                 {nextBlogPages.results?.map((data) => {
                   return (
                     <div
-                    key={data.id}
-                    onClick={(e) => {
-                      navigate(`/blogs/blog_detail/${data.slug}`);
-                    }}
-                  >
-                    <aside className={style.blogContentContainer}>
-                      <div className={style.containerImg}>
-                        <img
-                          src={`http://localhost:8000${data.img}`}
-                          alt="img"
-                        />
-                      </div>
+                      key={data.id}
+                      onClick={(e) => {
+                        navigate(`/blogs/blog_detail/${data.slug}`);
+                      }}
+                    >
+                      <aside className={style.blogContentContainer}>
+                        <div className={style.containerImg}>
+                          <img
+                            src={`http://localhost:8000${data.img}`}
+                            alt="img"
+                          />
+                        </div>
 
-                      <div className={style.blogInfo}>
-                        <h1 className={style.title}> {data.title} </h1>
-                        <p className={style.description}>
-                         
-                          {data.description}
-                        </p>
-                        <p className={style.creation}> {data.creation} </p>
-                      </div>
-                    </aside>
-                  </div>
+                        <div className={style.blogInfo}>
+                          <h1 className={style.title}> {data.title} </h1>
+                          <p className={style.description}>
+                            {data.description}
+                          </p>
+                          <p className={style.creation}> {data.creation} </p>
+                        </div>
+                      </aside>
+                    </div>
                   );
                 })}
 

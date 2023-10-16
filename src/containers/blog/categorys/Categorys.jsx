@@ -79,19 +79,22 @@ export function Categorys() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                navigate(`/blogs/category/${params.slug}?page=${index}`);
-                setAllVisibilityPage("0");
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  navigate(`/blogs/category/${params.slug}?page=${index}`);
+                  setAllVisibilityPage("0");
+                }}
+                className={style.pageButton}
+              >
+                {index}
+              </button>
+            ))}
+          </div>
+        );
       }
     } else {
       const list = [];
@@ -99,23 +102,26 @@ export function Categorys() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                navigate(`/blogs/category/${params.slug}?page=${index}`);
-                setAllVisibilityPage("0");
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  navigate(`/blogs/category/${params.slug}?page=${index}`);
+                  setAllVisibilityPage("0");
+                }}
+                className={style.pageButton}
+              >
+                {index}
+              </button>
+            ))}
+          </div>
+        );
       }
     }
   }
-
+  
   return (
     <main>
       <Helmet>
@@ -134,6 +140,11 @@ export function Categorys() {
               ? infoCategorys.info?.map((data) => {
                   return (
                     <Link
+                      style={
+                        params.slug === data.slug
+                          ? { color: "green", textDecoration: "underline" }
+                          : { color: "#333" }
+                      }
                       className={style.link}
                       to={`/blogs/category/${data.slug}`}
                       key={data.id}
@@ -144,7 +155,7 @@ export function Categorys() {
                 })
               : infoCategorys.status === "pending"
               ? false
-              : alert("Error")}
+              : false}
           </nav>
 
           <form onSubmit={onSubmitSearch} className={style.searchForm}>

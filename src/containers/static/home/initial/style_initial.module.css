@@ -296,6 +296,11 @@
 
   .containerImg2 {
     display: initial;
+    margin-left: 50px;
+  }
+
+  .containerImg2 {
+    width: 300px;
   }
   /* ------------------------- */
 
