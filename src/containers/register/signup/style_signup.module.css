@@ -7,9 +7,14 @@
 }
 
 .container h1 {
-  font-size: 24px;
+  font-size: 32px;
   color: #333;
   margin-bottom: 20px;
+}
+
+.container h1::first-letter {
+  color: green;
+  font-size: 34px;
 }
 
 .containerInputs {
@@ -25,7 +30,8 @@
 
 .containerInputs input {
   width: 90%;
-  padding: 10px;
+  padding: 15px;
+  font-size: 19px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -35,9 +41,11 @@
 .containerInputs button {
   background-color: #62b85a;
   color: #fff;
+  font-size: 19px;
   border: none;
+  margin-top: 10px;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
 }

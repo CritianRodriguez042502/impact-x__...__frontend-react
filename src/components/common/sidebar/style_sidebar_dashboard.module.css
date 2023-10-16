@@ -25,7 +25,7 @@
 }
 
 .sidebarNavegation nav {
-  margin-top: 30px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
 }
@@ -44,7 +44,7 @@
   margin: 0px;
   white-space: nowrap;
   text-align: center;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   text-decoration: none;
   padding: 15px 25px;
@@ -60,6 +60,7 @@
   color: green;
 }
 
+/*------------------------------*/
 /* Contenedor Fixed Settings */
 .fixedSettingsContainer {
   position: fixed;
@@ -81,18 +82,20 @@
 }
 
 .fixedSettingsContainer h1 {
+  font-size: 40px;
   margin: 0px;
   display: inline-block;
   cursor: pointer;
 }
 
 .fixedSettingsContainer h3 {
-  font-size: 20px;
+  font-size: 23px;
+  text-decoration: underline;
   text-align: center;
   margin-top: 10px;
   margin-left: 0px;
   margin-right: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 }
 
 .formUpdateDataUser {
@@ -114,6 +117,7 @@
 .formUpdateDataUser input[type="file"] {
   width: 90%;
   padding: 10px;
+  font-size: 18px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -128,6 +132,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;
   transition: background-color 0.5s;
   -webkit-transition: background-color 0.5s;
   -moz-transition: background-color 0.5s;

@@ -8,7 +8,7 @@
   height: 87vh;
   padding: 100px;
   transform: translate(-50%, -50%);
-  background: white;
+  background: #fff;
   box-shadow: 2px 3px 10px black;
   z-index: 10;
   overflow-y: auto;
@@ -35,6 +35,7 @@
 .buttonReactions {
   display: flex;
   align-items: center;
+  font-size: 19px;
   justify-content: center;
   padding: 7px 0px;
   background-color: rgb(77, 197, 81);
@@ -54,13 +55,14 @@
 .bottonWithoutVisibilityComments {
   cursor: pointer;
   margin-top: -15px;
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .moveToLikes {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 23px;
   margin-bottom: 10px;
 }
 
@@ -78,7 +80,7 @@
 }
 
 .userImage {
-  flex: 0 0 70px; 
+  flex: 0 0 90px;
   margin-right: 10px;
 }
 
@@ -98,22 +100,24 @@
 .commentUsername {
   text-decoration: underline;
   margin: 0px;
-  font-size: 18px;
+  font-size: 22px;
   width: 100%;
 }
 
 .commentText {
   word-break: break-word;
+  font-size: 19px;
   width: 100%;
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-  margin-right: 5px; 
+  margin-right: 5px;
 }
 
 .commentDate {
   display: block;
   text-align: end;
+  font-size: 18px;
   margin: 0px 10px;
 }
 
@@ -131,6 +135,7 @@
 
 /* Título de likes */
 .moveToComents {
+  font-size: 23px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -170,8 +175,8 @@
 }
 
 .likeItem img {
-  width: 65px;
-  height: 65px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
 }
 
@@ -179,7 +184,7 @@
   display: inline-block;
   font-weight: bold;
   margin-left: 10px;
-  font-size: 19px;
+  font-size: 22px;
 }
 
 /*   Media screen tablet   */

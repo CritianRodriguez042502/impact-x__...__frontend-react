@@ -13,7 +13,8 @@
 }
 
 .bottomNavegationScrollAppearance h1 {
-  color: white;
+  font-size: 33px;
+  color: black;
   cursor: pointer;
   padding: 20px;
   margin: 0px;
@@ -21,7 +22,7 @@
 
 .containerBlogsUser {
   padding: 0px 0px;
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .containerBlogsUser nav {
@@ -33,7 +34,7 @@
 }
 
 .containerBlogsUser nav .linkNavbar {
-  font-size: 23px;
+  font-size: 27px;
   color: white;
   text-decoration: none;
   padding: 5px 40px;
@@ -163,11 +164,15 @@
 
 }
 
-
 /* Style for desktop*/
 @media screen and (min-width: 750px) {
   .bottomNavegationScrollAppearance {
     display: none;
+  }
+
+  .containerBlogsUser {
+    margin-top: 0px;
+    padding-left: 235px;
   }
 
   .titleMajor {
@@ -176,11 +181,6 @@
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 8px;
-  }
-
-  .containerBlogsUser {
-    margin-top: 0px;
-    padding-left: 226px;
   }
 
   .containerBlogsUser nav {

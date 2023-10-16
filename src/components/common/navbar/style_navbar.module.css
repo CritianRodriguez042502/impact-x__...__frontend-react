@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
+  font-family: 'Gabarito', sans-serif;
   margin: 0px;
   overflow-x: hidden;
   background: rgb(229, 226, 226);
@@ -82,7 +89,7 @@ body {
   color: rgb(255, 255, 255);
   font-size: 18px;
   font-weight: 550;
-  background: rgb(22, 122, 75);
+  background: rgb(59, 150, 107);
   margin-left: 2%;
   padding: 6px 24px;
   border-radius: 14px;

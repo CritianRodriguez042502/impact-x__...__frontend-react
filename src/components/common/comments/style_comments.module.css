@@ -171,7 +171,7 @@
   border-radius: 5px;
   padding: 5px 12px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   transition: background-color 0.3s ease;
 }
 
@@ -186,7 +186,7 @@
   border-radius: 5px;
   padding: 5px 12px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   transition: background-color 0.3s ease;
 }
 
@@ -208,11 +208,16 @@
   height: 100vh;
   transform: translate(-50%, -50%);
   box-shadow: 2px 3px 10px black;
-  z-index: 10;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
+}
+
+.buttonClose {
+  text-align: center;
+  cursor: pointer;
+  font-size: 40px;
 }
 
 .containerUpdateComment {
@@ -226,19 +231,21 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 19px;
+  outline: none;
   margin-bottom: 10px;
+  box-shadow: 10px 10px 10px black;
 }
 
 .buttonFormUpdate {
-  margin: 5px;
+  margin: 15px;
   background-color: #3a5acb;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 5px 12px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 19px;
   transition: background-color 0.3s ease;
 }
 

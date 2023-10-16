@@ -40,8 +40,8 @@
 
 label {
   font-weight: bold;
-  font-size: 20px;
-  margin: 0px 7px;
+  font-size: 23px;
+  margin: 0px 10px;
 }
 
 /* styles to inputs and textarea */
@@ -49,7 +49,7 @@ label {
 .file input[type="file"],
 .description textarea,
 .category select {
-  padding: 5px 10px;
+  padding: 10px 10px;
   font-size: 18px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -80,28 +80,56 @@ label {
   background-color: green;
 }
 
+
+/* style container title */
 .title {
-  margin: 20px 10px;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
+/* style container description*/
 .description {
-  margin: 20px 10px;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;;
 }
 
+/* style container file */
 .file {
-  margin: 20px 10px;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* style public */
 .public {
-  margin: 10px 7px;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
   font-size: 20px;
 }
 
 .public b {
+  font-size: 24px;
   display: block;
   margin-top: 2px;
+}
+
+/* styles category */
+.category {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+/* styles content */
+.content {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 
@@ -152,37 +180,6 @@ input[type="checkbox"] {
   left: 1.6em;
 }
 
-/* style title */
-.title {
-  margin-bottom: 10px;
-  margin-right: 20px;
-}
-
-/* style file */
-.file {
-  margin-right: 20px;
-}
-
-/* style description */
-.description {
-  margin-bottom: 10px;
-  margin-right: 20px;
-}
-
-/* styles category */
-.category {
-  margin-bottom: 10px;
-  margin-left: 7px;
-  margin-right: 7px;
-  margin-bottom: 15px;
-}
-
-/* styles content */
-.content {
-  margin-bottom: 10px;
-  margin-left: 7px;
-  margin-right: 7px;
-}
 
 /* Media screen tablet */
 @media screen and (min-width: 450px) and (max-width: 800px) {
@@ -210,7 +207,7 @@ input[type="checkbox"] {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 75%;
+    width: 90%;
     margin: 0px 5px;
   }
 

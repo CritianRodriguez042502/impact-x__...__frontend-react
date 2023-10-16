@@ -319,8 +319,7 @@ export function CommentsBlog({ params }) {
             className={style.inputUpdateComment}
           >
             <aside>
-              <h1
-                style={{ textAlign: "center", fontSize: "20px" }}
+              <h1 className={style.buttonClose}
                 onClick={onClickWithoutCommentUpdateVisibilit}
               >
                 <AiOutlineClose />

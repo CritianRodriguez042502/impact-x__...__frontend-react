@@ -1,7 +1,10 @@
 /* Media screen mobile */
 
 .containerContent {
-  padding: 20px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: 10px;
   text-align: center;
   background: #fff;
@@ -11,13 +14,19 @@
 }
 
 .containerContent h1 {
-  font-size: 24px;
+  font-size: 30px;
   margin: 10px 0;
   color: black;
 }
 
+.containerContent h1::first-letter {
+  color: green;
+  font-size: 35px;
+}
+
 .containerContent p {
-  font-size: 16px;
+  margin: 0px 40px;
+  font-size: 19px;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -26,13 +35,14 @@
 }
 
 .containerButtons {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .containerButtons button {
   background: #2cae2a;
   color: #fff;
   border: none;
+  font-size: 20px;
   border-radius: 5px;
   padding: 10px 20px;
   margin: 10px;
@@ -66,9 +76,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: initial;
     align-items: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 70px;
+    padding-right: 70px;
     max-width: 400px;
+    background: initial;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
   }
 
@@ -77,7 +91,8 @@
   }
 
   .containerContent p {
-    padding-top: 0px;
+    margin: 0px 10px;
+    padding-top: 20px;
   }
 
   .containerButtons {
@@ -85,7 +100,9 @@
   }
 
   .containerImg {
-    display: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 4.5%;
   }
   .containerImg img {

@@ -284,6 +284,12 @@ export function UpdateBlogByUser() {
                       </select>
                     </div>
 
+                    <div className={style.containerButtom}>
+                      <button className={style.button} type="submit">
+                        Actualizar blog
+                      </button>
+                    </div>
+
                     <div className={style.content}>
                       <CKEditor
                         editor={ClassicEditor}
@@ -295,11 +301,6 @@ export function UpdateBlogByUser() {
                       />
                     </div>
 
-                    <div className={style.containerButtom}>
-                      <button className={style.button} type="submit">
-                        Actualizar blog
-                      </button>
-                    </div>
                   </div>
                 ) : (
                   <h1> cargando... </h1>

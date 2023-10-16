@@ -4,18 +4,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 50px 50px;
 }
 
 .containerLogin h1 {
-  font-size: 24px;
+  font-size: 30px;
   color: #151515;
   margin-bottom: 20px;
+}
+
+.containerLogin h1::first-letter {
+  color: green;
+  font-size: 32px;
 }
 
 .containerInputs {
   background: rgba(255, 255, 255, 0.8);
   margin: 10px;
-  padding: 20px;
+  padding: 40px 20px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -23,9 +29,10 @@
 
 .containerInputs input {
   width: 90%;
-  padding: 10px;
+  padding: 15px;
   margin: 10px 0;
   border: 1px solid #ccc;
+  font-size: 19px;
   border-radius: 5px;
   outline: none;
 }
@@ -34,10 +41,15 @@
   background-color: #3eaa52;
   color: #fff;
   border: none;
+  font-size: 20px;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .containerInputs button:hover {
@@ -47,6 +59,7 @@
 .containerInputs p {
   margin-top: 20px;
   margin-bottom: 0px;
+  font-size: 20px;
   cursor: pointer;
   color: rgb(59, 59, 144);
   text-decoration: underline;
