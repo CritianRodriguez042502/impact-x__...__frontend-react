@@ -40,10 +40,6 @@ export function Navbar() {
     }
   }, [infoJWTVerify.status]);
 
-  setInterval(() => {
-    dispatch(axiosJWTVerify({ token: access }))
-  },50000)
-
   return (
     <main>
       <section className={style.parentContainer}>

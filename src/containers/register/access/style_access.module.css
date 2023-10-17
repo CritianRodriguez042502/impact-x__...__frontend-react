@@ -79,8 +79,8 @@
     align-items: center;
     padding-top: 60px;
     padding-bottom: 60px;
-    padding-left: 70px;
-    padding-right: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
     max-width: 400px;
     background: initial;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
@@ -91,7 +91,7 @@
   }
 
   .containerContent p {
-    margin: 0px 10px;
+    margin: 0px 0px;
     padding-top: 20px;
   }
 
