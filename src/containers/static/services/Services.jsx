@@ -37,7 +37,7 @@ export function Services() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Servicios </title>
+        <title> Servicios ... </title>
       </Helmet>
 
       <Layout>

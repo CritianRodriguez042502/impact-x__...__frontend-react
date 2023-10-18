@@ -12,8 +12,8 @@ export function About() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Sobre nosotros </title>
-      </Helmet>
+        <title> Sobre nosotros ... </title>
+      </Helmet> 
 
       <Layout>
         <section className={style.containerAbout1}>
