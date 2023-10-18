@@ -2,12 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  axiosGetCommentsBlog,
-  axiosCommentsBlog,
-  axiosDetailedCommentsBlog,
-} from "../../../redux/index";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_comments.module.css";
 
@@ -39,19 +34,23 @@ export function CommentsBlog({ params }) {
 
   // useEffect get all comments
   useEffect(() => {
-    dispatch(axiosGetCommentsBlog(params));
+    import("../../../redux/index").then((modules) => {
+      dispatch(modules.axiosGetCommentsBlog(params));
+    });
   }, [params, infoComments.info]);
 
   // useEffect to get the detailed comment of the user state
   useEffect(() => {
     if (unique_brand) {
-      dispatch(
-        axiosDetailedCommentsBlog({
-          method: "get",
-          jwt: access,
-          unique_brand: unique_brand,
-        })
-      );
+      import("../../../redux/index").then((modules) => {
+        dispatch(
+          modules.axiosDetailedCommentsBlog({
+            method: "get",
+            jwt: access,
+            unique_brand: unique_brand,
+          })
+        );
+      });
     }
   }, [unique_brand]);
 
@@ -73,29 +72,31 @@ export function CommentsBlog({ params }) {
     if (newComment) {
       if (infoJWTVerify.status === "fulfilled" && access && username) {
         setBlogModificationVisibility("0");
-        dispatch(
-          axiosCommentsBlog({
-            method: "post",
-            jwt: access,
-            slug: paramsUrl.slug,
-            content: newComment,
-          })
-        );
+        import("../../../redux/index").then((modules) => {
+          dispatch(
+            modules.axiosCommentsBlog({
+              method: "post",
+              jwt: access,
+              slug: paramsUrl.slug,
+              content: newComment,
+            })
+          );
+        });
         setNewComment("");
       } else {
         Swal.fire({
-          icon: 'warning',
-          title: 'Oops...',
-          text: 'Tienes que estar registrado!',
-          footer: `<a class=${style.messageError} href="http://localhost:5173/access/signin"> Ingresa a tu cuenta </a>`
-        })
+          icon: "warning",
+          title: "Oops...",
+          text: "Tienes que estar registrado!",
+          footer: `<a class=${style.messageError} href="http://localhost:5173/access/signin"> Ingresa a tu cuenta </a>`,
+        });
       }
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'No puedes enviar datos vacios!',
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "No puedes enviar datos vacios!",
+      });
     }
   }
 
@@ -119,22 +120,24 @@ export function CommentsBlog({ params }) {
 
     if (commentDetail) {
       setBlogModificationVisibility("0");
-      dispatch(
-        axiosCommentsBlog({
-          method: "patch",
-          jwt: access,
-          unique_key: unique_brand,
-          content: commentDetail,
-        })
-      );
+      import("../../../redux/index").then((modules) => {
+        dispatch(
+          modules.axiosCommentsBlog({
+            method: "patch",
+            jwt: access,
+            unique_key: unique_brand,
+            content: commentDetail,
+          })
+        );
+      });
       setCommentUpdateVisibility("none");
       navigate(`/blogs/blog_detail/${paramsUrl.slug}`);
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'No puedes enviar datos vacios!',
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "No puedes enviar datos vacios!",
+      });
     }
   }
 
@@ -203,13 +206,15 @@ export function CommentsBlog({ params }) {
                       className={style.buttonDelete}
                       onClick={(e) => {
                         setBlogModificationVisibility("0");
-                        dispatch(
-                          axiosCommentsBlog({
-                            method: "delete",
-                            jwt: access,
-                            unique_key: data.unique_brand,
-                          })
-                        );
+                        import("../../../redux/index").then((modules) => {
+                          dispatch(
+                            modules.axiosCommentsBlog({
+                              method: "delete",
+                              jwt: access,
+                              unique_key: data.unique_brand,
+                            })
+                          );
+                        });
                       }}
                     >
                       Eliminar
@@ -256,12 +261,14 @@ export function CommentsBlog({ params }) {
     );
   }
 
-
   // ---------------------------------------------------
   return (
     <main>
       <div>
-        <b className={style.mainButton} onClick={onClickVisibility}> Comentarios </b>
+        <b className={style.mainButton} onClick={onClickVisibility}>
+          {" "}
+          Comentarios{" "}
+        </b>
       </div>
 
       <article style={{ display: visibility }} className={style.containerFixed}>
@@ -319,7 +326,8 @@ export function CommentsBlog({ params }) {
             className={style.inputUpdateComment}
           >
             <aside>
-              <h1 className={style.buttonClose}
+              <h1
+                className={style.buttonClose}
                 onClick={onClickWithoutCommentUpdateVisibilit}
               >
                 <AiOutlineClose />

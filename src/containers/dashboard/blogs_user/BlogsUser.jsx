@@ -1,10 +1,8 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
-import { axiosBlogsByUser, axiosDeleteBlogUser } from "../../../redux/index";
 import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
@@ -41,7 +39,10 @@ export function BlogsUser() {
       infoUpdateBlogUser.status === "fulfilled" ||
       infoDeleteBlogUser.status === "fulfilled"
     ) {
-      dispatch(axiosBlogsByUser(access));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosBlogsByUser(access));
+      });
+
       setAllVisibility("0");
     }
   }, [
@@ -166,7 +167,10 @@ export function BlogsUser() {
     }).then((result) => {
       if (result.isConfirmed) {
         if (page) {
-          dispatch(axiosDeleteBlogUser(data));
+          import("../../../redux/index").then((modules) => {
+            dispatch(modules.axiosDeleteBlogUser(data));
+          });
+
           setAllVisibility("0");
           refreshBloByUserPagination();
           const Toast = Swal.mixin({
@@ -186,7 +190,10 @@ export function BlogsUser() {
             title: "Blog eliminado",
           });
         } else {
-          dispatch(axiosDeleteBlogUser(data));
+          import("../../../redux/index").then((modules) => {
+            dispatch(modules.axiosDeleteBlogUser(data));
+          });
+
           setAllVisibility("0");
           const Toast = Swal.mixin({
             toast: true,

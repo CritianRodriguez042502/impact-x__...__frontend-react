@@ -4,7 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
-import { axiosResetPasswordConfirm } from "../../../redux/index";
 import style from "./style_reset_password.module.css";
 
 export function ResetPassword() {
@@ -53,8 +52,9 @@ export function ResetPassword() {
 
     if (passwords.new_password && passwords.re_new_password) {
       if (passwords.new_password === passwords.re_new_password) {
-        console.log(passwords);
-        dispatch(axiosResetPasswordConfirm(passwords));
+        import("../../../redux/index").then((modules) => {
+          dispatch(modules.axiosResetPassword(passwords));
+        });
       } else {
         Swal.fire({
           icon: "info",

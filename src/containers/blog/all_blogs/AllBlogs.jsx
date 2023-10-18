@@ -4,7 +4,6 @@ import { useNavigate, Link, json } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
-import { axiosCategorys, axiosAllBlogs } from "../../../redux/index";
 import style from "./style_all_blogs.module.css";
 
 export function AllBlogs() {
@@ -21,12 +20,16 @@ export function AllBlogs() {
 
   useEffect(() => {
     if (!infoBlogs.info) {
-      dispatch(axiosCategorys());
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosCategorys());
+      });
     }
   }, [infoBlogs.info]);
 
   useEffect(() => {
-    dispatch(axiosAllBlogs());
+    import("../../../redux/index").then((modules) => {
+      dispatch(modules.axiosAllBlogs());
+    });
   }, []);
 
   useEffect(() => {
@@ -116,7 +119,6 @@ export function AllBlogs() {
       }
     }
   }
-  
 
   return (
     <main>
@@ -244,7 +246,7 @@ export function AllBlogs() {
               </article>
             </section>
           ) : infoBlogs.status === "rejected" ? (
-            <p> Error </p>
+            <h1> No hay blogs </h1>
           ) : (
             false
           )}

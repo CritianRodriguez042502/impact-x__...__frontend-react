@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
-import { axiosSearchBlogs } from "../../../redux/index";
 import { Layout } from "../../../components/index";
 import style from "./style_search.module.css";
 
@@ -21,7 +20,9 @@ export function Search() {
   const page = new URLSearchParams(location.search).get("page");
 
   useEffect(() => {
-    dispatch(axiosSearchBlogs(params.slug));
+    import("../../../redux/index").then((modules) => {
+      dispatch(modules.axiosSearchBlogs(params.slug));
+    });
   }, [params.slug]);
 
   useEffect(() => {
@@ -114,7 +115,6 @@ export function Search() {
       }
     }
   }
-  
 
   return (
     <main>
@@ -126,7 +126,10 @@ export function Search() {
 
       <Layout>
         <section className={style.containerAllBlogs1}>
-          <Link className={style.link} to={`/blogs`}> Volver </Link>
+          <Link className={style.link} to={`/blogs`}>
+            {" "}
+            Volver{" "}
+          </Link>
 
           <form className={style.searchForm} onSubmit={onSubmitSearchBlogs}>
             <input

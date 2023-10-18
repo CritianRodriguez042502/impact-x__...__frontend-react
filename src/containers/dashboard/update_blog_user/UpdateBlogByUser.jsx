@@ -6,11 +6,6 @@ import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {
-  axiosCategorys,
-  axiosDetailedUserBlog,
-  axiosUpdateBlogUser,
-} from "../../../redux/index";
 import { GetReactionDashboard } from "../../../components/index";
 import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
 import style from "./style_update_blog_by_user.module.css";
@@ -40,7 +35,9 @@ export function UpdateBlogByUser() {
 
   useEffect(() => {
     if (infoJWTVerifi.status === "fulfilled") {
-      dispatch(axiosDetailedUserBlog({ jwt: access, slug: slug }));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosDetailedUserBlog({ jwt: access, slug: slug }));
+      });
     }
   }, [infoJWTVerifi.status]);
 
@@ -64,7 +61,9 @@ export function UpdateBlogByUser() {
 
   useEffect(() => {
     if (infoJWTVerifi.status === "fulfilled" && !infoCategory.info) {
-      dispatch(axiosCategorys());
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosCategorys());
+      });
     }
   }, [infoJWTVerifi.status, infoCategory.info]);
 
@@ -141,7 +140,9 @@ export function UpdateBlogByUser() {
     };
 
     if (dataUpdateBlog.title && dataUpdateBlog.description) {
-      dispatch(axiosUpdateBlogUser(data));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosUpdateBlogUser(data));
+      });
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -300,7 +301,6 @@ export function UpdateBlogByUser() {
                         }}
                       />
                     </div>
-
                   </div>
                 ) : (
                   <h1> cargando... </h1>

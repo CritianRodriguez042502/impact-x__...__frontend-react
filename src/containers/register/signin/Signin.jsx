@@ -4,14 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
-import {
-  axiosJWTCreate,
-  axiosJWTRefresh,
-  axiosJWTVerify,
-  axiosResetPassword,
-  axiosAuthGoogle,
-  axiosLoginGoogle,
-} from "../../../redux/index";
 import { Layout } from "../../../components/index";
 import style from "./style_signin.module.css";
 
@@ -44,12 +36,16 @@ export function Signin() {
         state: state,
         code: code,
       };
-      dispatch(axiosLoginGoogle(data));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosLoginGoogle(data));
+      });
     }
   }, [infoUrlGoogle, state, code]);
 
   function clickLogin() {
-    dispatch(axiosAuthGoogle());
+    import("../../../redux/index").then((modules) => {
+      dispatch(modules.axiosAuthGoogle());
+    });
   }
 
   // Auth normalize
@@ -68,33 +64,37 @@ export function Signin() {
       infoJWTCreate.status === "fulfilled" &&
       !infoJWTRefresh.info
     ) {
-      dispatch(axiosJWTRefresh({ refresh: infoJWTCreate.info }));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosJWTRefresh({ refresh: infoJWTCreate.info }));
+      });
     }
 
     if (
       infoJWTRefresh.info &&
       (infoJWTVerify.status === "rejected" || !access)
     ) {
-      dispatch(axiosJWTVerify({ token: infoJWTRefresh.info.access }));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosJWTVerify({ token: infoJWTRefresh.info.access }));
+      });
     }
 
     if (infoJWTVerify.status === "fulfilled" && access) {
       const Toast = Swal.mixin({
         toast: true,
-        position: 'top-end',
+        position: "top-end",
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
       Toast.fire({
-        icon: 'success',
-        title: 'Acceso permitido'
-      })
+        icon: "success",
+        title: "Acceso permitido",
+      });
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
@@ -117,7 +117,9 @@ export function Signin() {
     e.preventDefault();
 
     if (dataForm.email && dataForm.password) {
-      dispatch(axiosJWTCreate(dataForm));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosJWTCreate(dataForm));
+      });
     }
   }
 
@@ -126,20 +128,20 @@ export function Signin() {
     if (infoResetPassword.status === "fulfilled") {
       const Toast = Swal.mixin({
         toast: true,
-        position: 'top-end',
+        position: "top-end",
         showConfirmButton: false,
         timer: 2500,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
       Toast.fire({
-        icon: 'success',
-        title: 'Email enviado'
-      })
+        icon: "success",
+        title: "Email enviado",
+      });
     }
     if (infoResetPassword.status === "rejected") {
       Swal.fire({
@@ -151,19 +153,20 @@ export function Signin() {
     }
   }, [infoResetPassword.status]);
 
-  
-  async function dataRandom () {
+  async function dataRandom() {
     const { value: email } = await Swal.fire({
-      title: 'Recuperar contraseña',
-      input: 'email',
-      inputLabel: 'Escribe tu correo electronico',
-      inputPlaceholder: 'Email'
-    })
-    
+      title: "Recuperar contraseña",
+      input: "email",
+      inputLabel: "Escribe tu correo electronico",
+      inputPlaceholder: "Email",
+    });
+
     if (email) {
-      console.log(email)
-      Swal.fire(`Verifica tu email: ${email}`)
-      dispatch(axiosResetPassword({ email: email}));
+      console.log(email);
+      Swal.fire(`Verifica tu email: ${email}`);
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosResetPassword({ email: email }));
+      });
     }
   }
 
@@ -203,7 +206,6 @@ export function Signin() {
             <p onClick={dataRandom}> Olvidaste tu contraseña ? </p>
           </form>
         </section>
-
       </Layout>
     </main>
   );

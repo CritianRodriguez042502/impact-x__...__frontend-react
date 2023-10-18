@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { axiosBlogTypeCategory, axiosCategorys } from "../../../redux/index";
 import { Layout } from "../../../components/index";
 import style from "./style_categorys.module.css";
 
@@ -22,10 +21,14 @@ export function Categorys() {
 
   useEffect(
     function () {
-      if (!infoCategorys) {
-        dispatch(axiosCategorys());
+      if (!infoCategorys.info) {
+        import("../../../redux/index").then((modules) => {
+          dispatch(modules.axiosCategorys());
+        });
       }
-      dispatch(axiosBlogTypeCategory(params.slug));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosBlogTypeCategory(params.slug));
+      });
     },
     [params.slug]
   );
@@ -121,7 +124,7 @@ export function Categorys() {
       }
     }
   }
-  
+
   return (
     <main>
       <Helmet>

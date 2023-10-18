@@ -1,10 +1,8 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
-import { axiosActivationUser } from "../../../redux/index";
 import style from "./style_activation.module.css";
 
 export function Activation() {
@@ -16,16 +14,14 @@ export function Activation() {
   const [showLoadingAnimation, setShowLoadingAnimation] = useState("none");
 
   useEffect(() => {
-    dispatch(
-      axiosActivationUser({
-        uid: params.uid,
-        token: params.token,
-      })
-    );
+    import("../../../redux/index").then((modules) => {
+      dispatch(
+        modules.axiosActivationUser({ uid: params.uid, token: params.token })
+      );
+    });
   }, []);
 
   useEffect(() => {
-    
     if (infoActivation.status === "pending") {
       setShowLoadingAnimation("initial");
     }

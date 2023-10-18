@@ -3,14 +3,9 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import {
-  axiosCreateUser,
-  axiosResendEmail,
-  axiosAuthGoogle,
-} from "../../../redux/index";
 import Swal from "sweetalert2";
 import { Layout } from "../../../components/index";
-import style from "./style_signup.module.css"
+import style from "./style_signup.module.css";
 
 export function Signup() {
   const navigate = useNavigate();
@@ -35,7 +30,9 @@ export function Signup() {
   }, [infoAuthGoogle.url]);
 
   function authGoogle() {
-    dispatch(axiosAuthGoogle());
+    import("../../../redux/index").then((modules) => {
+      dispatch(modules.axiosAuthGoogle());
+    });
   }
 
   // Auth normalize -------
@@ -108,7 +105,9 @@ export function Signup() {
     if (firstName && lastName && username && email && password && rePassword) {
       if (password === rePassword) {
         if (password.length >= 8) {
-          dispatch(axiosCreateUser(dataUser));
+          import("../../../redux/index").then((modules) => {
+            modules.axiosCreateUser(dataUser);
+          });
         } else {
           Swal.fire({
             icon: "warning",
@@ -133,7 +132,9 @@ export function Signup() {
   }
 
   function onClickSendEmail() {
-    dispatch(axiosResendEmail({ email: dataEmail }));
+    import("../../../redux/index").then((modules) => {
+      dispatch(modules.axiosResendEmail({ email: dataEmail }));
+    });
   }
 
   return (

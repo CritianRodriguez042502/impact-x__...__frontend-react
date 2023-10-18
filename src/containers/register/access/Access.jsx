@@ -1,9 +1,8 @@
-import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./style_access.module.css";
 
 export function Access() {

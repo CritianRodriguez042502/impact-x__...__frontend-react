@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { axiosGetUserBlogReactions } from "../../../redux/index";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { AiOutlineDoubleLeft } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
@@ -20,12 +19,14 @@ export function GetReactionDashboard({ params }) {
   const [visibilityLikes, setVisibilityLikes] = useState("none");
 
   useEffect(() => {
-    dispatch(
-      axiosGetUserBlogReactions({
-        jwt: access,
-        slug: params,
-      })
-    );
+    import("../../../redux/index").then((modules) => {
+      dispatch(
+        modules.axiosGetUserBlogReactions({
+          jwt: access,
+          slug: params,
+        })
+      );
+    });
   }, []);
 
   function visibilityReactionsComments(e) {

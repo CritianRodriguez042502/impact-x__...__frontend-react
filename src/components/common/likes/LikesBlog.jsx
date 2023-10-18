@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Swal from 'sweetalert2'
-import { axiosLikeBlog, axiosGetLikesBlog } from "../../../redux/index";
-import style from "./style_likes.module.css"
+import Swal from "sweetalert2";
+import style from "./style_likes.module.css";
+
 export function LikesBlog({ params }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,7 +19,9 @@ export function LikesBlog({ params }) {
   const username = JSON.parse(localStorage.getItem("username"));
 
   useEffect(() => {
-    dispatch(axiosGetLikesBlog(params));
+    import("../../../redux/index").then((modules) => {
+      dispatch(modules.axiosGetLikesBlog(params));
+    });
   }, [Infolike.info]);
 
   useEffect(() => {
@@ -54,7 +56,9 @@ export function LikesBlog({ params }) {
           slug: params,
           jwt: access,
         };
-        dispatch(axiosLikeBlog(updatedLike));
+        import("../../../redux/index").then((modules) => {
+          dispatch(modules.axiosLikeBlog(updatedLike));
+        });
         setSelectLikeUser(!selectLikeUser);
       } else if (infoJWTVerify.status === "fulfilled" && access && username) {
         const updatedLike = {
@@ -62,7 +66,9 @@ export function LikesBlog({ params }) {
           slug: params,
           jwt: access,
         };
-        dispatch(axiosLikeBlog(updatedLike));
+        import("../../../redux/index").then((modules) => {
+          dispatch(modules.axiosLikeBlog(updatedLike));
+        });
         setSelectLikeUser(false);
       } else {
         if (infoJWTVerify.status === "fulfilled" && access) {
@@ -71,11 +77,11 @@ export function LikesBlog({ params }) {
         } else {
           e.target.checked = false;
           Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: 'Tienes que estar registrado!',
-            footer: `<a class=${style.messageError} href="http://localhost:5173/access/signin"> Ingresa a tu cuenta </a>`
-          })
+            icon: "warning",
+            title: "Oops...",
+            text: "Tienes que estar registrado!",
+            footer: `<a class=${style.messageError} href="http://localhost:5173/access/signin"> Ingresa a tu cuenta </a>`,
+          });
         }
       }
     }
@@ -84,7 +90,8 @@ export function LikesBlog({ params }) {
   return (
     <main>
       <div>
-        <input className={style.mainButton}
+        <input
+          className={style.mainButton}
           type="checkbox"
           name="like"
           checked={selectLikeUser}
@@ -92,7 +99,10 @@ export function LikesBlog({ params }) {
         />
 
         {infoGetLikeBlog.status === "fulfilled" ? (
-          <b className={style.counter}> {infoGetLikeBlog.info.data.all_likes} </b>
+          <b className={style.counter}>
+            {" "}
+            {infoGetLikeBlog.info.data.all_likes}{" "}
+          </b>
         ) : (
           false
         )}

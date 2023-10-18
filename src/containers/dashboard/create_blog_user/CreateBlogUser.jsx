@@ -28,7 +28,9 @@ export function CreateBlogUser() {
 
   useEffect(() => {
     if (infoJWTVerifi.status === "fulfilled" && !infoCategory.info) {
-      dispatch(axiosCategorys());
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosCategorys());
+      });
     }
   }, [infoJWTVerifi.status]);
 
@@ -85,7 +87,9 @@ export function CreateBlogUser() {
     if (dataCreate.title && dataCreate.description) {
       if (data.info.category !== "Seleccionar categoria") {
         if (data.info.content) {
-          dispatch(axiosCreateBlogUser(data));
+          import("../../../redux/index").then((modules) => {
+            dispatch(modules.axiosCreateBlogUser(data));
+          });
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -97,7 +101,7 @@ export function CreateBlogUser() {
               toast.addEventListener("mouseleave", Swal.resumeTimer);
             },
           });
-  
+
           Toast.fire({
             icon: "success",
             title: "Blog creado",
@@ -160,7 +164,7 @@ export function CreateBlogUser() {
 
               <div className={style.file}>
                 <label htmlFor="image"> Imagen </label>
-                <input 
+                <input
                   type="file"
                   name="image"
                   id="image"
@@ -207,7 +211,6 @@ export function CreateBlogUser() {
                 </div>
               </div>
 
-             
               <div className={style.category}>
                 <select onClick={onClickSelectCategory}>
                   <option>Seleccionar categoria</option>

@@ -2,12 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  axiosJWTVerify,
-  axiosUserData,
-  axiosAllUsernames,
-  axiosBlogsByUser,
-} from "../../../redux/index";
 import Swal from "sweetalert2";
 import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_sidebar_dashboard.module.css";
@@ -29,7 +23,7 @@ export function SidebarDashboard({ appearance }) {
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
 
-  let widthDisplay = window.innerWidth
+  let widthDisplay = window.innerWidth;
 
   // dom with css
 
@@ -40,7 +34,9 @@ export function SidebarDashboard({ appearance }) {
     }
 
     if (!infoJWTVerifi.status) {
-      dispatch(axiosJWTVerify({ token: access }));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosJWTVerify({ token: access }));
+      });
     }
 
     if (infoJWTVerifi.status === "rejected") {
@@ -64,13 +60,17 @@ export function SidebarDashboard({ appearance }) {
       access &&
       !infoAllUsernames.info
     ) {
-      dispatch(axiosAllUsernames({ jwt: access }));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosAllUsernames({ jwt: access }));
+      });
     }
     if (
       (infoJWTVerifi.status === "fulfilled" && !infoDatauser.info && access) ||
       !username
     ) {
-      dispatch(axiosUserData({ method: "get", jwt: access }));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosUserData({ method: "get", jwt: access }));
+      });
     }
 
     if (
@@ -79,7 +79,9 @@ export function SidebarDashboard({ appearance }) {
       access &&
       username
     ) {
-      dispatch(axiosBlogsByUser(access));
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosBlogsByUser(access));
+      });
     }
   }, [infoJWTVerifi.status, username]);
 
@@ -111,7 +113,6 @@ export function SidebarDashboard({ appearance }) {
         location.href = "http://localhost:5173/access/signin";
       }
     });
-    
   }
 
   function onChangeUpdateDataUser(e) {
@@ -156,7 +157,9 @@ export function SidebarDashboard({ appearance }) {
             title: "imagen cargada correctamente",
           });
           setTimeout(() => {
-            dispatch(axiosUserData({ method: "get", jwt: access }));
+            import("../../../redux/index").then((modules) => {
+              dispatch(modules.axiosUserData({ method: "get", jwt: access }));
+            });
           }, 200);
         } else {
           throw new Error("Hubo algun error al tratar de hacer la solicitud");
@@ -186,25 +189,31 @@ export function SidebarDashboard({ appearance }) {
       }
       if (verifyName.length === 0) {
         if (img !== undefined) {
-          dispatch(
-            axiosUserData({
-              method: "put",
-              jwt: access,
-              info: updateDataUser,
-            })
-          );
+          import("../../../redux/index").then((modules) => {
+            dispatch(
+              modules.axiosUserData({
+                method: "put",
+                jwt: access,
+                info: updateDataUser,
+              })
+            );
+          });
+
           setTimeout(() => {
             uploadImg(img);
           }, 100);
           setVisibility("none");
         } else {
-          dispatch(
-            axiosUserData({
-              method: "put",
-              jwt: access,
-              info: updateDataUser,
-            })
-          );
+          import("../../../redux/index").then((modules) => {
+            dispatch(
+              modules.axiosUserData({
+                method: "put",
+                jwt: access,
+                info: updateDataUser,
+              })
+            );
+          });
+
           setVisibility("none");
         }
       } else {
@@ -231,12 +240,14 @@ export function SidebarDashboard({ appearance }) {
     setVisibility("none");
   }
 
-  
-
   return (
     <main
       className={style.parentContainer}
-      style={appearance === true || widthDisplay >= 750 ? { left: "0px" } : { left: "-300px" }}
+      style={
+        appearance === true || widthDisplay >= 750
+          ? { left: "0px" }
+          : { left: "-300px" }
+      }
     >
       <section className={style.sidebarNavegation}>
         <nav>
