@@ -2,8 +2,6 @@
 
 // Export folder static ___________________________________
 export { Initial } from "./static/home/initial/Initial";
-export { DevopWeb } from "./static/home/devop_web/DevopWeb";
-export { Design } from "./static/home/design/Design";
 export { Contact } from "./static/contact/Contact";
 export { About } from "./static/about/About";
 export { Services } from "./static/services/Services";

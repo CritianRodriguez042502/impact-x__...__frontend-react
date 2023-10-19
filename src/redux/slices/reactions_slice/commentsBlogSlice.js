@@ -52,7 +52,9 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
     }
   } else if (data.method === "delete") {
     try {
-      const url = `${"http://127.0.0.1:8000"}/blog_reactions/comments/?unique_key=${data.unique_key}`;
+      const url = `${"http://127.0.0.1:8000"}/blog_reactions/comments/?unique_key=${
+        data.unique_key
+      }`;
       const response = await axios.delete(url, { headers });
       return {
         status: response.status,
@@ -71,15 +73,9 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
   }
 });
 
-const initialState = {
-  info: null,
-  status: null,
-  error: null,
-};
-
 const commentsBlogSlices = createSlice({
   name: "CommentsBlog",
-  initialState,
+  initialState: { info: null, status: null, error: null },
   reducers: {},
   extraReducers: function (builder) {
     builder.addCase(axiosCommentsBlog.pending, function (state) {

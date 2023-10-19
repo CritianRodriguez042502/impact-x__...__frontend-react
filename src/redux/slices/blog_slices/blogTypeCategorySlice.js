@@ -10,15 +10,9 @@ export const axiosBlogTypeCategory = createAsyncThunk(
   }
 );
 
-const initialState = {
-  info: null,
-  status: null,
-  error: null,
-};
-
 const blogTypeCategorySlice = createSlice({
   name: "BlogTypeCategory",
-  initialState,
+  initialState: { info: null, status: null, error: null },
   reducers: {},
   extraReducers: function (builder) {
     builder.addCase(axiosBlogTypeCategory.pending, function (state) {

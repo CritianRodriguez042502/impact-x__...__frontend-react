@@ -26,30 +26,27 @@ export const axiosDetailedCommentsBlog = createAsyncThunk(
   }
 );
 
-const initialState = {
-  info: null,
-  status: null,
-  error: null,
-};
-
 const DetailedCommentsBlogSlice = createSlice({
   name: "DetailedCommentsBlog",
-  initialState,
+  initialState: { info: null, status: null, error: null },
   reducers: {},
   extraReducers: function (builder) {
     builder.addCase(axiosDetailedCommentsBlog.pending, function (state) {
       state.status = "pending";
     });
-    builder.addCase(axiosDetailedCommentsBlog.fulfilled, function (state, action) {
-      if (action.payload.status === 200) {
-        state.status = "fulfilled";
-        state.info = action.payload.data;
-      } else {
-        state.status = "rejected";
-        state.info = action.payload.data;
+    builder.addCase(
+      axiosDetailedCommentsBlog.fulfilled,
+      function (state, action) {
+        if (action.payload.status === 200) {
+          state.status = "fulfilled";
+          state.info = action.payload.data;
+        } else {
+          state.status = "rejected";
+          state.info = action.payload.data;
+        }
       }
-    });
+    );
   },
 });
 
-export default DetailedCommentsBlogSlice.reducer
+export default DetailedCommentsBlogSlice.reducer;

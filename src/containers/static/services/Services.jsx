@@ -1,10 +1,10 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 import { BiAnalyse } from "react-icons/bi";
 import { BiAtom } from "react-icons/bi";
 import { BiBugAlt } from "react-icons/bi";
+import axios from "axios"
 import style from "./style_services.module.css";
 
 export function Services() {
@@ -31,6 +31,37 @@ export function Services() {
       }, 20);
     }
   }, [counter1, counter2, counter3]);
+
+  function configurationCategorys () {
+    const url = "http://127.0.0.1:8000/blog/create/";
+    const info1 = { name: "Tecnologia" };
+    const info2 = { name: "Marketing" };
+    const info3 = { name: "Robotica" };
+
+    setTimeout(() => {
+      axios.post(url, info1).then((res) => {
+        if (res.status == 200) {
+          console.log("bien");
+        }
+      }).catch(err => {console.log(err)});
+    }, 2000);
+
+    setTimeout(() => {
+      axios.post(url, info2).then((res) => {
+        if (res.status == 200) {
+          console.log("bien");
+        }
+      }).catch(err => {console.log(err)});
+    }, 4000);
+
+    setTimeout(() => {
+      axios.post(url, info3).then((res) => {
+        if (res.status == 200) {
+          console.log("bien");
+        }
+      }).catch(err => {console.log(err)});
+    }, 6000);
+  }
 
   return (
     <main>
@@ -129,7 +160,7 @@ export function Services() {
               <p>
                 <BiAnalyse />
               </p>
-              <p>
+              <p onClick={configurationCategorys}>
                 <BiAnalyse />
               </p>
             </div>

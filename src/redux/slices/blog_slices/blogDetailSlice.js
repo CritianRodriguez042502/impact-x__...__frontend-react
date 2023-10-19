@@ -11,15 +11,9 @@ export const axiosBlogDetail = createAsyncThunk("blogDetail", async (slug) => {
   }
 });
 
-const initialState = {
-  info: null,
-  status: null,
-  error: null,
-};
-
 const blogDetailSlice = createSlice({
   name: "blogDetail",
-  initialState,
+  initialState: { info: null, status: null, error: null },
   reducers: {},
   extraReducers: function (builder) {
     builder.addCase(axiosBlogDetail.pending, function (state) {

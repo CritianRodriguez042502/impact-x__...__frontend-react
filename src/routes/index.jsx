@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NotFound, Layout } from "../components/index";
+import { NotFound } from "../components/index";
 import {
   // static pages
   Initial,
-  DevopWeb,
-  Design,
   Services,
   Contact,
   About,
@@ -37,8 +35,6 @@ export function Redirects() {
         // static pages
         <Route path="/" element={<Initial />} />
         <Route path="/home" element={<Initial />} />
-        <Route path="/home/devop_web" element={<DevopWeb />} />
-        <Route path="/home/design" element={<Design />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />

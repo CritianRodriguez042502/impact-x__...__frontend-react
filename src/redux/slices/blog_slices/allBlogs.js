@@ -6,26 +6,20 @@ export const axiosAllBlogs = createAsyncThunk("allBlogs", async () => {
   try {
     const response = await axios.get(url);
     return {
-      status : response.status,
-      data : response.data
+      status: response.status,
+      data: response.data,
     };
   } catch (error) {
     return {
-      status : error.response.status,
-      data : error.response.data
+      status: error.response.status,
+      data: error.response.data,
     };
   }
 });
 
-const initialState = {
-  info: null,
-  status: null,
-  error: null,
-};
-
 const allBlogsSlice = createSlice({
   name: "allBlogs",
-  initialState,
+  initialState: { info: null, status: null, error: null },
   reducers: {},
   extraReducers: function (builder) {
     builder.addCase(axiosAllBlogs.pending, function (state) {
@@ -33,11 +27,11 @@ const allBlogsSlice = createSlice({
     });
     builder.addCase(axiosAllBlogs.fulfilled, function (state, action) {
       if (action.payload.status === 404) {
-        state.status = "rejected"
-        state.info = action.payload.data
+        state.status = "rejected";
+        state.info = action.payload.data;
       } else {
-        state.status = "fulfilled"
-        state.info = action.payload.data
+        state.status = "fulfilled";
+        state.info = action.payload.data;
       }
     });
   },

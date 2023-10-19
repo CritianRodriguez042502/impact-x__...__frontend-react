@@ -7,15 +7,9 @@ export const axiosCategorys = createAsyncThunk("categorys", async () => {
   return response.data;
 });
 
-const initialState = {
-  info: null,
-  status: null,
-  error: null,
-};
-
 const categorysSlice = createSlice({
   name: "categorys",
-  initialState,
+  initialState: { info: null, status: null, error: null },
   reducers: {},
   extraReducers: function (builder) {
     builder.addCase(axiosCategorys.pending, function (state) {
