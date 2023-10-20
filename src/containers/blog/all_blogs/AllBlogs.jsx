@@ -33,7 +33,7 @@ export function AllBlogs() {
 
   useEffect(() => {
     if (page) {
-      const url = `http://127.0.0.1:8000/blog/all_blog/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com//blog/all_blog/?page=${page}`;
       fetch(url, {
         method: "GET",
       })

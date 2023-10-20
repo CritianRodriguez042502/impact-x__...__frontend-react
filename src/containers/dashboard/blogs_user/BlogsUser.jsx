@@ -56,7 +56,7 @@ export function BlogsUser() {
       const headers = {
         Authorization: `JWT ${access}`,
       };
-      const url = `http://127.0.0.1:8000/dashboard/blog_by_user/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com//dashboard/blog_by_user/?page=${page}`;
       fetch(url, {
         method: "GET",
         headers,
@@ -90,7 +90,7 @@ export function BlogsUser() {
       const headers = {
         Authorization: `JWT ${access}`,
       };
-      const url = `http://127.0.0.1:8000/dashboard/blog_by_user/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com//dashboard/blog_by_user/?page=${page}`;
       fetch(url, {
         method: "GET",
         headers,

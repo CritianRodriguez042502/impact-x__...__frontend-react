@@ -8,7 +8,7 @@ export const axiosDetailedCommentsBlog = createAsyncThunk(
       Authorization: `JWT ${data.jwt}`,
     };
 
-    const url = `${"http://127.0.0.1:8000"}/blog_reactions/comments/?unique_brand=${
+    const url = `${"https://server-agency-1203.onrender.com/"}/blog_reactions/comments/?unique_brand=${
       data.unique_brand
     }`;
     try {

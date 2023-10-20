@@ -4,7 +4,7 @@ import axios from "axios";
 export const axiosGetCommentsBlog = createAsyncThunk(
   "getCommentsBlog",
   async (slug) => {
-    const url = `${"http://127.0.0.1:8000"}/blog/get_blog_comments/?slug=${slug}`;
+    const url = `${"https://server-agency-1203.onrender.com/"}/blog/get_blog_comments/?slug=${slug}`;
     try {
       const response = await axios.request({ url: url, method: "get" });
       return {

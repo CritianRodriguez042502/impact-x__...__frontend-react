@@ -7,7 +7,7 @@ export const axiosGetUserBlogReactions = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"http://127.0.0.1:8000"}/dashboard/get_user_blog_reactions/?slug=${
+    const url = `${"https://server-agency-1203.onrender.com/"}/dashboard/get_user_blog_reactions/?slug=${
       data.slug
     }`;
 

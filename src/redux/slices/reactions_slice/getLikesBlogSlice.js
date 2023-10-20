@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const axiosGetLikesBlog = createAsyncThunk("GetLikesBlog", async (slug) => {
-  const url = `http://127.0.0.1:8000/blog/get_blog_likes/?slug=${slug}`;
+  const url = `https://server-agency-1203.onrender.com//blog/get_blog_likes/?slug=${slug}`;
 
   try {
     const response = await axios.get(url);

@@ -4,7 +4,7 @@ import axios from "axios";
 export const axiosResetPassword = createAsyncThunk(
   "restPassword",
   async (data) => {
-    const url = `${"http://127.0.0.1:8000"}/user_system/auth/users/reset_password/`;
+    const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/users/reset_password/`;
     try {
       const response = await axios.post(url, data);
       return response.status;

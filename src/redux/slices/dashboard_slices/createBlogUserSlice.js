@@ -7,7 +7,7 @@ export const axiosCreateBlogUser = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"http://127.0.0.1:8000"}/dashboard/create_blog_by_user/`;
+    const url = `${"https://server-agency-1203.onrender.com/"}/dashboard/create_blog_by_user/`;
     const body = new FormData()
     body.append("title", data.info.title)
     body.append("description", data.info.description)

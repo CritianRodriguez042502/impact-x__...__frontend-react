@@ -105,7 +105,7 @@ export function Signup() {
       if (password === rePassword) {
         if (password.length >= 8) {
           import("../../../redux/index").then((modules) => {
-            modules.axiosCreateUser(dataUser);
+            dispatch(modules.axiosCreateUser(dataUser))
           });
         } else {
           Swal.fire({
@@ -135,6 +135,9 @@ export function Signup() {
       dispatch(modules.axiosResendEmail({ email: dataEmail }));
     });
   }
+
+  // Activation of google deactivate
+  // <button onClick={authGoogle}> Acceder con google </button>
 
   return (
     <main>
@@ -206,7 +209,6 @@ export function Signup() {
           </form>
         </section>
 
-        <button onClick={authGoogle}> Acceder con google </button>
 
         <div style={{ display: sendEmail }}>
           <p> Volver a enviar correo </p>

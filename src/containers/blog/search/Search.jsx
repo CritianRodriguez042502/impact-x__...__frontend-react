@@ -26,7 +26,7 @@ export function Search() {
 
   useEffect(() => {
     if (page) {
-      const url = `http://127.0.0.1:8000/blog/search_blogs/?page=${page}&slug=${params.slug}`;
+      const url = `https://server-agency-1203.onrender.com//blog/search_blogs/?page=${page}&slug=${params.slug}`;
       fetch(url, {
         method: "GET",
       })

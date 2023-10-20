@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const axiosJWTCreate = createAsyncThunk("JWTCreate", async (data) => {
-  const url = `${"http://127.0.0.1:8000"}/user_system/auth/jwt/create/`;
+  const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/jwt/create/`;
   const response = await axios.post(url, data);
   return response.data;
 });

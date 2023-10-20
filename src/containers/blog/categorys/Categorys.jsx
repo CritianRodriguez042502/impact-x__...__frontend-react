@@ -38,7 +38,7 @@ export function Categorys() {
 
   useEffect(() => {
     if (page) {
-      const url = `http://127.0.0.1:8000/blog/blog_by_category/?page=${page}&slug=${params.slug}`;
+      const url = `https://server-agency-1203.onrender.com//blog/blog_by_category/?page=${page}&slug=${params.slug}`;
       fetch(url, {
         method: "GET",
       })

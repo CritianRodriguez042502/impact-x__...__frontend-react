@@ -7,7 +7,7 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
   };
 
   if (data.method === "get") {
-    const url = `${"http://127.0.0.1:8000"}/blog_reactions/comments/?unique_brand=${
+    const url = `${"https://server-agency-1203.onrender.com/"}/blog_reactions/comments/?unique_brand=${
       data.unique_brand
     }`;
     try {
@@ -24,7 +24,7 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
     }
   } else if (data.method === "post") {
     try {
-      const url = `${"http://127.0.0.1:8000"}/blog_reactions/comments/`;
+      const url = `${"https://server-agency-1203.onrender.com/"}/blog_reactions/comments/`;
       const response = await axios.post(url, data, { headers });
       return {
         status: response.status,
@@ -38,7 +38,7 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
     }
   } else if (data.method === "patch") {
     try {
-      const url = `${"http://127.0.0.1:8000"}/blog_reactions/comments/`;
+      const url = `${"https://server-agency-1203.onrender.com/"}/blog_reactions/comments/`;
       const response = await axios.patch(url, data, { headers });
       return {
         status: response.status,
@@ -52,7 +52,7 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
     }
   } else if (data.method === "delete") {
     try {
-      const url = `${"http://127.0.0.1:8000"}/blog_reactions/comments/?unique_key=${
+      const url = `${"https://server-agency-1203.onrender.com/"}/blog_reactions/comments/?unique_key=${
         data.unique_key
       }`;
       const response = await axios.delete(url, { headers });

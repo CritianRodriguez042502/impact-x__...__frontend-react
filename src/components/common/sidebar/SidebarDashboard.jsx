@@ -130,7 +130,7 @@ export function SidebarDashboard({ appearance }) {
     const headers = {
       Authorization: `JWT ${access}`,
     };
-    const url = "http://127.0.0.1:8000/user_system/upload_img_user/";
+    const url = "https://server-agency-1203.onrender.com//user_system/upload_img_user/";
     const formData = new FormData();
     formData.append("file", image);
     fetch(url, {
