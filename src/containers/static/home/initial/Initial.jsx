@@ -18,7 +18,7 @@ export function Initial() {
               <Typewriter
                 options={{
                   strings: [
-                    "Sistemas personalizado para tu exito empresarial ...",
+                    "Sistemas personalizados para tu exito empresarial ...",
                     "Software y soluciones digitales adaptadas a tu necesidades ...",
                     "Diseño a la altura de tus expectativas ...",
                     "Convierte tus ideas en software de calidad ...",

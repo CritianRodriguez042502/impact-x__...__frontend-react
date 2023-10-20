@@ -1,4 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  createHashRouter,
+} from "react-router-dom";
 import { NotFound } from "../components/index";
 import {
   // static pages
@@ -28,43 +33,41 @@ import {
 } from "../containers/index";
 
 export function Redirects() {
-  return (
-    <BrowserRouter>
-      <Routes>
+  const routes = createHashRouter([
+    // static pages
+    { path: "/", element: <Initial /> },
+    { path: "/home", element: <Initial /> },
+    { path: "/services", element: <Services /> },
+    { path: "/contact", element: <Contact /> },
+    { path: "/about", element: <About /> },
 
-        // static pages
-        <Route path="/" element={<Initial />} />
-        <Route path="/home" element={<Initial />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
+    // blog pages
+    { path: "/blogs", element: <AllBlogs /> },
+    { path: "/blogs/category/:slug", element: <Categorys /> },
+    { path: "/blogs/blog_detail/:slug", element: <BlogDetail /> },
+    { path: "/blogs/search/:slug", element: <Search /> },
 
+    // Registration pages
+    { path: "/access", element: <Access /> },
+    { path: "/access/signin", element: <Signin /> },
+    { path: "/access/signup", element: <Signup /> },
+    { path: "/admin/user/activate/:uid/:token", element: <Activation /> },
+    {
+      path: "/admin/reset_password/confirm/:uid/:token",
+      element: <ResetPassword />,
+    },
 
-        // blog pages
-        <Route path="/blogs" element={<AllBlogs />} />
-        <Route path="/blogs/category/:slug" element={<Categorys />} />
-        <Route path="/blogs/blog_detail/:slug" element={<BlogDetail />} />
-        <Route path="/blogs/search/:slug" element={<Search />} />
+    // Dashboard pages
+    { path: "/dashboard", element: <InitialDashboard /> },
+    { path: "/dashboard/blogs_user", element: <BlogsUser /> },
+    { path: "/dashboard/create_blog", element: <CreateBlogUser /> },
+    {
+      path: "/dashboard/blog_user_detail/:slug",
+      element: <UpdateBlogByUser />,
+    },
 
-
-        // Registration pages
-        <Route path="/access" element={<Access />} />
-        <Route path="/access/signin" element={<Signin />} />
-        <Route path="/access/signup" element={<Signup />} />
-        <Route path="/admin/user/activate/:uid/:token" element={<Activation />}/>
-        <Route path="/admin/reset_password/confirm/:uid/:token" element={<ResetPassword />}/>
-
-
-        // Dashboard pages
-        <Route path="/dashboard" element={<InitialDashboard />} />
-        <Route path="/dashboard/blogs_user" element={<BlogsUser />} />
-        <Route path="/dashboard/create_blog" element={<CreateBlogUser/>} />
-        <Route path="/dashboard/blog_user_detail/:slug" element={<UpdateBlogByUser/>} />
-
-        //Not found page
-        <Route path="*" element={<NotFound />} />
-        
-      </Routes>
-    </BrowserRouter>
-  );
+    //Not found page
+    { path: "*", element: <NotFound /> },
+  ]);
+  return routes;
 }
