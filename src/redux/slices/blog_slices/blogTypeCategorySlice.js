@@ -4,7 +4,7 @@ import axios from "axios";
 export const axiosBlogTypeCategory = createAsyncThunk(
   "blogTypeCategory",
   async (slug) => {
-    const url = `${"https://server-agency-1203.onrender.com/"}/blog/blog_by_category/?slug=${slug}`;
+    const url = `${"https://server-agency-1203.onrender.com"}/blog/blog_by_category/?slug=${slug}`;
     const response = await axios.get(url);
     return response.data;
   }

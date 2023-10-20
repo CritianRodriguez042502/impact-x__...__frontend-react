@@ -56,7 +56,7 @@ export function BlogsUser() {
       const headers = {
         Authorization: `JWT ${access}`,
       };
-      const url = `https://server-agency-1203.onrender.com//dashboard/blog_by_user/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com/dashboard/blog_by_user/?page=${page}`;
       fetch(url, {
         method: "GET",
         headers,
@@ -90,7 +90,7 @@ export function BlogsUser() {
       const headers = {
         Authorization: `JWT ${access}`,
       };
-      const url = `https://server-agency-1203.onrender.com//dashboard/blog_by_user/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com/dashboard/blog_by_user/?page=${page}`;
       fetch(url, {
         method: "GET",
         headers,
@@ -264,7 +264,7 @@ export function BlogsUser() {
                     >
                       <div className={style.containerImg}>
                         <img
-                          src={`http://localhost:8000${data.img}`}
+                          src={`https://server-agency-1203.onrender.com${data.img}`}
                           alt="img"
                         />
                       </div>
@@ -330,7 +330,7 @@ export function BlogsUser() {
                     >
                       <div className={style.containerImg}>
                         <img
-                          src={`http://localhost:8000${data.img}`}
+                          src={`https://server-agency-1203.onrender.com${data.img}`}
                           alt="img"
                         />
                       </div>

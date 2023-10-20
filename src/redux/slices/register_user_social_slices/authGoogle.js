@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const axiosAuthGoogle = createAsyncThunk("authGoogle", async () => {
-  const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/o/google-oauth2/?redirect_uri=http://localhost:5173/access/signin`;
+  const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/o/google-oauth2/?redirect_uri=http://localhost:5173/access/signin`;
   const respose = await axios.get(url);
   return respose.data;
 });

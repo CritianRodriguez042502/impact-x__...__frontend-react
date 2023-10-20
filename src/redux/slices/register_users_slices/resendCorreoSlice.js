@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const axiosResendEmail = createAsyncThunk("resendEmail", async (data) => {
-  const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/users/resend_activation/`;
+  const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/users/resend_activation/`;
   const response = await axios.post(url, data);
   return response.data;
 });

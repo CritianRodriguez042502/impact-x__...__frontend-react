@@ -4,7 +4,7 @@ import axios from "axios";
 export const axiosActivationUser = createAsyncThunk(
   "activation",
   async (data) => {
-    const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/users/activation/`;
+    const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/users/activation/`;
     const response = await axios.post(url, data);
     return response.data;
   }

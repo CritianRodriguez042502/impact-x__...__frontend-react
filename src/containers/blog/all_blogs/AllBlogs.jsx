@@ -33,7 +33,7 @@ export function AllBlogs() {
 
   useEffect(() => {
     if (page) {
-      const url = `https://server-agency-1203.onrender.com//blog/all_blog/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com/blog/all_blog/?page=${page}`;
       fetch(url, {
         method: "GET",
       })
@@ -190,7 +190,7 @@ export function AllBlogs() {
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
                         <img
-                          src={`http://localhost:8000${data.img}`}
+                          src={`https://server-agency-1203.onrender.com${data.img}`}
                           alt="img"
                         />
                       </div>
@@ -224,7 +224,7 @@ export function AllBlogs() {
                       <aside className={style.blogContentContainer}>
                         <div className={style.containerImg}>
                           <img
-                            src={`http://localhost:8000${data.img}`}
+                            src={`https://server-agency-1203.onrender.com${data.img}`}
                             alt="img"
                           />
                         </div>

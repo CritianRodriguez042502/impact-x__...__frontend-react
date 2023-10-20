@@ -7,7 +7,7 @@ export const axiosUserData = createAsyncThunk("userData", async (data) => {
   };
   if (data.method === "get") {
     try {
-      const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/users/me/`;
+      const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/users/me/`;
       const response = await axios.get(url, { headers });
       return {
         status: response.status,
@@ -21,7 +21,7 @@ export const axiosUserData = createAsyncThunk("userData", async (data) => {
     }
   } else if (data.method === "put") {
     try {
-      const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/users/me/`;
+      const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/users/me/`;
       const response = await axios.put(url, data.info, { headers });
       return {
         status: response.status,

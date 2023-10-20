@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const axiosCreateUser = createAsyncThunk("create_user", async (data) => {
-  const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/users/`;
+  const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/users/`;
   try {
     const response = await axios.post(url, data);
     return {

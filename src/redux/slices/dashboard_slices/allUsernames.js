@@ -7,7 +7,7 @@ export const axiosAllUsernames = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"https://server-agency-1203.onrender.com/"}/dashboard/get_all_usernames/`;
+    const url = `${"https://server-agency-1203.onrender.com"}/dashboard/get_all_usernames/`;
 
     try {
       const response = await axios.get(url, { headers });

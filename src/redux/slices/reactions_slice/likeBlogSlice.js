@@ -6,7 +6,7 @@ export const axiosLikeBlog = createAsyncThunk("LikeBlog", async (data) => {
     Authorization: `JWT ${data.jwt}`,
   };
 
-  const url = "http://localhost:8000/blog_reactions/likes/";
+  const url = "https://server-agency-1203.onrender.com/blog_reactions/likes/";
   try {
     const response = await axios.patch(url, data, { headers });
     return {

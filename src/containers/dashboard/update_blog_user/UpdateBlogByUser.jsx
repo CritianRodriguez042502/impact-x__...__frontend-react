@@ -311,7 +311,7 @@ export function UpdateBlogByUser() {
               {Object.keys(dataUpdateBlog).length !== 0 ? (
                 <img
                   style={{ display: "none" }}
-                  src={`http://localhost:8000${dataUpdateBlog.img}`}
+                  src={`https://server-agency-1203.onrender.com${dataUpdateBlog.img}`}
                   alt="img"
                   width={140}
                 />

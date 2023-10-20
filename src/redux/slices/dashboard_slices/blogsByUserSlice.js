@@ -5,7 +5,7 @@ export const axiosBlogsByUser = createAsyncThunk("blogByUser", async (jwt) => {
   const headers = {
     Authorization: `JWT ${jwt}`,
   };
-  const url = `${"https://server-agency-1203.onrender.com/"}/dashboard/blog_by_user/`;
+  const url = `${"https://server-agency-1203.onrender.com"}/dashboard/blog_by_user/`;
   const response = await axios.get(url, { headers });
   return response.data;
 });

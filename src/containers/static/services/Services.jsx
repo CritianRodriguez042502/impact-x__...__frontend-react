@@ -33,7 +33,7 @@ export function Services() {
   }, [counter1, counter2, counter3]);
 
   function configurationCategorys () {
-    const url = "https://server-agency-1203.onrender.com//blog/create/";
+    const url = "https://server-agency-1203.onrender.com/blog/create/";
     const info1 = { name: "Tecnologia" };
     const info2 = { name: "Marketing" };
     const info3 = { name: "Robotica" };

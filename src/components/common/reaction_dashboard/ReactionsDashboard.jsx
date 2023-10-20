@@ -110,7 +110,7 @@ export function GetReactionDashboard({ params }) {
                       />
                     ) : (
                       <img
-                        src={`http://localhost:8000${data.user.img}`}
+                        src={`https://server-agency-1203.onrender.com${data.user.img}`}
                         alt="img"
                         width={70}
                       />
@@ -184,7 +184,7 @@ export function GetReactionDashboard({ params }) {
                         />
                       ) : (
                         <img
-                          src={`http://localhost:8000${like.user.img}`}
+                          src={`https://server-agency-1203.onrender.com${like.user.img}`}
                           alt="img"
                           width={70}
                         />

@@ -7,7 +7,7 @@ export const axiosDeleteBlogUser = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"https://server-agency-1203.onrender.com/"}/dashboard/delete_blog_by_user/?slug=${
+    const url = `${"https://server-agency-1203.onrender.com"}/dashboard/delete_blog_by_user/?slug=${
       data.slug
     }`;
     const response = await axios.delete(url, { headers });

@@ -38,7 +38,7 @@ export function Categorys() {
 
   useEffect(() => {
     if (page) {
-      const url = `https://server-agency-1203.onrender.com//blog/blog_by_category/?page=${page}&slug=${params.slug}`;
+      const url = `https://server-agency-1203.onrender.com/blog/blog_by_category/?page=${page}&slug=${params.slug}`;
       fetch(url, {
         method: "GET",
       })
@@ -189,7 +189,7 @@ export function Categorys() {
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
                         <img
-                          src={`http://localhost:8000${data.img}`}
+                          src={`https://server-agency-1203.onrender.com${data.img}`}
                           alt="img"
                         />
                       </div>
@@ -221,7 +221,7 @@ export function Categorys() {
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
                         <img
-                          src={`http://localhost:8000${data.img}`}
+                          src={`https://server-agency-1203.onrender.com${data.img}`}
                           alt="img"
                         />
                       </div>

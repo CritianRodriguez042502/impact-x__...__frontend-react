@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const axiosJWTVerify = createAsyncThunk("JWTVerify", async (data) => {
-  const url = `${"https://server-agency-1203.onrender.com/"}/user_system/auth/jwt/verify/`;
+  const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/jwt/verify/`;
   try {
     const response = await axios.post(url, data)
     return response.status
