@@ -41,20 +41,14 @@ export function Navbar() {
 
   // useeffect to bring categories
   useEffect(() => {
-    if (!infoCategorys.info) {
-      import("../../../redux/index").then((modules) => {
-        dispatch(modules.axiosCategorys());
-      });
+    if (infoCategorys.status === null || infoCategorys.status === "rejected") {
+      setTimeout(() => {
+        import("../../../redux/index").then((modules) => {
+          dispatch(modules.axiosCategorys());
+        });
+      }, 4000);
     }
-  }, [infoCategorys.info]);
-
-  setInterval(() => {
-    if (infoCategorys.status === "rejected" || infoCategorys.status === null) {
-      import("../../../redux/index").then((modules) => {
-        dispatch(modules.axiosCategorys());
-      });
-    }
-  }, 8000);
+  }, [infoCategorys.status]);
 
   return (
     <main>

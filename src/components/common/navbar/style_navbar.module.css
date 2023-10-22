@@ -21,7 +21,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 6%;
-  
 }
 
 .parentContainer h1 {
@@ -35,6 +34,7 @@ body {
   position: fixed;
   top: 0px;
   background: rgb(229, 226, 226);
+  z-index: 1;
   box-shadow: 2px 2px 10px black;
   transition: all 0.7s;
   -webkit-transition: all 0.7s;
