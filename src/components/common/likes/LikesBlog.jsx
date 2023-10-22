@@ -12,8 +12,12 @@ export function LikesBlog({ params }) {
   const infoJWTVerify = useSelector((state) => state.JWTVerify);
   const infoGetLikeBlog = useSelector((state) => state.getLikesBlog);
   const Infolike = useSelector((state) => state.likeBlog);
-
+ 
   const [selectLikeUser, setSelectLikeUser] = useState(false);
+
+  // Style loader like
+  const [overlay, setOverlay] = useState("none")
+  const [visiblityLike, setVisibilityLike] = useState("initial")
 
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
@@ -43,6 +47,13 @@ export function LikesBlog({ params }) {
     }
   }, [infoGetLikeBlog.info]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setOverlay("none")
+      setVisibilityLike("initial")
+    },3000)
+  },[overlay])
+
   function onChangeLike(e) {
     if (Infolike.status !== "pending") {
       if (
@@ -58,6 +69,8 @@ export function LikesBlog({ params }) {
         };
         import("../../../redux/index").then((modules) => {
           dispatch(modules.axiosLikeBlog(updatedLike));
+          setOverlay("inline-block")
+          setVisibilityLike("none")
         });
         setSelectLikeUser(!selectLikeUser);
       } else if (infoJWTVerify.status === "fulfilled" && access && username) {
@@ -67,6 +80,8 @@ export function LikesBlog({ params }) {
           jwt: access,
         };
         import("../../../redux/index").then((modules) => {
+          setOverlay("inline-block")
+          setVisibilityLike("none")
           dispatch(modules.axiosLikeBlog(updatedLike));
         });
         setSelectLikeUser(false);
@@ -90,7 +105,8 @@ export function LikesBlog({ params }) {
   return (
     <main>
       <div>
-        <input
+        <span style={{display : overlay}} className={style.loader}></span>
+        <input style={{display : visiblityLike}}
           className={style.mainButton}
           type="checkbox"
           name="like"
@@ -99,10 +115,7 @@ export function LikesBlog({ params }) {
         />
 
         {infoGetLikeBlog.status === "fulfilled" ? (
-          <b className={style.counter}>
-            {" "}
-            {infoGetLikeBlog.info.data.all_likes}{" "}
-          </b>
+          <b className={style.counter}>{infoGetLikeBlog.info.data.all_likes}</b>
         ) : (
           false
         )}

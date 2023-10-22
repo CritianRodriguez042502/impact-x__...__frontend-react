@@ -10,11 +10,11 @@ import style from "./style_navbar.module.css";
 export function Navbar() {
   const dispatch = useDispatch();
   const infoJWTVerify = useSelector((state) => state.JWTVerify);
+  const infoCategorys = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
 
   const [appearance, setAppearance] = useState(false);
-  
 
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
@@ -38,6 +38,23 @@ export function Navbar() {
       setAppearance(false);
     }
   }, [infoJWTVerify.status]);
+
+  // useeffect to bring categories
+  useEffect(() => {
+    if (!infoCategorys.info) {
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosCategorys());
+      });
+    }
+  }, [infoCategorys.info]);
+
+  setInterval(() => {
+    if (infoCategorys.status === "rejected" || infoCategorys.status === null) {
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosCategorys());
+      });
+    }
+  }, 8000);
 
   return (
     <main>

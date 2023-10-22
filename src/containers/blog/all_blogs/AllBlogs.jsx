@@ -11,6 +11,8 @@ export function AllBlogs() {
   const infoCategorys = useSelector((state) => state.category);
   const infoBlogs = useSelector((state) => state.allBlogs);
 
+  const [overlay, setOverlay] = useState("initial");
+
   const [allVisibility, setAllVisibility] = useState("0");
   const [allVisibilityPage, setAllVisibilityPage] = useState("0");
   const [nextBlogPages, setNextBlogPages] = useState({});
@@ -18,12 +20,16 @@ export function AllBlogs() {
   const page = new URLSearchParams(location.search).get("page");
 
   useEffect(() => {
-    if (!infoBlogs.info) {
+    if (!infoCategorys.info) {
       import("../../../redux/index").then((modules) => {
         dispatch(modules.axiosCategorys());
       });
     }
-  }, [infoBlogs.info]);
+
+    if (infoCategorys.info && infoBlogs.info) {
+      setOverlay("none");
+    }
+  }, [infoBlogs.info, infoCategorys.info]);
 
   useEffect(() => {
     import("../../../redux/index").then((modules) => {
@@ -128,92 +134,65 @@ export function AllBlogs() {
       </Helmet>
 
       <Layout>
-        <section className={style.containerAllBlogs1}>
-          <nav className={style.categories}>
-            {location.pathname == "/blogs" ? (
-              <Link
-                style={{ color: "green", textDecoration: "underline" }}
-                className={style.link}
-                to={"/blogs"}
-              >
-                Todos
-              </Link>
-            ) : (
-              <Link className={style.link} to={"/blogs"}>
-                Todos
-              </Link>
-            )}
+        <article style={{ position: "relative" }}>
+          <div style={{ display: overlay }} class={style.overlay}>
+            <div class={style.loaderContainer}>
+              <span class={style.loader}></span>
+            </div>
+          </div>
 
-            {infoCategorys.status === "fulfilled"
-              ? infoCategorys.info?.map((data) => {
-                  return (
-                    <Link
-                      className={style.link}
-                      to={`/blogs/category/${data.slug}`}
-                      key={data.id}
-                    >
-                      {data.name}
-                    </Link>
-                  );
-                })
-              : infoCategorys.status === "pending"
-              ? false
-              : false}
-          </nav>
+          <section className={style.containerAllBlogs1}>
+            <nav className={style.categories}>
+              {location.pathname == "/blogs" ? (
+                <Link
+                  style={{ color: "green", textDecoration: "underline" }}
+                  className={style.link}
+                  to={"/blogs"}
+                >
+                  Todos
+                </Link>
+              ) : (
+                <Link className={style.link} to={"/blogs"}>
+                  Todos
+                </Link>
+              )}
 
-          <form onSubmit={onSubmitSearch} className={style.searchForm}>
-            <input
-              type="text"
-              name="search"
-              id="search"
-              placeholder="Buscar"
-              required
-            />
-            <button type="submit">Buscar</button>
-          </form>
-        </section>
+              {infoCategorys.status === "fulfilled"
+                ? infoCategorys.info?.map((data) => {
+                    return (
+                      <Link
+                        className={style.link}
+                        to={`/blogs/category/${data.slug}`}
+                        key={data.id}
+                      >
+                        {data.name}
+                      </Link>
+                    );
+                  })
+                : infoCategorys.status === "pending"
+                ? false
+                : false}
+            </nav>
 
-        <section
-          className={style.containerAllBlogs2}
-          style={{ opacity: allVisibility }}
-        >
-          {infoBlogs.status === "fulfilled" && !location.search ? (
-            <article>
-              {infoBlogs.info.results?.map((data) => {
-                return (
-                  <div
-                    key={data.id}
-                    onClick={(e) => {
-                      navigate(`/blogs/blog_detail/${data.slug}`);
-                    }}
-                  >
-                    <aside className={style.blogContentContainer}>
-                      <div className={style.containerImg}>
-                        <img
-                          src={`https://server-agency-1203.onrender.com${data.img}`}
-                          alt="img"
-                        />
-                      </div>
+            <form onSubmit={onSubmitSearch} className={style.searchForm}>
+              <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Buscar"
+                required
+              />
+              <button type="submit">Buscar</button>
+            </form>
+          </section>
 
-                      <div className={style.blogInfo}>
-                        <h1 className={style.title}> {data.title} </h1>
-                        <p className={style.description}>{data.description}</p>
-                        <p className={style.creation}> {data.creation} </p>
-                      </div>
-                    </aside>
-                  </div>
-                );
-              })}
-
-              {infoBlogs.status === "fulfilled" ? buttonsPagination() : false}
-            </article>
-          ) : Object.keys(nextBlogPages).length !== 0 ? (
-            <section
-              className={style.containerAllBlogs2}
-              style={{ opacity: allVisibilityPage }}
-            >
+          <section
+            className={style.containerAllBlogs2}
+            style={{ opacity: allVisibility }}
+          >
+            {infoBlogs.status === "fulfilled" && !location.search ? (
               <article>
-                {nextBlogPages.results?.map((data) => {
+                {infoBlogs.info.results?.map((data) => {
                   return (
                     <div
                       key={data.id}
@@ -243,13 +222,52 @@ export function AllBlogs() {
 
                 {infoBlogs.status === "fulfilled" ? buttonsPagination() : false}
               </article>
-            </section>
-          ) : infoBlogs.status === "rejected" ? (
-            <h1> No hay blogs </h1>
-          ) : (
-            false
-          )}
-        </section>
+            ) : Object.keys(nextBlogPages).length !== 0 ? (
+              <section
+                className={style.containerAllBlogs2}
+                style={{ opacity: allVisibilityPage }}
+              >
+                <article>
+                  {nextBlogPages.results?.map((data) => {
+                    return (
+                      <div
+                        key={data.id}
+                        onClick={(e) => {
+                          navigate(`/blogs/blog_detail/${data.slug}`);
+                        }}
+                      >
+                        <aside className={style.blogContentContainer}>
+                          <div className={style.containerImg}>
+                            <img
+                              src={`https://server-agency-1203.onrender.com${data.img}`}
+                              alt="img"
+                            />
+                          </div>
+
+                          <div className={style.blogInfo}>
+                            <h1 className={style.title}> {data.title} </h1>
+                            <p className={style.description}>
+                              {data.description}
+                            </p>
+                            <p className={style.creation}> {data.creation} </p>
+                          </div>
+                        </aside>
+                      </div>
+                    );
+                  })}
+
+                  {infoBlogs.status === "fulfilled"
+                    ? buttonsPagination()
+                    : false}
+                </article>
+              </section>
+            ) : infoBlogs.status === "rejected" ? (
+              <h1> No hay blogs </h1>
+            ) : (
+              false
+            )}
+          </section>
+        </article>
       </Layout>
     </main>
   );

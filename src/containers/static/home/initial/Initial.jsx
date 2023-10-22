@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet";
-import { Layout } from "../../../../components/index";
 import Typewriter from "typewriter-effect";
+import { Layout } from "../../../../components/index";
 import style from "./style_initial.module.css";
 
 export function Initial() {
+
   return (
     <main>
       <Helmet>

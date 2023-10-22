@@ -1,9 +1,4 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  createHashRouter,
-} from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import { NotFound } from "../components/index";
 import {
   // static pages
@@ -49,7 +44,7 @@ export function Redirects() {
 
     // Registration pages
     { path: "/access", element: <Access /> },
-    { path: "/agency_view/#/access/signin", element: <Signin /> },
+    { path: "/access/signin", element: <Signin /> },
     { path: "/access/signup", element: <Signup /> },
     { path: "/admin/user/activate/:uid/:token", element: <Activation /> },
     {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineDoubleRight } from "react-icons/ai";
