@@ -51,7 +51,7 @@ export function Access() {
               </button>
               <button
                 onClick={(e) => {
-                  navigate("/agency_view/#/access/signin");
+                  navigate("/access/signin");
                 }}
                 type="button"
               >
