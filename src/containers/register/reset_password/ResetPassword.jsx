@@ -24,7 +24,7 @@ export function ResetPassword() {
         timer: 3500,
       });
       setTimeout(() => {
-        navigate("/agency_view/#/access/signin");
+        navigate("/access/signin");
       }, 4000);
     }
     if (infoResetPassword.status === "rejected") {
