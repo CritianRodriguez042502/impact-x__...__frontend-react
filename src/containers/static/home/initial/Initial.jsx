@@ -92,10 +92,6 @@ export function Initial() {
               </article>
             </div>
           </div>
-
-          
-
-          
         </section>
 
         <section className={style.containerInitial3}>

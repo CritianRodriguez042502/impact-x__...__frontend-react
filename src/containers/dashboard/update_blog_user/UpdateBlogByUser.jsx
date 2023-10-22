@@ -55,7 +55,7 @@ export function UpdateBlogByUser() {
     }
 
     if (infoDetailedUserBlog.status === "rejected") {
-      location.href = "http://localhost:5173/dashboard/blogs_user";
+      location.href = "https://critianrodriguez042502.github.io/dashboard/blogs_user";
     }
   }, [infoJWTVerifi.status, infoDetailedUserBlog.status]);
 

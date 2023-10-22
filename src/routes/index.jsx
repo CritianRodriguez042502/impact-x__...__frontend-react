@@ -49,7 +49,7 @@ export function Redirects() {
 
     // Registration pages
     { path: "/access", element: <Access /> },
-    { path: "/access/signin", element: <Signin /> },
+    { path: "/agency_view/#/access/signin", element: <Signin /> },
     { path: "/access/signup", element: <Signup /> },
     { path: "/admin/user/activate/:uid/:token", element: <Activation /> },
     {

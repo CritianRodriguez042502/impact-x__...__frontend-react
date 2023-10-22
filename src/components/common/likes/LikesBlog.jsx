@@ -80,7 +80,7 @@ export function LikesBlog({ params }) {
             icon: "warning",
             title: "Oops...",
             text: "Tienes que estar registrado!",
-            footer: `<a class=${style.messageError} href="http://localhost:5173/access/signin"> Ingresa a tu cuenta </a>`,
+            footer: `<a class=${style.messageError} href="https://critianrodriguez042502.github.io/agency_view/#/access/signin"> Ingresa a tu cuenta </a>`,
           });
         }
       }

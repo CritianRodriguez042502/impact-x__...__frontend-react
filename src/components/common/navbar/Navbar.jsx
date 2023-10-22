@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import { axiosJWTVerify } from "../../../redux/index";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
-import { DiCodeigniter } from "react-icons/di";
 import style from "./style_navbar.module.css";
 
 export function Navbar() {
@@ -44,7 +43,7 @@ export function Navbar() {
     <main>
       <section className={style.parentContainer}>
         <div>
-          <h1> <DiCodeigniter/> IMPACT X  <DiCodeigniter/> </h1>
+          <h1> 🧩 IMPACT X 🧩 </h1>
         </div>
 
         <div>

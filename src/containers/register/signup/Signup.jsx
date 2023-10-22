@@ -105,7 +105,7 @@ export function Signup() {
       if (password === rePassword) {
         if (password.length >= 8) {
           import("../../../redux/index").then((modules) => {
-            dispatch(modules.axiosCreateUser(dataUser))
+            dispatch(modules.axiosCreateUser(dataUser));
           });
         } else {
           Swal.fire({
@@ -208,7 +208,6 @@ export function Signup() {
             <button type="submit"> Registrarse </button>
           </form>
         </section>
-
 
         <div style={{ display: sendEmail }}>
           <p> Volver a enviar correo </p>

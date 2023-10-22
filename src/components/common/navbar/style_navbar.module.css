@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One&family=Gabarito&display=swap');
 
 * {
   box-sizing: border-box;
@@ -24,6 +25,8 @@ body {
 }
 
 .parentContainer h1 {
+  font-family: 'Gabarito', sans-serif;
+  font-size: 30px;
   margin: 0px;
   white-space: nowrap;
 }

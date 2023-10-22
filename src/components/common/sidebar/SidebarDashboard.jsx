@@ -30,7 +30,7 @@ export function SidebarDashboard({ appearance }) {
   useEffect(() => {
     if (!access) {
       localStorage.clear();
-      location.href = "http://localhost:5173/access/signin";
+      location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
     }
 
     if (!infoJWTVerifi.status) {
@@ -40,7 +40,7 @@ export function SidebarDashboard({ appearance }) {
     }
 
     if (infoJWTVerifi.status === "rejected") {
-      location.href = "http://localhost:5173/access/signin";
+      location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
     }
   }, [infoJWTVerifi.status, username]);
 
@@ -49,7 +49,7 @@ export function SidebarDashboard({ appearance }) {
       infoDatauser.status === "rejected" &&
       (infoJWTVerifi.status === "rejected" || !access)
     ) {
-      location.href = "http://localhost:5173/access/signin";
+      location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
       localStorage.clear();
     }
   }, [infoDatauser.status, username]);
@@ -110,7 +110,7 @@ export function SidebarDashboard({ appearance }) {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.clear();
-        location.href = "http://localhost:5173/access/signin";
+        location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
       }
     });
   }

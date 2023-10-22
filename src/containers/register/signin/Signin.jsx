@@ -54,7 +54,7 @@ export function Signin() {
         icon: "error",
         title: "Oops...",
         text: "Combinacion de credenciales incorrecta!",
-        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
+        footer: `<a class=${style.messageError} href="https://critianrodriguez042502.github.io/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
       });
     }
 
@@ -116,6 +116,7 @@ export function Signin() {
     e.preventDefault();
 
     if (dataForm.email && dataForm.password) {
+      Swal.showLoading()
       import("../../../redux/index").then((modules) => {
         dispatch(modules.axiosJWTCreate(dataForm));
       });
@@ -147,7 +148,7 @@ export function Signin() {
         icon: "error",
         title: "Oops...",
         text: "Esta cuenta existe!",
-        footer: `<a class=${style.messageError} href="http://localhost:5173/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
+        footer: `<a class=${style.messageError} href="https://critianrodriguez042502.github.io/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
       });
     }
   }, [infoResetPassword.status]);

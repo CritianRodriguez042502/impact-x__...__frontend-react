@@ -34,33 +34,51 @@ export function Services() {
 
   function configurationCategorys () {
     const url = "https://server-agency-1203.onrender.com/blog/create/";
-    const info1 = { name: "Tecnologia" };
+    const info1 = { name: "Software" };
     const info2 = { name: "Marketing" };
     const info3 = { name: "Robotica" };
+    const info4 = { name: "Videojuegos" };
+    const info5 = {name : "Ciberseguridad"}
 
     setTimeout(() => {
       axios.post(url, info1).then((res) => {
         if (res.status == 200) {
-          console.log("bien");
+          console.log(".");
+        }
+      }).catch(err => {console.log(err)});
+    }, 1000);
+
+    setTimeout(() => {
+      axios.post(url, info2).then((res) => {
+        if (res.status == 200) {
+          console.log(".");
         }
       }).catch(err => {console.log(err)});
     }, 2000);
 
     setTimeout(() => {
-      axios.post(url, info2).then((res) => {
+      axios.post(url, info3).then((res) => {
         if (res.status == 200) {
-          console.log("bien");
+          console.log(".");
+        }
+      }).catch(err => {console.log(err)});
+    }, 3000);
+
+    setTimeout(() => {
+      axios.post(url, info4).then((res) => {
+        if (res.status == 200) {
+          console.log(".");
         }
       }).catch(err => {console.log(err)});
     }, 4000);
 
     setTimeout(() => {
-      axios.post(url, info3).then((res) => {
+      axios.post(url, info5).then((res) => {
         if (res.status == 200) {
-          console.log("bien");
+          console.log(".");
         }
       }).catch(err => {console.log(err)});
-    }, 6000);
+    }, 5000);
   }
 
   return (
@@ -160,7 +178,7 @@ export function Services() {
               <p>
                 <BiAnalyse />
               </p>
-              <p>
+              <p onClick={configurationCategorys}>
                 <BiAnalyse />
               </p>
             </div>

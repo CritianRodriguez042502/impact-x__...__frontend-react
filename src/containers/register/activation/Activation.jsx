@@ -36,7 +36,7 @@ export function Activation() {
         timer: 3000,
       });
       setTimeout(() => {
-        navigate("/access/signin");
+        navigate("/agency_view/#/access/signin");
       }, 4000);
     }
     if (infoActivation.status === "rejected") {
