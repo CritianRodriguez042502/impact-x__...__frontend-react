@@ -38,8 +38,9 @@ const updateBlogUserSlices = createSlice({
     builder.addCase(axiosUpdateBlogUser.fulfilled, function (state) {
       state.status = "fulfilled";
     });
-    builder.addCase(axiosUpdateBlogUser.rejected, function (state) {
+    builder.addCase(axiosUpdateBlogUser.rejected, function (state,action) {
       state.status = "rejected";
+      state.error = action.error.message
     });
   },
 });

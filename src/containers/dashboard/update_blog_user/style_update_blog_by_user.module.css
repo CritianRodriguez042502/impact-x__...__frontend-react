@@ -17,7 +17,7 @@
 
 .linkAtras {
   padding: 7px 0px;
-  background-color: #ae3f3f;
+  background-color: #a83c3c;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -26,7 +26,7 @@
 }
 
 .linkAtras:hover {
-  background-color: #8f1e1e;
+  background-color: #8b3838;
 }
 
 
@@ -64,11 +64,10 @@ label {
 }
 
 .button {
-  background-color: rgb(77, 197, 81);
+  background-color: rgb(87, 192, 89);
   font-weight: bold;
   color: #fff;
   padding: 10px 30px;
-  margin-bottom: 5px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -77,7 +76,7 @@ label {
 }
 
 .button:hover {
-  background-color: green;
+  background-color: rgb(63, 153, 63);
 }
 
 

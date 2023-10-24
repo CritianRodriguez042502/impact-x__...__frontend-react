@@ -55,7 +55,8 @@ export function UpdateBlogByUser() {
     }
 
     if (infoDetailedUserBlog.status === "rejected") {
-      location.href = "https://critianrodriguez042502.github.io/dashboard/blogs_user";
+      location.href =
+        "https://critianrodriguez042502.github.io/dashboard/blogs_user";
     }
   }, [infoJWTVerifi.status, infoDetailedUserBlog.status]);
 
@@ -143,23 +144,29 @@ export function UpdateBlogByUser() {
       import("../../../redux/index").then((modules) => {
         dispatch(modules.axiosUpdateBlogUser(data));
       });
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener("mouseenter", Swal.stopTimer);
-          toast.addEventListener("mouseleave", Swal.resumeTimer);
-        },
-      });
+      console.log(data)
+      Swal.showLoading();
+      setTimeout(() => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
 
-      Toast.fire({
-        icon: "success",
-        title: "Blog actualizado",
-      });
-      navigate("/dashboard/blogs_user");
+        Toast.fire({
+          icon: "success",
+          title: "Blog actualizado",
+        });
+      }, 4000);
+      setTimeout(() => {
+        navigate("/dashboard/blogs_user");
+      }, 4500);
     }
   }
 
@@ -199,6 +206,7 @@ export function UpdateBlogByUser() {
               >
                 {Object.keys(dataUpdateBlog).length !== 0 ? (
                   <div>
+                    
                     <div className={style.title}>
                       <label
                         className={style.labelTitlePersonalize}
@@ -285,12 +293,6 @@ export function UpdateBlogByUser() {
                       </select>
                     </div>
 
-                    <div className={style.containerButtom}>
-                      <button className={style.button} type="submit">
-                        Actualizar blog
-                      </button>
-                    </div>
-
                     <div className={style.content}>
                       <CKEditor
                         editor={ClassicEditor}
@@ -300,6 +302,12 @@ export function UpdateBlogByUser() {
                           setContentCkeditor(data);
                         }}
                       />
+                    </div>
+
+                    <div className={style.containerButtom}>
+                      <button className={style.button} type="submit">
+                        Actualizar blog
+                      </button>
                     </div>
                   </div>
                 ) : (

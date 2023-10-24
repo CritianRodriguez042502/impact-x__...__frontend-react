@@ -89,23 +89,29 @@ export function CreateBlogUser() {
           import("../../../redux/index").then((modules) => {
             dispatch(modules.axiosCreateBlogUser(data));
           });
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener("mouseenter", Swal.stopTimer);
-              toast.addEventListener("mouseleave", Swal.resumeTimer);
-            },
-          });
+          Swal.showLoading();
+          setTimeout(() => {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
 
-          Toast.fire({
-            icon: "success",
-            title: "Blog creado",
-          });
-          navigate("/dashboard/blogs_user");
+            Toast.fire({
+              icon: "success",
+              title: "Blog creado",
+            });
+          }, 4000);
+
+          setTimeout(() => {
+            navigate("/dashboard/blogs_user");
+          },4500)
         } else {
           Swal.fire({
             icon: "info",

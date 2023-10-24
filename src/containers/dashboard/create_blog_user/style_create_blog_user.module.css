@@ -15,7 +15,7 @@
 
 .linkAtras {
   padding: 7px 0px;
-  background-color: #ae3f3f;
+  background-color: #a83c3c;
   color: #fff;
   font-size: 19px;
   text-decoration: none;
@@ -25,7 +25,7 @@
 }
 
 .linkAtras:hover {
-  background-color: #8f1e1e;
+  background-color: #8b3838;
 }
 
 /* Styles container create blog */
@@ -66,7 +66,7 @@ label {
 }
 
 .button {
-  background-color: rgb(77, 197, 81);
+  background-color: rgb(87, 192, 89);
   font-weight: bold;
   color: #fff;
   font-size: 19px;
@@ -79,7 +79,7 @@ label {
 }
 
 .button:hover {
-  background-color: green;
+  background-color: rgb(63, 153, 63);
 }
 
 /* style public */

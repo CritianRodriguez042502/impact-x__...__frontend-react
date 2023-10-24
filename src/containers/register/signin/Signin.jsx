@@ -163,7 +163,6 @@ export function Signin() {
     });
 
     if (email) {
-      console.log(email);
       Swal.fire(`Verifica tu email: ${email}`);
       import("../../../redux/index").then((modules) => {
         dispatch(modules.axiosResetPassword({ email: email }));

@@ -1,8 +1,24 @@
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
+import Swal from "sweetalert2";
 import style from "./style_contact.module.css";
 
 export function Contact() {
+  
+  const sendEmailImpactX = (e) => {
+    e.preventDefault();
+
+    Swal.showLoading();
+
+    setTimeout(() => {
+      Swal.fire(
+        "Proceso completado",
+        "El correo ha sido enviado satisfactoriamente. Pronto, recibirá una respuesta por parte del equipo.",
+        "success"
+      );
+    }, 3000);
+  };
+
   return (
     <main>
       <Helmet>
@@ -20,7 +36,7 @@ export function Contact() {
               comencemos
             </p>
 
-            <form className={style.containerInputs}>
+            <form onSubmit={sendEmailImpactX} className={style.containerInputs}>
               <label htmlFor="first_name"> Nombre y apellido </label>
               <input type="text" id="first_name" name="first_name" required />
               <label htmlFor="last_name"> Correo </label>

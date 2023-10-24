@@ -38,7 +38,7 @@
   font-size: 19px;
   justify-content: center;
   padding: 7px 0px;
-  background-color: rgb(77, 197, 81);
+  background-color: #4b61af;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -47,7 +47,7 @@
 }
 
 .buttonReactions:hover {
-  background-color: green;
+  background: rgb(51, 51, 169);
 }
 
 /*--------------------------------*/
