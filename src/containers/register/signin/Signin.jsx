@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import style from "./style_signin.module.css";
 export function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const locationReact = useLocation()
 
   const infoJWTCreate = useSelector((state) => state.JWTCreate);
   const infoJWTRefresh = useSelector((state) => state.JWTRefresh);
@@ -21,7 +22,7 @@ export function Signin() {
 
   // Auth Google
   const infoUrlGoogle = useSelector((state) => state.authGoogle);
-  const searchParams = new URLSearchParams(location.search);
+  const searchParams = new URLSearchParams(locationReact.search);
   const state = searchParams.get("state");
   const code = searchParams.get("code");
 

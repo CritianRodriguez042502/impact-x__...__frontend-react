@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
@@ -9,6 +9,8 @@ export function Search() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
+  const locationReact = useLocation()
+
   const infoSearchBlogs = useSelector((state) => state.searchBlog);
 
   const [inputValue, setInputValue] = useState(params.slug);
@@ -16,7 +18,7 @@ export function Search() {
   const [allVisibility, setAllVisibility] = useState("0");
   const [allVisibilityPage, setAllVisibilityPage] = useState("0");
 
-  const page = new URLSearchParams(location.search).get("page");
+  const page = locationReact.search;
 
   useEffect(() => {
     import("../../../redux/index").then((modules) => {
@@ -26,7 +28,7 @@ export function Search() {
 
   useEffect(() => {
     if (page) {
-      const url = `https://server-agency-1203.onrender.com/blog/search_blogs/?page=${page}&slug=${params.slug}`;
+      const url = `https://server-agency-1203.onrender.com/blog/search_blogs/?page=${page.split("=")[1]}&slug=${params.slug}`;
       fetch(url, {
         method: "GET",
       })
@@ -148,7 +150,7 @@ export function Search() {
           className={style.containerAllBlogs2}
           style={{ opacity: allVisibility }}
         >
-          {infoSearchBlogs.status === "fulfilled" && !location.search ? (
+          {infoSearchBlogs.status === "fulfilled" && !locationReact.search ? (
             <article style={{ opacity: allVisibility }}>
               {infoSearchBlogs.info.results?.map((data) => {
                 return (
@@ -161,7 +163,7 @@ export function Search() {
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
                         <img
-                          src={`https://server-agency-1203.onrender.com${data.img}`}
+                          src={data.img_url}
                           alt="img"
                         />
                       </div>
@@ -195,7 +197,7 @@ export function Search() {
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
                         <img
-                          src={`https://server-agency-1203.onrender.com${data.img}`}
+                          src={data.img_url}
                           alt="img"
                         />
                       </div>

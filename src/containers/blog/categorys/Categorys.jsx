@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 import style from "./style_categorys.module.css";
@@ -9,6 +9,8 @@ export function Categorys() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
+  const locationReact = useLocation();
+
   const infoblogTypeCategory = useSelector((state) => state.blogTypeCategory);
   const infoCategorys = useSelector((state) => state.category);
 
@@ -16,7 +18,7 @@ export function Categorys() {
   const [allVisibilityPage, setAllVisibilityPage] = useState("0");
   const [nextBlogPages, setNextBlogPages] = useState({});
 
-  const page = new URLSearchParams(location.search).get("page");
+  const page = locationReact.search;
 
   useEffect(
     function () {
@@ -38,7 +40,9 @@ export function Categorys() {
 
   useEffect(() => {
     if (page) {
-      const url = `https://server-agency-1203.onrender.com/blog/blog_by_category/?page=${page}&slug=${params.slug}`;
+      const url = `https://server-agency-1203.onrender.com/blog/blog_by_category/?page=${
+        page.split("=")[1]
+      }&slug=${params.slug}`;
       fetch(url, {
         method: "GET",
       })
@@ -176,7 +180,7 @@ export function Categorys() {
           className={style.containerAllBlogs2}
           style={{ opacity: allVisibility }}
         >
-          {infoblogTypeCategory.status === "fulfilled" && !location.search ? (
+          {infoblogTypeCategory.status === "fulfilled" && !locationReact.search ? (
             <article>
               {infoblogTypeCategory.info.results?.map((data) => {
                 return (
@@ -189,7 +193,7 @@ export function Categorys() {
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
                         <img
-                          src={`https://server-agency-1203.onrender.com${data.img}`}
+                          src={data.img_url}
                           alt="img"
                         />
                       </div>
@@ -221,7 +225,7 @@ export function Categorys() {
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
                         <img
-                          src={`https://server-agency-1203.onrender.com${data.img}`}
+                          src={data.img_url}
                           alt="img"
                         />
                       </div>

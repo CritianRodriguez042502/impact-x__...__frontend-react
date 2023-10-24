@@ -105,13 +105,13 @@ export function GetReactionDashboard({ params }) {
                       <img
                         src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
                         alt="img"
-                        width={70}
+                       
                       />
                     ) : (
                       <img
-                        src={`https://server-agency-1203.onrender.com${data.user.img}`}
+                        src={data.user.img_url}
                         alt="img"
-                        width={70}
+                        
                       />
                     )}
                   </div>
@@ -124,6 +124,7 @@ export function GetReactionDashboard({ params }) {
                     <hr style={{ border: "2px solid gray" }} />
                     <b className={style.commentDate}> {data.creation} </b>
                   </div>
+
                 </div>
               );
             })
@@ -183,7 +184,7 @@ export function GetReactionDashboard({ params }) {
                         />
                       ) : (
                         <img
-                          src={`https://server-agency-1203.onrender.com${like.user.img}`}
+                          src={like.user.img_url}
                           alt="img"
                           width={70}
                         />

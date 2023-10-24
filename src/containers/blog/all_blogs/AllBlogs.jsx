@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
@@ -8,6 +8,8 @@ import style from "./style_all_blogs.module.css";
 export function AllBlogs() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const locationReact = useLocation();
+
   const infoCategorys = useSelector((state) => state.category);
   const infoBlogs = useSelector((state) => state.allBlogs);
 
@@ -17,7 +19,7 @@ export function AllBlogs() {
   const [allVisibilityPage, setAllVisibilityPage] = useState("0");
   const [nextBlogPages, setNextBlogPages] = useState({});
 
-  const page = new URLSearchParams(location.search).get("page");
+  const page = locationReact.search;
 
   useEffect(() => {
     if (!infoCategorys.info) {
@@ -39,7 +41,9 @@ export function AllBlogs() {
 
   useEffect(() => {
     if (page) {
-      const url = `https://server-agency-1203.onrender.com/blog/all_blog/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com/blog/all_blog/?page=${
+        page.split("=")[1]
+      }`;
       fetch(url, {
         method: "GET",
       })
@@ -190,7 +194,7 @@ export function AllBlogs() {
             className={style.containerAllBlogs2}
             style={{ opacity: allVisibility }}
           >
-            {infoBlogs.status === "fulfilled" && !location.search ? (
+            {infoBlogs.status === "fulfilled" && !locationReact.search ? (
               <article>
                 {infoBlogs.info.results?.map((data) => {
                   return (
@@ -203,7 +207,7 @@ export function AllBlogs() {
                       <aside className={style.blogContentContainer}>
                         <div className={style.containerImg}>
                           <img
-                            src={`https://server-agency-1203.onrender.com${data.img}`}
+                            src={data.img_url}
                             alt="img"
                           />
                         </div>
@@ -239,7 +243,7 @@ export function AllBlogs() {
                         <aside className={style.blogContentContainer}>
                           <div className={style.containerImg}>
                             <img
-                              src={`https://server-agency-1203.onrender.com${data.img}`}
+                              src={data.img_url}
                               alt="img"
                             />
                           </div>

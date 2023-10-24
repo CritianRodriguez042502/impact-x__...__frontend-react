@@ -73,6 +73,7 @@
 
 .containerComment {
   display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
   padding: 5px;
   background-color: #eeebeb;
@@ -80,12 +81,14 @@
 }
 
 .userImage {
-  flex: 0 0 90px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin-right: 10px;
 }
 
 .userImage img {
-  width: 100%;
+  width: 170px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -171,12 +174,14 @@
 
 .likeItem {
   display: flex;
+  background: #C0C0FF;
+  padding: 10px;
+  border-radius: 20px;
   margin-bottom: 10px;
 }
 
 .likeItem img {
-  width: 85px;
-  height: 85px;
+  width: 150px;
   border-radius: 50%;
 }
 
@@ -192,11 +197,31 @@
   .containerFixed {
     padding: 20px 35px;
   }
+
+  .containerComment {
+    flex-direction: initial;
+  }
+
+  .userImage {
+    display: initial;
+    justify-content: initial;
+    flex: 0 0 90px;
+  }
 }
 
 /* media screen desktop */
 @media screen and (min-width: 950px) {
   .containerFixed {
     padding: 30px 50px;
+  }
+
+  .containerComment {
+    flex-direction: initial;
+  }
+
+  .userImage {
+    display: initial;
+    justify-content: initial;
+    flex: 0 0 90px;
   }
 }

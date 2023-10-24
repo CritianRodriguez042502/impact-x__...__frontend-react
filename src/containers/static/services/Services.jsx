@@ -4,7 +4,7 @@ import { Layout } from "../../../components/index";
 import { BiAnalyse } from "react-icons/bi";
 import { BiAtom } from "react-icons/bi";
 import { BiBugAlt } from "react-icons/bi";
-import axios from "axios"
+import axios from "axios";
 import style from "./style_services.module.css";
 
 export function Services() {
@@ -32,52 +32,77 @@ export function Services() {
     }
   }, [counter1, counter2, counter3]);
 
-  function configurationCategorys () {
+  function configurationCategorys() {
     const url = "https://server-agency-1203.onrender.com/blog/create/";
     const info1 = { name: "Software" };
     const info2 = { name: "Marketing" };
     const info3 = { name: "Robotica" };
     const info4 = { name: "Videojuegos" };
-    const info5 = {name : "Ciberseguridad"}
+    const info5 = { name: "Ciberseguridad" };
 
     setTimeout(() => {
-      axios.post(url, info1).then((res) => {
-        if (res.status == 200) {
-          console.log(".");
-        }
-      }).catch(err => {console.log(err)});
+      axios
+        .post(url, info1)
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(".");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }, 1000);
 
     setTimeout(() => {
-      axios.post(url, info2).then((res) => {
-        if (res.status == 200) {
-          console.log(".");
-        }
-      }).catch(err => {console.log(err)});
+      axios
+        .post(url, info2)
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(".");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }, 2000);
 
     setTimeout(() => {
-      axios.post(url, info3).then((res) => {
-        if (res.status == 200) {
-          console.log(".");
-        }
-      }).catch(err => {console.log(err)});
+      axios
+        .post(url, info3)
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(".");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }, 3000);
 
     setTimeout(() => {
-      axios.post(url, info4).then((res) => {
-        if (res.status == 200) {
-          console.log(".");
-        }
-      }).catch(err => {console.log(err)});
+      axios
+        .post(url, info4)
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(".");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }, 4000);
 
     setTimeout(() => {
-      axios.post(url, info5).then((res) => {
-        if (res.status == 200) {
-          console.log(".");
-        }
-      }).catch(err => {console.log(err)});
+      axios
+        .post(url, info5)
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(".");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }, 5000);
   }
 

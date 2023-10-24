@@ -30,7 +30,8 @@ export function SidebarDashboard({ appearance }) {
   useEffect(() => {
     if (!access) {
       localStorage.clear();
-      location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
+      location.href =
+        "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
     }
 
     if (!infoJWTVerifi.status) {
@@ -40,7 +41,8 @@ export function SidebarDashboard({ appearance }) {
     }
 
     if (infoJWTVerifi.status === "rejected") {
-      location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
+      location.href =
+        "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
     }
   }, [infoJWTVerifi.status, username]);
 
@@ -49,7 +51,8 @@ export function SidebarDashboard({ appearance }) {
       infoDatauser.status === "rejected" &&
       (infoJWTVerifi.status === "rejected" || !access)
     ) {
-      location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
+      location.href =
+        "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
       localStorage.clear();
     }
   }, [infoDatauser.status, username]);
@@ -92,7 +95,7 @@ export function SidebarDashboard({ appearance }) {
         last_name: infoDatauser.info.last_name,
         username: infoDatauser.info.username,
       });
-      setContainerImg(infoDatauser.info.img);
+      setContainerImg(infoDatauser.info.img_url);
     }
     if (infoAllUsernames.status === "fulfilled") {
       setAllUsernames(infoAllUsernames.info.data);
@@ -110,7 +113,10 @@ export function SidebarDashboard({ appearance }) {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.clear();
-        location.href = "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
+        setTimeout(() => {
+          location.href =
+            "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
+        }, 2000);
       }
     });
   }
@@ -130,7 +136,8 @@ export function SidebarDashboard({ appearance }) {
     const headers = {
       Authorization: `JWT ${access}`,
     };
-    const url = "https://server-agency-1203.onrender.com/user_system/upload_img_user/";
+    const url =
+      "https://server-agency-1203.onrender.com/user_system/upload_img_user/";
     const formData = new FormData();
     formData.append("file", image);
     fetch(url, {

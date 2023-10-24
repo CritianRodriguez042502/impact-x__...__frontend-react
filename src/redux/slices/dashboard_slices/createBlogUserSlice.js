@@ -15,7 +15,7 @@ export const axiosCreateBlogUser = createAsyncThunk(
     body.append("public", data.info.public)
     body.append("category",data.info.category)
     body.append("file", data.info.img)
-    const response = await axios.post(url, body, { headers });
+    const response = await axios.post(url, body, {headers});
     return response.data;
   }
 );

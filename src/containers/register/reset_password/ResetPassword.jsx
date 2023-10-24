@@ -52,7 +52,7 @@ export function ResetPassword() {
     if (passwords.new_password && passwords.re_new_password) {
       if (passwords.new_password === passwords.re_new_password) {
         import("../../../redux/index").then((modules) => {
-          dispatch(modules.axiosResetPassword(passwords));
+          dispatch(modules.axiosResetPasswordConfirm(passwords));
         });
       } else {
         Swal.fire({

@@ -1,5 +1,42 @@
-/* Media screen mobile */
+/* Styles of overlay */
+.overlay {
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  height: 100%;
+  background: rgb(229, 226, 226);
+}
 
+.loaderContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  border: 10px solid #747272;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* ______________________*/
+
+
+/* Media screen mobile */
 .containerContent {
   padding-top: 120px;
   padding-bottom: 120px;
@@ -97,15 +134,5 @@
 
   .containerButtons {
     margin-top: 10px;
-  }
-
-  .containerImg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 4.5%;
-  }
-  .containerImg img {
-    width: 350px;
   }
 }

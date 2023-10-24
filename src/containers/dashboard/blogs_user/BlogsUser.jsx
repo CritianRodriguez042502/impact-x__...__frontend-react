@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
@@ -11,6 +11,7 @@ import style from "./style_blogs_user.module.css";
 export function BlogsUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const locationReact = useLocation();
 
   const infoBlogsByUser = useSelector((state) => state.blogsByUser);
   const infoCreateBlog = useSelector((state) => state.createBlogUser);
@@ -23,7 +24,7 @@ export function BlogsUser() {
   const [allVisibilityPage, setAllVisibilityPage] = useState("0");
   const [nextBlogPages, setNextBlogPages] = useState({});
 
-  const page = new URLSearchParams(location.search).get("page");
+  const page = locationReact.search;
 
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
@@ -56,7 +57,9 @@ export function BlogsUser() {
       const headers = {
         Authorization: `JWT ${access}`,
       };
-      const url = `https://server-agency-1203.onrender.com/dashboard/blog_by_user/?page=${page}`;
+      const url = `https://server-agency-1203.onrender.com/dashboard/blog_by_user/?page=${
+        page.split("=")[1]
+      }`;
       fetch(url, {
         method: "GET",
         headers,
@@ -254,7 +257,7 @@ export function BlogsUser() {
           <div>
             {infoBlogsByUser.status === "pending" ? (
               <h1> Cargando... </h1>
-            ) : infoBlogsByUser.status === "fulfilled" && !location.search ? (
+            ) : infoBlogsByUser.status === "fulfilled" && !locationReact.search ? (
               <div>
                 {infoBlogsByUser.info.results?.map((data) => {
                   return (
@@ -264,7 +267,7 @@ export function BlogsUser() {
                     >
                       <div className={style.containerImg}>
                         <img
-                          src={`https://server-agency-1203.onrender.com${data.img}`}
+                          src={data.img_url}
                           alt="img"
                         />
                       </div>
@@ -305,7 +308,7 @@ export function BlogsUser() {
                                 );
                               }}
                             >
-                              Modificar
+                              Detalles
                             </button>
                           </div>
                           <b> {data.creation} </b>
@@ -330,7 +333,7 @@ export function BlogsUser() {
                     >
                       <div className={style.containerImg}>
                         <img
-                          src={`https://server-agency-1203.onrender.com${data.img}`}
+                          src={data.img_url}
                           alt="img"
                         />
                       </div>
@@ -371,7 +374,7 @@ export function BlogsUser() {
                                 );
                               }}
                             >
-                              Modificar
+                              Detalles
                             </button>
                           </div>
                           <b> {data.creation} </b>

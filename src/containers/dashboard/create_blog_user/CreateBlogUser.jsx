@@ -6,7 +6,6 @@ import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { axiosCreateBlogUser, axiosCategorys } from "../../../redux/index";
 import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
 import style from "./style_create_blog_user.module.css";
 

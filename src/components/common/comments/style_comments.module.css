@@ -122,7 +122,7 @@
 }
 
 .userImage img {
-  flex: 0 0 100px;
+  width: 160px;
   border-radius: 50%;
 }
 

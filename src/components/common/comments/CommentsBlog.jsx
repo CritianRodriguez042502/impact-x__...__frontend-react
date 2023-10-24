@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { AiOutlineClose } from "react-icons/ai";
@@ -10,13 +10,14 @@ export function CommentsBlog({ params }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const paramsUrl = useParams();
+  const locationReact = useLocation();
 
   const infoJWTVerify = useSelector((state) => state.JWTVerify);
   const infoGetComments = useSelector((state) => state.getComments);
   const infoComments = useSelector((state) => state.commentsBlog);
   const infoDetailedComment = useSelector((state) => state.detailedCommentBlog);
 
-  let [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState("");
   const [commentDetail, setCommentDetail] = useState("");
 
   const [visibility, setVisibility] = useState("none");
@@ -28,7 +29,7 @@ export function CommentsBlog({ params }) {
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
 
-  const unique_brand = new URLSearchParams(location.search).get("unique_brand");
+  const unique_brand = locationReact.search;
 
   const [comentUpdateOpacity, setCommentUpdateOpacity] = useState("0");
 
@@ -47,7 +48,7 @@ export function CommentsBlog({ params }) {
           modules.axiosDetailedCommentsBlog({
             method: "get",
             jwt: access,
-            unique_brand: unique_brand,
+            unique_brand: unique_brand.split("=")[1],
           })
         );
       });
@@ -163,6 +164,7 @@ export function CommentsBlog({ params }) {
     const otherComments = infoGetComments.info.results.data?.filter((index) => {
       return index.user.username !== username;
     });
+
     return (
       <div>
         {userComments?.map(function (data) {
@@ -173,14 +175,9 @@ export function CommentsBlog({ params }) {
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
                     alt="img"
-                    width={70}
                   />
                 ) : (
-                  <img
-                    src={`https://server-agency-1203.onrender.com${data.user.img}`}
-                    alt="img"
-                    width={70}
-                  />
+                  <img src={data.user.img_url} alt="img" />
                 )}
               </div>
 
@@ -238,14 +235,9 @@ export function CommentsBlog({ params }) {
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
                     alt="img"
-                    width={70}
                   />
                 ) : (
-                  <img
-                    src={`https://server-agency-1203.onrender.com${data.user.img}`}
-                    alt="img"
-                    width={70}
-                  />
+                  <img src={data.user.img_url} alt="img" />
                 )}
               </div>
               <div className={style.commentContent}>
@@ -266,8 +258,7 @@ export function CommentsBlog({ params }) {
     <main>
       <div>
         <b className={style.mainButton} onClick={onClickVisibility}>
-          {" "}
-          Comentarios{" "}
+          Comentarios
         </b>
       </div>
 
@@ -348,8 +339,7 @@ export function CommentsBlog({ params }) {
                   required
                 ></textarea>
                 <button className={style.buttonFormUpdate} type="submit">
-                  {" "}
-                  Actualizar{" "}
+                  Actualizar
                 </button>
               </form>
             </aside>
