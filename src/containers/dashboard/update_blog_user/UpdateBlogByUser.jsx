@@ -144,7 +144,6 @@ export function UpdateBlogByUser() {
       import("../../../redux/index").then((modules) => {
         dispatch(modules.axiosUpdateBlogUser(data));
       });
-      console.log(data)
       Swal.showLoading();
       setTimeout(() => {
         const Toast = Swal.mixin({
@@ -206,7 +205,6 @@ export function UpdateBlogByUser() {
               >
                 {Object.keys(dataUpdateBlog).length !== 0 ? (
                   <div>
-                    
                     <div className={style.title}>
                       <label
                         className={style.labelTitlePersonalize}

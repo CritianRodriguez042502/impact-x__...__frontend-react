@@ -72,6 +72,7 @@ label {
   border-radius: 4px;
   cursor: pointer;
   font-size: 19px;
+  margin : 15px 0px;
   transition: background-color 0.3s ease;
 }
 

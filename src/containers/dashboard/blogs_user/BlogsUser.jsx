@@ -121,19 +121,24 @@ export function BlogsUser() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                setAllVisibilityPage("0");
-                navigate(`/dashboard/blogs_user?page=${index}`);
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => {
+              return (
+                <button
+                  className={style.pageButton}
+                  key={index}
+                  onClick={(e) => {
+                    setAllVisibilityPage("0");
+                    navigate(`/dashboard/blogs_user?page=${index}`);
+                  }}
+                >
+                  {index}
+                </button>
+              );
+            })}
+          </div>
+        );
       }
     } else {
       const list = [];
@@ -141,19 +146,24 @@ export function BlogsUser() {
         list.push(i);
       }
       if (list.length > 1) {
-        return list.map((index) => {
-          return (
-            <button
-              key={index}
-              onClick={(e) => {
-                setAllVisibilityPage("0");
-                navigate(`/dashboard/blogs_user?page=${index}`);
-              }}
-            >
-              {index}
-            </button>
-          );
-        });
+        return (
+          <div className={style.pagination}>
+            {list.map((index) => {
+              return (
+                <button
+                  className={style.pageButton}
+                  key={index}
+                  onClick={(e) => {
+                    setAllVisibilityPage("0");
+                    navigate(`/dashboard/blogs_user?page=${index}`);
+                  }}
+                >
+                  {index}
+                </button>
+              );
+            })}
+          </div>
+        );
       }
     }
   }
@@ -257,7 +267,8 @@ export function BlogsUser() {
           <div>
             {infoBlogsByUser.status === "pending" ? (
               <h1> Cargando... </h1>
-            ) : infoBlogsByUser.status === "fulfilled" && !locationReact.search ? (
+            ) : infoBlogsByUser.status === "fulfilled" &&
+              !locationReact.search ? (
               <div>
                 {infoBlogsByUser.info.results?.map((data) => {
                   return (
@@ -266,10 +277,7 @@ export function BlogsUser() {
                       key={data.id}
                     >
                       <div className={style.containerImg}>
-                        <img
-                          src={data.img_url}
-                          alt="img"
-                        />
+                        <img src={data.img_url} alt="img" />
                       </div>
                       <div className={style.containerContent}>
                         <div className={style.containerTitleAndPublic}>
@@ -332,10 +340,7 @@ export function BlogsUser() {
                       key={data.id}
                     >
                       <div className={style.containerImg}>
-                        <img
-                          src={data.img_url}
-                          alt="img"
-                        />
+                        <img src={data.img_url} alt="img" />
                       </div>
                       <div className={style.containerContent}>
                         <div className={style.containerTitleAndPublic}>

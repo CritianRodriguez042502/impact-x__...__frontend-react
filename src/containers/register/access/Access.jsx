@@ -34,8 +34,6 @@ export function Access() {
     }
   },[infoCategorys.status])
 
-  console.log(infoCategorys.status)
-
   return (
     <main>
       <Helmet>

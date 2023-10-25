@@ -150,6 +150,33 @@
   font-size: 19px;
 }
 
+/* Styles buttons pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.pageButton {
+  background-color: #4ec776;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pageButton:hover {
+  background-color: #0e9131;
+}
+/* -------------------------- */
+
+
 /* Style for tablet */
 
 @media screen and (min-width: 550px) and (max-width: 800px) {

@@ -126,12 +126,12 @@ export function CommentsBlog({ params }) {
           modules.axiosCommentsBlog({
             method: "patch",
             jwt: access,
-            unique_key: unique_brand,
+            unique_key: unique_brand.split("=")[1],
             content: commentDetail,
           })
         );
       });
-      setCommentUpdateVisibility("none");
+      setCommentUpdateVisibility("none"); 
       navigate(`/blogs/blog_detail/${paramsUrl.slug}`);
     } else {
       Swal.fire({

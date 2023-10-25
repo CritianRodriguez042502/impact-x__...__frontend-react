@@ -83,7 +83,7 @@
 }
 
 .containerImg img {
-  width: 270px;
+  width: 80%;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -127,18 +127,20 @@
 }
 
 .pageButton {
-  background-color: #007bff;
+  background-color: #4ec776;
   color: #fff;
   border: none;
   padding: 10px 15px;
   margin: 0 5px;
+  font-size: 17px;
+  font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .pageButton:hover {
-  background-color: #0056b3;
+  background-color: #0e9131;
 }
 /* ---------------- */
 
@@ -172,7 +174,7 @@
   }
 
   .containerImg img {
-    width: 200px;
+    width: 300px;
   }
 
   .blogInfo {

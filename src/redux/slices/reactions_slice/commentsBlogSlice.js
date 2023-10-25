@@ -5,7 +5,7 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
   const headers = {
     Authorization: `JWT ${data.jwt}`,
   };
-
+  
   if (data.method === "get") {
     const url = `${"https://server-agency-1203.onrender.com"}/blog_reactions/comments/?unique_brand=${
       data.unique_brand
