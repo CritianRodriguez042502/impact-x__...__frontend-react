@@ -1,4 +1,4 @@
-# IMPACT X  | Blog - Frontend  |
+# IMPACT X  | Frontend |
 
 Impact X Blog es una plataforma de blogs completa desarrollada en React y Vite que combina características de registro de usuarios, creación y gestión de blogs, interacción social y más. Esta aplicación destaca las habilidades de desarrollo para ofrecer servicios como una agencia de desarrollo y freelancers.
 
