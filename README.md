@@ -11,24 +11,15 @@ Impact X Blog es una plataforma de blogs completa desarrollada en React y Vite q
 * **Estilizado y Responsive** : La aplicación se ha diseñado con atención a los detalles y cuenta con estilos personalizados y alertas para una experiencia de usuario atractiva.
 * **Páginas Estáticas** : Además de las características mencionadas, la aplicación incluye páginas estáticas como Home, About, Services y Contact, lo que le da una apariencia similar a una agencia de desarrollo de servicios como Fiverr.
 
-## Capturas de Pantalla
-
-
 ## Instalación
 
-1. Clona el repositorio.
-   git clone https://github.com/tuusuario/tuprojecto.git
-2. Navega al directorio del proyecto.
-
-   cd tuproyecto/client
-3. Instala las dependencias.
-
-   npm install
+1. Clona el repositorio: **git clone https://github.com/tuusuario/tuprojecto.git**
+2. Navega al directorio del proyecto: **cd tuproyecto/client**
+3. Instala las dependencias:  **npm install**
 
 ## Uso
 
-1. Inicia el servidor de desarrollo de Vite.
-   npm run dev
+1. Inicia el servidor de desarrollo de Vite: **npm run dev**
 2. Abre tu navegador y visita `http://localhost:5173` para acceder a la aplicación.
 
 ## Contribución
@@ -43,9 +34,11 @@ Si deseas contribuir a este proyecto, sigue estas pautas:
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](https://chat.openai.com/c/LICENSE) para obtener más detalles.
 
+
 ## Contacto
 
 Para preguntas o comentarios, puedes contactarme a través de [cuentagit1111@gmail.com](mailto:tu@email.com)
+
 
 ## Agradecimientos
 
