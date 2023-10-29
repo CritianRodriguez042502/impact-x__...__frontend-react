@@ -1,9 +1,9 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AiOutlineClose } from "react-icons/ai";
+import personDefault from "../../../assets/dashboard/img_person_default.png"
 import style from "./style_sidebar_dashboard.module.css";
 
 export function SidebarDashboard({ appearance }) {
@@ -276,10 +276,10 @@ export function SidebarDashboard({ appearance }) {
         </nav>
 
         <article>
-          {containerImg === undefined || containerImg === null ? (
+          {!containerImg ? (
             <div>
               <img
-                src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                src={personDefault}
                 alt="img"
                 width={140}
               />

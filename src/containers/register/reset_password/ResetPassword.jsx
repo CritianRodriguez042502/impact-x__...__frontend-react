@@ -51,6 +51,7 @@ export function ResetPassword() {
 
     if (passwords.new_password && passwords.re_new_password) {
       if (passwords.new_password === passwords.re_new_password) {
+        Swal.showLoading()
         import("../../../redux/index").then((modules) => {
           dispatch(modules.axiosResetPasswordConfirm(passwords));
         });

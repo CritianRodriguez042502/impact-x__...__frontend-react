@@ -4,7 +4,7 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 import { AiOutlineDoubleLeft } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
-
+import personDefault from "../../../assets/dashboard/img_person_default.png"
 import style from "./style_reaction_dashboard.module.css";
 
 export function GetReactionDashboard({ params }) {
@@ -101,9 +101,9 @@ export function GetReactionDashboard({ params }) {
               return (
                 <div className={style.containerComment} key={data.id}>
                   <div className={style.userImage}>
-                    {data.user.img === null ? (
+                    {!data.user.img ? (
                       <img
-                        src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                        src={personDefault}
                         alt="img"
                        
                       />
@@ -176,9 +176,9 @@ export function GetReactionDashboard({ params }) {
                 {infoGetUserBlogReactions.info.likes.map((like) => (
                   <li key={like.id} className={style.likeItem}>
                     <div className={style.likeUser}>
-                      {like.user.img === null ? (
+                      {!like.user.img ? (
                         <img
-                          src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                          src={personDefault}
                           alt="img"
                           width={70}
                         />

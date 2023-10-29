@@ -104,6 +104,7 @@ export function Signup() {
     if (firstName && lastName && username && email && password && rePassword) {
       if (password === rePassword) {
         if (password.length >= 8) {
+          Swal.showLoading();
           import("../../../redux/index").then((modules) => {
             dispatch(modules.axiosCreateUser(dataUser));
           });
@@ -131,6 +132,7 @@ export function Signup() {
   }
 
   function onClickSendEmail() {
+    Swal.showLoading()
     import("../../../redux/index").then((modules) => {
       dispatch(modules.axiosResendEmail({ email: dataEmail }));
     });
@@ -148,6 +150,13 @@ export function Signup() {
       </Helmet>
 
       <Layout>
+        <section style={{ display: sendEmail }}>
+          <div className={style.containerResendEmail}>
+            <p className={style.text}> Volver a enviar correo </p>
+            <button onClick={onClickSendEmail}>Reenviar correo</button>
+          </div>
+        </section>
+
         <section className={style.container}>
           <h1> Registro </h1>
           <form className={style.containerInputs} onSubmit={onSubmitDataUser}>
@@ -208,11 +217,6 @@ export function Signup() {
             <button type="submit"> Registrarse </button>
           </form>
         </section>
-
-        <div style={{ display: sendEmail }}>
-          <p> Volver a enviar correo </p>
-          <button onClick={onClickSendEmail}> Reenviar correo </button>
-        </div>
       </Layout>
     </main>
   );

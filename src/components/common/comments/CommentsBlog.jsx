@@ -2,8 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Swal from "sweetalert2";
 import { AiOutlineClose } from "react-icons/ai";
+import Swal from "sweetalert2";
+import personDefault from "../../../assets/dashboard/img_person_default.png"
 import style from "./style_comments.module.css";
 
 export function CommentsBlog({ params }) {
@@ -171,9 +172,9 @@ export function CommentsBlog({ params }) {
           return (
             <div className={style.containerComment} key={data.id}>
               <div className={style.userImage}>
-                {data.user.img === null ? (
+                {!data.user.img ? (
                   <img
-                    src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                    src={personDefault}
                     alt="img"
                   />
                 ) : (
@@ -231,9 +232,9 @@ export function CommentsBlog({ params }) {
           return (
             <div className={style.containerComment} key={data.id}>
               <div className={style.userImage}>
-                {data.user.img === null ? (
+                {!data.user.img ? (
                   <img
-                    src="https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                    src={personDefault}
                     alt="img"
                   />
                 ) : (
@@ -252,8 +253,8 @@ export function CommentsBlog({ params }) {
       </div>
     );
   }
-
   // ---------------------------------------------------
+
   return (
     <main>
       <div>
@@ -345,6 +346,7 @@ export function CommentsBlog({ params }) {
             </aside>
           </div>
         </section>
+        
       </article>
     </main>
   );

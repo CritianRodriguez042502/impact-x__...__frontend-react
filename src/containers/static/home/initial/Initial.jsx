@@ -18,11 +18,11 @@ export function Initial() {
               <Typewriter
                 options={{
                   strings: [
-                    "Sistemas personalizados para tu exito empresarial ...",
-                    "Software y soluciones digitales adaptadas a tu necesidades ...",
-                    "Diseño a la altura de tus expectativas ...",
-                    "Convierte tus ideas en software de calidad ...",
-                    "Software que se ajusta a tus Requisitos ...",
+                    "Software que se ajusta a tus requisitos",
+                    "Diseño a la altura de tus expectativas",
+                    "Sistemas personalizados para tu exito empresarial",
+                    "Software y soluciones digitales adaptadas a tu necesidades",
+                    "Convierte tus ideas en software de calidad",
                   ],
                   autoStart: true,
                   loop: true,
