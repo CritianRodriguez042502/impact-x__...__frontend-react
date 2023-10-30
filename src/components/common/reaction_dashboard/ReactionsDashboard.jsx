@@ -101,7 +101,7 @@ export function GetReactionDashboard({ params }) {
               return (
                 <div className={style.containerComment} key={data.id}>
                   <div className={style.userImage}>
-                    {!data.user.img ? (
+                    {!data.user.img_url ? (
                       <img
                         src={personDefault}
                         alt="img"
@@ -176,7 +176,7 @@ export function GetReactionDashboard({ params }) {
                 {infoGetUserBlogReactions.info.likes.map((like) => (
                   <li key={like.id} className={style.likeItem}>
                     <div className={style.likeUser}>
-                      {!like.user.img ? (
+                      {!like.user.img_url ? (
                         <img
                           src={personDefault}
                           alt="img"

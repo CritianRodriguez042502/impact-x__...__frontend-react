@@ -3,10 +3,7 @@
 /* Conatiner about 1*/
 .containerAbout1 {
   background-color: #f7f7f7;
-  padding-top: 150px;
-  padding-bottom: 150px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 170px 20px 170px 20px;
   text-align: center;
 }
 

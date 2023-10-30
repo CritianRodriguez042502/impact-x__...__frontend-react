@@ -172,7 +172,7 @@ export function CommentsBlog({ params }) {
           return (
             <div className={style.containerComment} key={data.id}>
               <div className={style.userImage}>
-                {!data.user.img ? (
+                {!data.user.img_url ? (
                   <img
                     src={personDefault}
                     alt="img"
@@ -232,7 +232,7 @@ export function CommentsBlog({ params }) {
           return (
             <div className={style.containerComment} key={data.id}>
               <div className={style.userImage}>
-                {!data.user.img ? (
+                {!data.user.img_url ? (
                   <img
                     src={personDefault}
                     alt="img"

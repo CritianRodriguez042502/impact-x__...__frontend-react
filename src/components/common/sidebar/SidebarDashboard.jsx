@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AiOutlineClose } from "react-icons/ai";
-import personDefault from "../../../assets/dashboard/img_person_default.png"
+import personDefault from "../../../assets/dashboard/img_person_default.png";
 import style from "./style_sidebar_dashboard.module.css";
 
 export function SidebarDashboard({ appearance }) {
@@ -116,7 +116,7 @@ export function SidebarDashboard({ appearance }) {
         setTimeout(() => {
           location.href =
             "https://critianrodriguez042502.github.io/agency_view/#/access/signin";
-        }, 2000);
+        }, 300);
       }
     });
   }
@@ -140,6 +140,7 @@ export function SidebarDashboard({ appearance }) {
       "https://server-agency-1203.onrender.com/user_system/upload_img_user/";
     const formData = new FormData();
     formData.append("file", image);
+    Swal.showLoading();
     fetch(url, {
       method: "POST",
       headers,
@@ -278,11 +279,7 @@ export function SidebarDashboard({ appearance }) {
         <article>
           {!containerImg ? (
             <div>
-              <img
-                src={personDefault}
-                alt="img"
-                width={140}
-              />
+              <img src={personDefault} alt="img" width={140} />
             </div>
           ) : (
             <div>
