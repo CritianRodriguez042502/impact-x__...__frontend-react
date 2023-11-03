@@ -1,9 +1,12 @@
 import { Helmet } from "react-helmet";
 import Typewriter from "typewriter-effect";
 import { Layout } from "../../../../components/index";
+import media from "../../../../assets/static/home/imagen-reds.png"
+import person from "../../../../assets/static/home/imagen-hombre-verde.png";
 import style from "./style_initial.module.css";
 
 export function Initial() {
+
   return (
     <main>
       <Helmet>
@@ -38,7 +41,7 @@ export function Initial() {
 
           <aside className={style.containerImg1}>
             <img
-              src="https://i.pinimg.com/originals/3f/4c/b0/3f4cb0a7ad7ddc1ffebe3c244595ca67.png"
+              src={media}
               alt="img"
             />
           </aside>
@@ -92,6 +95,8 @@ export function Initial() {
               </article>
             </div>
           </div>
+
+          <img className={style.person} src={person} alt="img" />
         </section>
 
         <section className={style.containerInitial3}>
@@ -127,7 +132,9 @@ export function Initial() {
                 Solicita una demostración con nuestro equipo, totalmente gratis
                 y sin compromiso.
               </p>
-              <button type="button"> Solicitar demostracion </button>
+              <a href="mailto:cristianestiven1111@gmail.com" target="_blank">
+                <button type="button"> Solicitar demostracion </button>
+              </a>
             </div>
           </aside>
         </section>

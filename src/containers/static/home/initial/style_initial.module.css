@@ -57,6 +57,7 @@
 
 /* Styles container inital 2 */
 .containerInitial2 {
+  position: relative;
   background-color: #fff;
   border: 1px solid #e5e5e5;
   padding-top: 50px;
@@ -112,6 +113,10 @@
   font-size: 19px;
   color: #555;
   padding-bottom: 10px;
+}
+
+.person {
+  display: none;
 }
 /* ------------------------- */
 
@@ -254,14 +259,14 @@
     position: absolute;
     padding-left: 10px;
     bottom: 0px;
-    right: -90px;
+    right: 0px;
     border-radius: 199px 0px 0px 67px;
     width: 40%;
     height: 65vh;
   }
 
   .containerImg1 img {
-    width: 430px;
+    width: 700px;
   }
   /* ------------------------- */
 
@@ -269,7 +274,6 @@
   .containerInitial2 {
     display: flex;
     justify-content: space-between;
-    
   }
 
   .containerInitial2 h1 {
@@ -305,6 +309,14 @@
   .containerOfAdvantagesItem p {
     width: 75%;
   }
+
+  .person {
+    display: initial;
+    width: 530px;
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+  }
   /* ------------------------- */
 
   /* Styles container inital 3 */
@@ -329,8 +341,6 @@
     display: flex;
     width: 50%;
     justify-content: center;
-
-   
   }
 
   .containerImg2 img {

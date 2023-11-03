@@ -34,6 +34,10 @@
   color: #ff5733;
   margin: 0 10px;
 }
+
+.world {
+  display: none;
+}
 /* ----------------------- */
 
 /* Conatiner about 2*/
@@ -64,7 +68,7 @@
 }
 
 .photoManager img {
-  width: 220px;
+  width: 300px;
 }
 /* ----------------------- */
 
@@ -154,6 +158,11 @@
     width: 50%;
   }
 
+  .containerTitleAndText {
+    position: relative;
+   
+  }
+
   .containerTitleAndText h1 {
     font-size: 32px;
   }
@@ -168,6 +177,26 @@
     padding: 0px 20px;
     line-height: 1.5;
   }
+
+  .world {
+    display: initial;
+    width: 530px;
+    position: absolute;
+    bottom: -42px;
+    right: 0;
+  }
+
+  .circule {
+    background: white;
+    position: absolute;
+    top: -33px;
+    border-radius: 50%;
+    right: 125px;
+    width: 65px;
+    height: 65px;
+    z-index: -1;
+    
+}
   /* ----------------------- */
 
   /* Conatiner about 2*/
@@ -200,7 +229,7 @@
   }
 
   .photoManager img {
-    width: 300px;
+    width: 420px;
   }
   /* ----------------------- */
 

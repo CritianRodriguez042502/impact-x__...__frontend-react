@@ -3,6 +3,8 @@ import { Layout } from "../../../components/index";
 import { FcDebt } from "react-icons/fc";
 import { FcBiohazard } from "react-icons/fc";
 import { BiCrown } from "react-icons/bi";
+import world from "../../../assets/static/about/imagen-world.png"
+import manage from "../../../assets/static/about/imagen-gerente.png"
 import style from "./style_about.module.css";
 
 export function About() {
@@ -25,6 +27,7 @@ export function About() {
               de este entorno dinámico y competitivo, es esencial adoptar
               metodologías ágiles.
             </p>
+            <div className={style.circule}> </div>
           </aside>
           <div className={style.iconContainer}>
             <h4 className={style.icon}>
@@ -37,6 +40,8 @@ export function About() {
               <FcBiohazard />
             </h4>
           </div>
+          <img className={style.world} src={world} alt="img" />
+          
         </section>
 
         <section className={style.containerAbout2}>
@@ -48,7 +53,7 @@ export function About() {
           </aside>
           <aside className={style.photoManager}>
             <img
-              src="https://cdn-icons-png.flaticon.com/512/1995/1995446.png"
+              src={manage}
               alt="img"
             />
           </aside>
