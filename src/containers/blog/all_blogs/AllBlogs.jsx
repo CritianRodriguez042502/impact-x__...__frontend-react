@@ -147,9 +147,9 @@ export function AllBlogs() {
 
           <section className={style.containerAllBlogs1}>
             <nav className={style.categories}>
-              {location.pathname == "/blogs" ? (
+              {locationReact.pathname == "/blogs" ? (
                 <Link
-                  style={{ color: "green", textDecoration: "underline" }}
+                  style={{ textDecoration: "underline", background : "green" }}
                   className={style.link}
                   to={"/blogs"}
                 >
@@ -188,6 +188,7 @@ export function AllBlogs() {
               />
               <button type="submit">Buscar</button>
             </form>
+            
           </section>
 
           <section

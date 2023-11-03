@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { axiosJWTVerify } from "../../../redux/index";
@@ -8,12 +9,15 @@ import style from "./style_navbar.module.css";
 
 export function Navbar() {
   const dispatch = useDispatch();
+  const locationReact = useLocation().pathname;
   const infoJWTVerify = useSelector((state) => state.JWTVerify);
   const infoCategorys = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
 
   const [appearance, setAppearance] = useState(false);
+
+  console.log(locationReact);
 
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
@@ -81,19 +85,62 @@ export function Navbar() {
             </p>
           </div>
           <nav>
-            <NavLink className={style.navbarLink} to={"/home"}>
+            <NavLink
+              style={
+                locationReact === "/home"
+                  ? { color: "green" }
+                  : { color: "#333" }
+              }
+              className={style.navbarLink}
+              to={"/home"}
+            >
               INICIO
             </NavLink>
-            <NavLink className={style.navbarLink} to={"/services"}>
+
+            <NavLink
+              style={
+                locationReact === "/services"
+                  ? { color: "green" }
+                  : { color: "#333" }
+              }
+              className={style.navbarLink}
+              to={"/services"}
+            >
               SERVICIOS
             </NavLink>
-            <NavLink className={style.navbarLink} to={"/about"}>
+
+            <NavLink
+              style={
+                locationReact === "/about"
+                  ? { color: "green" }
+                  : { color: "#333" }
+              }
+              className={style.navbarLink}
+              to={"/about"}
+            >
               SOBRE NOSOTROS
             </NavLink>
-            <NavLink className={style.navbarLink} to={"/contact"}>
+
+            <NavLink
+              style={
+                locationReact === "/contact"
+                  ? { color: "green" }
+                  : { color: "#333" }
+              }
+              className={style.navbarLink}
+              to={"/contact"}
+            >
               CONTACTOS
             </NavLink>
-            <NavLink className={style.navbarLink} to={"/blogs"}>
+            <NavLink
+              style={
+                locationReact === "/blogs"
+                  ? { color: "green" }
+                  : { color: "#333" }
+              }
+              className={style.navbarLink}
+              to={"/blogs"}
+            >
               BLOG
             </NavLink>
             {appearance === true ? (

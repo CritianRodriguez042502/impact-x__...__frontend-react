@@ -148,8 +148,8 @@ export function Categorys() {
                     <Link
                       style={
                         params.slug === data.slug
-                          ? { color: "green", textDecoration: "underline" }
-                          : { color: "#333" }
+                          ? { background : "green",textDecoration: "underline" }
+                          : { textDecoration: "none" }
                       }
                       className={style.link}
                       to={`/blogs/category/${data.slug}`}
