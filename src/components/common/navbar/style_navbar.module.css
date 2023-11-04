@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One&family=Gabarito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap");
+
 
 * {
   box-sizing: border-box;
@@ -23,9 +24,10 @@ body {
   padding: 15px 6%;
 }
 
-.parentContainer h1 {
-  font-family: 'Gabarito', sans-serif;
+.titleIMPACTX {
+  font-family: "Kalam", cursive;
   font-size: 30px;
+  font-weight: bold;
   margin: 0px;
   white-space: nowrap;
 }

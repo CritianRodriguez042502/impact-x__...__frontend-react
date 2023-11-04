@@ -57,7 +57,9 @@ export function Navbar() {
     <main>
       <section className={style.parentContainer}>
         <div>
-          <h1> 🧩 IMPACT X 🧩 </h1>
+          <h1 className={style.titleIMPACTX}>
+            🧩 <span style={{ color: "green" }}> I</span>MPACT X 🧩
+          </h1>
         </div>
 
         <div>
