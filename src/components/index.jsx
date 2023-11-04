@@ -3,8 +3,6 @@
 // Folder layout ____________________________
 export { Layout } from "./layout/Layout";
 
-// Folder Layout Dashboard ____________________________
-export { LayoutDashboard } from "./layout_dashboard/LayoutDashboard";
 
 // Folder Buttons ____________________________
 export { Buttons } from "./common/buttons/Buttons";
