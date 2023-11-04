@@ -122,14 +122,14 @@ export function Search() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Busqueda </title>
+        <title> IMPACT X | Blogs: {params.slug} </title>
       </Helmet>
 
       <Layout>
         <section className={style.containerAllBlogs1}>
           <Link className={style.link} to={`/blogs`}>
-            {" "}
-            Volver{" "}
+            
+            Volver
           </Link>
 
           <form className={style.searchForm} onSubmit={onSubmitSearchBlogs}>

@@ -30,7 +30,7 @@ export function InitialDashboard() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Dashboard </title>
+        <title> IMPACT X | Dashboard </title>
       </Helmet>
 
       <SidebarDashboard appearance={navegationScrollAppearance} />

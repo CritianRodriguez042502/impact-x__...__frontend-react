@@ -76,7 +76,7 @@ export function ResetPassword() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Cambiar contraseña </title>
+        <title> IMPACT X | Cambio de contraseña </title>
       </Helmet>
 
       <section className={style.containerResetPassword}>

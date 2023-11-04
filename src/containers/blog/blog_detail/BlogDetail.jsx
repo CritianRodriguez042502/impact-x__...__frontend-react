@@ -32,7 +32,7 @@ export function BlogDetail() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Blog / name </title>
+        <title> IMPACT X | Blog detallado: {params.slug} </title>
       </Helmet>
 
       <Layout>

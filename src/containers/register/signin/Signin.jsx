@@ -178,7 +178,7 @@ export function Signin() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Iniciar sesion ... </title>
+        <title> IMPACT X | Iniciar session </title>
       </Helmet>
 
       <Layout>

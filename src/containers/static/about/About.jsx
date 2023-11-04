@@ -13,7 +13,7 @@ export function About() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Sobre nosotros ... </title>
+        <title> IMPACT X | Sobre nosotros </title>
       </Helmet> 
 
       <Layout>

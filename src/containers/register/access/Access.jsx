@@ -39,7 +39,7 @@ export function Access() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Accede al blog ... </title>
+        <title> IMPACT X | Acceder </title>
       </Helmet>
 
       <Layout>

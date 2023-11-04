@@ -24,7 +24,7 @@ export function Contact() {
       <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Contacto ... </title>
+        <title> IMPACT X | Contacto </title>
       </Helmet>
 
       <Layout>
