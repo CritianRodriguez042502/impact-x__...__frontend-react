@@ -3,20 +3,17 @@
 /* Styles container inital 1 */
 .containerInitial1 {
   background-color: #f7f7f7;
-  padding-top: 170px;
-  padding-bottom: 170px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 26% 0px 26% 0px;
 }
 
 .containerContent1 {
-  padding: 30px;
+  padding: 0px 8%;
 }
 
 .containerContent1 h1 {
   width: 100%;
   height: 200px;
-  font-size: 36px;
+  font-size: 32px;
   color: #333;
   margin: 0px;
 }
@@ -28,7 +25,7 @@
   border: 1px solid gray;
   padding: 5px 0px;
   border-radius: 6px;
-  margin-top: 70px;
+  margin-top: 75px;
 }
 
 .containerContent1 b {
@@ -60,14 +57,11 @@
   position: relative;
   background-color: #fff;
   border: 1px solid #e5e5e5;
-  padding-top: 50px;
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 15% 5% 15% 5%;
 }
 
 .containerInitial2 h1 {
-  font-size: 32px;
+  font-size: 30px;
   color: #333;
   margin-bottom: 20px;
 }
@@ -84,10 +78,7 @@
 }
 
 .containerOfAdvantagesItem {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 5% 5% 5% 5%;
   border: 2px solid #e5e5e5;
   border-radius: 5px;
   margin: 15px 0px;
@@ -123,10 +114,7 @@
 /* Styles container inital 3 */
 .containerInitial3 {
   background-color: #f7f7f7;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 10% 3% 10% 3%;
   border: 1px solid #e5e5e5;
 }
 
@@ -166,10 +154,7 @@
 .containerInitial4 {
   text-align: center;
   background-color: #fff;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 18% 5% 18% 5%;
 }
 
 .containerContent4 {
@@ -225,10 +210,7 @@
   /* Styles container inital 1 */
   .containerInitial1 {
     background: initial;
-    padding-top: 130px;
-    padding-bottom: 110px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 10.5% 0px 10.5% 0;
     display: flex;
     position: relative;
   }

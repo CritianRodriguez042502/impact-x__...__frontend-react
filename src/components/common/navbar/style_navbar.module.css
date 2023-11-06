@@ -16,12 +16,11 @@ body {
 /*   Media screen movile   */
 
 .parentContainer {
-  margin: 0px;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 6%;
+  padding: 0px 5%;
 }
 
 .titleIMPACTX {
