@@ -17,7 +17,6 @@ export function Navbar() {
 
   const [appearance, setAppearance] = useState(false);
 
-  console.log(locationReact);
 
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =

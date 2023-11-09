@@ -95,7 +95,7 @@ export function LikesBlog({ params }) {
             icon: "warning",
             title: "Oops...",
             text: "Tienes que estar registrado!",
-            footer: `<a class=${style.messageError} href="https://critianrodriguez042502.github.io/agency_view/#/access/signin"> Ingresa a tu cuenta </a>`,
+            footer: `<a class=${style.messageError} href="https://impact-x.onrender.com/#/access/signin"> Ingresa a tu cuenta </a>`,
           });
         }
       }

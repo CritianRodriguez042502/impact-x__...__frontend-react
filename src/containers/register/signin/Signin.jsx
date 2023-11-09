@@ -55,7 +55,7 @@ export function Signin() {
         icon: "error",
         title: "Oops...",
         text: "Combinacion de credenciales incorrecta!",
-        footer: `<a class=${style.messageError} href="https://critianrodriguez042502.github.io/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
+        footer: `<a class=${style.messageError} href="https://impact-x.onrender.com/#/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
       });
     }
 
@@ -104,6 +104,7 @@ export function Signin() {
     infoJWTCreate.info,
     infoJWTRefresh.info,
     infoJWTVerify.status,
+    access
   ]);
 
   function onChangeData(e) {
@@ -149,7 +150,7 @@ export function Signin() {
         icon: "error",
         title: "Oops...",
         text: "Esta cuenta existe!",
-        footer: `<a class=${style.messageError} href="https://critianrodriguez042502.github.io/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
+        footer: `<a class=${style.messageError} href="https://impact-x.onrender.com/#/access/signup">Ya te registraste? Crea tu cuenta...</a>`,
       });
     }
   }, [infoResetPassword.status]);
