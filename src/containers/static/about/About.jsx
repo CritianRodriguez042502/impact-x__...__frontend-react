@@ -59,28 +59,6 @@ export function About() {
           </aside>
         </section>
 
-        <section className={style.containerAbout3}>
-          <p className={style.description}>
-            Nuestro equipo altamente capacitado en diseño y desarrollo en
-            JavaScript está comprometido en ofrecer soluciones digitales
-            excepcionales para empresas y startups innovadoras en todo el mundo.
-            Más allá de nuestra sede central en Colombia, en el distrito de
-            Bogotá, tenemos una presencia global que nos permite brindar
-            servicios personalizados y de calidad a clientes en diversos
-            continentes
-          </p>
-          <div className={style.containerImagesLaptops}>
-            <img
-              src="https://img.freepik.com/fotos-premium/experiencia-programacion-persona-que-trabaja-codigos-computadora_23-2150010151.jpg"
-              alt="Imagen de desarrollador programando en una computadora"
-            />
-            <img
-              src="https://hireline.io/blog/wp-content/uploads/2019/12/Aprender-a-programar-Java.jpg"
-              alt="Imagen de un teclado y código Java"
-            />
-          </div>
-        </section>
-
         <section className={style.containerAbout4}>
           <div className={style.containerContentAbout4}>
             <h1 className={style.title}>NUESTROS ENFOQUES</h1>
