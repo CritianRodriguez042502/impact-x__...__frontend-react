@@ -52,6 +52,7 @@ export function Navbar() {
     }
   }, [infoCategorys.status]);
 
+
   return (
     <main>
       <section className={style.parentContainer}>
@@ -88,7 +89,7 @@ export function Navbar() {
           <nav>
             <NavLink
               style={
-                locationReact === "/home"
+                locationReact === "/home" || locationReact === "/"
                   ? { color: "green" }
                   : { color: "#333" }
               }

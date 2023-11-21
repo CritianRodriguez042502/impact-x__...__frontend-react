@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 import { BiAnalyse } from "react-icons/bi";
 import { BiAtom } from "react-icons/bi";
 import { BiBugAlt } from "react-icons/bi";
-import axios from "axios";
+//_________________________________
+// Icons of clients
+import { FaGoogle } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { MdOutlineWhatsapp } from "react-icons/md";
+import { FaTwitch } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { SiTinder } from "react-icons/si";
+
 import style from "./style_services.module.css";
 
 export function Services() {
@@ -183,32 +192,31 @@ export function Services() {
         <section className={style.containerServices3}>
           <aside>
             <h1> NUESTROS CLIENTES </h1>
-            <p>
+            <p className={style.textClients}>
               Pensamos que las marcas son el vínculo cultural entre las
               compañías y sus comunidades.
             </p>
             <div>
               <p>
-                <BiAnalyse />
+                <FaGoogle />
               </p>
               <p>
-                <BiAnalyse />
+                <FaFacebookF />
               </p>
               <p>
-                <BiAnalyse />
+                <MdOutlineWhatsapp />
               </p>
               <p>
-                <BiAnalyse />
+                <FaTwitch />
               </p>
               <p>
-                <BiAnalyse />
+                <FaTwitter />
               </p>
               <p onClick={configurationCategorys}>
-                <BiAnalyse />
+                <SiTinder />
               </p>
             </div>
           </aside>
-          <aside className={style.circule}> </aside>
         </section>
       </Layout>
     </main>
