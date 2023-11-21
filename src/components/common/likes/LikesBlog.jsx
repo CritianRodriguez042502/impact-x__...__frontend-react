@@ -1,23 +1,28 @@
-import React from "react";
+// Import React
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+
+// Import icons of React-icons
+import { BiLike } from "react-icons/bi";
+import { BiSolidLike } from "react-icons/bi";
+//---------------------------------------------------
 import style from "./style_likes.module.css";
+
 
 export function LikesBlog({ params }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const infoJWTVerify = useSelector((state) => state.JWTVerify);
   const infoGetLikeBlog = useSelector((state) => state.getLikesBlog);
   const Infolike = useSelector((state) => state.likeBlog);
- 
-  const [selectLikeUser, setSelectLikeUser] = useState(false);
+
+  const [selectLikeUser, setSelectLikeUser] = useState(<BiLike />);
 
   // Style loader like
-  const [overlay, setOverlay] = useState("none")
-  const [visiblityLike, setVisibilityLike] = useState("initial")
+  const [overlay, setOverlay] = useState("none");
+  const [visiblityLike, setVisibilityLike] = useState("initial");
 
   const access = JSON.parse(localStorage.getItem("access"));
   const username = JSON.parse(localStorage.getItem("username"));
@@ -36,12 +41,12 @@ export function LikesBlog({ params }) {
         }
       );
       if (like_registered.length == 0) {
-        setSelectLikeUser(false);
+        setSelectLikeUser(<BiLike />);
       } else {
         if (like_registered[0].selected == true) {
-          setSelectLikeUser(true);
+          setSelectLikeUser(<BiSolidLike />);
         } else {
-          setSelectLikeUser(false);
+          setSelectLikeUser(<BiLike />);
         }
       }
     }
@@ -49,73 +54,73 @@ export function LikesBlog({ params }) {
 
   useEffect(() => {
     setTimeout(() => {
-      setOverlay("none")
-      setVisibilityLike("initial")
-    },3000)
-  },[overlay])
+      setOverlay("none");
+      setVisibilityLike("initial");
+    }, 3000);
+  }, [overlay]);
 
   function onChangeLike(e) {
-    if (Infolike.status !== "pending") {
-      if (
-        e.target.type === "checkbox" &&
-        infoJWTVerify.status === "fulfilled" &&
-        access &&
-        username
-      ) {
-        const updatedLike = {
-          like: !selectLikeUser,
-          slug: params,
-          jwt: access,
-        };
-        import("../../../redux/index").then((modules) => {
-          dispatch(modules.axiosLikeBlog(updatedLike));
-          setOverlay("inline-block")
-          setVisibilityLike("none")
-        });
-        setSelectLikeUser(!selectLikeUser);
-      } else if (infoJWTVerify.status === "fulfilled" && access && username) {
-        const updatedLike = {
-          like: false,
-          slug: params,
-          jwt: access,
-        };
-        import("../../../redux/index").then((modules) => {
-          setOverlay("inline-block")
-          setVisibilityLike("none")
-          dispatch(modules.axiosLikeBlog(updatedLike));
-        });
-        setSelectLikeUser(false);
-      } else {
-        if (infoJWTVerify.status === "fulfilled" && access) {
-          e.target.checked = false;
-          navigate("/dashboard");
-        } else {
-          e.target.checked = false;
-          Swal.fire({
-            icon: "warning",
-            title: "Oops...",
-            text: "Tienes que estar registrado!",
-            footer: `<a class=${style.messageError} href="https://impact-x.onrender.com/#/access/signin"> Ingresa a tu cuenta </a>`,
-          });
-        }
-      }
+    if (
+      selectLikeUser.type.name == "BiLike" &&
+      infoJWTVerify.status === "fulfilled" &&
+      access &&
+      username
+    ) {
+      const updatedLike = {
+        like: true,
+        slug: params,
+        jwt: access,
+      };
+      import("../../../redux/index").then((modules) => {
+        dispatch(modules.axiosLikeBlog(updatedLike));
+        setOverlay("inline-block");
+        setVisibilityLike("none");
+      });
+      setSelectLikeUser(<BiSolidLike />);
+    } else if (
+      selectLikeUser.type.name == "BiSolidLike" &&
+      infoJWTVerify.status === "fulfilled" &&
+      access &&
+      username
+    ) {
+      const updatedLike = {
+        like: false,
+        slug: params,
+        jwt: access,
+      };
+      import("../../../redux/index").then((modules) => {
+        setOverlay("inline-block");
+        setVisibilityLike("none");
+        dispatch(modules.axiosLikeBlog(updatedLike));
+      });
+      setSelectLikeUser(<BiLike />);
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Tienes que estar registrado!",
+        footer: `<a class=${style.messageError} href="https://impact-x.onrender.com/#/access/signin"> Ingresa a tu cuenta </a>`,
+      });
     }
   }
 
   return (
     <main>
       <div>
-        <span style={{display : overlay}} className={style.loader}></span>
-        <input style={{display : visiblityLike}}
-          className={style.mainButton}
-          type="checkbox"
-          name="like"
-          checked={selectLikeUser}
-          onChange={onChangeLike}
-        />
-
+        <span style={{ display: overlay }} className={style.loader}></span>
         {infoGetLikeBlog.status === "fulfilled" ? (
-          <b className={style.counter}>{infoGetLikeBlog.info.data.all_likes}</b>
+          <span>
+            <span
+              style={{ display: visiblityLike }}
+              className={style.mainButton}
+              onClick={onChangeLike}
+            >
+              {selectLikeUser}
+            </span>
+            <span className={style.counter}>
+              {infoGetLikeBlog.info.data.all_likes}
+            </span>
+          </span>
         ) : (
           false
         )}

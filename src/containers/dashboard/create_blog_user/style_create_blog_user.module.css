@@ -1,4 +1,7 @@
 /* Media screen mobile */
+.containerCreateBlog {
+  position: relative;
+}
 
 .titleCreateBlog {
   text-align: center;
@@ -147,7 +150,6 @@ input[type="checkbox"] {
 .file {
   margin-right: 20px;
 }
-
 
 /* style description */
 .description {

@@ -10,20 +10,12 @@ import style from "./style_initial_dashboard.module.css";
 export function InitialDashboard() {
   const infoDatauser = useSelector((state) => state.userData);
 
-  const [dataUser, setDataUser] = useState(null);
-
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
     useState(false);
   const [valueScrollApearence, setValueScrollApearence] = useState(
     <AiOutlineMenu />
   );
-
-  useEffect(() => {
-    if (infoDatauser.status === "fulfilled") {
-      setDataUser([infoDatauser.info]);
-    }
-  }, [infoDatauser.status]);
 
   return (
     <main className={style.containerInitialDashboard}>
@@ -55,41 +47,43 @@ export function InitialDashboard() {
 
       <div className={style.circule1}></div>
 
-
       <section className={style.staticContainer}>
         {infoDatauser.status === "fulfilled" ? (
-          <h1>
-            // BIENVENIDO // <br /> {infoDatauser.info.username}
-          </h1>
+          <div>
+            <h1>
+              // BIENVENIDO // <br /> {infoDatauser.info.username}
+            </h1>
+            <p>
+              En IMPACT X, creemos en el poder de las palabras y las ideas. Te
+              damos la bienvenida a un lugar donde la creatividad fluye
+              libremente y las voces se unen para formar una comunidad vibrante
+              y diversa. ¡Este es tu espacio para inspirar, aprender y
+              conectarte!
+            </p>
+            <aside className={style.containerImg}>
+              <div>
+                <img
+                  className={style.img1}
+                  src="https://geeksui.codescandy.com/geeks/assets/images/background/acedamy-img/frame-1.svg"
+                  alt="img"
+                  width={200}
+                  height={200}
+                />
+              </div>
+              <div>
+                <img
+                  className={style.img2}
+                  src="https://geeksui.codescandy.com/geeks/assets/images/background/acedamy-img/frame-1.svg"
+                  alt="img"
+                  width={200}
+                  height={200}
+                />
+              </div>
+            </aside>
+          </div>
         ) : (
           false
         )}
-        <p>
-          En IMPACT X, creemos en el poder de las palabras y las ideas. Te damos
-          la bienvenida a un lugar donde la creatividad fluye libremente y las
-          voces se unen para formar una comunidad vibrante y diversa. ¡Este es
-          tu espacio para inspirar, aprender y conectarte!
-        </p>
-        <aside className={style.containerImg}>
-          <div>
-            <img
-              className={style.img1}
-              src="https://geeksui.codescandy.com/geeks/assets/images/background/acedamy-img/frame-1.svg"
-              alt="img"
-              width={200}
-              height={200}
-            />
-          </div>
-          <div>
-            <img
-              className={style.img2}
-              src="https://geeksui.codescandy.com/geeks/assets/images/background/acedamy-img/frame-1.svg"
-              alt="img"
-              width={200}
-              height={200}
-            />
-          </div>
-        </aside>
       </section>
     </main>
   );

@@ -10,17 +10,19 @@
 }
 
 /* Style of button */
+
+
 .mainButton {
-  transform: scale(1.5);
+  cursor: pointer;
+  font-size: 25px;
   margin-right: 10px;
-  -webkit-transform: scale(1.5);
-  -moz-transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  -o-transform: scale(1.5);
+  color: rgb(64, 64, 231);
 }
 
 .counter {
   font-size: 23px;
+  font-weight:bold;
+  margin-left: -5px;
 }
 
 /* ___________________ */
@@ -29,7 +31,7 @@
 .loader {
   width: 20px;
   height: 20px;
-  margin: 0px 3px;
+  margin: 0px 10px 0px 5px;
   border: 4px solid black;
   border-bottom-color: transparent;
   border-radius: 50%;

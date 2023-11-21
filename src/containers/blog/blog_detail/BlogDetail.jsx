@@ -1,7 +1,10 @@
+// Import React
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
+
+// Import out of react
 import { Layout } from "../../../components/index";
 import { LikesBlog, CommentsBlog } from "../../../components/index";
 import style from "./style_blog_detail.module.css";

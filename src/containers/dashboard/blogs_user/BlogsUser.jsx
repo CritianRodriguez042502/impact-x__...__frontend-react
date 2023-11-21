@@ -52,6 +52,7 @@ export function BlogsUser() {
     infoUpdateBlogUser.status,
   ]);
 
+  // UseEffect Pagination
   useEffect(() => {
     if (page) {
       const headers = {
@@ -88,6 +89,7 @@ export function BlogsUser() {
     setAllVisibility("1");
   }, 350);
 
+  // Refresh pagination
   function refreshBloByUserPagination() {
     setTimeout(() => {
       const headers = {
@@ -112,6 +114,7 @@ export function BlogsUser() {
     }, 200);
   }
 
+  // Button of pagination
   function buttonsPagination() {
     const countBlogsPaginate = infoBlogsByUser.info.count / 5;
     const paginateCheck = countBlogsPaginate.toString().split(".");
@@ -168,6 +171,7 @@ export function BlogsUser() {
     }
   }
 
+  // Button Delete Blog
   function deleteBlogByUser(data) {
     Swal.fire({
       title: "Eliminar",
@@ -227,6 +231,29 @@ export function BlogsUser() {
         }
       }
     });
+  }
+
+  // function to trim description
+  function toTrimDescription(description) {
+    let list_description = description.split("");
+
+    if (list_description.length > 115) {
+      let new_list_description = [];
+      let first_counter = 0;
+      while (new_list_description.length < 110) {
+        new_list_description.push(list_description[first_counter]);
+        first_counter++;
+      }
+      let final_text_description = "";
+      let second_counter = 0;
+      while (second_counter < new_list_description.length) {
+        final_text_description += new_list_description[second_counter];
+        second_counter++;
+      }
+      return `${final_text_description} ...`;
+    } else {
+      return description;
+    }
   }
 
   return (
@@ -289,7 +316,7 @@ export function BlogsUser() {
                           )}
                         </div>
                         <div>
-                          <p> {data.description} </p>
+                          <p>{toTrimDescription(data.description)}</p>
                         </div>
 
                         <hr style={{ border: "2px solid gray" }} />
@@ -352,7 +379,7 @@ export function BlogsUser() {
                           )}
                         </div>
                         <div>
-                          <p> {data.description} </p>
+                          <p> {toTrimDescription(data.description)} </p>
                         </div>
 
                         <hr style={{ border: "2px solid gray" }} />
