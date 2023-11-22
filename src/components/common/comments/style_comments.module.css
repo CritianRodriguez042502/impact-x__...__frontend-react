@@ -198,7 +198,7 @@
 /* ------------------------------  */
 /* View of update comment to user */
 .commentsUpdateVisibility {
-  background: url("https://img.freepik.com/vector-gratis/fondo-geometrico_53876-115958.jpg");
+  background: url("../../../assets/blog/blog_detail/imagen_de_fondo_actualizacion_comentario.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -208,11 +208,6 @@
   width: 100%;
   height: 100vh;
   transform: translate(-50%, -50%);
-  box-shadow: 2px 3px 10px black;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
 }
 
 .buttonClose {
@@ -226,20 +221,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+}
+
+.containerFormUpdateComment {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5) 
 }
 
 .textTarea {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 20px 10px 10px 10px;
+  border-radius: 15px;
   font-size: 19px;
+  border:none;
   outline: none;
-  margin-bottom: 10px;
-  box-shadow: 10px 10px 10px black;
+  background: #fff;
+}
+
+.containerFormButtonsUpdateComments {
+  display: flex;
+  justify-content: center;
 }
 
 .buttonFormUpdate {
-  margin: 15px;
+  margin: 10px;
   background-color: #3a5acb;
   color: #fff;
   border: none;
@@ -253,6 +259,23 @@
 .buttonFormUpdate:hover {
   background: rgb(28, 28, 223);
 }
+
+.buttonFormDiscard {
+  margin: 10px;
+  background-color: #d02a0d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 19px;
+  transition: background-color 0.3s ease;
+}
+
+.buttonFormDiscard:hover {
+  background: #a21e12;
+}
+
 
 /*   Media screen tablet and Desktop   */
 @media screen and (min-width: 550px) {

@@ -47,14 +47,12 @@
   padding: 15px 25px;
   border-bottom: 2px solid transparent;
   transition: border-bottom 0.3s ease;
-  -webkit-transition: border-bottom 0.3s ease;
-  -moz-transition: border-bottom 0.3s ease;
-  -ms-transition: border-bottom 0.3s ease;
-  -o-transition: border-bottom 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .navbarLink:hover {
   color: green;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /*------------------------------*/

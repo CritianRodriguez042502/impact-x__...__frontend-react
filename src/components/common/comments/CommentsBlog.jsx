@@ -4,7 +4,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import Swal from "sweetalert2";
-import personDefault from "../../../assets/dashboard/img_person_default.png"
+import personDefault from "../../../assets/dashboard/img_person_default.png";
 import style from "./style_comments.module.css";
 
 export function CommentsBlog({ params }) {
@@ -132,7 +132,7 @@ export function CommentsBlog({ params }) {
           })
         );
       });
-      setCommentUpdateVisibility("none"); 
+      setCommentUpdateVisibility("none");
       navigate(`/blogs/blog_detail/${paramsUrl.slug}`);
     } else {
       Swal.fire({
@@ -173,10 +173,7 @@ export function CommentsBlog({ params }) {
             <div className={style.containerComment} key={data.id}>
               <div className={style.userImage}>
                 {!data.user.img_url ? (
-                  <img
-                    src={personDefault}
-                    alt="img"
-                  />
+                  <img src={personDefault} alt="img" />
                 ) : (
                   <img src={data.user.img_url} alt="img" />
                 )}
@@ -233,10 +230,7 @@ export function CommentsBlog({ params }) {
             <div className={style.containerComment} key={data.id}>
               <div className={style.userImage}>
                 {!data.user.img_url ? (
-                  <img
-                    src={personDefault}
-                    alt="img"
-                  />
+                  <img src={personDefault} alt="img" />
                 ) : (
                   <img src={data.user.img_url} alt="img" />
                 )}
@@ -313,40 +307,38 @@ export function CommentsBlog({ params }) {
           style={{ display: commentUpdateVisibility }}
           className={style.commentsUpdateVisibility}
         >
-          <div
+          <aside
             style={{ opacity: comentUpdateOpacity }}
-            className={style.inputUpdateComment}
+            className={style.containerUpdateComment}
           >
-            <aside>
-              <h1
-                className={style.buttonClose}
-                onClick={onClickWithoutCommentUpdateVisibilit}
-              >
-                <AiOutlineClose />
-              </h1>
+            <form className={style.containerFormUpdateComment} onSubmit={onSubmitUpdateComment}>
+              <textarea
+                onChange={onChangeUpdateComment}
+                value={commentDetail}
+                className={style.textTarea}
+                name="updateComment"
+                id="updateComment"
+                cols="30"
+                rows="10"
+                required
+              ></textarea>
+              <hr />
 
-              <form
-                className={style.containerUpdateComment}
-                onSubmit={onSubmitUpdateComment}
-              >
-                <textarea
-                  onChange={onChangeUpdateComment}
-                  value={commentDetail}
-                  className={style.textTarea}
-                  name="updateComment"
-                  id="updateComment"
-                  cols="30"
-                  rows="10"
-                  required
-                ></textarea>
+              <div className={style.containerFormButtonsUpdateComments}>
                 <button className={style.buttonFormUpdate} type="submit">
                   Actualizar
                 </button>
-              </form>
-            </aside>
-          </div>
+                <button
+                  onClick={onClickWithoutCommentUpdateVisibilit}
+                  className={style.buttonFormDiscard}
+                  type="button"
+                >
+                  Descartar
+                </button>
+              </div>
+            </form>
+          </aside>
         </section>
-        
       </article>
     </main>
   );
