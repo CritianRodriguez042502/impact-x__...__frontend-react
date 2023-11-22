@@ -61,11 +61,12 @@ export function LikesBlog({ params }) {
 
   function onChangeLike(e) {
     if (
-      selectLikeUser.type.name == "BiLike" &&
+      selectLikeUser.type.name === "BiLike" &&
       infoJWTVerify.status === "fulfilled" &&
       access &&
       username
     ) {
+      console.log(selectLikeUser.type.name)
       const updatedLike = {
         like: true,
         slug: params,
@@ -78,7 +79,7 @@ export function LikesBlog({ params }) {
       });
       setSelectLikeUser(<BiSolidLike />);
     } else if (
-      selectLikeUser.type.name == "BiSolidLike" &&
+      selectLikeUser.type.name === "BiSolidLike" &&
       infoJWTVerify.status === "fulfilled" &&
       access &&
       username
