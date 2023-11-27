@@ -9,7 +9,7 @@ export function Search() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const locationReact = useLocation()
+  const locationReact = useLocation();
 
   const infoSearchBlogs = useSelector((state) => state.searchBlog);
 
@@ -28,7 +28,9 @@ export function Search() {
 
   useEffect(() => {
     if (page) {
-      const url = `https://server-agency-1203.onrender.com/blog/search_blogs/?page=${page.split("=")[1]}&slug=${params.slug}`;
+      const url = `https://server-agency-1203.onrender.com/blog/search_blogs/?page=${
+        page.split("=")[1]
+      }&slug=${params.slug}`;
       fetch(url, {
         method: "GET",
       })
@@ -128,7 +130,6 @@ export function Search() {
       <Layout>
         <section className={style.containerAllBlogs1}>
           <Link className={style.link} to={`/blogs`}>
-            
             Volver
           </Link>
 
@@ -162,10 +163,7 @@ export function Search() {
                   >
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
-                        <img
-                          src={data.img_url}
-                          alt="img"
-                        />
+                        <img src={data.img_url} alt="img" />
                       </div>
 
                       <div className={style.blogInfo}>
@@ -196,10 +194,7 @@ export function Search() {
                   >
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
-                        <img
-                          src={data.img_url}
-                          alt="img"
-                        />
+                        <img src={data.img_url} alt="img" />
                       </div>
 
                       <div className={style.blogInfo}>

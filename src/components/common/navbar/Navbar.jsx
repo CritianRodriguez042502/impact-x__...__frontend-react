@@ -17,7 +17,6 @@ export function Navbar() {
 
   const [appearance, setAppearance] = useState(false);
 
-
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
     useState(false);
@@ -51,7 +50,6 @@ export function Navbar() {
       }, 4000);
     }
   }, [infoCategorys.status]);
-
 
   return (
     <main>

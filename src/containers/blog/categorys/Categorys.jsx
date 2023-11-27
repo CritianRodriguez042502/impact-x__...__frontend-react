@@ -89,12 +89,18 @@ export function Categorys() {
           <div className={style.pagination}>
             {list.map((index) => (
               <button
+                className={style.pageButton}
+                style={
+                  locationReact.search &&
+                  locationReact.search.split("=")[1] == index
+                    ? { background: "#0e9131" }
+                    : { background: "#4ec776" }
+                }
                 key={index}
                 onClick={(e) => {
                   navigate(`/blogs/category/${params.slug}?page=${index}`);
                   setAllVisibilityPage("0");
                 }}
-                className={style.pageButton}
               >
                 {index}
               </button>
@@ -112,12 +118,18 @@ export function Categorys() {
           <div className={style.pagination}>
             {list.map((index) => (
               <button
+                className={style.pageButton}
+                style={
+                  locationReact.search &&
+                  locationReact.search.split("=")[1] == index
+                    ? { background: "#0e9131" }
+                    : { background: "#4ec776" }
+                }
                 key={index}
                 onClick={(e) => {
                   navigate(`/blogs/category/${params.slug}?page=${index}`);
                   setAllVisibilityPage("0");
                 }}
-                className={style.pageButton}
               >
                 {index}
               </button>
@@ -148,7 +160,7 @@ export function Categorys() {
                     <Link
                       style={
                         params.slug === data.slug
-                          ? { background : "green",textDecoration: "underline" }
+                          ? { background: "green", textDecoration: "underline" }
                           : { textDecoration: "none" }
                       }
                       className={style.link}
@@ -180,22 +192,20 @@ export function Categorys() {
           className={style.containerAllBlogs2}
           style={{ opacity: allVisibility }}
         >
-          {infoblogTypeCategory.status === "fulfilled" && !locationReact.search ? (
+          {infoblogTypeCategory.status === "fulfilled" &&
+          !locationReact.search ? (
             <article>
               {infoblogTypeCategory.info.results?.map((data) => {
                 return (
                   <div
                     key={data.id}
-                    onClick={(e) => {
+                    onClick={() => {
                       navigate(`/blogs/blog_detail/${data.slug}`);
                     }}
                   >
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
-                        <img
-                          src={data.img_url}
-                          alt="img"
-                        />
+                        <img src={data.img_url} alt="img" />
                       </div>
 
                       <div className={style.blogInfo}>
@@ -224,10 +234,7 @@ export function Categorys() {
                   >
                     <aside className={style.blogContentContainer}>
                       <div className={style.containerImg}>
-                        <img
-                          src={data.img_url}
-                          alt="img"
-                        />
+                        <img src={data.img_url} alt="img" />
                       </div>
 
                       <div className={style.blogInfo}>

@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0% 5% 10% 5%;
+  padding: 0px 0px 20px 0%;
 }
 
 .categories {
@@ -39,11 +39,16 @@
 }
 
 .searchForm input {
-  padding: 8px 15px;
-  font-size: 17px;
-  border-radius: 10px;
+  padding: 5px 8px;
+  font-size: 16px;
+  border-radius: 8px;
   margin: 0px 10px;
+  outline: none;
   border: 1px solid gray;
+}
+
+.searchForm input:focus {
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.3);
 }
 
 .searchForm button {
@@ -75,7 +80,7 @@
 }
 
 .blogContentContainer:hover {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
 
 .containerImg {
@@ -84,27 +89,26 @@
 }
 
 .containerImg img {
-  width: 80%;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
+  width: 75%;
+  height: auto;
+  border-radius: 5px;
 }
 
-.blogImage {
-  width: 100px;
+.blogInfo {
+  text-align: center;
+  padding: 0px 5%;
 }
 
 .title {
-  text-align: center;
-  font-size: 24px;
+  margin: 30px 0px 30px 0px;
+  font-size: 26px;
   font-weight: bold;
+  text-decoration: underline;
   color: #333;
 }
 
 .description {
-  font-size: 18px;
+  font-size: 19px;
   color: #555;
   margin-top: 10px;
   word-break: break-word;
@@ -145,19 +149,15 @@
 }
 /* ---------------- */
 
-/* Media screen tablet */
-@media screen and (min-width: 550px) and (max-width: 800px) {
-}
-
-/* Media screen tablet and desktop*/
-@media screen and (min-width: 800px) {
+/* Media screen Desktop section category */
+@media screen and (min-width: 1000px) {
   /* container allBlogs 1 */
   .containerAllBlogs1 {
     display: flex;
     flex-direction: row;
     margin-top: 20px;
     justify-content: space-between;
-    padding: 0px 3%;
+    padding: 0px 2%;
     background: initial;
   }
 
@@ -174,32 +174,41 @@
     margin: 0px 5px 0px 5px;
   }
   /* ---------------------*/
+}
 
+/* Media screen tablet and desktop*/
+@media screen and (min-width: 800px) {
   /* container allBlogs 2 */
   .containerAllBlogs2 {
-    padding-left: 20px;
-    padding-right: 70px;
+    padding-left: 35px;
+    padding-right: 35px;
   }
 
   .blogContentContainer {
     display: flex;
     flex-direction: initial;
     margin: 2% 0 3% 0;
-    border: 5px solid #ccc;
+    border: 6px double #b6b6b6;
   }
 
   .containerImg img {
-    width: 300px;
+    width: 260px;
+    height: auto;
   }
 
   .blogInfo {
+    text-align: start;
     width: 100%;
     padding: 0px 10px;
   }
 
   .title {
-    text-align: start;
+    margin: 6px 0px 25px 0px;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #333;
   }
-
+  
   /* ---------------------*/
 }
