@@ -5,7 +5,7 @@ import { store } from "./redux/index";
 import { Redirects } from "./routes/index.routes.jsx";
 
 // Import styles
-import "./styles/style.module.css"
+import "./styles/index.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
