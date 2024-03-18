@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
-import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
+import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_initial_dashboard.module.css";

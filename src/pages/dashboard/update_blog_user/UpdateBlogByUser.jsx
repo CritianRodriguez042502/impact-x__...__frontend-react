@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { GetReactionDashboard } from "../../../components/index";
-import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
+import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
 import style from "./style_update_blog_by_user.module.css";
 
 export function UpdateBlogByUser() {

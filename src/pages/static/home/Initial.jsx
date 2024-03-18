@@ -1,12 +1,11 @@
 import { Helmet } from "react-helmet";
 import Typewriter from "typewriter-effect";
-import { Layout } from "../../../../components/index";
-import media from "../../../../assets/static/home/imagen-reds.png"
-import person from "../../../../assets/static/home/imagen-hombre-verde.png";
+import { Layout } from "../../../components/layout/Layout.jsx";
+import media from "../../../assets/static/home/imagen-reds.png";
+import person from "../../../assets/static/home/imagen-hombre-verde.png";
 import style from "./style_initial.module.css";
 
 export function Initial() {
-
   return (
     <main>
       <Helmet>
@@ -40,10 +39,7 @@ export function Initial() {
           </aside>
 
           <aside className={style.containerImg1}>
-            <img
-              src={media}
-              alt="img"
-            />
+            <img src={media} alt="img" />
           </aside>
         </section>
 

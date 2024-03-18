@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
-import { SidebarDashboard } from "../../../components/common/sidebar/SidebarDashboard";
+import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_blogs_user.module.css";

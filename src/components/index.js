@@ -1,20 +1,15 @@
 // * Export components *
 
-// Folder layout ____________________________
-export { Layout } from "./layout/Layout";
+// Folder = common
+export { Loader } from "./commons/loader/Loader.jsx";
 
+// Folder = Custom ____________________________
+export { LikesBlog } from "./customs/likes/LikesBlog.jsx";
+export { CommentsBlog } from "./customs/comments/CommentsBlog.jsx";
+export { GetReactionDashboard } from "./customs/reaction_dashboard/ReactionsDashboard.jsx";
 
-// Folder Buttons ____________________________
-export { Buttons } from "./common/buttons/Buttons";
-
-// Folder Likes ____________________________
-export { LikesBlog } from "./common/likes/LikesBlog";
-
-// Folder Comments ____________________________
-export { CommentsBlog } from "./common/comments/CommentsBlog";
-
-// Folder reactions Dashboard ____________________________
-export { GetReactionDashboard } from "./common/reaction_dashboard/ReactionsDashboard";
+// Folder = layout ____________________________
+export { Layout } from "./layout/Layout.jsx";
 
 // folder Errors ____________________________
-export { NotFound } from "./errors/404";
+export { NotFound } from "./errors/not-found.jsx";
