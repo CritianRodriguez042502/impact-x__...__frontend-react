@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./redux/index";
-import { Redirects, Redirects2 } from "./routes/index";
+import { Redirects } from "./routes/index.routes.jsx";
 
-// Import style
+// Import styles
 import "./styles/style.module.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <Provider store={store}>
-      <Redirects2/>
+      <Redirects/>
     </Provider>
   </>
 );

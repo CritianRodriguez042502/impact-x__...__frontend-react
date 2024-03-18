@@ -14,7 +14,7 @@ export { axiosSearchBlogs } from "./slices/blog_slices/searchBlogSlice";
 export { axiosCreateUser } from "./slices/register_users_slices/createUserSlice";
 export { axiosResendEmail } from "./slices/register_users_slices/resendCorreoSlice";
 export { axiosActivationUser } from "./slices/register_users_slices/activationSlice";
-export { axiosJWTCreate } from "../redux/slices/register_users_slices/JWTCreate";
+export { axiosJWTCreate } from "./slices/register_users_slices/JWTCreate";
 export { axiosJWTRefresh } from "./slices/register_users_slices/JWTRefresh";
 export { axiosJWTVerify } from "./slices/register_users_slices/JWTVerify";
 export { axiosUserData } from "./slices/register_users_slices/userDataSlice";

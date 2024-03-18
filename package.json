@@ -1,5 +1,6 @@
 {
-  "name": "client",
+  "name": "app-impact-x",
+  "description": "Front Impact X",
   "private": true,
   "version": "0.0.0",
   "type": "module",
