@@ -2,8 +2,8 @@
 
 Impact X Blog es una plataforma de blogs completa desarrollada en React y Vite que combina características de registro de usuarios, creación y gestión de blogs, interacción social y más. Esta aplicación destaca las habilidades de desarrollo para ofrecer servicios como una agencia de desarrollo y freelancers.
 
-## Características Destacadas
 
+## Características Destacadas
 * **Sistema de Registro de Usuarios** : Impact X Blog incluye un sistema completo de registro de usuarios que permite la creación de cuentas, activación de cuentas a través de correos electrónicos, inicio de sesión, cambio de contraseña, cambio de nombre de usuario y la posibilidad de agregar o modificar la imagen de perfil del usuario.
   
 * **Gestión de Blogs** : Los usuarios pueden crear, actualizar y eliminar blogs. La creación de blogs incluye campos como título, descripción, imagen de portada, configuración de privacidad, selección de categoría y contenido de blog con el uso de CKEditor.
@@ -16,19 +16,19 @@ Impact X Blog es una plataforma de blogs completa desarrollada en React y Vite q
   
 * **Páginas Estáticas** : Además de las características mencionadas, la aplicación incluye páginas estáticas como Home, About, Services y Contact, lo que le da una apariencia similar a una agencia de desarrollo de servicios como Fiverr.
 
-## Instalación
 
-1. Clona el repositorio: **git clone https://github.com/tuusuario/tuprojecto.git**
-2. Navega al directorio del proyecto: **cd tuproyecto/client**
+## Instalación
+1. Clona el repositorio: **git clone https://github.com/CritianRodriguez042502/Agency_view.git**
+2. Navega al directorio del proyecto: **cd Agency_view**
 3. Instala las dependencias:  **npm install**
 
-## Uso
 
+## Uso
 1. Inicia el servidor de desarrollo de Vite: **npm run dev**
 2. Abre tu navegador y visita `http://localhost:5173` para acceder a la aplicación.
 
-## Contribución
 
+## Contribución
 Si deseas contribuir a este proyecto, sigue estas pautas:
 
 * Realiza un fork del repositorio.
