@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import style from "./style_reset_password.module.css";
 
-export function ResetPassword() {
+export default function ResetPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();

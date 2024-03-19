@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styles from "./style_not-found.module.css";
 
-export const NotFound = () => {
+export default function NotFound() {
   return (
     <main>
       <Helmet>
@@ -15,10 +15,7 @@ export const NotFound = () => {
             <p>Lo siento, la página que estás buscando no se encuentra.</p>
           </div>
           <div className={styles.linkContainer}>
-            <Link
-              className={styles.link}
-              to={"/"}
-            >
+            <Link className={styles.link} to={"/"}>
               Volver a la página de inicio
             </Link>
           </div>
@@ -26,4 +23,4 @@ export const NotFound = () => {
       </aside>
     </main>
   );
-};
+}

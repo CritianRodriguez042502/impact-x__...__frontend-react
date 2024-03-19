@@ -7,7 +7,7 @@ import world from "../../../assets/static/about/imagen-world.png";
 import manager from "../../../assets/static/about/imagen-gerente.png";
 import style from "./style_about.module.css";
 
-export function About() {
+export default function About() {
   return (
     <main>
       <Helmet>

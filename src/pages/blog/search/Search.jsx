@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 import style from "./style_search.module.css";
 
-export function Search() {
+export default function Search() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();

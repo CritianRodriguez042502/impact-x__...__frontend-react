@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 import style from "./style_categorys.module.css";
 
-export function Categorys() {
+export default function Categorys() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();

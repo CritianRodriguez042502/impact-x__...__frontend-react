@@ -5,7 +5,7 @@ import media from "../../../assets/static/home/imagen-reds.png";
 import person from "../../../assets/static/home/imagen-hombre-verde.png";
 import style from "./style_initial.module.css";
 
-export function Initial() {
+export default function Home() {
   return (
     <main>
       <Helmet>
@@ -14,6 +14,7 @@ export function Initial() {
         <title> IMPACT X | Inicio </title>
       </Helmet>
       <Layout>
+      
         <section className={style.containerInitial1}>
           <aside className={style.containerContent1}>
             <h1>
@@ -38,6 +39,7 @@ export function Initial() {
             </div>
           </aside>
 
+          
           <aside className={style.containerImg1}>
             <img src={media} alt="img" />
           </aside>

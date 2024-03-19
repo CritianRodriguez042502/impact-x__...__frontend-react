@@ -11,5 +11,3 @@ export { GetReactionDashboard } from "./customs/reaction_dashboard/ReactionsDash
 // Folder = layout ____________________________
 export { Layout } from "./layout/Layout.jsx";
 
-// folder Errors ____________________________
-export { NotFound } from "./errors/not-found.jsx";

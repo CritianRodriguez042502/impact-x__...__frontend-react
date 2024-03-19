@@ -5,7 +5,7 @@ import { Layout } from "../../../components/index";
 import { useNavigate } from "react-router-dom";
 import style from "./style_access.module.css";
 
-export function Access() {
+export default function Access() {
   const navigate = useNavigate();
 
   const infoJWTVerify = useSelector((state) => state.JWTVerify);

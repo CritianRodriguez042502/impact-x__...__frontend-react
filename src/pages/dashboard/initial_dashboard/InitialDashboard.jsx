@@ -7,7 +7,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_initial_dashboard.module.css";
 
-export function InitialDashboard() {
+export default function InitialDashboard() {
   const infoDatauser = useSelector((state) => state.userData);
 
   // dom with css

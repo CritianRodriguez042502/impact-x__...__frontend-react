@@ -3,7 +3,7 @@ import { Layout } from "../../../components/index";
 import Swal from "sweetalert2";
 import style from "./style_contact.module.css";
 
-export function Contact() {
+export default function Contact() {
   
   const sendEmailImpactX = (e) => {
     e.preventDefault();

@@ -10,7 +10,7 @@ import { GetReactionDashboard } from "../../../components/index";
 import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
 import style from "./style_update_blog_by_user.module.css";
 
-export function UpdateBlogByUser() {
+export default function UpdateBlogByUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const slug = useParams().slug;

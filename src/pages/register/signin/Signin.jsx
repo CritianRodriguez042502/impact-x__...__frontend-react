@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Layout } from "../../../components/index";
 import style from "./style_signin.module.css";
 
-export function Signin() {
+export default function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locationReact = useLocation()

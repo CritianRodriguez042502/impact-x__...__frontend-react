@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosAuthGoogle = createAsyncThunk("authGoogle", async () => {
-  const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/o/google-oauth2/?redirect_uri=https://impact-x.onrender.com/#/access/signin`;
+  const url = `${config.env.base_url_server}/user_system/auth/o/google-oauth2/?redirect_uri=https://impact-x.onrender.com/#/access/signin`;
   const respose = await axios.get(url);
   return respose.data;
 });

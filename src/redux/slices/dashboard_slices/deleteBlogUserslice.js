@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosDeleteBlogUser = createAsyncThunk(
   "deleteBlogUser",
@@ -7,7 +8,7 @@ export const axiosDeleteBlogUser = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"https://server-agency-1203.onrender.com"}/dashboard/delete_blog_by_user/?slug=${
+    const url = `${config.env.base_url_server}/dashboard/delete_blog_by_user/?slug=${
       data.slug
     }`;
     const response = await axios.delete(url, { headers });

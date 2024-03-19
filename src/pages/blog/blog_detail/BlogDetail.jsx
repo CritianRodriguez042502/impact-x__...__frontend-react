@@ -9,7 +9,7 @@ import { Layout } from "../../../components/index";
 import { LikesBlog, CommentsBlog } from "../../../components/index";
 import style from "./style_blog_detail.module.css";
 
-export function BlogDetail() {
+export default function BlogDetail() {
   const dispatch = useDispatch();
   const params = useParams();
 

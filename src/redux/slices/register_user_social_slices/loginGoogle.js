@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosLoginGoogle = createAsyncThunk(
   "loginGoogle",
   async (data) => {
-    const config = {
+    const config_http = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     };
-    const url = `https://server-agency-1203.onrender.com/user_system/auth/o/google-oauth2/`;
+    const url = `${config.env.base_url_server}/user_system/auth/o/google-oauth2/`;
 
     
     if (data.state && data.code) {
@@ -18,7 +19,7 @@ export const axiosLoginGoogle = createAsyncThunk(
       data.append("code", data.code);
 
       try {
-        const response = await axios.post(url, data.toString(), config);
+        const response = await axios.post(url, data.toString(), config_http);
         return {
           status: response.status,
           data: response.data,

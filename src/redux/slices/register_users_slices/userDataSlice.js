@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js";
 
 export const axiosUserData = createAsyncThunk("userData", async (data) => {
   const headers = {
@@ -7,7 +8,7 @@ export const axiosUserData = createAsyncThunk("userData", async (data) => {
   };
   if (data.method === "get") {
     try {
-      const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/users/me/`;
+      const url = `${config.env.base_url_server}/user_system/auth/users/me/`;
       const response = await axios.get(url, { headers });
       return {
         status: response.status,

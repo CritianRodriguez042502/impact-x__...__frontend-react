@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosAllUsernames = createAsyncThunk(
   "AllUsernames",
@@ -7,7 +8,7 @@ export const axiosAllUsernames = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"https://server-agency-1203.onrender.com"}/dashboard/get_all_usernames/`;
+    const url = `${config.env.base_url_server}/dashboard/get_all_usernames/`;
 
     try {
       const response = await axios.get(url, { headers });

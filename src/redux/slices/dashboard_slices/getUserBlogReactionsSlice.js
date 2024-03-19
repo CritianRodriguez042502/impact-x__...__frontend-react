@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config";
 
 export const axiosGetUserBlogReactions = createAsyncThunk(
   "getUserBlogReactions",
@@ -7,9 +8,7 @@ export const axiosGetUserBlogReactions = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"https://server-agency-1203.onrender.com"}/dashboard/get_user_blog_reactions/?slug=${
-      data.slug
-    }`;
+    const url = `${config.env.base_url_server}/dashboard/get_user_blog_reactions/?slug=${data.slug}`;
 
     try {
       const response = await axios.get(url, { headers });

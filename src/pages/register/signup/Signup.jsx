@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Layout } from "../../../components/index";
 import style from "./style_signup.module.css";
 
-export function Signup() {
+export default function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const infoAuthGoogle = useSelector((state) => state.authGoogle);

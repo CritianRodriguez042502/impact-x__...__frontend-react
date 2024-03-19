@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosCreateBlogUser = createAsyncThunk(
   "createBlog",
@@ -7,7 +8,7 @@ export const axiosCreateBlogUser = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"https://server-agency-1203.onrender.com"}/dashboard/create_blog_by_user/`;
+    const url = `${config.env.base_url_server}/dashboard/create_blog_by_user/`;
     const body = new FormData()
     body.append("title", data.info.title)
     body.append("description", data.info.description)

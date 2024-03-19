@@ -16,7 +16,7 @@ import { SiTinder } from "react-icons/si";
 
 import style from "./style_services.module.css";
 
-export function Services() {
+export default function Services() {
   const [counter1, setCounter1] = useState(1);
   const [counter2, setCounter2] = useState(1);
   const [counter3, setCounter3] = useState(1);

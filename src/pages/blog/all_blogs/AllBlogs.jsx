@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Layout } from "../../../components/index";
 import style from "./style_all_blogs.module.css";
 
-export function AllBlogs() {
+export default function AllBlogs() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locationReact = useLocation();

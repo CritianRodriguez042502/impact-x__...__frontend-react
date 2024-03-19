@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosResetPasswordConfirm = createAsyncThunk(
   "resetPasswordConfirm",
   async (data) => {
-    const url = `${"https://server-agency-1203.onrender.com"}/user_system/auth/users/reset_password_confirm/`;
+    const url = `${config.env.base_url_server}/user_system/auth/users/reset_password_confirm/`;
     try {
       const response = await axios.post(url, data);
       return response.status;

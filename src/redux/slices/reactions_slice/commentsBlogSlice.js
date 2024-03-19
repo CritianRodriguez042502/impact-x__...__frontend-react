@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import config from "../../../config/index.config.js"
 
 export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
   const headers = {
@@ -7,7 +8,7 @@ export const axiosCommentsBlog = createAsyncThunk("comments", async (data) => {
   };
   
   if (data.method === "get") {
-    const url = `${"https://server-agency-1203.onrender.com"}/blog_reactions/comments/?unique_brand=${
+    const url = `${config.env.base_url_server}/blog_reactions/comments/?unique_brand=${
       data.unique_brand
     }`;
     try {

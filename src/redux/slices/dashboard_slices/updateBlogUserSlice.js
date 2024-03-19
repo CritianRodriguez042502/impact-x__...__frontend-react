@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js";
 
 export const axiosUpdateBlogUser = createAsyncThunk(
   "updateBlogUser",
@@ -7,16 +8,14 @@ export const axiosUpdateBlogUser = createAsyncThunk(
     const headers = {
       Authorization: `JWT ${data.jwt}`,
     };
-    const url = `${"https://server-agency-1203.onrender.com"}/dashboard/update_blogs_by_user/?slug=${
-      data.slug
-    }`;
-    const body = new FormData()
-    body.append("title", data.info.title)
-    body.append("description", data.info.description)
-    body.append("public",data.info.public)
-    body.append("content",data.info.content)
-    body.append("category",data.info.category)
-    body.append("file", data.info.img)
+    const url = `${config.env.base_url_server}/dashboard/update_blogs_by_user/?slug=${data.slug}`;
+    const body = new FormData();
+    body.append("title", data.info.title);
+    body.append("description", data.info.description);
+    body.append("public", data.info.public);
+    body.append("content", data.info.content);
+    body.append("category", data.info.category);
+    body.append("file", data.info.img);
     const response = await axios.put(url, body, { headers });
     return response.data;
   }
@@ -38,9 +37,9 @@ const updateBlogUserSlices = createSlice({
     builder.addCase(axiosUpdateBlogUser.fulfilled, function (state) {
       state.status = "fulfilled";
     });
-    builder.addCase(axiosUpdateBlogUser.rejected, function (state,action) {
+    builder.addCase(axiosUpdateBlogUser.rejected, function (state, action) {
       state.status = "rejected";
-      state.error = action.error.message
+      state.error = action.error.message;
     });
   },
 });

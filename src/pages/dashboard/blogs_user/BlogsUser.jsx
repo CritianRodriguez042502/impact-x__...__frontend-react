@@ -8,7 +8,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import style from "./style_blogs_user.module.css";
 
-export function BlogsUser() {
+export default function BlogsUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const locationReact = useLocation();

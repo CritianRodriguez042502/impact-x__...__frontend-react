@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosLikeBlog = createAsyncThunk("LikeBlog", async (data) => {
   const headers = {
     Authorization: `JWT ${data.jwt}`,
   };
 
-  const url = "https://server-agency-1203.onrender.com/blog_reactions/likes/";
+  const url = `${config.env.base_url_server}/blog_reactions/likes/`;
   try {
     const response = await axios.patch(url, data, { headers });
     return {

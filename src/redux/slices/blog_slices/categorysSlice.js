@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js"
 
 export const axiosCategorys = createAsyncThunk("categorys", async () => {
-  const url = `https://server-agency-1203.onrender.com/blog/all_categoryes/`;
+  const url = `${config.env.base_url_server}/blog/all_categoryes/`;
   const response = await axios.get(url);
   return response.data;
 });

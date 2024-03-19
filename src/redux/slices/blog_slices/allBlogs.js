@@ -1,8 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../../../config/index.config.js";
 
 export const axiosAllBlogs = createAsyncThunk("allBlogs", async () => {
-  const url = `${"https://server-agency-1203.onrender.com"}/blog/all_blog/`;
+  const url = `${config.env.base_url_server}/blog/all_blog/`;
+
   try {
     const response = await axios.get(url);
     return {
@@ -21,6 +23,7 @@ const allBlogsSlice = createSlice({
   name: "allBlogs",
   initialState: { info: null, status: null, error: null },
   reducers: {},
+
   extraReducers: function (builder) {
     builder.addCase(axiosAllBlogs.pending, function (state) {
       state.status = "pending";

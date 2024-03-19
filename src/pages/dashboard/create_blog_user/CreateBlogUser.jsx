@@ -9,7 +9,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
 import style from "./style_create_blog_user.module.css";
 
-export function CreateBlogUser() {
+export default function CreateBlogUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);

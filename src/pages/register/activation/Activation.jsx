@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import style from "./style_activation.module.css";
 
-export function Activation() {
+export default function Activation() {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
