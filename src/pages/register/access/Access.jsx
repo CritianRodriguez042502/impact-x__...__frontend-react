@@ -45,9 +45,9 @@ export default function Access() {
       <Layout>
         <article style={{position : "relative"}}>
       
-          <div style={{ display: overlay }} class={style.overlay}>
-            <div class={style.loaderContainer}>
-              <span class={style.loader}></span>
+          <div style={{ display: overlay }} className={style.overlay}>
+            <div className={style.loaderContainer}>
+              <span className={style.loader}></span>
             </div>
           </div>
 

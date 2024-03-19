@@ -205,7 +205,7 @@ export default function CreateBlogUser() {
                 >
                   {publicSelect}
                 </b>
-                <div class={style.check}>
+                <div className={style.check}>
                   <input
                     type="checkbox"
                     id="pill3"
