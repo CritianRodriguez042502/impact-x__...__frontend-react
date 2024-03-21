@@ -1,11 +1,11 @@
+import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
-import Swal from "sweetalert2";
-import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
+import { LayoutDashboard } from "../../../components/index.js";
 import style from "./style_blogs_user.module.css";
 
 export default function BlogsUser() {
@@ -264,171 +264,171 @@ export default function BlogsUser() {
         <title> IMPACT X | Blogs usuario </title>
       </Helmet>
 
-      <SidebarDashboard appearance={navegationScrollAppearance} />
+      <LayoutDashboard apparence={navegationScrollAppearance}>
+        <article className={style.containerBlogsUser}>
+          <nav>
+            <Link className={style.linkNavbar} to={"/dashboard/create_blog"}>
+              Crear blog
+            </Link>
+          </nav>
 
-      <article className={style.containerBlogsUser}>
-        <nav>
-          <Link className={style.linkNavbar} to={"/dashboard/create_blog"}>
-            Crear blog
-          </Link>
-        </nav>
-
-        <h1 className={style.titleMajor}> Blogs registrados </h1>
-        <div className={style.bottomNavegationScrollAppearance}>
-          <h1
-            onClick={(e) => {
-              if (navegationScrollAppearance === false) {
-                setNavegationScrollAppearance(true);
-                setValueScrollApearence(<AiOutlineClose />);
-              } else {
-                setNavegationScrollAppearance(false);
-                setValueScrollApearence(<AiOutlineMenu />);
-              }
-            }}
-          >
-            {valueScrollApearence}
-          </h1>
-        </div>
-
-        <div style={{ opacity: allVisibility }}>
-          <div>
-            {infoBlogsByUser.status === "pending" ? (
-              <h1> Cargando... </h1>
-            ) : infoBlogsByUser.status === "fulfilled" &&
-              !locationReact.search ? (
-              <div>
-                {infoBlogsByUser.info.results?.map((data) => {
-                  return (
-                    <aside
-                      className={style.separateBlogContainer}
-                      key={data.id}
-                    >
-                      <div className={style.containerImg}>
-                        <img src={data.img_url} alt="img" />
-                      </div>
-                      <div className={style.containerContent}>
-                        <div className={style.containerTitleAndPublic}>
-                          <h1> {data.title} </h1>
-                          {data.public === true ? (
-                            <b className={style.publicCase}> Publico </b>
-                          ) : (
-                            <b className={style.privateCase}> Privado </b>
-                          )}
-                        </div>
-                        <div>
-                          <p>{toTrimDescription(data.description)}</p>
-                        </div>
-
-                        <hr style={{ border: "2px solid gray" }} />
-
-                        <div className={style.containerButtonsAndDate}>
-                          <div className={style.containerButtons}>
-                            <button
-                              className={style.buttonDelete}
-                              onClick={() => {
-                                const info = {
-                                  jwt: access,
-                                  slug: `${data.slug}`,
-                                };
-                                deleteBlogByUser(info);
-                              }}
-                            >
-                              Eliminar
-                            </button>
-                            <button
-                              className={style.buttonUpdate}
-                              onClick={(e) => {
-                                navigate(
-                                  `/dashboard/blog_user_detail/${data.slug}`
-                                );
-                              }}
-                            >
-                              Detalles
-                            </button>
-                          </div>
-                          <b> {data.creation} </b>
-                        </div>
-                      </div>
-                    </aside>
-                  );
-                })}
-                <div>
-                  {infoBlogsByUser.status === "fulfilled"
-                    ? buttonsPagination()
-                    : false}
-                </div>
-              </div>
-            ) : Object.keys(nextBlogPages).length !== 0 ? (
-              <div style={{ opacity: allVisibilityPage }}>
-                {nextBlogPages.results?.map((data) => {
-                  return (
-                    <aside
-                      className={style.separateBlogContainer}
-                      key={data.id}
-                    >
-                      <div className={style.containerImg}>
-                        <img src={data.img_url} alt="img" />
-                      </div>
-                      <div className={style.containerContent}>
-                        <div className={style.containerTitleAndPublic}>
-                          <h1> {data.title} </h1>
-                          {data.public === true ? (
-                            <b className={style.publicCase}> Publico </b>
-                          ) : (
-                            <b className={style.privateCase}> Privado </b>
-                          )}
-                        </div>
-                        <div>
-                          <p> {toTrimDescription(data.description)} </p>
-                        </div>
-
-                        <hr style={{ border: "2px solid gray" }} />
-
-                        <div className={style.containerButtonsAndDate}>
-                          <div className={style.containerButtons}>
-                            <button
-                              className={style.buttonDelete}
-                              onClick={() => {
-                                const info = {
-                                  jwt: access,
-                                  slug: `${data.slug}`,
-                                };
-                                deleteBlogByUser(info);
-                              }}
-                            >
-                              Eliminar
-                            </button>
-                            <button
-                              className={style.buttonUpdate}
-                              onClick={(e) => {
-                                navigate(
-                                  `/dashboard/blog_user_detail/${data.slug}`
-                                );
-                              }}
-                            >
-                              Detalles
-                            </button>
-                          </div>
-                          <b> {data.creation} </b>
-                        </div>
-                      </div>
-                    </aside>
-                  );
-                })}
-                <div>
-                  {infoBlogsByUser.status === "fulfilled"
-                    ? buttonsPagination()
-                    : false}
-                </div>
-              </div>
-            ) : infoBlogsByUser.status === "rejected" ? (
-              <p> No hay blogs</p>
-            ) : (
-              false
-            )}
+          <h1 className={style.titleMajor}> Blogs registrados </h1>
+          <div className={style.bottomNavegationScrollAppearance}>
+            <h1
+              onClick={(e) => {
+                if (navegationScrollAppearance === false) {
+                  setNavegationScrollAppearance(true);
+                  setValueScrollApearence(<AiOutlineClose />);
+                } else {
+                  setNavegationScrollAppearance(false);
+                  setValueScrollApearence(<AiOutlineMenu />);
+                }
+              }}
+            >
+              {valueScrollApearence}
+            </h1>
           </div>
-        </div>
-      </article>
+
+          <div style={{ opacity: allVisibility }}>
+            <div>
+              {infoBlogsByUser.status === "pending" ? (
+                <h1> Cargando... </h1>
+              ) : infoBlogsByUser.status === "fulfilled" &&
+                !locationReact.search ? (
+                <div>
+                  {infoBlogsByUser.info.results?.map((data) => {
+                    return (
+                      <aside
+                        className={style.separateBlogContainer}
+                        key={data.id}
+                      >
+                        <div className={style.containerImg}>
+                          <img src={data.img_url} alt="img" />
+                        </div>
+                        <div className={style.containerContent}>
+                          <div className={style.containerTitleAndPublic}>
+                            <h1> {data.title} </h1>
+                            {data.public === true ? (
+                              <b className={style.publicCase}> Publico </b>
+                            ) : (
+                              <b className={style.privateCase}> Privado </b>
+                            )}
+                          </div>
+                          <div>
+                            <p>{toTrimDescription(data.description)}</p>
+                          </div>
+
+                          <hr style={{ border: "2px solid gray" }} />
+
+                          <div className={style.containerButtonsAndDate}>
+                            <div className={style.containerButtons}>
+                              <button
+                                className={style.buttonDelete}
+                                onClick={() => {
+                                  const info = {
+                                    jwt: access,
+                                    slug: `${data.slug}`,
+                                  };
+                                  deleteBlogByUser(info);
+                                }}
+                              >
+                                Eliminar
+                              </button>
+                              <button
+                                className={style.buttonUpdate}
+                                onClick={(e) => {
+                                  navigate(
+                                    `/dashboard/blog_user_detail/${data.slug}`
+                                  );
+                                }}
+                              >
+                                Detalles
+                              </button>
+                            </div>
+                            <b> {data.creation} </b>
+                          </div>
+                        </div>
+                      </aside>
+                    );
+                  })}
+                  <div>
+                    {infoBlogsByUser.status === "fulfilled"
+                      ? buttonsPagination()
+                      : false}
+                  </div>
+                </div>
+              ) : Object.keys(nextBlogPages).length !== 0 ? (
+                <div style={{ opacity: allVisibilityPage }}>
+                  {nextBlogPages.results?.map((data) => {
+                    return (
+                      <aside
+                        className={style.separateBlogContainer}
+                        key={data.id}
+                      >
+                        <div className={style.containerImg}>
+                          <img src={data.img_url} alt="img" />
+                        </div>
+                        <div className={style.containerContent}>
+                          <div className={style.containerTitleAndPublic}>
+                            <h1> {data.title} </h1>
+                            {data.public === true ? (
+                              <b className={style.publicCase}> Publico </b>
+                            ) : (
+                              <b className={style.privateCase}> Privado </b>
+                            )}
+                          </div>
+                          <div>
+                            <p> {toTrimDescription(data.description)} </p>
+                          </div>
+
+                          <hr style={{ border: "2px solid gray" }} />
+
+                          <div className={style.containerButtonsAndDate}>
+                            <div className={style.containerButtons}>
+                              <button
+                                className={style.buttonDelete}
+                                onClick={() => {
+                                  const info = {
+                                    jwt: access,
+                                    slug: `${data.slug}`,
+                                  };
+                                  deleteBlogByUser(info);
+                                }}
+                              >
+                                Eliminar
+                              </button>
+                              <button
+                                className={style.buttonUpdate}
+                                onClick={(e) => {
+                                  navigate(
+                                    `/dashboard/blog_user_detail/${data.slug}`
+                                  );
+                                }}
+                              >
+                                Detalles
+                              </button>
+                            </div>
+                            <b> {data.creation} </b>
+                          </div>
+                        </div>
+                      </aside>
+                    );
+                  })}
+                  <div>
+                    {infoBlogsByUser.status === "fulfilled"
+                      ? buttonsPagination()
+                      : false}
+                  </div>
+                </div>
+              ) : infoBlogsByUser.status === "rejected" ? (
+                <p> No hay blogs</p>
+              ) : (
+                false
+              )}
+            </div>
+          </div>
+        </article>
+      </LayoutDashboard>
     </main>
   );
 }

@@ -1,13 +1,14 @@
-import React from "react";
+import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
-import Swal from "sweetalert2";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { GetReactionDashboard } from "../../../components/index";
-import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
+import {
+  LayoutDashboard,
+  GetReactionDashboard,
+} from "../../../components/index.js";
 import style from "./style_update_blog_by_user.module.css";
 
 export default function UpdateBlogByUser() {
@@ -55,8 +56,7 @@ export default function UpdateBlogByUser() {
     }
 
     if (infoDetailedUserBlog.status === "rejected") {
-      location.href =
-        "https://impact-x.onrender.com/#/dashboard/blogs_user";
+      location.href = "https://impact-x.onrender.com/#/dashboard/blogs_user";
     }
   }, [infoJWTVerifi.status, infoDetailedUserBlog.status]);
 
@@ -177,159 +177,160 @@ export default function UpdateBlogByUser() {
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> IMPACT X | Actualizar blog  </title>
+        <title> IMPACT X | Actualizar blog </title>
       </Helmet>
 
-      <SidebarDashboard />
-      <section
-        style={{ opacity: allVisibility }}
-        className={style.containerCreateBlog}
-      >
-        <h1 className={style.titleCreateBlog}> ACTUALIZAR BLOG </h1>
+      <LayoutDashboard>
+        <section
+          style={{ opacity: allVisibility }}
+          className={style.containerCreateBlog}
+        >
+          <h1 className={style.titleCreateBlog}> ACTUALIZAR BLOG </h1>
 
-        <div className={style.containerLinkAtras}>
-          <Link className={style.linkAtras} to={"/dashboard/blogs_user"}>
-            Volver atras
-          </Link>
-        </div>
+          <div className={style.containerLinkAtras}>
+            <Link className={style.linkAtras} to={"/dashboard/blogs_user"}>
+              Volver atras
+            </Link>
+          </div>
 
-        <GetReactionDashboard params={slug} />
+          <GetReactionDashboard params={slug} />
 
-        {infoJWTVerifi.status === "fulfilled" && access ? (
-          <div>
-            <article>
-              <form
-                className={style.inputsInCreatingBlog}
-                encType="multipart/form-data"
-                onSubmit={onSubmitUpdateBlog}
-              >
-                {Object.keys(dataUpdateBlog).length !== 0 ? (
-                  <div>
-                    <div className={style.title}>
-                      <label
-                        className={style.labelTitlePersonalize}
-                        htmlFor="title"
-                      >
-                        Titulo
-                      </label>
-                      <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        value={dataUpdateBlog.title}
-                        onChange={onchangeData}
-                        required
-                      />
-                    </div>
-
-                    <div className={style.file}>
-                      <label
-                        className={style.labelFilePersonalize}
-                        htmlFor="file"
-                      >
-                        Cambiar imagen
-                      </label>
-                      <input
-                        type="file"
-                        name="img"
-                        id="file"
-                        accept="image/*"
-                        onChange={onChangeUploadImg}
-                      />
-                    </div>
-
-                    <div className={style.description}>
-                      <label
-                        className={style.labelDescriptionPersonalize}
-                        htmlFor="description"
-                      >
-                        Descripcion
-                      </label>
-                      <textarea
-                        name="description"
-                        id="description"
-                        cols="30"
-                        rows="10"
-                        value={dataUpdateBlog.description}
-                        onChange={onchangeData}
-                        required
-                      ></textarea>
-                    </div>
-
-                    <div className={style.public}>
-                      <b
-                        style={
-                          publicSelect === "PRIVADO"
-                            ? { color: "rgb(187, 69, 69)" }
-                            : { color: "rgb(69, 142, 69)" }
-                        }
-                      >
-                        {publicSelect}
-                      </b>
-                      <div className={style.check}>
+          {infoJWTVerifi.status === "fulfilled" && access ? (
+            <div>
+              <article>
+                <form
+                  className={style.inputsInCreatingBlog}
+                  encType="multipart/form-data"
+                  onSubmit={onSubmitUpdateBlog}
+                >
+                  {Object.keys(dataUpdateBlog).length !== 0 ? (
+                    <div>
+                      <div className={style.title}>
+                        <label
+                          className={style.labelTitlePersonalize}
+                          htmlFor="title"
+                        >
+                          Titulo
+                        </label>
                         <input
-                          type="checkbox"
-                          id="pill3"
-                          name="public"
-                          checked={dataUpdateBlog.public}
+                          type="text"
+                          name="title"
+                          id="title"
+                          value={dataUpdateBlog.title}
                           onChange={onchangeData}
+                          required
                         />
-                        <label for="pill3"></label>
+                      </div>
+
+                      <div className={style.file}>
+                        <label
+                          className={style.labelFilePersonalize}
+                          htmlFor="file"
+                        >
+                          Cambiar imagen
+                        </label>
+                        <input
+                          type="file"
+                          name="img"
+                          id="file"
+                          accept="image/*"
+                          onChange={onChangeUploadImg}
+                        />
+                      </div>
+
+                      <div className={style.description}>
+                        <label
+                          className={style.labelDescriptionPersonalize}
+                          htmlFor="description"
+                        >
+                          Descripcion
+                        </label>
+                        <textarea
+                          name="description"
+                          id="description"
+                          cols="30"
+                          rows="10"
+                          value={dataUpdateBlog.description}
+                          onChange={onchangeData}
+                          required
+                        ></textarea>
+                      </div>
+
+                      <div className={style.public}>
+                        <b
+                          style={
+                            publicSelect === "PRIVADO"
+                              ? { color: "rgb(187, 69, 69)" }
+                              : { color: "rgb(69, 142, 69)" }
+                          }
+                        >
+                          {publicSelect}
+                        </b>
+                        <div className={style.check}>
+                          <input
+                            type="checkbox"
+                            id="pill3"
+                            name="public"
+                            checked={dataUpdateBlog.public}
+                            onChange={onchangeData}
+                          />
+                          <label for="pill3"></label>
+                        </div>
+                      </div>
+
+                      <div className={style.category}>
+                        <select
+                          onClick={(e) => {
+                            setSelectCategory(e.target.value);
+                          }}
+                        >
+                          <option> {selectCategory} </option>
+                          {infoCategory.info
+                            ? leftoverCategoriesToSelect()
+                            : true}
+                        </select>
+                      </div>
+
+                      <div className={style.content}>
+                        <CKEditor
+                          editor={ClassicEditor}
+                          data={contentCkeditor}
+                          onChange={(event, editor) => {
+                            const data = editor.getData();
+                            setContentCkeditor(data);
+                          }}
+                        />
+                      </div>
+
+                      <div className={style.containerButtom}>
+                        <button className={style.button} type="submit">
+                          Actualizar blog
+                        </button>
                       </div>
                     </div>
-
-                    <div className={style.category}>
-                      <select
-                        onClick={(e) => {
-                          setSelectCategory(e.target.value);
-                        }}
-                      >
-                        <option> {selectCategory} </option>
-                        {infoCategory.info
-                          ? leftoverCategoriesToSelect()
-                          : true}
-                      </select>
-                    </div>
-
-                    <div className={style.content}>
-                      <CKEditor
-                        editor={ClassicEditor}
-                        data={contentCkeditor}
-                        onChange={(event, editor) => {
-                          const data = editor.getData();
-                          setContentCkeditor(data);
-                        }}
-                      />
-                    </div>
-
-                    <div className={style.containerButtom}>
-                      <button className={style.button} type="submit">
-                        Actualizar blog
-                      </button>
-                    </div>
-                  </div>
+                  ) : (
+                    <h1> cargando... </h1>
+                  )}
+                </form>
+              </article>
+              <div>
+                {Object.keys(dataUpdateBlog).length !== 0 ? (
+                  <img
+                    style={{ display: "none" }}
+                    src={dataUpdateBlog.img_url}
+                    alt="img"
+                    width={140}
+                  />
                 ) : (
-                  <h1> cargando... </h1>
+                  false
                 )}
-              </form>
-            </article>
-            <div>
-              {Object.keys(dataUpdateBlog).length !== 0 ? (
-                <img
-                  style={{ display: "none" }}
-                  src={dataUpdateBlog.img_url}
-                  alt="img"
-                  width={140}
-                />
-              ) : (
-                false
-              )}
+              </div>
             </div>
-          </div>
-        ) : (
-          <h1> cargando... </h1>
-        )}
-      </section>
+          ) : (
+            <h1> cargando... </h1>
+          )}
+        </section>
+      </LayoutDashboard>
     </main>
   );
 }

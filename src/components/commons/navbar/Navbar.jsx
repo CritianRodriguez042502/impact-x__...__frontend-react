@@ -11,7 +11,6 @@ export function Navbar() {
   const dispatch = useDispatch();
   const locationReact = useLocation().pathname;
   const infoJWTVerify = useSelector((state) => state.JWTVerify);
-  const infoCategorys = useSelector((state) => state.category);
 
   const access = JSON.parse(localStorage.getItem("access"));
 
@@ -39,17 +38,6 @@ export function Navbar() {
       setAppearance(false);
     }
   }, [infoJWTVerify.status]);
-
-  // useeffect to bring categories
-  useEffect(() => {
-    if (infoCategorys.status === null || infoCategorys.status === "rejected") {
-      setTimeout(() => {
-        import("../../../redux/index").then((modules) => {
-          dispatch(modules.axiosCategorys());
-        });
-      }, 4000);
-    }
-  }, [infoCategorys.status]);
 
   return (
     <main>

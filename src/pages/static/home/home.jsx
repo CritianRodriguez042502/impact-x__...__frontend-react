@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet";
 import Typewriter from "typewriter-effect";
-import { Layout } from "../../../components/layout/Layout.jsx";
 import media from "../../../assets/static/home/imagen-reds.png";
 import person from "../../../assets/static/home/imagen-hombre-verde.png";
+import { Layout } from "../../../components/index.js";
 import style from "./style_initial.module.css";
 
 export default function Home() {
@@ -14,7 +14,6 @@ export default function Home() {
         <title> IMPACT X | Inicio </title>
       </Helmet>
       <Layout>
-      
         <section className={style.containerInitial1}>
           <aside className={style.containerContent1}>
             <h1>
@@ -39,7 +38,6 @@ export default function Home() {
             </div>
           </aside>
 
-          
           <aside className={style.containerImg1}>
             <img src={media} alt="img" />
           </aside>

@@ -1,12 +1,11 @@
-import React from "react";
+import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
-import Swal from "sweetalert2";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { SidebarDashboard } from "../../../components/commons/sidebar/SidebarDashboard";
+import { LayoutDashboard } from "../../../components/index.js";
 import style from "./style_create_blog_user.module.css";
 
 export default function CreateBlogUser() {
@@ -111,7 +110,7 @@ export default function CreateBlogUser() {
 
           setTimeout(() => {
             navigate("/dashboard/blogs_user");
-          },4500)
+          }, 4500);
         } else {
           Swal.fire({
             icon: "info",
@@ -140,114 +139,115 @@ export default function CreateBlogUser() {
         <title> IMPACT X | Crear Blog </title>
       </Helmet>
 
-      <SidebarDashboard />
-      <section className={style.containerCreateBlog}>
-        <h1 className={style.titleCreateBlog}> CREAR UN BLOG </h1>
+      <LayoutDashboard>
+        <section className={style.containerCreateBlog}>
+          <h1 className={style.titleCreateBlog}> CREAR UN BLOG </h1>
 
-        <div className={style.containerLinkAtras}>
-          <Link className={style.linkAtras} to={"/dashboard/blogs_user"}>
-            Volver atras
-          </Link>
-        </div>
+          <div className={style.containerLinkAtras}>
+            <Link className={style.linkAtras} to={"/dashboard/blogs_user"}>
+              Volver atras
+            </Link>
+          </div>
 
-        <article>
-          {infoJWTVerifi.status === "fulfilled" && access ? (
-            <form
-              className={style.inputsInCreatingBlog}
-              encType="multipart/form-data"
-              onSubmit={onSubmitCreateBlog}
-            >
-              <div className={style.title}>
-                <label htmlFor="title">Titulo</label>
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  onChange={onChangeCreateBlog}
-                />
-              </div>
-
-              <div className={style.file}>
-                <label htmlFor="image"> Imagen </label>
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  onChange={onChangeUploadImg}
-                  accept="image/*"
-                  required
-                />
-              </div>
-
-              <div className={style.description}>
-                <label
-                  className={style.labelDescriptionPersonalize}
-                  htmlFor="description"
-                >
-                  Descripcion
-                </label>
-                <textarea
-                  name="description"
-                  id="description"
-                  cols="30"
-                  rows="10"
-                  onChange={onChangeCreateBlog}
-                ></textarea>
-              </div>
-
-              <div className={style.public}>
-                <b
-                  style={
-                    publicSelect === "PRIVADO"
-                      ? { color: "rgb(187, 69, 69)" }
-                      : { color: "rgb(69, 142, 69)" }
-                  }
-                >
-                  {publicSelect}
-                </b>
-                <div className={style.check}>
+          <article>
+            {infoJWTVerifi.status === "fulfilled" && access ? (
+              <form
+                className={style.inputsInCreatingBlog}
+                encType="multipart/form-data"
+                onSubmit={onSubmitCreateBlog}
+              >
+                <div className={style.title}>
+                  <label htmlFor="title">Titulo</label>
                   <input
-                    type="checkbox"
-                    id="pill3"
-                    name="public"
+                    type="text"
+                    name="title"
+                    id="title"
                     onChange={onChangeCreateBlog}
                   />
-                  <label for="pill3"></label>
                 </div>
-              </div>
 
-              <div className={style.category}>
-                <select onClick={onClickSelectCategory}>
-                  <option>Seleccionar categoria</option>
-                  {infoCategory.status === "fulfilled" && infoCategory.info
-                    ? infoCategory.info?.map(function (data) {
-                        return <option key={data.id}> {data.name} </option>;
-                      })
-                    : false}
-                </select>
-              </div>
+                <div className={style.file}>
+                  <label htmlFor="image"> Imagen </label>
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    onChange={onChangeUploadImg}
+                    accept="image/*"
+                    required
+                  />
+                </div>
 
-              <div className={style.content}>
-                <label htmlFor=""> Contenido </label>
-                <CKEditor
-                  editor={ClassicEditor}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    setContentCkeditor(data);
-                  }}
-                />
-              </div>
-              <div className={style.containerButtom}>
-                <button className={style.button} type="submit">
-                  Crear blog
-                </button>
-              </div>
-            </form>
-          ) : (
-            <h1> Cargando... </h1>
-          )}
-        </article>
-      </section>
+                <div className={style.description}>
+                  <label
+                    className={style.labelDescriptionPersonalize}
+                    htmlFor="description"
+                  >
+                    Descripcion
+                  </label>
+                  <textarea
+                    name="description"
+                    id="description"
+                    cols="30"
+                    rows="10"
+                    onChange={onChangeCreateBlog}
+                  ></textarea>
+                </div>
+
+                <div className={style.public}>
+                  <b
+                    style={
+                      publicSelect === "PRIVADO"
+                        ? { color: "rgb(187, 69, 69)" }
+                        : { color: "rgb(69, 142, 69)" }
+                    }
+                  >
+                    {publicSelect}
+                  </b>
+                  <div className={style.check}>
+                    <input
+                      type="checkbox"
+                      id="pill3"
+                      name="public"
+                      onChange={onChangeCreateBlog}
+                    />
+                    <label for="pill3"></label>
+                  </div>
+                </div>
+
+                <div className={style.category}>
+                  <select onClick={onClickSelectCategory}>
+                    <option>Seleccionar categoria</option>
+                    {infoCategory.status === "fulfilled" && infoCategory.info
+                      ? infoCategory.info?.map(function (data) {
+                          return <option key={data.id}> {data.name} </option>;
+                        })
+                      : false}
+                  </select>
+                </div>
+
+                <div className={style.content}>
+                  <label htmlFor=""> Contenido </label>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setContentCkeditor(data);
+                    }}
+                  />
+                </div>
+                <div className={style.containerButtom}>
+                  <button className={style.button} type="submit">
+                    Crear blog
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <h1> Cargando... </h1>
+            )}
+          </article>
+        </section>
+      </LayoutDashboard>
     </main>
   );
 }

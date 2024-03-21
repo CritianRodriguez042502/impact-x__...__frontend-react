@@ -1,12 +1,12 @@
+import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import { AiOutlineClose } from "react-icons/ai";
 import personDefault from "../../../assets/dashboard/img_person_default.png";
-import style from "./style_sidebar_dashboard.module.css";
+import style from "./style_side_navbar_dashboard.module.css";
 
-export function SidebarDashboard({ appearance }) {
+export function SideNavbarDashboard({ appearance }) {
   const dispatch = useDispatch();
 
   const infoJWTVerifi = useSelector((state) => state.JWTVerify);
