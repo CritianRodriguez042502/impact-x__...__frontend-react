@@ -4,7 +4,7 @@
 
 const config = {
   env: {
-    base_url_server: import.meta.env.VITE_BASE_URL_SERVER,
+    base_url_server: import.meta.env.VITE_URL_BACKEND_DJANGO,
   },
 };
 

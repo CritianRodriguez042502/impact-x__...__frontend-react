@@ -5,16 +5,25 @@ import { NavLink } from "react-router-dom";
 import { axiosJWTVerify } from "../../../redux/index";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
+
 import style from "./style_navbar.module.css";
 
 export function Navbar() {
   const dispatch = useDispatch();
   const locationReact = useLocation().pathname;
-  const infoJWTVerify = useSelector((state) => state.JWTVerify);
-
   const access = JSON.parse(localStorage.getItem("access"));
 
+  const infoJWTVerify = useSelector((state) => state.JWTVerify);
+
   const [appearance, setAppearance] = useState(false);
+
+  const navbarOptions = [
+    { name: "INICIO", path: "/" },
+    { name: "SERVICIOS", path: "/services" },
+    { name: "SOBRE NOSOTROS", path: "/about" },
+    { name: "CONTACTO", path: "/contact" },
+    { name: "BLOG", path: "/blogs" },
+  ];
 
   // dom with css
   const [navegationScrollAppearance, setNavegationScrollAppearance] =
@@ -29,6 +38,7 @@ export function Navbar() {
     if (!infoJWTVerify.status) {
       dispatch(axiosJWTVerify({ token: access }));
     }
+
     if (infoJWTVerify.status === "fulfilled" && access) {
       setAppearance(true);
     }
@@ -39,12 +49,16 @@ export function Navbar() {
     }
   }, [infoJWTVerify.status]);
 
+  useEffect(() => {
+    dispatch(axiosJWTVerify({ token: access }));
+  }, []);
+
   return (
     <main>
       <section className={style.parentContainer}>
         <div>
           <h1 className={style.titleIMPACTX}>
-            🧩 <span style={{ color: "green" }}> I</span>MPACT X 🧩
+            🧩 <span style={{ color: "green" }}>I</span>MPACT X 🧩
           </h1>
         </div>
 
@@ -73,76 +87,33 @@ export function Navbar() {
             </p>
           </div>
           <nav>
-            <NavLink
-              style={
-                locationReact === "/home" || locationReact === "/"
-                  ? { color: "green" }
-                  : { color: "#333" }
-              }
-              className={style.navbarLink}
-              to={"/home"}
-            >
-              INICIO
-            </NavLink>
+            {navbarOptions.map((item, index) => {
+              return (
+                <NavLink
+                  key={index}
+                  style={
+                    locationReact === item.path
+                      ? { color: "green" }
+                      : { color: "#333" }
+                  }
+                  className={style.navbarLink}
+                  to={item.path}
+                >
+                  {item.name}
+                </NavLink>
+              );
+            })}
 
-            <NavLink
-              style={
-                locationReact === "/services"
-                  ? { color: "green" }
-                  : { color: "#333" }
-              }
-              className={style.navbarLink}
-              to={"/services"}
-            >
-              SERVICIOS
-            </NavLink>
-
-            <NavLink
-              style={
-                locationReact === "/about"
-                  ? { color: "green" }
-                  : { color: "#333" }
-              }
-              className={style.navbarLink}
-              to={"/about"}
-            >
-              SOBRE NOSOTROS
-            </NavLink>
-
-            <NavLink
-              style={
-                locationReact === "/contact"
-                  ? { color: "green" }
-                  : { color: "#333" }
-              }
-              className={style.navbarLink}
-              to={"/contact"}
-            >
-              CONTACTOS
-            </NavLink>
-            <NavLink
-              style={
-                locationReact === "/blogs"
-                  ? { color: "green" }
-                  : { color: "#333" }
-              }
-              className={style.navbarLink}
-              to={"/blogs"}
-            >
-              BLOG
-            </NavLink>
-            {appearance === true ? (
+            {appearance ? (
               <NavLink className={style.buttonDashboard} to={"/dashboard"}>
                 DASHBOARD
               </NavLink>
-            ) : appearance === false ? (
+            ) : (
               <div>
                 <NavLink className={style.buttonLogin} to={"/access"}>
                   UNETE...
                 </NavLink>
               </div>
-            ) : (
-              false
             )}
           </nav>
         </div>

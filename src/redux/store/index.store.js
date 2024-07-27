@@ -1,8 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-// State --Activation Server --
-import activationServer from "../slices/activate_server/activate.slice.js"
-
 // State --blog --
 import category from "../slices/blog_slices/categorysSlice";
 import allBlogs from "../slices/blog_slices/allBlogs";
@@ -44,10 +41,6 @@ import getComments from "../slices/reactions_slice/getCommentsSlice";
 
 export const store = configureStore({
   reducer: {
-
-    // State --Activation Server --
-    activationServer,
-
     // State -- Blog --
     category,
     allBlogs,

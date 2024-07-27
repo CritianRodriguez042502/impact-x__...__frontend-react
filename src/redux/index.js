@@ -3,9 +3,6 @@
 // Export store
 export { store } from "./store/index.store.js";
 
-// Export Apis calls -- Activate server --
-export { axiosActivateServer } from "./slices/activate_server/activate.slice.js";
-
 // Export Apis calls -- Blog --
 export { axiosCategorys } from "./slices/blog_slices/categorysSlice";
 export { axiosAllBlogs } from "./slices/blog_slices/allBlogs";

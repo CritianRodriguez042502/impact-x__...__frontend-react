@@ -62,14 +62,6 @@ export const Redirects = () => {
           }
         />
         <Route
-          path="/home"
-          element={
-            <Suspense fallback={<Loader />}>
-              <pages.static_pages.home />
-            </Suspense>
-          }
-        />
-        <Route
           path="/services"
           element={
             <Suspense fallback={<Loader />}>

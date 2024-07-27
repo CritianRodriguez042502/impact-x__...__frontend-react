@@ -12,15 +12,15 @@
 .containerContent h1 {
   font-size: 28px;
   margin: 10px 0;
+  font-size: 26px;
 }
 
 .containerContent h1::first-letter {
   color: green;
-  font-size: 30px;
 }
 
 .containerContent p {
-  font-size: 19px;
+  font-size: 16px;
 }
 
 .containerInputs {
@@ -30,13 +30,14 @@
 
 .containerInputs label {
   display: block;
-  font-size: 20px;
-  margin-bottom: 2px;
+  font-size: 16px;
+  margin-bottom: 4px;
   font-weight: bold;
 }
 
 .containerInputs input,
 .containerInputs textarea {
+  outline: none;
   width: 90%;
   padding: 10px 10px;
   margin-bottom: 15px;
@@ -62,11 +63,11 @@
   background: #48bb3e;
   color: #fff;
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   border-radius: 5px;
   padding: 12px 40px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.2s;
 }
 
 .containerInputs button:hover {
@@ -89,7 +90,7 @@
 
   .containerContent {
     background: initial;
-    padding: 20px 20px;
+    padding: 20px 40px;
     margin-top: 20px;
     margin-left: 8%;
     margin-right: 10%;
