@@ -1,18 +1,26 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { store } from "./redux/index";
-import { Redirects } from "./routes/index.routes.jsx";
+
+import { store } from "@/redux/index";
+import { Redirects } from "@/routes/index.routes.jsx";
+
+import { activate } from "./utils/activate.js";
 
 // Import global styles
-import "./styles/index.css"
+import "./index.css"
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const App = () => {
+  React.useEffect(() => {
+    activate();
+  }, []);
 
-root.render(
-  <>
-    <Provider store={store}>
-      <Redirects/>
-    </Provider>
-  </>
-);
+  return (
+    <>
+      <Provider store={store}>
+        <Redirects />
+      </Provider>
+    </>
+  );
+};
+
+export default App;

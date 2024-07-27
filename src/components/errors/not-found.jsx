@@ -8,6 +8,7 @@ export default function NotFound() {
       <Helmet>
         <title>IMPACT X | Not found</title>
       </Helmet>
+
       <aside className={styles.container}>
         <section className={styles.containerMessage}>
           <div>

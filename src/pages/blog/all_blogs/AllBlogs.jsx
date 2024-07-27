@@ -34,6 +34,8 @@ export default function AllBlogs() {
     });
   }, []);
 
+  console.log(infoBlogs);
+
   useEffect(() => {
     if (page) {
       const url = `https://server-agency-1203.onrender.com/blog/all_blog/?page=${
